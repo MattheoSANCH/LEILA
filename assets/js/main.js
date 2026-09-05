@@ -1,63 +1,43 @@
 (function () {
-  var header = document.getElementById('site-header');
   var menuToggle = document.getElementById('menuToggle');
   var mobileMenu = document.getElementById('mobileMenu');
 
-  function onScroll() {
-    if (window.scrollY > 8) {
-      header.classList.add('scrolled');
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Horaires du jour, dérivés du tableau ci-dessus : 9h-21h, 20h le dimanche.
+  var closing = [20, 21, 21, 21, 21, 21, 21];
+  var days = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+  var now = new Date();
+  var day = now.getDay();
+  var hour = now.getHours() + now.getMinutes() / 60;
+  var closesAt = closing[day];
+
+  var todayEl = document.getElementById('todayHours');
+  if (todayEl) {
+    if (hour >= 9 && hour < closesAt) {
+      todayEl.textContent = 'Ouvert aujourd’hui jusqu’à ' + closesAt + 'h';
+    } else if (hour < 9) {
+      todayEl.textContent = 'Ouvre à 9h — ' + days[day] + ' 9h à ' + closesAt + 'h';
     } else {
-      header.classList.remove('scrolled');
+      var tomorrow = (day + 1) % 7;
+      todayEl.textContent = 'Fermé — réouverture ' + days[tomorrow] + ' à 9h';
     }
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
-    document.body.style.overflow = '';
-  }
-
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    menuToggle.setAttribute('aria-label', 'Fermer le menu');
-    document.body.style.overflow = 'hidden';
-  }
-
-  menuToggle.addEventListener('click', function () {
-    var isOpen = mobileMenu.classList.contains('open');
-    if (isOpen) { closeMenu(); } else { openMenu(); }
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', closeMenu);
-  });
-
-  window.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeMenu();
-  });
-
-  var revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
-    );
-    revealEls.forEach(function (el) { observer.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-  }
+  var todayRow = document.querySelector('.hours-row[data-day="' + day + '"]');
+  if (todayRow) todayRow.classList.add('today');
 
   var yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) yearEl.textContent = now.getFullYear();
 })();
