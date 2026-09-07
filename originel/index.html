@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══════════════════════════════════════════════════════════════
+     ORIGINEL — Concept store, 73 boulevard Voltaire, Paris 11e
+     Site vitrine one-page. Fichier autonome : tout le CSS et le JS
+     sont dans cette page, il n'y a rien d'autre à installer.
+
+     POUR REMPLACER LES PHOTOS :
+     chaque emplacement est un bloc <figure class="ph">.
+     Déposer une balise <img> à l'intérieur suffit : elle recouvre
+     automatiquement le visuel de substitution. Exemple :
+        <figure class="ph ph--hero">
+          <img src="photos/boutique.jpg" alt="La boutique">
+        </figure>
+     Les blocs sont repérés par des commentaires « PHOTO · … ».
+     ══════════════════════════════════════════════════════════════ -->
+
+<title>Originel — Concept store nature &amp; art de vivre, Paris 11e</title>
+<meta name="description" content="Concept store au 73 boulevard Voltaire, Paris 11e. Plantes, fleurs, céramiques, décoration, cafés de spécialité et thés. 5,0 sur Google. 01 84 25 62 50.">
+<meta name="theme-color" content="#2B2724">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Originel — Concept store nature &amp; art de vivre, Paris 11e">
+<meta property="og:description" content="L'art de vivre, inspiré par la nature. Plantes, fleurs, céramiques et cafés de spécialité, 73 boulevard Voltaire.">
+<meta property="og:locale" content="fr_FR">
+
+<!-- LOGO : remplacer ce favicon par le vrai logo si le commerce en a un -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232B2724'/%3E%3Cpath d='M16 25V12' stroke='%23FAF8F4' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M16 17c-4-1-6-3.5-6.5-7.5C13.5 10 15.5 13 16 17z' fill='%236E7A4F'/%3E%3Cpath d='M16 19c4-1 6-3.5 6.5-7.5C18.5 12 16.5 15 16 19z' fill='%236E7A4F'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════ 1. VARIABLES — toute la charte tient ici ══════════ */
+:root {
+  --pierre:      #FAF8F4;   /* fond principal, ton pierre */
+  --argile:      #EDE7DE;   /* fond des sections alternées */
+  --argile-2:    #DED5C8;   /* aplats de substitution photo */
+  --encre:       #2B2724;   /* texte, voile du hero, pied de page */
+  --encre-clair: #6B645C;   /* texte secondaire */
+  --olive:       #5E6B42;   /* accent : boutons, surtitres */
+  --olive-fonce: #4A5533;
+  --olive-clair: #8B9A6B;
+  --trait:       rgba(43, 39, 36, 0.13);
+  --ombre:       0 18px 42px -26px rgba(43, 39, 36, 0.5);
+  --ombre-forte: 0 28px 54px -24px rgba(43, 39, 36, 0.55);
+  --rayon:       12px;
+}
+
+/* ══════════ 2. BASES ══════════ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--pierre);
+  color: var(--encre);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: 'Spectral', Georgia, serif; font-weight: 400; margin: 0; line-height: 1.22; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+img { display: block; max-width: 100%; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.center { text-align: center; }
+
+.surtitre {
+  font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
+  font-weight: 500; color: var(--olive); margin-bottom: 15px;
+}
+.titre-section { font-size: clamp(1.9rem, 3.8vw, 2.8rem); }
+.chapo { margin-top: 18px; color: var(--encre-clair); font-size: 1.05rem; max-width: 58ch; }
+.center .chapo { margin-left: auto; margin-right: auto; }
+
+.skip { position: absolute; left: -9999px; top: 0; z-index: 999; background: var(--encre); color: var(--pierre); padding: 12px 20px; }
+.skip:focus { left: 0; }
+
+/* ══════════ 3. BOUTONS ══════════ */
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 500;
+  font-size: 0.94rem; padding: 15px 32px; border-radius: 999px;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.btn-plein { background: var(--olive); color: #fff; box-shadow: 0 12px 28px -14px rgba(94,107,66,.9); }
+.btn-plein:hover { background: var(--olive-fonce); transform: translateY(-2px); }
+.btn-clair { background: rgba(255,255,255,.95); color: var(--encre); }
+.btn-clair:hover { background: #fff; transform: translateY(-2px); }
+.btn-ligne { border: 1.5px solid var(--trait); }
+.btn-ligne:hover { border-color: var(--olive); color: var(--olive); }
+
+/* ══════════ 4. EMPLACEMENTS PHOTO ══════════
+   Fond de substitution + étiquette. Dès qu'une balise <img> est
+   déposée dans le bloc, elle passe par-dessus et masque le tout. */
+.ph {
+  position: relative; margin: 0; overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255,255,255,.7), transparent 58%),
+    linear-gradient(145deg, var(--argile-2), #CFC4B4);
+  display: grid; place-items: center;
+}
+.ph img { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
+.ph-icone { width: 42px; height: 42px; stroke: var(--olive); opacity: .45; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.ph-tag {
+  position: absolute; left: 14px; bottom: 12px; z-index: 1;
+  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 500; color: var(--encre-clair); opacity: .6;
+}
+/* Le hero est plus profond, pour rester lisible sous le voile */
+.ph--hero {
+  background:
+    radial-gradient(circle at 22% 18%, rgba(219,208,186,.7), transparent 55%),
+    radial-gradient(circle at 80% 78%, rgba(94,107,66,.55), transparent 60%),
+    linear-gradient(150deg, #7A7460, #4A463C 55%, #2B2724);
+}
+.ph--hero .ph-icone { stroke: #E8E2D4; opacity: .3; width: 62px; height: 62px; }
+.ph--hero .ph-tag { color: #E8E2D4; opacity: .45; }
+
+/* ══════════ 5. EN-TÊTE ══════════ */
+#entete {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250, 248, 244, .93); backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent; transition: border-color .25s, box-shadow .25s;
+}
+#entete.colle { border-bottom-color: var(--trait); box-shadow: 0 8px 26px -22px rgba(43,39,36,.6); }
+.entete-in { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 16px 0; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-marque { width: 40px; height: 40px; border-radius: 11px; background: var(--encre); flex: none; display: grid; place-items: center; }
+.logo-marque svg { width: 22px; height: 22px; }
+.logo-nom { font-family: 'Spectral', serif; font-size: 1.28rem; letter-spacing: 0.06em; line-height: 1.1; }
+.logo-nom span { display: block; font-family: 'Outfit', sans-serif; font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--encre-clair); margin-top: 3px; font-weight: 500; }
+.menu { display: flex; gap: 26px; font-size: 0.87rem; font-weight: 400; }
+.menu a { text-decoration: none; color: var(--encre-clair); padding-bottom: 3px; border-bottom: 1px solid transparent; }
+.menu a:hover { color: var(--encre); border-bottom-color: var(--olive); }
+.entete-cta { font-size: 0.85rem; padding: 12px 24px; }
+.burger { display: none; background: none; border: 1px solid var(--trait); border-radius: 10px; padding: 9px 11px; cursor: pointer; }
+.burger span { display: block; width: 20px; height: 1.5px; background: var(--encre); border-radius: 2px; }
+.burger span + span { margin-top: 5px; }
+#menu-mobile { display: none; background: var(--pierre); border-bottom: 1px solid var(--trait); }
+#menu-mobile.ouvert { display: block; }
+#menu-mobile a { display: block; padding: 14px 28px; text-decoration: none; font-weight: 500; border-top: 1px solid var(--trait); }
+#menu-mobile .tel { color: var(--olive); }
+
+/* ══════════ 6. HERO ══════════
+   La photo et le texte sont empilés dans la même cellule de grille :
+   la hauteur du hero suit toujours le plus grand des deux, et le
+   texte ne peut jamais être rogné, même sur un petit écran. */
+.hero { position: relative; display: grid; }
+.hero > * { grid-area: 1 / 1; }
+.hero .ph { min-height: min(82vh, 660px); }
+.hero-voile { position: absolute; inset: 0; z-index: 3; background: linear-gradient(180deg, rgba(30,27,24,.34) 0%, rgba(30,27,24,.5) 48%, rgba(30,27,24,.72) 100%); }
+.hero-texte { position: relative; z-index: 4; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; text-align: center; padding: 110px 0 62px; }
+.hero-texte .surtitre { color: #C9CFAE; }
+.hero h1 { color: #fff; font-size: clamp(2.3rem, 5.6vw, 4.1rem); max-width: 17ch; font-weight: 300; }
+.hero h1 em { font-style: italic; }
+.hero .slogan { color: rgba(255,255,255,.88); font-size: clamp(1.02rem, 2vw, 1.2rem); margin-top: 20px; max-width: 46ch; }
+.hero-actions { margin-top: 34px; display: flex; gap: 13px; flex-wrap: wrap; justify-content: center; }
+.hero-bas { margin-top: 28px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; color: rgba(255,255,255,.85); font-size: 0.9rem; }
+.etoiles { color: #D9C173; letter-spacing: 2px; }
+.etat { display: flex; align-items: center; gap: 8px; }
+.point { width: 8px; height: 8px; border-radius: 50%; background: #9FBF7E; display: inline-block; }
+.point.ferme { background: #C99183; }
+
+/* ══════════ 7. SECTIONS ══════════ */
+section { padding: 96px 0; }
+.fond-argile { background: var(--argile); }
+
+/* À propos */
+.propos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.propos-texte p + p { margin-top: 18px; }
+.propos-texte .accroche { font-family: 'Spectral', serif; font-size: 1.4rem; line-height: 1.5; font-weight: 300; }
+.propos-grid .ph { aspect-ratio: 4 / 5; border-radius: var(--rayon); box-shadow: var(--ombre); }
+.valeurs { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--trait); }
+.valeur { flex: 1 1 150px; }
+.valeur .v-t { font-family: 'Spectral', serif; font-size: 1.15rem; }
+.valeur .v-d { font-size: 0.88rem; color: var(--encre-clair); margin-top: 4px; }
+
+/* L'univers — six familles */
+.univers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 54px; }
+.famille { background: var(--pierre); border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); transition: transform .3s ease, box-shadow .3s ease; }
+.famille:hover { transform: translateY(-6px); box-shadow: var(--ombre-forte); }
+.famille .ph { aspect-ratio: 4 / 3; }
+.famille .corps { padding: 24px 24px 28px; }
+.famille h3 { font-size: 1.35rem; }
+.famille p { font-size: 0.92rem; color: var(--encre-clair); margin-top: 9px; }
+
+/* Galerie — mosaïque 4 × 2, sans trou */
+.galerie { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 215px; gap: 14px; margin-top: 54px; }
+.galerie .ph { border-radius: 10px; transition: transform .35s ease; }
+.galerie .ph:hover { transform: scale(1.02); }
+.g-large { grid-column: span 2; }
+
+/* Avis */
+.avis-bloc { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 26px; }
+.avis-bloc .n { font-family: 'Spectral', serif; font-size: 3.2rem; line-height: 1; }
+.avis-bloc .d { font-size: 0.92rem; color: var(--encre-clair); text-align: left; }
+.avis-bloc .etoiles { color: #B99A3C; }
+.temoignages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.temoignage { background: var(--pierre); border-radius: var(--rayon); padding: 34px 30px; box-shadow: var(--ombre); margin: 0; display: flex; flex-direction: column; }
+.temoignage .etoiles { color: #B99A3C; font-size: .95rem; }
+.temoignage blockquote { margin: 14px 0 0; font-family: 'Spectral', serif; font-size: 1.16rem; line-height: 1.55; flex-grow: 1; }
+.temoignage figcaption { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--trait); font-size: 0.84rem; font-weight: 500; }
+.temoignage figcaption span { display: block; font-weight: 300; color: var(--encre-clair); font-size: 0.78rem; margin-top: 2px; }
+.avis-lien { display: inline-block; margin-top: 38px; font-size: 0.87rem; font-weight: 500; text-decoration: none; color: var(--olive); border-bottom: 1.5px solid var(--olive); padding-bottom: 3px; }
+
+/* Infos pratiques */
+.infos-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 52px; }
+.info-bloc + .info-bloc { margin-top: 32px; }
+.info-bloc h3 { font-size: 1.28rem; margin-bottom: 12px; }
+.horaire { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--trait); font-size: 0.95rem; }
+.horaire:first-of-type { border-top: 1px solid var(--trait); }
+.horaire span:last-child { color: var(--encre-clair); font-variant-numeric: tabular-nums; }
+.contact-l { display: flex; align-items: center; gap: 12px; padding: 11px 0; font-size: 1.02rem; }
+.contact-l svg { width: 19px; height: 19px; stroke: var(--olive); fill: none; stroke-width: 1.6; flex: none; }
+.contact-l a { text-decoration: none; font-weight: 500; }
+.reseaux { display: flex; gap: 11px; margin-top: 18px; }
+.reseaux a { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--trait); display: grid; place-items: center; text-decoration: none; }
+.reseaux a:hover { border-color: var(--olive); background: var(--olive); color: #fff; }
+.reseaux svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+.carte { border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); height: 100%; min-height: 400px; }
+.carte iframe { width: 100%; height: 100%; min-height: 400px; display: block; border: 0; }
+
+/* Bandeau d'appel */
+.bandeau { background: var(--encre); color: #fff; padding: 66px 0; }
+.bandeau h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); color: #fff; font-weight: 300; }
+.bandeau p { margin-top: 14px; color: rgba(255,255,255,.82); }
+.bandeau .btn { margin-top: 28px; }
+
+/* ══════════ 8. PIED DE PAGE ══════════ */
+footer { background: var(--encre); color: rgba(250,248,244,.72); padding: 56px 0 26px; font-size: 0.92rem; border-top: 1px solid rgba(250,248,244,.14); }
+.pied-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+footer h4 { font-family: 'Spectral', serif; font-size: 1.12rem; color: #fff; margin: 0 0 14px; font-weight: 400; }
+footer .pied-nom { font-family: 'Spectral', serif; font-size: 1.55rem; color: #fff; letter-spacing: 0.06em; }
+footer ul { list-style: none; margin: 0; padding: 0; }
+footer li { margin-bottom: 8px; }
+footer a { text-decoration: none; }
+footer a:hover { color: #fff; text-decoration: underline; }
+.pied-bas { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(250,248,244,.16); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: rgba(250,248,244,.5); }
+
+/* Barre d'appel mobile */
+.appel-mobile { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--olive); color: #fff; text-align: center; padding: 15px; text-decoration: none; font-weight: 500; font-size: 0.94rem; }
+
+/* ══════════ 9. ANIMATIONS AU SCROLL ══════════
+   Le fondu ne s'active que si le JavaScript fonctionne : sans lui,
+   tout le contenu reste visible normalement. */
+.js .anim { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.js .anim.vu { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .anim { opacity: 1 !important; transform: none !important; transition: none; }
+  .famille:hover, .galerie .ph:hover, .btn:hover { transform: none; }
+}
+
+/* ══════════ 10. RESPONSIVE — priorité mobile ══════════ */
+@media (max-width: 980px) {
+  .menu, .entete-cta { display: none; }
+  .burger { display: block; }
+  section { padding: 62px 0; }
+  .propos-grid { grid-template-columns: 1fr; gap: 34px; }
+  .propos-grid .ph { aspect-ratio: 16 / 10; }
+  .univers { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .temoignages { grid-template-columns: 1fr; gap: 18px; }
+  .infos-grid { grid-template-columns: 1fr; gap: 34px; }
+  .carte, .carte iframe { min-height: 320px; }
+  .galerie { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 155px; }
+  .pied-grid { grid-template-columns: 1fr; gap: 28px; }
+  .appel-mobile { display: block; }
+  footer { padding-bottom: 84px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 20px; }
+  .hero .ph { min-height: 80vh; }
+  .hero-texte { padding: 90px 0 46px; }
+  .univers { grid-template-columns: 1fr; }
+  .g-large { grid-column: span 1; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<!-- ═══════════ EN-TÊTE ═══════════ -->
+<header id="entete">
+  <div class="wrap entete-in">
+    <!-- LOGO · remplacer le carré coloré par <img src="photos/logo.png" alt="Originel"> -->
+    <a class="logo" href="#accueil">
+      <span class="logo-marque">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21V9" stroke="#FAF8F4" stroke-width="1.6" stroke-linecap="round"/><path d="M12 14c-3.4-.9-5.1-3-5.6-6.5C10 8.4 11.6 10.9 12 14z" fill="#8B9A6B"/><path d="M12 16c3.4-.9 5.1-3 5.6-6.5C14 10.4 12.4 12.9 12 16z" fill="#8B9A6B"/></svg>
+      </span>
+      <span class="logo-nom">ORIGINEL<span>Concept store · Paris 11e</span></span>
+    </a>
+
+    <nav class="menu" aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <a href="#propos">À propos</a>
+      <a href="#univers">L'univers</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="btn btn-plein entete-cta" href="tel:+33184256250">Nous appeler</a>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav id="menu-mobile" aria-label="Navigation">
+  <a href="#accueil">Accueil</a>
+  <a href="#propos">À propos</a>
+  <a href="#univers">L'univers</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#avis">Avis</a>
+  <a href="#contact">Contact</a>
+  <a class="tel" href="tel:+33184256250">Appeler · 01 84 25 62 50</a>
+</nav>
+
+<main id="contenu">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="accueil" style="padding:0">
+    <!-- PHOTO · HERO — l'intérieur de la boutique, l'ambiance générale.
+         Format paysage, 1920 × 1080 px minimum.
+         Déposer ici : <img src="photos/boutique.jpg" alt="L'intérieur d'Originel"> -->
+    <figure class="ph ph--hero">
+      <svg class="ph-icone" viewBox="0 0 24 24"><path d="M12 21V9"/><path d="M12 14c-3.4-.9-5.1-3-5.6-6.5C10 8.4 11.6 10.9 12 14z"/><path d="M12 16c3.4-.9 5.1-3 5.6-6.5C14 10.4 12.4 12.9 12 16z"/><path d="M8.5 21h7"/></svg>
+      <figcaption class="ph-tag">Photo · la boutique</figcaption>
+    </figure>
+
+    <div class="hero-voile"></div>
+
+    <div class="hero-texte">
+      <div class="wrap">
+        <p class="surtitre">Concept store · Boulevard Voltaire, Paris 11<sup>e</sup></p>
+        <!-- SLOGAN · repris des mots du commerce lui-même -->
+        <h1>L'art de vivre, <em>inspiré par la nature</em>.</h1>
+        <p class="slogan">Plantes, fleurs, céramiques, objets de décoration, cafés de spécialité et thés — réunis dans un même lieu, au 73 boulevard Voltaire.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-clair" href="#univers">Découvrir l'univers</a>
+          <a class="btn btn-plein" href="tel:+33184256250">Nous appeler</a>
+        </div>
+
+        <div class="hero-bas">
+          <span><span class="etoiles" aria-hidden="true">★★★★★</span> <strong>5,0 sur 5</strong> — 74 avis Google</span>
+          <!-- État d'ouverture : seule la fermeture à 20h30 est connue -->
+          <span class="etat"><span class="point"></span><span>Ouvert jusqu'à 20h30</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ À PROPOS ═══════════ -->
+  <section id="propos">
+    <div class="wrap propos-grid">
+      <div class="propos-texte anim">
+        <p class="surtitre">La maison</p>
+        <h2 class="titre-section">Un concept store dédié à l'art de vivre</h2>
+        <!-- TEXTE À PROPOS · les deux premières phrases sont la description
+             officielle du commerce. À compléter avec son histoire (ouverture,
+             parcours, sélection des artisans). -->
+        <p class="accroche">Originel est un concept store dédié à l'art de vivre inspiré par la nature.</p>
+        <p>Nous sélectionnons des plantes, fleurs, céramiques, objets de décoration, vaisselle, cafés de spécialité et thés de qualité, dans un univers chaleureux et authentique.</p>
+        <p>Chaque pièce est choisie pour durer et pour trouver sa place chez vous. En boutique, on prend le temps de conseiller : sur l'entretien d'une plante, sur l'objet qui ira au bon endroit, sur le café qui vous conviendra.</p>
+
+        <div class="valeurs">
+          <div class="valeur">
+            <div class="v-t">Sélection</div>
+            <div class="v-d">Chaque pièce est choisie</div>
+          </div>
+          <div class="valeur">
+            <div class="v-t">Le conseil</div>
+            <div class="v-d">Ce que citent nos clients</div>
+          </div>
+          <div class="valeur">
+            <div class="v-t">5,0 sur 74 avis</div>
+            <div class="v-d">Aucun avis en dessous de 5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO · ÉQUIPE — l'équipe ou le propriétaire dans la boutique.
+           Format portrait, 1200 × 1500 px minimum.
+           Déposer ici : <img src="photos/equipe.jpg" alt="L'équipe d'Originel"> -->
+      <figure class="ph anim">
+        <svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <figcaption class="ph-tag">Photo · l'équipe</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══════════ L'UNIVERS ═══════════ -->
+  <section id="univers" class="fond-argile">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">L'univers</p>
+        <h2 class="titre-section">Six familles sous un même toit</h2>
+        <p class="chapo">Bien plus qu'une boutique de fleurs : tout ce qui fait entrer la nature et le beau geste dans la maison.</p>
+      </div>
+
+      <div class="univers">
+        <!-- PHOTO · FAMILLE 1 — les plantes -->
+        <article class="famille anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M8 21h8l-1-6H9z"/><path d="M12 15V7"/><path d="M12 11C9.6 11 8 9.6 7.5 7 10 7 11.6 8.6 12 11z"/><path d="M12 12.5c2.4-.4 4-2 4.5-4.6C14 8.3 12.4 10 12 12.5z"/></svg>
+            <figcaption class="ph-tag">Photo · plantes</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Les plantes</h3>
+            <p>Vertes ou fleuries, pour la maison comme pour le bureau, avec les conseils d'entretien.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · FAMILLE 2 — les fleurs -->
+        <article class="famille anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M12 11.4V21"/><path d="M12 16c-2.6-.5-4.2-2-5-4.4"/><circle cx="7" cy="6.5" r="2.2"/><circle cx="17" cy="6.5" r="2.2"/></svg>
+            <figcaption class="ph-tag">Photo · fleurs</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Les fleurs</h3>
+            <p>Bouquets et compositions, à offrir ou pour soi, au fil des saisons.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · FAMILLE 3 — les céramiques -->
+        <article class="famille anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M7 10c0-2 2.2-3.5 5-3.5s5 1.5 5 3.5c0 5-1.5 7-1.5 11h-7C8.5 17 7 15 7 10z"/><path d="M9 10.5c2 1 4 1 6 0"/></svg>
+            <figcaption class="ph-tag">Photo · céramiques</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Les céramiques</h3>
+            <p>Vases, pots et pièces façonnées, choisies pour leur matière et leur tenue.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · FAMILLE 4 — décoration & vaisselle -->
+        <article class="famille anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg>
+            <figcaption class="ph-tag">Photo · décoration</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Décoration &amp; vaisselle</h3>
+            <p>Les objets du quotidien, ceux que l'on garde longtemps et que l'on offre volontiers.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · FAMILLE 5 — cafés de spécialité -->
+        <article class="famille anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M5 9h13v7a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M18 11h2a2 2 0 0 1 0 4h-2"/><path d="M9 5c0 1-1 1.5-1 2.5M13 4.5c0 1-1 1.5-1 2.5"/></svg>
+            <figcaption class="ph-tag">Photo · cafés</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Cafés de spécialité</h3>
+            <p>Une sélection de cafés de qualité, à emporter et à préparer chez soi.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · FAMILLE 6 — les thés -->
+        <article class="famille anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M6 10h11l-1 8a3 3 0 0 1-3 2.5H10A3 3 0 0 1 7 18z"/><path d="M17 12h2a2 2 0 0 1 0 4h-2"/><path d="M12 7c-1.6-1.3-1-3.2 0-3.8 1 .6 1.6 2.5 0 3.8z"/></svg>
+            <figcaption class="ph-tag">Photo · thés</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Les thés</h3>
+            <p>Des thés choisis pour leur origine et leur caractère, à découvrir en boutique.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ GALERIE ═══════════ -->
+  <section id="galerie">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">En images</p>
+        <h2 class="titre-section">L'atmosphère de la boutique</h2>
+        <p class="chapo">Six photos suffisent : la devanture, l'intérieur, les rayonnages, et quelques pièces en gros plan.</p>
+      </div>
+
+      <!-- PHOTOS · GALERIE — déposer une <img> dans chaque bloc ci-dessous.
+           Les photos du compte Instagram de la boutique conviennent parfaitement. -->
+      <div class="galerie">
+        <figure class="ph g-large anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg><figcaption class="ph-tag">Photo · devanture</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M12 21V9"/><path d="M12 14c-3.4-.9-5.1-3-5.6-6.5C10 8.4 11.6 10.9 12 14z"/></svg><figcaption class="ph-tag">Photo · plantes</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M7 10c0-2 2.2-3.5 5-3.5s5 1.5 5 3.5c0 5-1.5 7-1.5 11h-7C8.5 17 7 15 7 10z"/></svg><figcaption class="ph-tag">Photo · céramiques</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M12 11.4V20"/></svg><figcaption class="ph-tag">Photo · fleurs</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M5 9h13v7a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M18 11h2a2 2 0 0 1 0 4h-2"/></svg><figcaption class="ph-tag">Photo · le café</figcaption></figure>
+        <figure class="ph g-large anim"><svg class="ph-icone" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 11h18M9 6v13"/></svg><figcaption class="ph-tag">Photo · l'intérieur</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ AVIS ═══════════ -->
+  <section id="avis" class="fond-argile">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">Avis clients</p>
+        <h2 class="titre-section">Soixante-quatorze avis, cinq étoiles</h2>
+        <div class="avis-bloc">
+          <span class="n">5,0</span>
+          <span class="d"><span class="etoiles" aria-hidden="true">★★★★★</span><br>74 avis sur Google</span>
+        </div>
+      </div>
+
+      <!-- TÉMOIGNAGES · avis Google réels, cités tels quels -->
+      <div class="temoignages">
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« Merci infiniment pour les précieux conseils. Une équipe de vrais passionnés, une belle boutique, de belles plantes — que demander de plus. »</blockquote>
+          <figcaption>Céliou<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« Magnifique boutique de plantes, personnel et propriétaire très sympathiques ! »</blockquote>
+          <figcaption>Juliana<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« J'adore. »</blockquote>
+          <figcaption>Chris<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="center">
+        <a class="avis-lien" href="https://www.google.com/maps/search/?api=1&query=Originel+73+Boulevard+Voltaire+75011+Paris" target="_blank" rel="noopener">Lire tous les avis sur Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ INFOS PRATIQUES ═══════════ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="anim" style="margin-bottom:48px">
+        <p class="surtitre">Infos pratiques</p>
+        <h2 class="titre-section">Nous trouver</h2>
+      </div>
+
+      <div class="infos-grid">
+        <div class="anim">
+          <div class="info-bloc">
+            <h3>Adresse &amp; contact</h3>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>73 boulevard Voltaire<br>75011 Paris</span>
+            </div>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+33184256250">01 84 25 62 50</a>
+            </div>
+
+            <!-- RÉSEAUX SOCIAUX · la boutique a un compte Instagram.
+                 Remplacer le # par le vrai lien du profil. -->
+            <div class="reseaux">
+              <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            </div>
+          </div>
+
+          <div class="info-bloc">
+            <h3>Horaires</h3>
+            <!-- HORAIRES · seule la fermeture à 20h30 est connue à ce jour.
+                 Remplacer les tirets par les horaires réels, jour par jour. -->
+            <div class="horaire"><span>Lundi</span><span>—</span></div>
+            <div class="horaire"><span>Mardi</span><span>—</span></div>
+            <div class="horaire"><span>Mercredi</span><span>—</span></div>
+            <div class="horaire"><span>Jeudi</span><span>—</span></div>
+            <div class="horaire"><span>Vendredi</span><span>—</span></div>
+            <div class="horaire"><span>Samedi</span><span>—</span></div>
+            <div class="horaire"><span>Dimanche</span><span>—</span></div>
+            <p style="margin-top:14px;font-size:.88rem;color:var(--encre-clair)">Fermeture à 20h30. <em>Horaires détaillés à confirmer avec la boutique.</em></p>
+          </div>
+        </div>
+
+        <!-- CARTE GOOGLE MAPS -->
+        <div class="carte anim">
+          <iframe
+            title="Plan — 73 boulevard Voltaire, 75011 Paris"
+            src="https://www.google.com/maps?q=73+Boulevard+Voltaire,+75011+Paris&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ BANDEAU D'APPEL ═══════════ -->
+  <div class="bandeau">
+    <div class="wrap center">
+      <h2>Une plante, un cadeau, un conseil ?</h2>
+      <p>Passez boulevard Voltaire, ou appelez-nous avant de venir.</p>
+      <a class="btn btn-plein" href="tel:+33184256250">01 84 25 62 50</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════ PIED DE PAGE ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="pied-grid">
+      <div>
+        <p class="pied-nom">ORIGINEL</p>
+        <p style="margin-top:10px">Concept store nature &amp; art de vivre<br>73 boulevard Voltaire<br>75011 Paris</p>
+        <p style="margin-top:12px"><a href="tel:+33184256250">01 84 25 62 50</a></p>
+      </div>
+      <div>
+        <h4>Liens rapides</h4>
+        <ul>
+          <li><a href="#propos">À propos</a></li>
+          <li><a href="#univers">L'univers</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#avis">Avis clients</a></li>
+          <li><a href="#contact">Infos pratiques</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informations</h4>
+        <ul>
+          <!-- MENTIONS LÉGALES · à rédiger avec les informations de l'entreprise
+               (raison sociale, SIRET, hébergeur, directeur de publication) -->
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&destination=73+Boulevard+Voltaire,+75011+Paris" target="_blank" rel="noopener">Itinéraire</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pied-bas">
+      <span>© <span id="annee"></span> Originel — Tous droits réservés</span>
+      <span>Paris 11<sup>e</sup> · Boulevard Voltaire</span>
+    </div>
+  </div>
+</footer>
+
+<a class="appel-mobile" href="tel:+33184256250">Appeler · 01 84 25 62 50</a>
+
+<!-- Données structurées : aident Google à afficher correctement la fiche -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Originel",
+  "description": "Concept store dédié à l'art de vivre inspiré par la nature : plantes, fleurs, céramiques, objets de décoration, vaisselle, cafés de spécialité et thés.",
+  "telephone": "+33184256250",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "73 boulevard Voltaire",
+    "addressLocality": "Paris",
+    "postalCode": "75011",
+    "addressCountry": "FR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "74"
+  }
+}
+</script>
+
+<script>
+/* ══════════ JAVASCRIPT — volontairement minimal ══════════ */
+(function () {
+  document.documentElement.classList.add('js');
+
+  /* 1. Ombre sous l'en-tête au défilement */
+  var entete = document.getElementById('entete');
+  function auScroll() { entete.classList.toggle('colle', window.scrollY > 8); }
+  window.addEventListener('scroll', auScroll, { passive: true });
+  auScroll();
+
+  /* 2. Menu mobile */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu-mobile');
+  burger.addEventListener('click', function () {
+    var ouvert = menu.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function (lien) {
+    lien.addEventListener('click', function () {
+      menu.classList.remove('ouvert');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* 3. Apparition en fondu au défilement */
+  var blocs = document.querySelectorAll('.anim');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    blocs.forEach(function (b) { obs.observe(b); });
+  } else {
+    blocs.forEach(function (b) { b.classList.add('vu'); });
+  }
+
+  /* 4. Année du copyright */
+  var annee = document.getElementById('annee');
+  if (annee) annee.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
