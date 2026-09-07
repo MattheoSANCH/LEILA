@@ -161,13 +161,18 @@ html {
   scroll-behavior: smooth;
   /* El desplazamiento suave es 100% CSS: así los enlaces entre páginas
      (tratamientos.html#catarata) siguen funcionando de forma nativa. */
-}
 
-html,
-body {
+  /* El recorte horizontal vive SOLO aquí. Si se añade overflow-x:hidden
+     también a <body>, body pasa a ser contenedor de scroll y rompe
+     position:sticky de la cabecera y de la barra de pestañas. */
   max-width: 100%;
   overflow-x: hidden;
+
+  /* Al tabular, el elemento enfocado no queda debajo de las barras fijas */
+  scroll-padding-top: calc(var(--header-h) + var(--space-md));
 }
+
+body { max-width: 100%; }
 
 body {
   margin: 0;
@@ -180,7 +185,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Se bloquea también <html>: en móvil el scroll lo lleva el elemento raíz,
+   así que overflow:hidden solo en body no detiene la página de fondo. */
+html.no-scroll,
 body.no-scroll { overflow: hidden; }
+
+/* El destino del enlace de salto recibe el foco sin dibujar un anillo
+   alrededor de toda la página (main lleva tabindex="-1"). */
+main:focus { outline: none; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
@@ -381,7 +393,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   transform: translateY(-2px);
 }
 
-.btn--sm { padding: 0.7em 1.35em; font-size: var(--step--1); }
+.btn--sm { padding: 0.7em 1.35em; font-size: var(--step--1); min-height: 44px; }
 .btn--block { width: 100%; }
 
 /* Enlace de texto con flecha */
@@ -504,8 +516,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--border);
   color: var(--brand-700);
@@ -575,12 +587,23 @@ ul { margin: 0; padding: 0; list-style: none; }
   opacity: 0;
   visibility: hidden;
   transform: translateY(-12px);
-  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out), visibility var(--dur-base);
+  /* visibility con duración 0 y retardo: al ABRIR pasa a visible en el acto
+     (imprescindible para poder llevar el foco dentro en el mismo instante) y
+     al CERRAR espera a que termine el fundido. Interpolarla como las demás
+     dejaría el panel en hidden durante el primer fotograma. */
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    visibility 0s var(--dur-base);
 }
 .mobile-menu.is-open {
   opacity: 1;
   visibility: visible;
   transform: none;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    visibility 0s;
 }
 .mobile-menu__link {
   display: flex;
@@ -741,33 +764,50 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero__meta-item { display: inline-flex; align-items: center; gap: 0.5rem; }
 .hero__meta-item svg { width: 16px; height: 16px; flex: none; color: var(--accent-300); }
 
-/* ---------- Controles del slider ---------- */
+/* ---------- Controles del slider ----------
+   La capa exterior se posiciona (left/right sin width) y el centrado y la
+   gutter los pone .wrap por dentro. Mezclar ambas cosas en un solo elemento
+   sobredetermina la caja y la descuadra en pantallas estrechas. */
 .hero__controls {
   position: absolute;
-  left: var(--space-gutter);
-  right: var(--space-gutter);
+  left: 0;
+  right: 0;
   bottom: clamp(1.25rem, 4vh, 2.5rem);
+}
+.hero__controls-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
-  max-width: var(--container);
-  margin-inline: auto;
 }
 
 .hero__dots { display: flex; gap: 0.6rem; }
+
+/* El botón mide 44px de alto (objetivo táctil accesible) pero solo se ve
+   la barrita de 4px que pinta el ::before. */
 .hero-dot {
   width: 34px;
-  height: 4px;
+  height: 44px;
   padding: 0;
   border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: width var(--dur-base) var(--ease-out);
+}
+.hero-dot::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  transition: background-color var(--dur-base) var(--ease-out), width var(--dur-base) var(--ease-out);
+  transition: background-color var(--dur-base) var(--ease-out);
 }
-.hero-dot:hover { background: rgba(255, 255, 255, 0.55); }
-.hero-dot.is-active { background: var(--accent-300); width: 52px; }
+.hero-dot:hover::before { background: rgba(255, 255, 255, 0.55); }
+.hero-dot.is-active { width: 52px; }
+.hero-dot.is-active::before { background: var(--accent-300); }
 
 .hero__arrows { display: flex; gap: 0.5rem; }
 .hero-arrow {
@@ -1545,14 +1585,17 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* =========================================================
    15. ANIMACIONES AL HACER SCROLL
    ========================================================= */
-.reveal {
+/* La animación solo se activa si el <head> ha marcado el documento con .js.
+   Si el script no llega a cargarse (red, bloqueador), el contenido se ve
+   igualmente: nunca se queda una sección invisible para siempre. */
+.js .reveal {
   opacity: 0;
   transform: translateY(22px);
   transition:
     opacity var(--dur-reveal) var(--ease-out),
     transform var(--dur-reveal) var(--ease-out);
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal.is-visible { opacity: 1; transform: none; }
 
 .reveal--delay-1 { transition-delay: 90ms; }
 .reveal--delay-2 { transition-delay: 180ms; }
@@ -1568,7 +1611,7 @@ ul { margin: 0; padding: 0; list-style: none; }
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
   .hero-slide { transform: none; }
 }
 

@@ -10,6 +10,8 @@
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
     : false;
 
+  var supportsInert = 'inert' in HTMLElement.prototype;
+
   /* ---------------------------------------------------------
      1. Header sticky — sombra al hacer scroll
      --------------------------------------------------------- */
@@ -24,17 +26,34 @@
 
   /* ---------------------------------------------------------
      2. Menú móvil (burger)
+        El panel tapa toda la pantalla, así que mientras está abierto
+        el resto de la página queda inerte: ni foco ni lector de pantalla.
      --------------------------------------------------------- */
   var menuToggle = document.getElementById('menuToggle');
   var mobileMenu = document.getElementById('mobileMenu');
 
   if (menuToggle && mobileMenu) {
-    var closeMenu = function () {
+    var behind = [document.getElementById('main'), document.querySelector('.site-footer')];
+
+    var setBehindInert = function (state) {
+      if (!supportsInert) return;
+      behind.forEach(function (el) { if (el) el.inert = state; });
+    };
+
+    var isMenuOpen = function () { return mobileMenu.classList.contains('is-open'); };
+
+    var closeMenu = function (returnFocus) {
+      // El foco no puede quedarse dentro de algo que se vuelve invisible.
+      if (returnFocus !== false && mobileMenu.contains(document.activeElement)) {
+        menuToggle.focus();
+      }
       mobileMenu.classList.remove('is-open');
       menuToggle.classList.remove('is-active');
       menuToggle.setAttribute('aria-expanded', 'false');
       menuToggle.setAttribute('aria-label', 'Abrir menú');
+      document.documentElement.classList.remove('no-scroll');
       document.body.classList.remove('no-scroll');
+      setBehindInert(false);
     };
 
     var openMenu = function () {
@@ -42,37 +61,48 @@
       menuToggle.classList.add('is-active');
       menuToggle.setAttribute('aria-expanded', 'true');
       menuToggle.setAttribute('aria-label', 'Cerrar menú');
+      document.documentElement.classList.add('no-scroll');
       document.body.classList.add('no-scroll');
+      setBehindInert(true);
+      // Leer una medida fuerza el recálculo de estilo: sin esto el panel
+      // sigue en visibility:hidden en este instante y .focus() no surte efecto.
+      void mobileMenu.offsetWidth;
+      var first = mobileMenu.querySelector('a');
+      if (first) first.focus();
     };
 
     menuToggle.addEventListener('click', function () {
-      if (mobileMenu.classList.contains('is-open')) { closeMenu(); } else { openMenu(); }
+      if (isMenuOpen()) { closeMenu(); } else { openMenu(); }
     });
 
     // Cerrar al elegir un destino: el enlace navega igual (no hacemos preventDefault).
+    // No devolvemos el foco al botón: el navegador ya se lleva al usuario a otra página.
     Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function (link) {
-      link.addEventListener('click', closeMenu);
+      link.addEventListener('click', function () { closeMenu(false); });
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' || e.key === 'Esc') closeMenu();
+      if ((e.key === 'Escape' || e.key === 'Esc') && isMenuOpen()) closeMenu();
     });
 
     // Si se vuelve a escritorio con el menú abierto, lo cerramos.
+    // La consulta es exactamente la complementaria de la del CSS (max-width: 920px),
+    // para que no quede una franja de anchos donde el botón ya no se ve.
     if (window.matchMedia) {
-      var desktop = window.matchMedia('(min-width: 921px)');
-      var onBreakpoint = function (e) { if (e.matches) closeMenu(); };
-      if (desktop.addEventListener) {
-        desktop.addEventListener('change', onBreakpoint);
-      } else if (desktop.addListener) {
-        desktop.addListener(onBreakpoint);
+      var mobileMq = window.matchMedia('(max-width: 920px)');
+      var onBreakpoint = function (e) { if (!e.matches && isMenuOpen()) closeMenu(false); };
+      if (mobileMq.addEventListener) {
+        mobileMq.addEventListener('change', onBreakpoint);
+      } else if (mobileMq.addListener) {
+        mobileMq.addListener(onBreakpoint);
       }
     }
   }
 
   /* ---------------------------------------------------------
      3. Micro-animaciones al hacer scroll (fade + slide suave)
-        Sin JS o sin IntersectionObserver: todo visible (ver <noscript>).
+        La clase .js del <head> es la que activa el estado oculto en CSS:
+        sin JS (o si este archivo no carga) todo se ve con normalidad.
      --------------------------------------------------------- */
   var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {
@@ -103,14 +133,16 @@
   if (slider) {
     var slides = slider.querySelectorAll('.hero-slide');
     var dots = slider.querySelectorAll('.hero-dot');
+    var dotsWrap = slider.querySelector('.hero__dots');
     var prevBtn = slider.querySelector('.hero-arrow--prev');
     var nextBtn = slider.querySelector('.hero-arrow--next');
     var index = 0;
     var timer = null;
+    var paused = false;
     var DELAY = 6000;
 
     if (slides.length > 1) {
-      var show = function (i) {
+      var show = function (i, moveFocus) {
         index = (i + slides.length) % slides.length;
         Array.prototype.forEach.call(slides, function (slide, n) {
           slide.classList.toggle('is-active', n === index);
@@ -118,15 +150,21 @@
         Array.prototype.forEach.call(dots, function (dot, n) {
           var active = n === index;
           dot.classList.toggle('is-active', active);
-          dot.setAttribute('aria-selected', active ? 'true' : 'false');
-          dot.setAttribute('tabindex', active ? '0' : '-1');
+          if (active) {
+            dot.setAttribute('aria-current', 'true');
+          } else {
+            dot.removeAttribute('aria-current');
+          }
         });
+        // Si el cambio vino del teclado, el foco acompaña al indicador activo.
+        if (moveFocus && dots[index]) dots[index].focus();
       };
 
       var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
+
       var start = function () {
         stop();
-        if (reduceMotion) return; // respetamos la preferencia del sistema
+        if (reduceMotion || paused) return; // respetamos la preferencia y la pausa manual
         timer = setInterval(function () { show(index + 1); }, DELAY);
       };
 
@@ -136,16 +174,24 @@
       if (prevBtn) prevBtn.addEventListener('click', function () { show(index - 1); start(); });
       if (nextBtn) nextBtn.addEventListener('click', function () { show(index + 1); start(); });
 
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', start);
-      slider.addEventListener('focusin', stop);
-      slider.addEventListener('focusout', start);
+      // La pausa se recuerda: pulsar una flecha con el ratón encima no
+      // reactiva el avance automático a los 6 segundos.
+      var pause = function () { paused = true; stop(); };
+      var resume = function () { paused = false; start(); };
+      slider.addEventListener('mouseenter', pause);
+      slider.addEventListener('mouseleave', resume);
+      slider.addEventListener('focusin', pause);
+      slider.addEventListener('focusout', resume);
 
-      // Flechas del teclado sobre los indicadores
-      slider.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowLeft') { show(index - 1); start(); }
-        if (e.key === 'ArrowRight') { show(index + 1); start(); }
-      });
+      // Flechas del teclado SOLO sobre los indicadores: si el listener cubriera
+      // toda la portada, pulsar una flecha desde el botón "Agenda tu cita"
+      // cambiaría la imagen sin que el visitante lo haya pedido.
+      if (dotsWrap) {
+        dotsWrap.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1, true); start(); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1, true); start(); }
+        });
+      }
 
       // Pausa cuando la pestaña no está visible (ahorra batería)
       document.addEventListener('visibilitychange', function () {
