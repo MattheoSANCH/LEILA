@@ -119,6 +119,7 @@
   --container: 1180px;
   --container-narrow: 760px;
   --header-h: 76px;
+  --tabs-h: 68px;   /* alto real de la barra de pestañas de tratamientos.html */
 
   /* ---------- RADIOS ---------- */
   --radius-xs: 8px;
@@ -227,8 +228,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-radius: var(--radius-xs);
 }
 
-/* Todo destino de ancla se separa de la cabecera fija */
-[id] { scroll-margin-top: calc(var(--header-h) + var(--space-md)); }
+/* Separación de las barras fijas al saltar a un ancla.
+   Ojo: scroll-padding-top (en el contenedor de scroll, aquí <html>) y
+   scroll-margin-top (en el destino) SE SUMAN. Por eso la cabecera se
+   compensa una sola vez, arriba en la regla de <html>, y aquí solo se
+   añade lo que sobra: la barra de pestañas de tratamientos.html, que
+   sigue pegada bajo la cabecera durante toda esa página. */
+.treatment[id],
+#oftalmologos { scroll-margin-top: var(--tabs-h); }
 
 .wrap {
   width: 100%;
@@ -1193,6 +1200,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tabs {
   position: sticky;
   top: var(--header-h);
+  /* Todo destino de ancla de esta página se separa de LAS DOS barras fijas */
   z-index: 40;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
@@ -1236,7 +1244,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Sección de especialidad ---------- */
 .treatment {
-  padding-block: var(--space-section);
+  /* Menos aire arriba que abajo: al saltar desde una pestaña, el título de la
+     especialidad aparece cerca de las barras fijas en lugar de dejar media
+     pantalla en blanco. La separación entre secciones la da el padding inferior. */
+  padding-block: clamp(2.5rem, 1.5rem + 3vw, 4rem) var(--space-section);
   border-top: 1px solid var(--border-subtle);
 }
 .treatment:first-of-type { border-top: 0; }
@@ -1249,6 +1260,16 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: start;
 }
 .treatment:nth-of-type(even) .treatment__media { order: -1; }
+
+/* En escritorio el texto es bastante más alto que la imagen: la columna
+   visual acompaña al lector en vez de dejar medio metro de hueco.
+   El desplazamiento la deja justo bajo la cabecera y las pestañas. */
+@media (min-width: 921px) {
+  .treatment__media {
+    position: sticky;
+    top: calc(var(--header-h) + var(--tabs-h) + var(--space-md));
+  }
+}
 
 .treatment__icon {
   width: 60px;
