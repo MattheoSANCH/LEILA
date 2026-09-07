@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAISON DES SAVEURS — Boulangerie, Nogent-sur-Marne
+     Site vitrine one-page. Fichier autonome : tout le CSS et le JS
+     sont dans cette page, il n'y a rien d'autre à installer.
+
+     POUR REMPLACER LES PHOTOS :
+     chaque emplacement est un bloc <figure class="ph">.
+     Il suffit d'y déposer une balise <img>, elle recouvre
+     automatiquement le visuel de substitution. Exemple :
+        <figure class="ph ph--hero">
+          <img src="photos/devanture.jpg" alt="La devanture">
+        </figure>
+     Les blocs sont repérés par des commentaires « PHOTO · … ».
+     ══════════════════════════════════════════════════════════════ -->
+
+<title>Maison des Saveurs — Boulangerie artisanale à Nogent-sur-Marne</title>
+<meta name="description" content="Boulangerie place de l'Ancien Marché à Nogent-sur-Marne. Pains, viennoiseries et pâtisseries, et l'accueil qui va avec. Ouvert jusqu'à 20h. 09 78 81 15 56.">
+<meta name="theme-color" content="#BE6A3C">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Maison des Saveurs — Boulangerie à Nogent-sur-Marne">
+<meta property="og:description" content="Le bon pain, et l'accueil qui va avec. 3 place de l'Ancien Marché, Nogent-sur-Marne.">
+<meta property="og:locale" content="fr_FR">
+
+<!-- LOGO : remplacer ce favicon par le vrai logo si le commerce en a un -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23BE6A3C'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='17' fill='%23FEFDFB' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════ 1. VARIABLES — toute la charte tient ici ══════════ */
+:root {
+  --blanc:      #FEFDFB;   /* fond principal */
+  --creme:      #F7F1E8;   /* fond des sections alternées */
+  --creme-2:    #EFE5D7;   /* aplats de substitution photo */
+  --brun:       #3A2C22;   /* texte principal */
+  --brun-clair: #6E6055;   /* texte secondaire */
+  --terre:      #BE6A3C;   /* accent : boutons, liens, détails */
+  --terre-fonce:#9E5429;   /* accent au survol */
+  --trait:      rgba(58, 44, 34, 0.13);
+  --ombre:      0 18px 40px -24px rgba(58, 44, 34, 0.45);
+  --ombre-forte:0 26px 50px -22px rgba(58, 44, 34, 0.55);
+  --rayon:      14px;      /* arrondi des blocs */
+}
+
+/* ══════════ 2. BASES ══════════ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--blanc);
+  color: var(--brun);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; margin: 0; line-height: 1.18; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--terre); outline-offset: 3px; }
+img { display: block; max-width: 100%; }
+
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+.center { text-align: center; }
+
+.surtitre {
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 700; color: var(--terre); margin-bottom: 14px;
+}
+.titre-section { font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
+.chapo { margin-top: 16px; color: var(--brun-clair); font-size: 1.05rem; max-width: 58ch; }
+.center .chapo { margin-left: auto; margin-right: auto; }
+
+.skip { position: absolute; left: -9999px; top: 0; z-index: 999; background: var(--brun); color: var(--blanc); padding: 12px 20px; }
+.skip:focus { left: 0; }
+
+/* ══════════ 3. BOUTONS ══════════ */
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 700;
+  font-size: 0.94rem; padding: 15px 30px; border-radius: 999px;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.btn-plein { background: var(--terre); color: #fff; box-shadow: 0 10px 24px -12px rgba(190,106,60,.9); }
+.btn-plein:hover { background: var(--terre-fonce); transform: translateY(-2px); }
+.btn-clair { background: rgba(255,255,255,.94); color: var(--brun); }
+.btn-clair:hover { background: #fff; transform: translateY(-2px); }
+.btn-ligne { border: 1.5px solid var(--trait); }
+.btn-ligne:hover { border-color: var(--terre); color: var(--terre); }
+
+/* ══════════ 4. EMPLACEMENTS PHOTO ══════════
+   Fond de substitution + petite étiquette. Dès qu'une balise <img>
+   est déposée dans le bloc, elle passe par-dessus et masque tout. */
+.ph {
+  position: relative; margin: 0; overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.6), transparent 60%),
+    linear-gradient(140deg, var(--creme-2), #E3D3BE);
+  display: grid; place-items: center;
+}
+/* Le hero est plus chaud, pour rester agréable sous le voile sombre */
+.ph--hero {
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255,226,190,.85), transparent 55%),
+    radial-gradient(circle at 80% 75%, rgba(190,106,60,.55), transparent 60%),
+    linear-gradient(150deg, #D9B183, #B0703F 60%, #7E4E2C);
+}
+.ph--hero .ph-icone { stroke: #FFF0DE; opacity: .35; width: 60px; height: 60px; }
+.ph--hero .ph-tag { color: #FFF0DE; opacity: .5; }
+.ph img { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
+.ph-icone { width: 42px; height: 42px; stroke: var(--terre); opacity: .5; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.ph-tag {
+  position: absolute; left: 14px; bottom: 12px; z-index: 1;
+  font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+  font-weight: 600; color: var(--brun-clair); opacity: .65;
+}
+
+/* ══════════ 5. EN-TÊTE ══════════ */
+#entete {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(254, 253, 251, .93); backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent; transition: border-color .25s, box-shadow .25s;
+}
+#entete.colle { border-bottom-color: var(--trait); box-shadow: 0 8px 26px -22px rgba(58,44,34,.6); }
+.entete-in { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 16px 0; }
+.logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.logo-marque { width: 38px; height: 38px; border-radius: 10px; background: var(--terre); color: #fff; display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 1.15rem; flex: none; }
+.logo-nom { font-family: 'Fraunces', serif; font-size: 1.16rem; line-height: 1.15; }
+.logo-nom span { display: block; font-family: 'Manrope', sans-serif; font-size: 0.6rem; letter-spacing: 0.17em; text-transform: uppercase; color: var(--brun-clair); margin-top: 2px; }
+.menu { display: flex; gap: 26px; font-size: 0.88rem; font-weight: 600; }
+.menu a { text-decoration: none; color: var(--brun-clair); padding-bottom: 3px; border-bottom: 2px solid transparent; }
+.menu a:hover { color: var(--brun); border-bottom-color: var(--terre); }
+.entete-cta { font-size: 0.86rem; padding: 12px 22px; }
+.burger { display: none; background: none; border: 1px solid var(--trait); border-radius: 10px; padding: 9px 11px; cursor: pointer; }
+.burger span { display: block; width: 20px; height: 2px; background: var(--brun); border-radius: 2px; }
+.burger span + span { margin-top: 5px; }
+#menu-mobile { display: none; background: var(--blanc); border-bottom: 1px solid var(--trait); }
+#menu-mobile.ouvert { display: block; }
+#menu-mobile a { display: block; padding: 14px 28px; text-decoration: none; font-weight: 600; border-top: 1px solid var(--trait); }
+#menu-mobile .tel { color: var(--terre); }
+
+/* ══════════ 6. HERO ══════════ */
+.hero { position: relative; }
+.hero .ph { min-height: min(76vh, 600px); }
+.hero-voile {
+  position: absolute; inset: 0; z-index: 3;
+  background: linear-gradient(180deg, rgba(58,44,34,.30) 0%, rgba(58,44,34,.55) 55%, rgba(58,44,34,.72) 100%);
+}
+.hero-texte {
+  position: absolute; inset: 0; z-index: 4;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 0 58px;
+}
+.hero-texte .surtitre { color: #F0D9C6; }
+.hero h1 { color: #fff; font-size: clamp(2.3rem, 6vw, 4.1rem); max-width: 15ch; }
+.hero .slogan { color: rgba(255,255,255,.92); font-size: clamp(1.05rem, 2vw, 1.3rem); margin-top: 18px; max-width: 40ch; }
+.hero-actions { margin-top: 30px; display: flex; gap: 13px; flex-wrap: wrap; }
+.hero-note { margin-top: 26px; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.85); font-size: 0.9rem; flex-wrap: wrap; }
+.etoiles { color: #F0C05A; letter-spacing: 2px; }
+
+/* ══════════ 7. SECTIONS ══════════ */
+section { padding: 92px 0; }
+.fond-creme { background: var(--creme); }
+
+/* À propos */
+.propos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.propos-texte p + p { margin-top: 17px; }
+.propos-texte .accroche { font-family: 'Fraunces', serif; font-size: 1.35rem; line-height: 1.45; }
+.propos-grid .ph { aspect-ratio: 4 / 5; border-radius: var(--rayon); box-shadow: var(--ombre); }
+.valeurs { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--trait); }
+.valeur { flex: 1 1 150px; }
+.valeur .v-t { font-family: 'Fraunces', serif; font-size: 1.1rem; }
+.valeur .v-d { font-size: 0.9rem; color: var(--brun-clair); margin-top: 3px; }
+
+/* Produits */
+.produits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 52px; }
+.produit { background: var(--blanc); border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); transition: transform .3s ease, box-shadow .3s ease; }
+.produit:hover { transform: translateY(-6px); box-shadow: var(--ombre-forte); }
+.produit .ph { aspect-ratio: 4 / 3; }
+.produit .corps { padding: 22px 22px 26px; }
+.produit h3 { font-size: 1.28rem; }
+.produit p { font-size: 0.93rem; color: var(--brun-clair); margin-top: 8px; }
+
+/* Galerie — mosaïque */
+/* Mosaïque 4 colonnes × 2 rangées : deux blocs larges placés en diagonale,
+   les quatre autres en simple. L'ensemble se remplit sans trou. */
+.galerie { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 215px; gap: 14px; margin-top: 50px; }
+.galerie .ph { border-radius: 10px; transition: transform .35s ease; }
+.galerie .ph:hover { transform: scale(1.02); }
+.g-large { grid-column: span 2; }
+
+/* Avis */
+.avis-note { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 26px; }
+.avis-note .n { font-family: 'Fraunces', serif; font-size: 2.6rem; line-height: 1; }
+.avis-note .d { font-size: 0.9rem; color: var(--brun-clair); text-align: left; }
+.temoignages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 46px; }
+.temoignage { background: var(--blanc); border-radius: var(--rayon); padding: 32px 28px; box-shadow: var(--ombre); margin: 0; display: flex; flex-direction: column; }
+.temoignage blockquote { margin: 14px 0 0; font-family: 'Fraunces', serif; font-size: 1.12rem; line-height: 1.55; flex-grow: 1; }
+.temoignage figcaption { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--trait); font-size: 0.82rem; font-weight: 700; }
+.temoignage figcaption span { display: block; font-weight: 400; color: var(--brun-clair); font-size: 0.78rem; margin-top: 2px; }
+.avis-lien { display: inline-block; margin-top: 36px; font-size: 0.88rem; font-weight: 700; text-decoration: none; color: var(--terre); border-bottom: 2px solid var(--terre); padding-bottom: 3px; }
+
+/* Infos pratiques */
+.infos-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 52px; }
+.info-bloc + .info-bloc { margin-top: 30px; }
+.info-bloc h3 { font-size: 1.18rem; margin-bottom: 12px; }
+.horaire { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--trait); font-size: 0.95rem; }
+.horaire:first-of-type { border-top: 1px solid var(--trait); }
+.horaire span:last-child { color: var(--brun-clair); font-variant-numeric: tabular-nums; }
+.contact-l { display: flex; align-items: center; gap: 11px; padding: 11px 0; font-size: 1.02rem; }
+.contact-l svg { width: 19px; height: 19px; stroke: var(--terre); fill: none; stroke-width: 1.7; flex: none; }
+.contact-l a { text-decoration: none; font-weight: 600; }
+.reseaux { display: flex; gap: 11px; margin-top: 18px; }
+.reseaux a { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--trait); display: grid; place-items: center; text-decoration: none; }
+.reseaux a:hover { border-color: var(--terre); background: var(--terre); color: #fff; }
+.reseaux svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.7; }
+.carte { border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); height: 100%; min-height: 380px; }
+.carte iframe { width: 100%; height: 100%; min-height: 380px; display: block; border: 0; }
+
+/* Bandeau d'appel */
+.bandeau { background: var(--terre); color: #fff; padding: 60px 0; }
+.bandeau h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); color: #fff; }
+.bandeau p { margin-top: 12px; color: rgba(255,255,255,.9); }
+.bandeau .btn { margin-top: 26px; }
+
+/* ══════════ 8. PIED DE PAGE ══════════ */
+footer { background: var(--brun); color: rgba(254,253,251,.75); padding: 56px 0 26px; font-size: 0.92rem; }
+.pied-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+footer h4 { font-family: 'Fraunces', serif; font-size: 1.05rem; color: #fff; margin: 0 0 14px; font-weight: 500; }
+footer .pied-nom { font-family: 'Fraunces', serif; font-size: 1.35rem; color: #fff; }
+footer ul { list-style: none; margin: 0; padding: 0; }
+footer li { margin-bottom: 8px; }
+footer a { text-decoration: none; }
+footer a:hover { color: #fff; text-decoration: underline; }
+.pied-bas { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(254,253,251,.16); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: rgba(254,253,251,.5); }
+
+/* Barre d'appel mobile */
+.appel-mobile { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--terre); color: #fff; text-align: center; padding: 15px; text-decoration: none; font-weight: 700; font-size: 0.94rem; }
+
+/* ══════════ 9. ANIMATIONS AU SCROLL ══════════
+   Le fondu ne s'active que si le JavaScript fonctionne : sans lui,
+   tout le contenu reste visible normalement. */
+.js .anim { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.js .anim.vu { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .anim { opacity: 1 !important; transform: none !important; transition: none; }
+  .produit:hover, .galerie .ph:hover, .btn:hover { transform: none; }
+}
+
+/* ══════════ 10. RESPONSIVE — priorité mobile ══════════ */
+@media (max-width: 980px) {
+  .menu, .entete-cta { display: none; }
+  .burger { display: block; }
+  section { padding: 62px 0; }
+  .propos-grid { grid-template-columns: 1fr; gap: 34px; }
+  .propos-grid .ph { aspect-ratio: 16 / 10; }
+  .produits { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .temoignages { grid-template-columns: 1fr; gap: 18px; }
+  .infos-grid { grid-template-columns: 1fr; gap: 34px; }
+  .carte, .carte iframe { min-height: 300px; }
+  .galerie { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+  .pied-grid { grid-template-columns: 1fr; gap: 28px; }
+  .appel-mobile { display: block; }
+  footer { padding-bottom: 84px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 20px; }
+  .hero .ph { min-height: 74vh; }
+  .hero-texte { padding-bottom: 44px; }
+  .produits { grid-template-columns: 1fr; }
+  .g-large, .g-haut { grid-column: span 1; grid-row: span 1; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<!-- ═══════════ EN-TÊTE ═══════════ -->
+<header id="entete">
+  <div class="wrap entete-in">
+    <!-- LOGO · remplacer le carré coloré par <img src="photos/logo.png" alt="Maison des Saveurs"> -->
+    <a class="logo" href="#accueil">
+      <span class="logo-marque">M</span>
+      <span class="logo-nom">Maison des Saveurs<span>Boulangerie · Nogent-sur-Marne</span></span>
+    </a>
+
+    <nav class="menu" aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <a href="#propos">À propos</a>
+      <a href="#produits">Nos produits</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="btn btn-plein entete-cta" href="tel:+33978811556">Nous appeler</a>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav id="menu-mobile" aria-label="Navigation">
+  <a href="#accueil">Accueil</a>
+  <a href="#propos">À propos</a>
+  <a href="#produits">Nos produits</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#avis">Avis</a>
+  <a href="#contact">Contact</a>
+  <a class="tel" href="tel:+33978811556">Appeler · 09 78 81 15 56</a>
+</nav>
+
+<main id="contenu">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="accueil" style="padding:0">
+    <!-- PHOTO · HERO — la devanture ou une vitrine garnie.
+         Format paysage, 1920 × 1080 px minimum.
+         Déposer ici : <img src="photos/devanture.jpg" alt="La devanture de Maison des Saveurs"> -->
+    <figure class="ph ph--hero">
+      <svg class="ph-icone" viewBox="0 0 24 24"><path d="M3 14c0-4 4-7 9-7s9 3 9 7-4 4-9 4-9 0-9-4z"/><path d="M8 10.5c.8 1.2.8 2.8 0 4M12 10c.9 1.5.9 3.5 0 5M16 10.5c.8 1.2.8 2.8 0 4"/></svg>
+      <figcaption class="ph-tag">Photo · la devanture</figcaption>
+    </figure>
+
+    <div class="hero-voile"></div>
+
+    <div class="hero-texte">
+      <div class="wrap">
+        <p class="surtitre">Boulangerie artisanale · Nogent-sur-Marne</p>
+        <!-- SLOGAN · à valider avec le commerçant -->
+        <h1>Le bon pain, et l'accueil qui va avec.</h1>
+        <p class="slogan">Place de l'Ancien Marché, on vient pour la baguette et on repart avec le sourire. Ouvert jusqu'à 20h.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-plein" href="tel:+33978811556">Nous appeler</a>
+          <a class="btn btn-clair" href="#produits">Découvrir nos produits</a>
+        </div>
+
+        <p class="hero-note">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <span><strong>4,5 sur 5</strong> — 39 avis Google</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ À PROPOS ═══════════ -->
+  <section id="propos">
+    <div class="wrap propos-grid">
+      <div class="propos-texte anim">
+        <p class="surtitre">La maison</p>
+        <h2 class="titre-section">Une boulangerie où l'on est reconnu</h2>
+        <!-- TEXTE À PROPOS · à compléter avec l'histoire réelle du commerce
+             (date d'ouverture, parcours du boulanger, spécialités maison) -->
+        <p class="accroche">Ce qui revient le plus souvent chez nos clients, ce n'est pas seulement le pain : c'est la façon dont on les reçoit.</p>
+        <p>Sur la place de l'Ancien Marché, à Nogent-sur-Marne, la Maison des Saveurs propose chaque jour ses pains, ses viennoiseries et ses pâtisseries, préparés et cuits sur place.</p>
+        <p>On y prend le temps de conseiller, de reconnaître les habitués et de sourire — même à l'heure de pointe. C'est cette attention-là qui fait revenir le quartier, jour après jour.</p>
+
+        <div class="valeurs">
+          <div class="valeur">
+            <div class="v-t">Fait sur place</div>
+            <div class="v-d">Cuit tout au long de la journée</div>
+          </div>
+          <div class="valeur">
+            <div class="v-t">L'accueil d'abord</div>
+            <div class="v-d">Le point que citent tous nos avis</div>
+          </div>
+          <div class="valeur">
+            <div class="v-t">Ouvert tard</div>
+            <div class="v-d">Jusqu'à 20h</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO · ÉQUIPE — le boulanger ou l'équipe derrière le comptoir.
+           Format portrait, 1200 × 1500 px minimum.
+           Déposer ici : <img src="photos/equipe.jpg" alt="L'équipe de la Maison des Saveurs"> -->
+      <figure class="ph anim">
+        <svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <figcaption class="ph-tag">Photo · l'équipe</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══════════ PRODUITS ═══════════ -->
+  <section id="produits" class="fond-creme">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">Nos produits</p>
+        <h2 class="titre-section">Ce que vous trouverez en vitrine</h2>
+        <p class="chapo">Le pain sort au fil de la journée et la vitrine se renouvelle du matin jusqu'à la fermeture.</p>
+      </div>
+
+      <div class="produits">
+        <!-- PHOTO · PRODUIT 1 — la baguette -->
+        <article class="produit anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 18 18 4c2 2 2 4 0 6L6 20c-1.5-.5-2-1.2-2-2z"/><path d="M8 13l2 2M11 10l2 2M14 7l2 2"/></svg>
+            <figcaption class="ph-tag">Photo · baguette</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>La baguette</h3>
+            <p>Celle dont parlent nos clients. Cuite plusieurs fois par jour, jamais la même heure de trop.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · PRODUIT 2 — les pains spéciaux -->
+        <article class="produit anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M3 14c0-4 4-7 9-7s9 3 9 7-4 4-9 4-9 0-9-4z"/><path d="M9 11c.7 1 .7 2.6 0 3.6M15 11c.7 1 .7 2.6 0 3.6"/></svg>
+            <figcaption class="ph-tag">Photo · pains</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Les pains</h3>
+            <p>Pains de tradition et pains spéciaux, à choisir selon le repas ou l'envie du moment.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · PRODUIT 3 — les viennoiseries -->
+        <article class="produit anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M3 15c2-5 6-8 9-8s7 3 9 8c-3 2-6 2-9 2s-6 0-9-2z"/><path d="M7 13.5c1-1.5 2.5-2.5 5-2.5s4 1 5 2.5"/></svg>
+            <figcaption class="ph-tag">Photo · viennoiseries</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Les viennoiseries</h3>
+            <p>Croissants, pains au chocolat et feuilletés, dès l'ouverture et tant qu'il en reste.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · PRODUIT 4 — les pâtisseries -->
+        <article class="produit anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M5 20h14v-7H5z"/><path d="M5 13c0-2.5 3-4 7-4s7 1.5 7 4"/><path d="M12 9V5M10.5 5.5c0-1 1.5-1.5 1.5-2.5 0 1 1.5 1.5 1.5 2.5"/></svg>
+            <figcaption class="ph-tag">Photo · pâtisseries</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Les pâtisseries</h3>
+            <p>Les classiques de la maison, en part individuelle ou en format à partager.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- PRIX · à ajouter ici si le commerçant souhaite les afficher -->
+      <p class="center chapo" style="margin-top:34px;font-size:.9rem">Une commande pour une occasion ? Passez un coup de fil, on prépare à l'avance.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ GALERIE ═══════════ -->
+  <section id="galerie">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">En images</p>
+        <h2 class="titre-section">La boutique et l'ambiance</h2>
+        <p class="chapo">Six à huit photos suffisent : la devanture, la vitrine, le fournil, et quelques produits en gros plan.</p>
+      </div>
+
+      <!-- PHOTOS · GALERIE — déposer une <img> dans chaque bloc ci-dessous -->
+      <div class="galerie">
+        <figure class="ph g-large anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg><figcaption class="ph-tag">Photo · devanture</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 11h18M9 6v13"/></svg><figcaption class="ph-tag">Photo · vitrine</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 18 18 4c2 2 2 4 0 6L6 20c-1.5-.5-2-1.2-2-2z"/></svg><figcaption class="ph-tag">Photo · pains</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M3 15c2-5 6-8 9-8s7 3 9 8c-3 2-6 2-9 2s-6 0-9-2z"/></svg><figcaption class="ph-tag">Photo · viennoiseries</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M6 20h12v-8H6z"/><path d="M6 12c0-2.5 2.7-4 6-4s6 1.5 6 4"/></svg><figcaption class="ph-tag">Photo · pâtisseries</figcaption></figure>
+        <figure class="ph g-large anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 20h16M6 20v-9h12v9"/><path d="M9 11V7h6v4"/><circle cx="12" cy="15.5" r="1.6"/></svg><figcaption class="ph-tag">Photo · le fournil</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ AVIS ═══════════ -->
+  <section id="avis" class="fond-creme">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">Avis clients</p>
+        <h2 class="titre-section">Ce qu'en dit le quartier</h2>
+        <div class="avis-note">
+          <span class="n">4,5</span>
+          <span class="d"><span class="etoiles" aria-hidden="true">★★★★★</span><br>39 avis sur Google</span>
+        </div>
+      </div>
+
+      <!-- TÉMOIGNAGES · avis Google réels, cités tels quels (orthographe corrigée) -->
+      <div class="temoignages">
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« La meilleure baguette du monde, et un coup de cœur pour l'accueil. »</blockquote>
+          <figcaption>Chris<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« Ma boulangerie préférée. Leur pain est excellent, ainsi que les pâtisseries et les viennoiseries. On est toujours accueilli et servi avec le sourire. »</blockquote>
+          <figcaption>Elisa<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« Je n'ai pas pour habitude de laisser des commentaires pour une boulangerie, mais celle-ci a été une belle surprise. »</blockquote>
+          <figcaption>Sabrina<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="center">
+        <a class="avis-lien" href="https://www.google.com/maps/search/?api=1&query=Maison+des+Saveurs+3+Place+de+l%27Ancien+March%C3%A9+94130+Nogent-sur-Marne" target="_blank" rel="noopener">Lire tous les avis sur Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ INFOS PRATIQUES ═══════════ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="anim" style="margin-bottom:44px">
+        <p class="surtitre">Infos pratiques</p>
+        <h2 class="titre-section">Nous trouver</h2>
+      </div>
+
+      <div class="infos-grid">
+        <div class="anim">
+          <div class="info-bloc">
+            <h3>Adresse &amp; contact</h3>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>3 place de l'Ancien Marché<br>94130 Nogent-sur-Marne</span>
+            </div>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+33978811556">09 78 81 15 56</a>
+            </div>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><rect x="1" y="7" width="15" height="10" rx="2"/><path d="M16 10h3l3 3v4h-6z"/><circle cx="6" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/></svg>
+              <span>Également disponible sur Uber Eats</span>
+            </div>
+
+            <!-- RÉSEAUX SOCIAUX · remplacer les # par les vrais liens, ou supprimer le bloc -->
+            <div class="reseaux">
+              <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+              <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            </div>
+          </div>
+
+          <div class="info-bloc">
+            <h3>Horaires</h3>
+            <!-- HORAIRES · seule la fermeture à 20h est connue à ce jour.
+                 Remplacer les tirets par les horaires réels, jour par jour. -->
+            <div class="horaire"><span>Lundi</span><span>—</span></div>
+            <div class="horaire"><span>Mardi</span><span>—</span></div>
+            <div class="horaire"><span>Mercredi</span><span>—</span></div>
+            <div class="horaire"><span>Jeudi</span><span>—</span></div>
+            <div class="horaire"><span>Vendredi</span><span>—</span></div>
+            <div class="horaire"><span>Samedi</span><span>—</span></div>
+            <div class="horaire"><span>Dimanche</span><span>—</span></div>
+            <p style="margin-top:14px;font-size:.88rem;color:var(--brun-clair)">Fermeture à 20h. <em>Horaires détaillés à confirmer avec la boulangerie.</em></p>
+          </div>
+        </div>
+
+        <!-- CARTE GOOGLE MAPS -->
+        <div class="carte anim">
+          <iframe
+            title="Plan — 3 place de l'Ancien Marché, 94130 Nogent-sur-Marne"
+            src="https://www.google.com/maps?q=3+Place+de+l%27Ancien+March%C3%A9,+94130+Nogent-sur-Marne&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ BANDEAU D'APPEL ═══════════ -->
+  <div class="bandeau">
+    <div class="wrap center">
+      <h2>Une commande pour une occasion ?</h2>
+      <p>Un coup de fil suffit, on prépare tout à l'avance.</p>
+      <a class="btn btn-clair" href="tel:+33978811556">09 78 81 15 56</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════ PIED DE PAGE ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="pied-grid">
+      <div>
+        <p class="pied-nom">Maison des Saveurs</p>
+        <p style="margin-top:10px">Boulangerie artisanale<br>3 place de l'Ancien Marché<br>94130 Nogent-sur-Marne</p>
+        <p style="margin-top:12px"><a href="tel:+33978811556">09 78 81 15 56</a></p>
+      </div>
+      <div>
+        <h4>Liens rapides</h4>
+        <ul>
+          <li><a href="#propos">À propos</a></li>
+          <li><a href="#produits">Nos produits</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#avis">Avis clients</a></li>
+          <li><a href="#contact">Infos pratiques</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informations</h4>
+        <ul>
+          <!-- MENTIONS LÉGALES · à rédiger avec les informations de l'entreprise
+               (raison sociale, SIRET, hébergeur, directeur de publication) -->
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&destination=3+Place+de+l%27Ancien+March%C3%A9,+94130+Nogent-sur-Marne" target="_blank" rel="noopener">Itinéraire</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pied-bas">
+      <span>© <span id="annee"></span> Maison des Saveurs — Tous droits réservés</span>
+      <span>Nogent-sur-Marne · Val-de-Marne</span>
+    </div>
+  </div>
+</footer>
+
+<a class="appel-mobile" href="tel:+33978811556">Appeler · 09 78 81 15 56</a>
+
+<!-- Données structurées : aident Google à afficher correctement la fiche -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Maison des Saveurs",
+  "telephone": "+33978811556",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3 place de l'Ancien Marché",
+    "addressLocality": "Nogent-sur-Marne",
+    "postalCode": "94130",
+    "addressCountry": "FR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "39"
+  }
+}
+</script>
+
+<script>
+/* ══════════ JAVASCRIPT — volontairement minimal ══════════ */
+(function () {
+  document.documentElement.classList.add('js');
+
+  /* 1. Ombre sous l'en-tête au défilement */
+  var entete = document.getElementById('entete');
+  function auScroll() {
+    entete.classList.toggle('colle', window.scrollY > 8);
+  }
+  window.addEventListener('scroll', auScroll, { passive: true });
+  auScroll();
+
+  /* 2. Menu mobile */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu-mobile');
+  burger.addEventListener('click', function () {
+    var ouvert = menu.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function (lien) {
+    lien.addEventListener('click', function () {
+      menu.classList.remove('ouvert');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* 3. Apparition en fondu au défilement */
+  var blocs = document.querySelectorAll('.anim');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    blocs.forEach(function (b) { obs.observe(b); });
+  } else {
+    blocs.forEach(function (b) { b.classList.add('vu'); });
+  }
+
+  /* 4. Année du copyright */
+  var annee = document.getElementById('annee');
+  if (annee) annee.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
