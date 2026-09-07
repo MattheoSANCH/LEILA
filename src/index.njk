@@ -1,0 +1,147 @@
+---
+layout: base.njk
+pagina: index
+permalink: /index.html
+---
+{% from "macros.njk" import marco, seccionMedicos, bandaCta %}
+{% set telefono = contacto.telefonos[0].numero %}
+
+  <!-- ===== PORTADA CON SLIDER ===== -->
+  <section class="hero" data-slider>
+    <div class="hero__slides" aria-hidden="true">
+      {%- if inicio.heroImagenes and inicio.heroImagenes.length %}
+      {#- Fotos reales subidas desde /admin/ -#}
+      {%- for h in inicio.heroImagenes %}
+      <div class="hero-slide{% if loop.first %} is-active{% endif %}" style="background-image:url('{{ h.imagen }}')"></div>
+      {%- endfor %}
+      {%- else %}
+      {#- Sin fotos todavía: degradados de sustitución.
+          Súbelas en /admin/ → Página de Inicio → Fotos de portada. -#}
+      <div class="hero-slide hero-slide--1 is-active"></div>
+      <div class="hero-slide hero-slide--2"></div>
+      <div class="hero-slide hero-slide--3"></div>
+      {%- endif %}
+    </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__iris" aria-hidden="true"></div>
+
+    <div class="wrap hero__inner">
+      <div class="hero__content">
+        <p class="eyebrow eyebrow--light">Clínica de ojos en Mexicali · Desde 2006</p>
+        <h1 class="hero__title">Cuida tus ojos, <em>hay mucho por ver</em></h1>
+        <p class="hero__lead">Médicos oftalmólogos con la más alta especialidad en Retina, Córnea, Cataratas y Glaucoma, siempre dispuestos a atenderte.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="contacto.html">Agenda tu cita{{ iconos.flecha | safe }}</a>
+          <a class="btn btn--light" href="tratamientos.html">Ver tratamientos{{ iconos.flecha | safe }}</a>
+        </div>
+        <div class="hero__meta">
+          <span class="hero__meta-item">{{ iconos.check | safe }}<span><strong>Desde 2006</strong> en Mexicali</span></span>
+          <span class="hero__meta-item">{{ iconos.check | safe }}<span>Trasplantes de córnea certificados</span></span>
+          <span class="hero__meta-item">{{ iconos.pin | safe }}<span>{{ contacto.direccion.lineas[0] | sinComaFinal }}</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__controls">
+      <div class="wrap hero__controls-inner">
+        <div class="hero__dots" role="group" aria-label="Elegir imagen de portada">
+          {%- set total = inicio.heroImagenes.length if inicio.heroImagenes and inicio.heroImagenes.length else 3 %}
+          {%- for n in range(0, total) %}
+          <button class="hero-dot{% if loop.first %} is-active{% endif %}" type="button"{% if loop.first %} aria-current="true"{% endif %} aria-label="Ir a la imagen {{ loop.index }}"></button>
+          {%- endfor %}
+        </div>
+        <div class="hero__arrows">
+          <button class="hero-arrow hero-arrow--prev" type="button" aria-label="Imagen anterior">{{ iconos.anterior | safe }}</button>
+          <button class="hero-arrow hero-arrow--next" type="button" aria-label="Imagen siguiente">{{ iconos.siguiente | safe }}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRESENTACIÓN ===== -->
+  <section class="section" id="clinica">
+    <div class="wrap split">
+      <div class="prose reveal">
+        <p class="eyebrow">{{ inicio.presentacion.antetitulo }}</p>
+        <h2>{{ inicio.presentacion.titulo }}</h2>
+        {%- for p in inicio.presentacion.parrafos %}
+        <p>{{ p }}</p>
+        {%- endfor %}
+        <a class="btn btn--primary" href="contacto.html">Contacto{{ iconos.flecha | safe }}</a>
+      </div>
+      <div class="split__media reveal reveal--delay-1">
+        {{ marco(inicio.presentacion.foto, inicio.presentacion.fotoAlt, inicio.presentacion.fotoPie, iconos.tecnologia, "media-frame--tall") }}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HISTORIA ===== -->
+  <section class="section section--mist" id="historia">
+    <div class="wrap split">
+      <div class="split__media reveal">
+        {{ marco(inicio.historia.foto, inicio.historia.fotoAlt, inicio.historia.fotoPie, iconos.trasplante, "media-frame--wide") }}
+      </div>
+      <div class="prose reveal reveal--delay-1">
+        <p class="eyebrow">{{ inicio.historia.antetitulo }}</p>
+        <h2>{{ inicio.historia.titulo }}</h2>
+        {%- for p in inicio.historia.parrafos %}
+        <p>{{ p }}</p>
+        {%- endfor %}
+      </div>
+    </div>
+
+    <div class="wrap">
+      <ul class="stats reveal reveal--delay-2">
+        <li class="stat"><span class="stat__value">2006</span><span class="stat__label">Año en que abrimos nuestras puertas en Mexicali</span></li>
+        <li class="stat"><span class="stat__value">{{ especialidades.lista.length }}</span><span class="stat__label">Especialidades oftalmológicas bajo un mismo techo</span></li>
+        <li class="stat"><span class="stat__value">{{ medicos.lista.length }}</span><span class="stat__label">Médicos oftalmólogos con alta especialidad</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== ESPECIALIDADES ===== -->
+  <section class="section" id="especialidades-inicio">
+    <div class="wrap">
+      <div class="section-head section-head--center reveal">
+        <p class="eyebrow eyebrow--center">Especialidades</p>
+        <h2>Todo lo que tus ojos necesitan, en un solo lugar</h2>
+        <p class="lead">Siete áreas de atención a cargo de médicos con alta especialidad. Elige la que te interesa y conoce el detalle del tratamiento.</p>
+      </div>
+      <div class="specialty-grid">
+        {%- for e in especialidades.lista %}
+        <a class="specialty-card reveal{% if loop.index0 % 4 %} reveal--delay-{{ loop.index0 % 4 }}{% endif %}" href="tratamientos.html#{{ e.clave }}">
+          <span class="specialty-card__icon">{{ iconos[e.clave | replace("-", "_")] | safe }}</span>
+          <span class="specialty-card__title">{{ e.titulo }}</span>
+          <p class="specialty-card__text">{{ e.entradilla }}</p>
+          <span class="specialty-card__more">Ver tratamiento{{ iconos.flechaSm | safe }}</span>
+        </a>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+{{ seccionMedicos("oftalmologos-inicio", "Nuestro equipo", "Nuestros Oftalmólogos", "Médicos con alto nivel de competencia y calidad internacional, siempre dispuestos a atenderte.", medicos.lista, iconos) }}
+
+  <!-- ===== BLOQUES DESTACADOS ===== -->
+  <section class="section section--tint" id="destacados">
+    <div class="wrap">
+      {%- for d in inicio.destacados %}
+      <article class="feature{% if loop.index0 % 2 %} feature--reverse{% endif %}">
+        <div class="feature__media reveal">
+          {{ marco(d.foto, d.fotoAlt, d.fotoPie, iconos[d.icono | replace("-", "_")], "") }}
+        </div>
+        <div class="prose reveal reveal--delay-1">
+          <span class="feature__icon">{{ iconos[d.icono | replace("-", "_")] | safe }}</span>
+          <h2 class="feature__title">{{ d.titulo }}</h2>
+          <p class="feature__text">{{ d.texto }}</p>
+          {%- if d.textoSecundario %}
+          <p class="feature__text">{{ d.textoSecundario }}</p>
+          {%- endif %}
+          <a class="btn btn--accent" href="contacto.html">Contáctanos{{ iconos.flecha | safe }}</a>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+
+{{ bandaCta(telefono, iconos) }}

@@ -667,6 +667,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero-slide {
   position: absolute;
   inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   opacity: 0;
   transform: scale(1.04);
   transition: opacity 1.2s var(--ease-out), transform 8s linear;
@@ -933,6 +936,22 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Marco alto para columnas laterales */
 .media-frame--tall { aspect-ratio: 4 / 5; }
 .media-frame--wide { aspect-ratio: 16 / 10; }
+
+/* ---------------------------------------------------------
+   Foto real subida desde /admin/. Ocupa la misma celda de la
+   rejilla que el marcador, así hereda proporción, radio,
+   sombra y recorte sin tocar nada más.
+   --------------------------------------------------------- */
+.media-frame__img,
+.doctor-card__img,
+.frame-card__img {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+.frame-card__img { border-radius: 0; }
 
 /* Etiqueta "foto de sustitución" visible en la maqueta */
 .media-frame__note {
@@ -1384,6 +1403,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .frame-card__photo svg { width: 46%; height: auto; color: var(--brand-600); opacity: 0.6; }
 
+/* Cuatro degradados de sustitución que se alternan mientras no haya foto. */
+.frame-card__photo--1 { background: linear-gradient(150deg, #E8F4FA 0%, #CFE9F1 100%); }
+.frame-card__photo--2 { background: linear-gradient(150deg, #E4F1F7 0%, #C8E4EE 100%); }
+.frame-card__photo--3 { background: linear-gradient(150deg, #E9F5F3 0%, #CCE8E6 100%); }
+.frame-card__photo--4 { background: linear-gradient(150deg, #E6F2F8 0%, #C6DFEE 100%); }
+
 .frame-card__tag {
   position: absolute;
   top: 0.6rem;
@@ -1397,6 +1422,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   letter-spacing: 0.05em;
   white-space: nowrap;
   box-shadow: var(--shadow-xs);
+  z-index: 1;
 }
 .frame-card__tag--kids { color: var(--accent-700); }
 

@@ -1,0 +1,172 @@
+{#
+  ============================================================
+  Gabarit común a las 3 páginas.
+  La cabecera y el pie se generan aquí una sola vez, así son
+  idénticos byte a byte en index / tratamientos / contacto y
+  no pueden desincronizarse. Lo único que cambia por página es
+  aria-current, que sale de la variable `pagina`.
+  ============================================================
+#}
+{%- set seo = site.seo[pagina] %}
+{%- set principal = contacto.telefonos[0].numero %}
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ seo.titulo }}</title>
+<meta name="description" content="{{ seo.descripcion }}">
+<meta name="theme-color" content="#1A6CA3">
+<meta name="author" content="EYE CENTER Mexicali">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EYE CENTER Mexicali">
+<meta property="og:locale" content="es_MX">
+<meta property="og:title" content="{{ seo.ogTitulo }}">
+<meta property="og:description" content="{{ seo.ogDescripcion }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon en línea (ojo). Sustituir por el logotipo real de la clínica cuando esté disponible. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%231A6CA3' stroke-width='3'%3E%3Cpath d='M3.5 24s7.6-11 20.5-11 20.5 11 20.5 11-7.6 11-20.5 11S3.5 24 3.5 24z'/%3E%3Ccircle cx='24' cy='24' r='7'/%3E%3C/svg%3E">
+
+<!-- Marca el documento como "con JS" ANTES de pintar: es lo que activa el estado
+     inicial oculto de las animaciones .reveal. Sin esto (o si el script falla),
+     el contenido se muestra siempre. -->
+<script>document.documentElement.classList.add('js')</script>
+
+<script>
+// Netlify Identity manda las invitaciones y los restablecimientos de contraseña
+// a la raíz del sitio con un token en el hash. Aquí solo se reenvía a /admin/,
+// que es donde vive el widget: así ninguna página pública carga el script de
+// identidad (que pesa y ralentiza el sitio para los pacientes).
+(function () {
+  var h = window.location.hash;
+  if (/(invite_token|recovery_token|email_change_token|confirmation_token)=/.test(h)) {
+    window.location.replace('/admin/' + h);
+  }
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}.hero__controls{display:none!important}</style></noscript>
+{%- if pagina == "index" %}
+<!-- Datos estructurados schema.org, generados a partir de los mismos archivos
+     que edita el CMS: cambiar un teléfono en /admin/ los actualiza solos. -->
+<script type="application/ld+json">{{ schema | dump | safe }}</script>
+{%- endif %}
+</head>
+<body>
+
+<a class="skip-link" href="#main">Ir al contenido principal</a>
+
+<!-- ===== CABECERA ===== -->
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="EYE CENTER Mexicali — Inicio">
+      <span class="brand__mark">{{ iconos.logo | safe }}</span>
+      <span class="brand__text">
+        <span class="brand__name">{{ site.marca.nombre }}</span>
+        <span class="brand__city">{{ site.marca.ciudad }}</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      {%- for n in site.navegacion %}
+      <a class="nav__link" href="{{ n.destino }}"{% if pagina == n.clave %} aria-current="page"{% endif %}>{{ n.etiqueta }}</a>
+      {%- endfor %}
+    </nav>
+
+    <div class="header-actions">
+      {%- if contacto.facebook %}
+      <a class="icon-btn" href="{{ contacto.facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook de EYE CENTER Mexicali (se abre en una pestaña nueva)">{{ iconos.facebook | safe }}</a>
+      {%- endif %}
+      <a class="header-call" href="{{ principal | telHref }}" aria-label="{{ principal | telAria }}">{{ iconos.telefono | safe }}<span>{{ principal }}</span></a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MENÚ MÓVIL =====
+     Es un <nav> y no un <div>: por debajo de 920px la navegación de escritorio
+     está en display:none, así que este es el único landmark de navegación. -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menú principal">
+  {%- for n in site.navegacion %}
+  <a class="mobile-menu__link" href="{{ n.destino }}"{% if pagina == n.clave %} aria-current="page"{% endif %}>{{ n.etiqueta }}{{ iconos.chevron | safe }}</a>
+  {%- endfor %}
+  <div class="mobile-menu__footer">
+    <a class="btn btn--primary" href="{{ principal | telHref }}" aria-label="{{ principal | telAria }}">{{ iconos.telefono | safe }}<span>Llamar&nbsp;{{ principal }}</span></a>
+    <a class="btn btn--ghost" href="contacto.html">Contacto{{ iconos.flecha | safe }}</a>
+  </div>
+</nav>
+
+<main id="main" tabindex="-1">
+{{ content | safe }}
+</main>
+
+<!-- ===== PIE DE PÁGINA ===== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <h2 class="visually-hidden">Información de contacto de EYE CENTER Mexicali</h2>
+    <div class="footer-grid">
+
+      <div class="footer__brand">
+        <span class="brand">
+          <span class="brand__mark">{{ iconos.logo | safe }}</span>
+          <span class="brand__text">
+            <span class="brand__name">{{ site.marca.nombre }}</span>
+            <span class="brand__city">{{ site.marca.ciudad }}</span>
+          </span>
+        </span>
+        <p class="footer__tagline">Clínica de ojos especializada en el tratamiento de Enfermedades Oculares. En Mexicali desde 2006.</p>
+        {%- if contacto.facebook %}
+        <a class="footer__social" href="{{ contacto.facebook }}" target="_blank" rel="noopener noreferrer">{{ iconos.facebook | safe }}<span>Síguenos en Facebook</span></a>
+        {%- endif %}
+      </div>
+
+      <nav class="footer__nav" aria-label="Navegación del pie de página">
+        <h3 class="footer__title">Navegación</h3>
+        <ul class="footer__list">
+          {%- for n in site.navegacion %}
+          <li><a href="{{ n.destino }}">{{ n.etiqueta }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+
+      <nav class="footer__nav" aria-label="Tratamientos">
+        <h3 class="footer__title">Tratamientos</h3>
+        <ul class="footer__list">
+          {%- for e in especialidades.lista %}
+          <li><a href="tratamientos.html#{{ e.clave }}">{{ e.titulo }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+
+      <div>
+        <h3 class="footer__title">Contacto</h3>
+        <div class="footer__contact">
+          {%- for t in contacto.telefonos %}
+          <a href="{{ t.numero | telHref }}" aria-label="{{ t.numero | telAria }}">{{ t.numero }}</a>
+          {%- endfor %}
+          <a href="mailto:{{ contacto.email }}">{{ contacto.email }}</a>
+          <address class="footer__address">{% for l in contacto.direccion.lineas %}{{ l }}{% if not loop.last %}<br>{% endif %}{% endfor %}</address>
+          <a href="{{ contacto.direccion.consultaMapa | mapsUrl }}" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> EYE CENTER Mexicali. Todos los derechos reservados.</p>
+      <p><a href="#main">Volver arriba</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+{#
+  ============================================================
+  Macros compartidas.
+  Regla de oro de todas ellas: si hay foto real se muestra la
+  foto; si no, se conserva el marcador de sustitución EXACTO
+  que había antes. La etiqueta "Foto de sustitución" desaparece
+  sola en cuanto alguien sube una imagen desde /admin/.
+  ============================================================
+#}
+
+{# --- Marco de imagen de las secciones de contenido --- #}
+{% macro marco(foto, alt, pie, icono, clase) %}
+<div class="media-frame{% if clase %} {{ clase }}{% endif %}">
+  {%- if foto %}
+  <img class="media-frame__img" src="{{ foto }}" alt="{{ alt }}" loading="lazy" decoding="async">
+  {%- else %}
+  <div class="media-frame__art">{{ icono | safe }}</div>
+  <span class="media-frame__note">{{ pie }}</span>
+  {%- endif %}
+</div>
+{% endmacro %}
+
+{# --- Ficha de médico (idéntica en Inicio y en Tratamientos) --- #}
+{% macro medico(m, iconos, retraso) %}
+<article class="doctor-card reveal{% if retraso %} reveal--delay-{{ retraso }}{% endif %}">
+  <div class="doctor-card__photo">
+    {%- if m.foto %}
+    <img class="doctor-card__img" src="{{ m.foto }}" alt="{{ m.nombre }}" loading="lazy" decoding="async">
+    {%- endif %}
+    {%- if m.insigniaTexto %}
+    <span class="doctor-card__badge">{{ iconos[m.insigniaIcono | replace("-", "_")] | safe }}<span>{{ m.insigniaTexto }}</span></span>
+    {%- endif %}
+    {%- if not m.foto %}
+    <span class="doctor-card__initials" aria-hidden="true">{{ m.nombre | iniciales }}</span>
+    {%- endif %}
+  </div>
+  <div class="doctor-card__body">
+    <h3 class="doctor-card__name">{{ m.nombre }}</h3>
+    <p class="doctor-card__specialty">{{ m.especialidad }}</p>
+    <p class="doctor-card__bio">{{ m.bio }}</p>
+    <dl class="doctor-card__credentials">
+      {%- if m.cedulaMedico %}
+      <div class="doctor-card__credential"><dt>Cédula profesional Médico Cirujano</dt><dd>{{ m.cedulaMedico }}</dd></div>
+      {%- endif %}
+      {%- if m.cedulaOftalmologia %}
+      <div class="doctor-card__credential"><dt>Cédula profesional de Oftalmología</dt><dd>{{ m.cedulaOftalmologia }}</dd></div>
+      {%- endif %}
+      {%- for f in m.formacion %}
+      <div class="doctor-card__credential"><dt>{{ f.institucion }}</dt><dd>{{ f.detalle }}</dd></div>
+      {%- endfor %}
+    </dl>
+    <div class="doctor-card__actions">
+      {%- if m.curriculum %}
+      <a class="btn btn--ghost btn--sm" href="{{ m.curriculum }}" target="_blank" rel="noopener noreferrer" aria-label="Currículum de {{ m.nombre }} (PDF, se abre en una pestaña nueva)">{{ iconos.documento | safe }}<span>Currículum</span>{{ iconos.flecha | safe }}</a>
+      {%- else %}
+      {#- Sin PDF no se genera botón: nunca un href="#" de relleno.
+          La alineación entre tarjetas la resuelve el CSS. -#}
+      {%- endif %}
+    </div>
+  </div>
+</article>
+{% endmacro %}
+
+{# --- Sección "Nuestros Oftalmólogos" --- #}
+{% macro seccionMedicos(id, antetitulo, titulo, entradilla, lista, iconos) %}
+<section class="section" id="{{ id }}">
+  <div class="wrap">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow eyebrow--center">{{ antetitulo }}</p>
+      <h2>{{ titulo }}</h2>
+      <p class="lead">{{ entradilla }}</p>
+    </div>
+    <div class="doctor-grid">
+      {%- for m in lista %}
+      {{ medico(m, iconos, loop.index0) }}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{# --- Banda de llamada a la acción, al final de cada página --- #}
+{% macro bandaCta(telefono, iconos) %}
+<section class="section section--tint">
+  <div class="wrap wrap--narrow section-head--center reveal">
+    <p class="eyebrow eyebrow--center">Agenda tu cita</p>
+    <h2>Deposite su confianza en nosotros, estará en las mejores manos</h2>
+    <p class="lead">Llámanos o escríbenos y con gusto te ayudamos a encontrar el horario que mejor te acomode.</p>
+    <div class="hero__ctas" style="justify-content:center">
+      <a class="btn btn--primary" href="contacto.html">Contáctanos{{ iconos.flecha | safe }}</a>
+      <a class="btn btn--ghost" href="{{ telefono | telHref }}" aria-label="{{ telefono | telAria }}">{{ iconos.telefono | safe }}<span>{{ telefono }}</span></a>
+    </div>
+  </div>
+</section>
+{% endmacro %}

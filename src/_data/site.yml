@@ -1,0 +1,32 @@
+# Contenido fijo, NO editable desde /admin/.
+# Se cambia únicamente tocando este archivo en el repositorio.
+marca:
+  nombre: EYE CENTER
+  ciudad: Mexicali
+claim: Cuida tus ojos, hay mucho por ver
+navegacion:
+  - etiqueta: Inicio
+    destino: index.html
+    clave: index
+  - etiqueta: Tratamientos
+    destino: tratamientos.html
+    clave: tratamientos
+  - etiqueta: Contacto
+    destino: contacto.html
+    clave: contacto
+seo:
+  index:
+    titulo: EYE CENTER Mexicali | Oftalmólogos en Baja California
+    descripcion: Clínica de ojos en Mexicali desde 2006. Oftalmólogos especialistas en catarata, retina, córnea y glaucoma, con tecnología de primer mundo. Agenda tu cita.
+    ogTitulo: EYE CENTER Mexicali — Cuida tus ojos, hay mucho por ver
+    ogDescripcion: Desde 2006 cuidamos la vista de las familias de Mexicali. Médicos con la más alta especialidad en retina, córnea, catarata y glaucoma, siempre dispuestos a atenderte.
+  tratamientos:
+    titulo: Tratamientos Oftalmológicos en Mexicali | EYE CENTER
+    descripcion: Catarata, cirugía refractiva, retina y vítreo, córnea, glaucoma, óptica y lentes de contacto en Mexicali. Tratamientos con tecnología de primer mundo.
+    ogTitulo: Tratamientos oftalmológicos en EYE CENTER Mexicali
+    ogDescripcion: Catarata por facoemulsificación, excimer láser, retina y vítreo, córnea, glaucoma, óptica y lentes de contacto. Siete especialidades a cargo de médicos con la más alta especialidad.
+  contacto:
+    titulo: Contacto y Citas | Oftalmólogos EYE CENTER Mexicali
+    descripcion: "Av. Madero #939, Col. Segunda Sección, Mexicali. Llámanos al 686.555.6060 o escríbenos a contacto@eyecentermexico.com para agendar tu consulta."
+    ogTitulo: Contacto y citas — EYE CENTER Mexicali
+    ogDescripcion: "Estamos en Av. Madero #939, Col. Segunda Sección, a un lado de canal 66, en Mexicali. Llámanos o escríbenos y con gusto agendamos tu consulta oftalmológica."

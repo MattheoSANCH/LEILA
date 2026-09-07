@@ -1,0 +1,45 @@
+# ⚠ ARCHIVO EDITABLE DESDE EL PANEL /admin/ (Decap CMS).
+# Al guardar desde el panel, Decap REESCRIBE el archivo entero a partir de los
+# campos declarados en src/admin/config.yml. Si añades una clave aquí a mano y
+# no la declaras allí, se perderá en la siguiente edición.
+lista:
+  - nombre: Dra. Alejandra Sánchez Navarro Palazuelos
+    especialidad: Oftalmología · Córnea · Cirugía Refractiva · Enfermedades Oculares Externas
+    bio: Oftalmóloga con alta especialidad en Córnea y Cirugía Refractiva, además de ser maestra por el IPN-CINVESTAV en Biología Celular. Esta especialista ha hecho posible que en EYE CENTER Mexicali se realicen trasplantes de córnea avalados y certificados por el Centro Nacional de Trasplantes.
+    insigniaIcono: trasplante
+    insigniaTexto: Trasplante de córnea
+    cedulaMedico: "3312725"
+    cedulaOftalmologia: "4371608"
+    formacion:
+      - institucion: Formación
+        detalle: Instituto de Oftalmología Fundación de Asistencia Privada Conde de Valenciana
+      - institucion: Instituto Tecnológico y de Estudios Superiores de Monterrey (ITESM)
+        detalle: 1993-1999, «Ignacio A. Santos», Monterrey, N.L., «Mención Honorífica»
+    foto: ""
+    curriculum: https://www.eyecentermexicali.com/IMG/Dra-Alejandra.pdf
+  - nombre: Dr. Benjamín Méndez Noble
+    especialidad: Oftalmología · Retina · Vítreo · Mácula
+    bio: Oftalmólogo con alta especialidad en enfermedades de la Retina, Vítreo y Mácula. Experto en cirugía de catarata. Ha realizado más de mil procedimientos de cirugía intraocular con gran éxito ayudando así a los pacientes a reintegrarse a su vida.
+    insigniaIcono: catarata
+    insigniaTexto: Cirugía de catarata
+    cedulaMedico: "2586322"
+    cedulaOftalmologia: "3872770"
+    formacion:
+      - institucion: Formación
+        detalle: Instituto de Oftalmología Fundación de Asistencia Privada Conde de Valenciana
+      - institucion: Escuela de Medicina ITESM
+        detalle: 1990-1996, «Ignacio A. Santos», Monterrey, N.L., «Mención Honorífica»
+    foto: ""
+    curriculum: https://www.eyecentermexicali.com/IMG/Dr-Benjamin.pdf
+  - nombre: Dra. Atziri Flores
+    especialidad: Oftalmología · Retina · Vítreo
+    bio: Especialista en retina y vítreo por la Universidad Autónoma de Baja California y Universidad Autónoma de Guadalajara. Especialista en bebés y prematuros.
+    insigniaIcono: ninos
+    insigniaTexto: Bebés y prematuros
+    cedulaMedico: ""
+    cedulaOftalmologia: ""
+    formacion:
+      - institucion: Formación
+        detalle: Escuela de Medicina en Universidad Autónoma de Baja California
+    foto: ""
+    curriculum: ""

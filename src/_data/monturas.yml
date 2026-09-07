@@ -1,0 +1,63 @@
+# ⚠ ARCHIVO EDITABLE DESDE EL PANEL /admin/ (Decap CMS).
+# Al guardar desde el panel, Decap REESCRIBE el archivo entero a partir de los
+# campos declarados en src/admin/config.yml. Si añades una clave aquí a mano y
+# no la declaras allí, se perderá en la siguiente edición.
+intro: "En nuestra Óptica encontrarás una muestra de las monturas que solemos tener disponibles: modelos para niños, para adultos y solares graduables. Esta galería es solo una vista previa; no hay compra en línea. Escríbenos o llámanos y con gusto te mostramos las opciones reales en clínica y te asesoramos con calma."
+aviso: "Imágenes y referencias de carácter ilustrativo: modelos, disponibilidad y precios pueden variar; confírmalos directamente con la clínica."
+lista:
+  - ref: Ref. EC-101
+    nombre: Modelo infantil 01
+    marca: MIRAFLEX
+    publico: Bebés y niños pequeños
+    material: Silicona flexible
+    precio: Precio a consultar
+    foto: ""
+  - ref: Ref. EC-102
+    nombre: Modelo infantil 02
+    marca: MIRAFLEX
+    publico: Niños
+    material: Montura flexible y ligera
+    precio: Precio a consultar
+    foto: ""
+  - ref: Ref. EC-103
+    nombre: Modelo infantil 03
+    marca: MIRAFLEX
+    publico: Niños
+    material: Montura infantil flexible
+    precio: Precio a consultar
+    foto: ""
+  - ref: Ref. EC-201
+    nombre: Modelo adulto 01
+    marca: Marca por confirmar
+    publico: Adultos
+    material: Acetato ligero
+    precio: Precio a consultar
+    foto: ""
+  - ref: Ref. EC-202
+    nombre: Modelo adulto 02
+    marca: Marca por confirmar
+    publico: Unisex
+    material: Metal ligero
+    precio: Precio a consultar
+    foto: ""
+  - ref: Ref. EC-203
+    nombre: Modelo adulto 03
+    marca: Marca por confirmar
+    publico: Adultos
+    material: Acetato y metal
+    precio: Precio a consultar
+    foto: ""
+  - ref: Ref. EC-301
+    nombre: Modelo solar 01
+    marca: Marca por confirmar
+    publico: Unisex
+    material: Solar graduable con filtro UV
+    precio: Precio según graduación
+    foto: ""
+  - ref: Ref. EC-302
+    nombre: Modelo solar 02
+    marca: Marca por confirmar
+    publico: Adultos
+    material: Solar graduable en acetato
+    precio: Precio según graduación
+    foto: ""

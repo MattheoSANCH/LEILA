@@ -1,0 +1,19 @@
+# ⚠ ARCHIVO EDITABLE DESDE EL PANEL /admin/ (Decap CMS).
+# Al guardar desde el panel, Decap REESCRIBE el archivo entero a partir de los
+# campos declarados en src/admin/config.yml. Si añades una clave aquí a mano y
+# no la declaras allí, se perderá en la siguiente edición.
+telefonos:
+  - numero: 686.555.6060
+  - numero: 686.555.6161
+  - numero: 686.516.8601
+  - numero: 686.310.0855
+email: contacto@eyecentermexico.com
+direccion:
+  lineas:
+    - "Av. Madero #939, Col. Segunda Sección,"
+    - entre calle «A» y «B», C.P. 21100
+    - (a un lado de canal 66)
+    - Mexicali, Baja California, México
+  consultaMapa: Av. Madero 939, Col. Segunda Sección, 21100 Mexicali, Baja California, México
+facebook: https://www.facebook.com/eyecentermexicali
+antesDeTuVisita: "Si es tu primera consulta, trae tus lentes actuales y, si los tienes, tus estudios previos. Para revisiones de fondo de ojo puede ser necesario dilatar la pupila: en ese caso conviene que alguien te acompañe de regreso."

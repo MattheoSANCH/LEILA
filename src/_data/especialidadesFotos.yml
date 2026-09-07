@@ -1,0 +1,18 @@
+# ⚠ ARCHIVO EDITABLE DESDE EL PANEL /admin/ (Decap CMS).
+# Al guardar desde el panel, Decap REESCRIBE el archivo entero a partir de los
+# campos declarados en src/admin/config.yml. Si añades una clave aquí a mano y
+# no la declaras allí, se perderá en la siguiente edición.
+catarata: ""
+catarata-alt: ""
+cirugia-refractiva: ""
+cirugia-refractiva-alt: ""
+retina-vitreo: ""
+retina-vitreo-alt: ""
+optica: ""
+optica-alt: ""
+cornea: ""
+cornea-alt: ""
+lentes-de-contacto: ""
+lentes-de-contacto-alt: ""
+glaucoma: ""
+glaucoma-alt: ""

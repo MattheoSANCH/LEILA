@@ -1,0 +1,257 @@
+# =========================================================
+# Decap CMS — configuración del panel de EYE CENTER Mexicali
+# =========================================================
+#
+# ⚠ DOS COSAS QUE HAY QUE SABER ANTES DE TOCAR ESTE ARCHIVO
+#
+# 1. `branch` DEBE ser exactamente la rama que Netlify publica.
+#    Si Netlify construye una rama y Decap escribe en otra, el editor
+#    guarda, ve "publicado" y no pasa nada en el sitio. Es el fallo más
+#    habitual y no da ningún error visible.
+#
+# 2. Al guardar, Decap REESCRIBE el archivo YAML completo a partir de los
+#    campos declarados aquí. Cualquier clave que exista en src/_data/*.yml
+#    y NO esté declarada abajo se borra en la primera edición. Si añades
+#    contenido nuevo a un archivo gestionado, decláralo también aquí.
+#
+# =========================================================
+
+backend:
+  name: git-gateway
+  branch: claude/eye-center-mexicali-redesign-nygo5h
+
+# Idioma del panel
+locale: es
+
+# Carpeta donde se guardan las imágenes que se suben desde el panel.
+# media_folder = ruta en el repositorio · public_folder = ruta en el sitio.
+media_folder: src/assets/img/uploads
+public_folder: /assets/img/uploads
+
+# Mensaje de los commits que genera el panel, para que el historial
+# de Git se lea sin esfuerzo.
+site_url: https://eyecenter-mexicali.netlify.app
+display_url: https://eyecenter-mexicali.netlify.app
+
+collections:
+  # =======================================================
+  # PÁGINA DE INICIO
+  # =======================================================
+  - name: inicio
+    label: Página de Inicio
+    files:
+      - name: contenido
+        label: Textos y fotos de la portada
+        file: src/_data/inicio.yml
+        description: Presentación de la clínica, historia y los tres bloques destacados.
+        fields:
+          - name: heroImagenes
+            label: Fotos de portada (carrusel)
+            label_singular: Foto
+            widget: list
+            required: false
+            hint: >-
+              Hasta 3 fotos. Si lo dejas vacío se muestran los degradados de
+              sustitución actuales. Recomendado 1920x1080 y menos de 300 kB.
+            fields:
+              - { name: imagen, label: Imagen, widget: image }
+              - { name: alt, label: Descripción de la imagen, widget: string, hint: "Para lectores de pantalla y buscadores. Ej.: Recepción de la clínica" }
+
+          - name: presentacion
+            label: Bloque «La clínica»
+            widget: object
+            fields:
+              - { name: antetitulo, label: Antetítulo, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - name: parrafos
+                label: Párrafos
+                label_singular: Párrafo
+                widget: list
+                field: { name: texto, label: Texto, widget: text }
+              - { name: foto, label: Foto, widget: image, required: false }
+              - { name: fotoAlt, label: Descripción de la foto, widget: string, required: false }
+              - { name: fotoPie, label: Pie mostrado mientras no haya foto, widget: string, required: false }
+
+          - name: historia
+            label: Bloque «Nuestra historia»
+            widget: object
+            fields:
+              - { name: antetitulo, label: Antetítulo, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - name: parrafos
+                label: Párrafos
+                label_singular: Párrafo
+                widget: list
+                field: { name: texto, label: Texto, widget: text }
+              - { name: foto, label: Foto, widget: image, required: false }
+              - { name: fotoAlt, label: Descripción de la foto, widget: string, required: false }
+              - { name: fotoPie, label: Pie mostrado mientras no haya foto, widget: string, required: false }
+
+          - name: destacados
+            label: Bloques destacados
+            label_singular: Bloque
+            widget: list
+            summary: "{{fields.titulo}}"
+            fields:
+              - name: icono
+                label: Icono
+                widget: select
+                options: [ninos, personalizada, tecnologia, trasplante, catarata, optica]
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - { name: textoSecundario, label: Segundo párrafo (opcional), widget: text, required: false }
+              - { name: foto, label: Foto, widget: image, required: false }
+              - { name: fotoAlt, label: Descripción de la foto, widget: string, required: false }
+              - { name: fotoPie, label: Pie mostrado mientras no haya foto, widget: string, required: false }
+
+  # =======================================================
+  # MÉDICOS — aparecen en Inicio y en Tratamientos
+  # =======================================================
+  - name: medicos
+    label: Oftalmólogos
+    files:
+      - name: lista
+        label: Fichas de los médicos
+        file: src/_data/medicos.yml
+        description: Nombre, cédulas profesionales, formación, biografía y foto.
+        fields:
+          - name: lista
+            label: Médicos
+            label_singular: Médico
+            widget: list
+            summary: "{{fields.nombre}}"
+            fields:
+              - { name: nombre, label: Nombre completo, widget: string }
+              - { name: especialidad, label: Especialidades, widget: string, hint: "Separadas por · (ej.: Oftalmología · Córnea)" }
+              - { name: bio, label: Biografía, widget: text }
+              - name: insigniaIcono
+                label: Icono de la etiqueta
+                widget: select
+                options: [trasplante, catarata, ninos, retina_vitreo, cornea, optica]
+              - { name: insigniaTexto, label: Texto de la etiqueta, widget: string, required: false }
+              - { name: cedulaMedico, label: Cédula profesional Médico Cirujano, widget: string, required: false }
+              - { name: cedulaOftalmologia, label: Cédula profesional de Oftalmología, widget: string, required: false }
+              - name: formacion
+                label: Formación
+                label_singular: Institución
+                widget: list
+                summary: "{{fields.institucion}}"
+                fields:
+                  - { name: institucion, label: Institución o etiqueta, widget: string }
+                  - { name: detalle, label: Detalle (años, menciones…), widget: string }
+              - { name: foto, label: Retrato, widget: image, required: false, hint: "Cuadrado, 600x600. Si lo dejas vacío se muestran las iniciales." }
+              - name: curriculum
+                label: Enlace al currículum (PDF)
+                widget: string
+                required: false
+                hint: >-
+                  Déjalo VACÍO si ese médico no tiene PDF. Nunca escribas "#":
+                  si está vacío, el botón simplemente no aparece.
+
+  # =======================================================
+  # ÓPTICA — mini-catálogo de monturas
+  # =======================================================
+  - name: monturas
+    label: Óptica · Monturas
+    files:
+      - name: catalogo
+        label: Mini-catálogo de monturas
+        file: src/_data/monturas.yml
+        description: Galería de muestra dentro de la sección Óptica. No es una tienda.
+        fields:
+          - { name: intro, label: Texto de introducción, widget: text }
+          - { name: aviso, label: Aviso legal al pie de la galería, widget: text }
+          - name: lista
+            label: Monturas
+            label_singular: Montura
+            widget: list
+            summary: "{{fields.nombre}} — {{fields.marca}}"
+            fields:
+              - { name: ref, label: Referencia, widget: string, required: false }
+              - { name: nombre, label: Nombre o modelo, widget: string }
+              - { name: marca, label: Marca, widget: string, required: false, hint: "MIRAFLEX se resalta en color para los modelos infantiles." }
+              - { name: publico, label: Público, widget: string, required: false, hint: "Ej.: Niños, Adultos, Unisex" }
+              - { name: material, label: Material, widget: string, required: false }
+              - { name: precio, label: Precio, widget: string, required: false, hint: "Texto libre. Ej.: Precio a consultar, $1,200" }
+              - { name: foto, label: Foto de la montura, widget: image, required: false, hint: "Fondo blanco, 4:3, ~400x300." }
+
+  # =======================================================
+  # CONTACTO
+  # =======================================================
+  - name: contacto
+    label: Contacto
+    files:
+      - name: datos
+        label: Teléfonos, correo y dirección
+        file: src/_data/contacto.yml
+        description: >-
+          Estos datos alimentan a la vez la página de Contacto, la cabecera,
+          el pie de página y los datos estructurados que lee Google.
+        fields:
+          - name: telefonos
+            label: Teléfonos
+            label_singular: Teléfono
+            widget: list
+            summary: "{{fields.numero}}"
+            fields:
+              - name: numero
+                label: Número
+                widget: string
+                hint: >-
+                  Escríbelo como quieres que se vea (ej.: 686.555.6060).
+                  El enlace para llamar se genera solo, no hay que tocarlo.
+          - { name: email, label: Correo electrónico, widget: string }
+          - name: direccion
+            label: Dirección
+            widget: object
+            fields:
+              - name: lineas
+                label: Líneas de la dirección
+                label_singular: Línea
+                widget: list
+                field: { name: texto, label: Texto, widget: string }
+              - name: consultaMapa
+                label: Dirección para Google Maps
+                widget: string
+                hint: >-
+                  SIN almohadilla (#): escribe "Av. Madero 939" y no
+                  "Av. Madero #939". Una almohadilla corta la URL del mapa.
+          - name: facebook
+            label: Página de Facebook
+            widget: string
+            required: false
+            hint: >-
+              URL completa. Si la dejas VACÍA, el icono de Facebook desaparece
+              de la cabecera y del pie en todo el sitio.
+          - { name: antesDeTuVisita, label: Texto «Antes de tu visita», widget: text, required: false }
+
+  # =======================================================
+  # FOTOS DE LAS 7 ESPECIALIDADES
+  # Los textos médicos NO se editan aquí a propósito: viven en
+  # src/_data/especialidades.yml y se cambian en el repositorio,
+  # para que nadie modifique por accidente una afirmación clínica.
+  # =======================================================
+  - name: especialidadesFotos
+    label: Fotos de los tratamientos
+    files:
+      - name: fotos
+        label: Una foto por especialidad
+        file: src/_data/especialidadesFotos.yml
+        description: >-
+          Solo las imágenes. Los textos médicos de cada especialidad se
+          modifican en el repositorio, no desde el panel.
+        fields:
+          - { name: catarata, label: Catarata, widget: image, required: false }
+          - { name: catarata-alt, label: Catarata — descripción de la imagen, widget: string, required: false }
+          - { name: cirugia-refractiva, label: Cirugía Refractiva, widget: image, required: false }
+          - { name: cirugia-refractiva-alt, label: Cirugía Refractiva — descripción, widget: string, required: false }
+          - { name: retina-vitreo, label: Retina y Vítreo, widget: image, required: false }
+          - { name: retina-vitreo-alt, label: Retina y Vítreo — descripción, widget: string, required: false }
+          - { name: optica, label: Óptica, widget: image, required: false }
+          - { name: optica-alt, label: Óptica — descripción, widget: string, required: false }
+          - { name: cornea, label: Córnea, widget: image, required: false }
+          - { name: cornea-alt, label: Córnea — descripción, widget: string, required: false }
+          - { name: lentes-de-contacto, label: Lentes de Contacto, widget: image, required: false }
+          - { name: lentes-de-contacto-alt, label: Lentes de Contacto — descripción, widget: string, required: false }
+          - { name: glaucoma, label: Glaucoma, widget: image, required: false }
+          - { name: glaucoma-alt, label: Glaucoma — descripción, widget: string, required: false }

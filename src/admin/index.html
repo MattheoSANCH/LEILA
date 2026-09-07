@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- El panel no debe aparecer en Google -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel de contenido — EYE CENTER Mexicali</title>
+</head>
+<body>
+  <!-- Widget de Netlify Identity: es quien pide el correo y la contraseña.
+       Debe cargarse ANTES que Decap. -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Decap CMS, versión fijada a propósito.
+       No usar un rango (^3) : una versión mayor podría cambiar el
+       comportamiento del panel sin que nadie toque el repositorio. -->
+  <script src="https://unpkg.com/decap-cms@3.16.0/dist/decap-cms.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# =========================================================
+# EYE CENTER Mexicali — despliegue en Netlify
+# =========================================================
+# El sitio se genera con Eleventy a partir de los archivos de
+# contenido que edita Decap CMS. Netlify lanza el build en cada
+# commit, incluidos los que hace el propio panel /admin/.
+
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# El panel de administración nunca debe indexarse.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

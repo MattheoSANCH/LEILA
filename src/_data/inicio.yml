@@ -1,0 +1,43 @@
+# ⚠ ARCHIVO EDITABLE DESDE EL PANEL /admin/ (Decap CMS).
+# Al guardar desde el panel, Decap REESCRIBE el archivo entero a partir de los
+# campos declarados en src/admin/config.yml. Si añades una clave aquí a mano y
+# no la declaras allí, se perderá en la siguiente edición.
+heroImagenes: []
+presentacion:
+  antetitulo: La clínica
+  titulo: Una clínica de ojos dedicada a las Enfermedades Oculares
+  parrafos:
+    - La vista es uno de los sentidos más apreciados por las personas. Con éste podemos interpretar las maravillas que nos muestra el mundo, obras de arte, paisajes maravillosos, objetos inigualables.
+    - EYE CENTER Mexicali es una Clínica de Ojos especializada en el tratamiento de Enfermedades Oculares. Ubicada en Mexicali, Baja California, México. Contamos con médicos con la más alta especialidad en tratar las Enfermedades de Retina, Córnea, Cataratas y Glaucoma, siempre dispuestos a atenderte.
+  foto: ""
+  fotoAlt: ""
+  fotoPie: Foto de sustitución · recepción de la clínica
+historia:
+  antetitulo: Nuestra historia
+  titulo: Miles de pacientes satisfechos nos respaldan
+  parrafos:
+    - EYE CENTER Mexicali abre sus puertas en el 2006. Miles de pacientes satisfechos nos respaldan. Contamos con tecnología de primer mundo, un equipo humano actualizado y capacitado constantemente con lo cual garantizamos una experiencia satisfactoria en cada uno de nuestros tratamientos.
+    - Áreas clínicas totalmente acondicionadas y Médicos Oftalmólogos con alto nivel de competencia y calidad internacional que te ofrecerán una experiencia única.
+  foto: ""
+  fotoAlt: ""
+  fotoPie: Foto de sustitución · áreas clínicas
+destacados:
+  - icono: ninos
+    titulo: Atención a niños
+    texto: Atendemos a niños desde recién nacidos, contamos con lentes especializados de la marca MIRAFLEX, la cual es una empresa con tecnología e insumos italianos nacida a finales de los años 80, con el fin de corregir el defecto visual en niños y adolescentes por medio de armazones fabricados con materiales de la más alta calidad.
+    foto: ""
+    fotoAlt: ""
+    fotoPie: Foto de sustitución · atención pediátrica
+  - icono: personalizada
+    titulo: Atención personalizada
+    texto: Cada persona es diferente y en Eye Center Mexicali lo reconocemos, es por ello que ofrecemos un servicio oftalmológico único y totalmente personalizado, con el cual te ayudaremos a curar cualquier problema oftalmológico con el que cuentes.
+    foto: ""
+    fotoAlt: ""
+    fotoPie: Foto de sustitución · consulta personalizada
+  - icono: tecnologia
+    titulo: Nuestra tecnología
+    texto: En los últimos años se han logrado grandes avances tecnológicos en el área de la Oftalmología. En EYE CENTER Mexicali contamos con la más avanzada tecnología para el tratamiento de la catarata con técnica de facoemulsificación. Empleamos el láser más preciso para el tratamiento de la retinopatía diabética. Utilizamos la más alta calidad en excimer láser para el tratamiento de los defectos de refracción. Contamos con la tecnología más novedosa para el tratamiento del ojo seco a base de luz pulsada.
+    textoSecundario: Deposite su confianza en nosotros, estará en las mejores manos. Agende hoy su cita.
+    foto: ""
+    fotoAlt: ""
+    fotoPie: Foto de sustitución · nuestra tecnología

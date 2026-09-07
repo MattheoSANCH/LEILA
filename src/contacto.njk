@@ -1,0 +1,77 @@
+---
+layout: base.njk
+pagina: contacto
+permalink: /contacto.html
+---
+{% from "macros.njk" import bandaCta %}
+{% set telefono = contacto.telefonos[0].numero %}
+
+  <!-- ===== PORTADA DE PÁGINA ===== -->
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="index.html">Inicio</a>{{ iconos.chevron | safe }}<span aria-current="page">Contacto</span>
+      </nav>
+      <h1>Contáctanos y agenda tu consulta</h1>
+      <p class="lead">Estamos en Av. Madero #939, en la Col. Segunda Sección de Mexicali. Llámanos o escríbenos y con gusto te ayudamos.</p>
+    </div>
+  </section>
+
+  <section class="section" id="datos-de-contacto">
+    <div class="wrap contact-grid">
+
+      <div class="reveal">
+        <div class="contact-block">
+          <h2 class="contact-block__title">{{ iconos.telefono | safe }}<span>Teléfonos</span></h2>
+          <p class="muted">Toca cualquier número para llamar directamente.</p>
+          <ul class="phone-list">
+            {%- for t in contacto.telefonos %}
+            <li><a class="phone-link" href="{{ t.numero | telHref }}" aria-label="{{ t.numero | telAria }}">{{ iconos.telefono | safe }}<span>{{ t.numero }}</span></a></li>
+            {%- endfor %}
+          </ul>
+        </div>
+
+        <div class="contact-block">
+          <h2 class="contact-block__title">{{ iconos.correo | safe }}<span>Correo electrónico</span></h2>
+          <p class="contact-line">{{ iconos.correo | safe }}<a href="mailto:{{ contacto.email }}">{{ contacto.email }}</a></p>
+        </div>
+
+        <div class="contact-block">
+          <h2 class="contact-block__title">{{ iconos.pin | safe }}<span>Dónde estamos</span></h2>
+          <div class="address-card">
+            <address>
+              {%- for l in contacto.direccion.lineas %}
+              {{ l }}{% if not loop.last %}<br>{% endif %}
+              {%- endfor %}
+            </address>
+            <a class="btn btn--primary" href="{{ contacto.direccion.consultaMapa | mapsUrl }}" target="_blank" rel="noopener noreferrer">{{ iconos.pin | safe }}<span>Cómo llegar</span>{{ iconos.flecha | safe }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal--delay-1">
+        <!-- Mapa incrustado de Google Maps, cargado en diferido para no penalizar la velocidad.
+             Si prefieres no cargar servicios externos, borra el <iframe> y deja solo el botón «Cómo llegar». -->
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps?q={{ contacto.direccion.consultaMapa | replace('#', '') | urlencode }}&amp;output=embed"
+            title="Mapa de ubicación de EYE CENTER Mexicali"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+
+        {%- if contacto.antesDeTuVisita %}
+        <div class="contact-block">
+          <h2 class="contact-block__title">{{ iconos.reloj | safe }}<span>Antes de tu visita</span></h2>
+          <p class="muted">{{ contacto.antesDeTuVisita }}</p>
+          <!-- HORARIOS: el cliente no proporcionó horarios de atención.
+               Cuando los facilite, añádelos aquí como una lista sencilla. -->
+        </div>
+        {%- endif %}
+      </div>
+
+    </div>
+  </section>
+
+{{ bandaCta(telefono, iconos) }}

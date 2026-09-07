@@ -1,0 +1,80 @@
+# Contenido fijo, NO editable desde /admin/.
+# Se cambia únicamente tocando este archivo en el repositorio.
+lista:
+  - clave: catarata
+    titulo: Catarata
+    entradilla: La catarata avanza poco a poco y hoy se trata con cirugía; el primer paso siempre es una valoración con tu oftalmólogo.
+    parrafos:
+      - "La catarata es la pérdida de transparencia del cristalino, el lente natural del ojo. Suele aparecer con los años y avanza despacio: la vista se vuelve borrosa o «lavada», los colores pierden intensidad, molestan más las luces de la noche y la graduación cambia seguido. No es una enfermedad que se detenga con gotas ni con ejercicios, pero tampoco es una urgencia: en general se opera cuando empieza a estorbarte en tu día a día."
+      - "En EYE CENTER la operamos con la técnica de facoemulsificación: a través de una incisión muy pequeña se fragmenta y aspira el cristalino opaco, y en su lugar se coloca un lente intraocular que permanece dentro del ojo. Es un procedimiento ambulatorio y la recuperación es distinta en cada paciente, así que lo que puedes esperar en tu caso te lo explicará tu cirujano después de revisarte con calma."
+    puntos:
+      - Visión borrosa, halos alrededor de las luces o deslumbramiento al manejar de noche
+      - Cambios frecuentes de graduación y colores que se ven apagados
+      - Cirugía con técnica de facoemulsificación e implante de lente intraocular
+      - Cirugía a cargo del Dr. Benjamín Méndez Noble, con más de mil procedimientos intraoculares
+  - clave: cirugia-refractiva
+    titulo: Cirugía Refractiva
+    entradilla: "Si vives dependiendo de tus lentes, vale la pena saber si eres candidato: eso solo se define con una valoración completa."
+    parrafos:
+      - "La cirugía refractiva con excimer láser corrige defectos como la miopía, la hipermetropía y el astigmatismo: el láser modela la superficie de la córnea para que las imágenes se enfoquen correctamente en la retina. Para muchas personas significa depender mucho menos de los lentes, aunque el resultado no es idéntico en todos los casos y hay quienes siguen necesitándolos para ciertas actividades."
+      - No todos los ojos son candidatos, y decirlo a tiempo también es parte de hacer bien las cosas. Antes de proponerte cualquier procedimiento revisamos que tu graduación esté estable, estudiamos tu córnea a detalle y descartamos otras condiciones oculares. Si el láser no es lo indicado para ti, te lo diremos con claridad y platicaremos las alternativas. Agenda tu valoración y salgamos de la duda.
+    puntos:
+      - Corrección de miopía, hipermetropía y astigmatismo con excimer láser
+      - Estudios previos de la córnea y de tu graduación para definir si eres candidato
+      - Se prefiere una graduación que lleve tiempo sin cambiar
+      - Citas de control posteriores, con las indicaciones que te dé tu cirujano
+  - clave: retina-vitreo
+    titulo: Retina y Vítreo
+    entradilla: La retina no avisa con dolor; revisarla a tiempo es la mejor forma de cuidarla, en especial si vives con diabetes.
+    parrafos:
+      - "La retina y el vítreo están en el fondo del ojo, y ahí se originan padecimientos que al principio casi no se notan: la retinopatía diabética, la degeneración macular asociada a la edad o el desprendimiento de retina. Cuando aparecen destellos de luz, muchas moscas volantes de golpe o una sombra que tapa parte de la visión, no lo dejes pasar: acude cuanto antes con un especialista."
+      - "Contamos con láser para el tratamiento de la retinopatía diabética, que busca frenar el avance del daño y proteger la visión que ya tienes. También atendemos a los más pequeños: la Dra. Atziri Flores es especialista en retina y vítreo y en la revisión de bebés y prematuros, donde la retinopatía del prematuro se detecta mediante revisiones programadas durante las primeras semanas de vida."
+    puntos:
+      - Retinopatía diabética, degeneración macular y desprendimiento de retina
+      - Láser para el tratamiento de la retinopatía diabética
+      - Revisión de retina en bebés y prematuros (retinopatía del prematuro)
+      - Si vives con diabetes, pide tu revisión de fondo de ojo aunque veas bien
+  - clave: optica
+    titulo: Óptica
+    entradilla: "Nuestra óptica trabaja de la mano del consultorio: primero la graduación correcta y después el armazón que de verdad vas a usar."
+    parrafos:
+      - "Unos lentes bien hechos empiezan por un examen de la vista completo, no por el aparador. En nuestra óptica te ayudamos a elegir la mica y el armazón a partir de tu graduación y de tu vida diaria: si pasas el día frente a la computadora, si manejas de noche, si necesitas lentes solo para leer o para traerlos puestos todo el tiempo."
+      - Atendemos a niños desde recién nacidos y contamos con lentes especializados de la marca MIRAFLEX, una empresa con tecnología e insumos italianos nacida a finales de los años ochenta, pensada para que los más pequeños puedan traer sus lentes puestos sin batallar. Si notas que tu hijo entrecierra los ojos, se acerca mucho a la pantalla o se queja seguido de dolor de cabeza, agenda una revisión.
+    puntos:
+      - Examen de la vista y lentes graduados para cerca, lejos o uso diario
+      - Armazones para adulto y para niño, incluida la marca MIRAFLEX
+      - Atención pediátrica desde recién nacidos
+      - Ajuste y seguimiento de tus lentes cuando algo no te acomoda
+  - clave: cornea
+    titulo: Córnea
+    entradilla: "La córnea es la ventana del ojo: cuidarla abarca desde el ojo seco de todos los días hasta el trasplante cuando hace falta."
+    parrafos:
+      - La córnea es el tejido transparente que está al frente del ojo, y de su forma depende buena parte de lo que ves. Atendemos padecimientos como el queratocono, en el que la córnea se va adelgazando y deformando, y por eso conviene detectarlo pronto y darle seguimiento cercano, así como infecciones, lesiones y opacidades que requieren manejo especializado.
+      - Realizamos trasplantes de córnea avalados y certificados por el Centro Nacional de Trasplantes, gracias al trabajo de la Dra. Alejandra Sánchez Navarro Palazuelos. También tratamos el ojo seco a base de luz pulsada (IPL), una opción para quienes sienten ardor, arenilla o cansancio constante en los ojos; es un padecimiento que se controla con seguimiento, más que resolverse de una sola vez.
+    puntos:
+      - Trasplante de córnea avalado y certificado por el Centro Nacional de Trasplantes
+      - Valoración y seguimiento del queratocono
+      - Tratamiento del ojo seco a base de luz pulsada (IPL)
+      - "Ardor, sensación de arenilla o visión que se distorsiona: son motivos para venir a revisión"
+  - clave: lentes-de-contacto
+    titulo: Lentes de Contacto
+    entradilla: Un lente de contacto bien adaptado se siente cómodo y cuida tu ojo; para eso hace falta medirlo, probarlo y darle seguimiento.
+    parrafos:
+      - "Los lentes de contacto no son un producto de mostrador: van directo sobre la córnea, así que la adaptación empieza con una revisión y con las medidas de tu ojo. Después viene la prueba, la enseñanza para ponértelos y quitártelos sin miedo, y las citas de control para confirmar que tu córnea sigue sana con el uso que les estás dando."
+      - "La higiene es lo que marca la diferencia: manos limpias, respetar el tiempo de uso y de reemplazo que te indiquemos, no dormir con ellos salvo indicación médica y nunca lavarlos con agua. Si un ojo se pone rojo, te duele o ves borroso, retira el lente y acude con nosotros. También adaptamos lentes especiales para casos que no se resuelven con un lente convencional."
+    puntos:
+      - Adaptación con medidas de tu ojo, prueba y citas de control
+      - Enseñanza de colocación, retiro y limpieza paso a paso
+      - Lentes especiales para córneas irregulares o graduaciones poco comunes
+      - "Ojo rojo, dolor o visión borrosa con el lente puesto: retíralo y acude a revisión"
+  - clave: glaucoma
+    titulo: Glaucoma
+    entradilla: El glaucoma avanza en silencio y sin dolor; una revisión sencilla puede detectarlo mucho antes de que tú notes algo.
+    parrafos:
+      - "El glaucoma daña poco a poco el nervio óptico, casi siempre sin dolor y sin síntomas al principio. La visión que se pierde primero es la de los lados y, como el otro ojo compensa, muchas personas se dan cuenta cuando el daño ya avanzó. No queremos asustarte: queremos que sepas que se detecta con una revisión de rutina, midiendo la presión del ojo y explorando el nervio óptico."
+      - "Aquí conviene ser honestos: el daño que el glaucoma ya causó no se revierte, y por eso el tratamiento se enfoca en bajar y mantener controlada la presión intraocular para frenar su avance. Es un padecimiento de seguimiento constante, con revisiones periódicas y apego a lo que indique tu especialista. Si alguien de tu familia tiene glaucoma o ya pasaste de los cuarenta, vale la pena revisarte aunque veas bien."
+    puntos:
+      - Medición de la presión intraocular y exploración del nervio óptico
+      - Mayor vigilancia si hay antecedentes de glaucoma en la familia
+      - El tratamiento frena el avance, pero no devuelve la visión ya perdida
+      - "Suele no dar síntomas: la revisión periódica es la mejor herramienta"

@@ -1,0 +1,105 @@
+---
+layout: base.njk
+pagina: tratamientos
+permalink: /tratamientos.html
+---
+{% from "macros.njk" import marco, seccionMedicos, bandaCta %}
+{% set telefono = contacto.telefonos[0].numero %}
+
+  <!-- ===== PORTADA DE PÁGINA ===== -->
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="index.html">Inicio</a>{{ iconos.chevron | safe }}<span aria-current="page">Tratamientos</span>
+      </nav>
+      <h1>Tratamientos oftalmológicos en Mexicali</h1>
+      <p class="page-hero__claim">{{ site.claim }}</p>
+      <p class="lead">Siete especialidades a cargo de médicos oftalmólogos con alta especialidad, con tecnología de primer mundo y un trato cercano en cada consulta.</p>
+    </div>
+  </section>
+
+  <!-- ===== PESTAÑAS DE ESPECIALIDAD (anclas de esta misma página) ===== -->
+  <nav class="tabs" aria-label="Especialidades">
+    <div class="wrap tabs__list">
+      {%- for e in especialidades.lista %}
+      <a class="tab{% if loop.first %} is-active{% endif %}" href="#{{ e.clave }}" data-spy-tab>{{ iconos[e.clave | replace("-", "_")] | safe }}<span>{{ e.titulo }}</span></a>
+      {%- endfor %}
+    </div>
+  </nav>
+
+  <div class="treatments">
+    {%- for e in especialidades.lista %}
+    {%- set fotoEsp = especialidadesFotos[e.clave] %}
+    {%- set altEsp = especialidadesFotos[e.clave + "-alt"] or (e.titulo + " en EYE CENTER Mexicali") %}
+    {%- set pieEsp = "Foto de sustitución · " + e.titulo %}
+    <section class="treatment" id="{{ e.clave }}">
+      <div class="wrap">
+        <div class="treatment__grid">
+          <div class="prose reveal">
+            <span class="treatment__icon">{{ iconos[e.clave | replace("-", "_")] | safe }}</span>
+            <h2>{{ e.titulo }}</h2>
+            <p class="treatment__lead">{{ e.entradilla }}</p>
+            {%- for p in e.parrafos %}
+            <p>{{ p }}</p>
+            {%- endfor %}
+            <ul class="check-list">
+              {%- for b in e.puntos %}
+              <li>{{ iconos.check | safe }}<span>{{ b }}</span></li>
+              {%- endfor %}
+            </ul>
+            <div class="treatment__cta">
+              <a class="btn btn--primary" href="contacto.html">Contáctanos{{ iconos.flecha | safe }}</a>
+            </div>
+          </div>
+          <div class="treatment__media reveal reveal--delay-1">
+            {{ marco(fotoEsp, altEsp, pieEsp, iconos[e.clave | replace("-", "_")], "media-frame--tall") }}
+          </div>
+        </div>
+
+        {%- if e.clave == "optica" %}
+        <!-- ===== MÓDULO SECUNDARIO: MINI-CATÁLOGO DE MONTURAS ===== -->
+        <div class="optic-catalog reveal">
+          <div class="optic-catalog__head">
+            <h3 class="optic-catalog__title">Algunas de nuestras monturas</h3>
+            <p class="optic-catalog__intro">{{ monturas.intro }}</p>
+          </div>
+          <div class="frame-grid">
+            {%- for m in monturas.lista %}
+            <article class="frame-card">
+              <div class="frame-card__photo frame-card__photo--{{ loop.index0 % 4 + 1 }}">
+                {%- if m.marca %}
+                <span class="frame-card__tag{% if m.marca == 'MIRAFLEX' %} frame-card__tag--kids{% endif %}">{{ m.marca }}</span>
+                {%- endif %}
+                {%- if m.foto %}
+                <img class="frame-card__img" src="{{ m.foto }}" alt="Montura {{ m.nombre }}" loading="lazy" decoding="async">
+                {%- else %}
+                {{ iconos.optica | safe }}
+                {%- endif %}
+              </div>
+              <div class="frame-card__body">
+                <span class="frame-card__name">{{ m.nombre }}</span>
+                <p class="frame-card__meta">{{ m.ref }}{% if m.ref and m.publico %} · {% endif %}{{ m.publico }}</p>
+                {%- if m.material %}
+                <p class="frame-card__meta">{{ m.material }}</p>
+                {%- endif %}
+                {%- if m.precio %}
+                <span class="frame-card__price">{{ m.precio }}</span>
+                {%- endif %}
+              </div>
+            </article>
+            {%- endfor %}
+          </div>
+          <div class="optic-catalog__footer">
+            <p class="optic-catalog__disclaimer">{{ monturas.aviso }}</p>
+            <a class="btn btn--accent btn--sm" href="contacto.html">Contáctanos{{ iconos.flecha | safe }}</a>
+          </div>
+        </div>
+        {%- endif %}
+      </div>
+    </section>
+    {%- endfor %}
+  </div>
+
+{{ seccionMedicos("oftalmologos", "Quién te atiende", "Nuestros Oftalmólogos", "Estas son las cédulas profesionales y la formación de los médicos que realizan los tratamientos.", medicos.lista, iconos) }}
+
+{{ bandaCta(telefono, iconos) }}
