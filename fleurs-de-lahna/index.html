@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══════════════════════════════════════════════════════════════
+     LES FLEURS DE LAHNA — Fleuriste & paysagiste d'intérieur
+     270 avenue Daumesnil, Paris 12e
+     Site vitrine one-page. Fichier autonome : tout le CSS et le JS
+     sont dans cette page, il n'y a rien d'autre à installer.
+
+     POUR REMPLACER LES PHOTOS :
+     chaque emplacement est un bloc <figure class="ph">.
+     Déposer une balise <img> à l'intérieur suffit : elle recouvre
+     automatiquement le visuel de substitution. Exemple :
+        <figure class="ph ph--hero">
+          <img src="photos/vitrine.jpg" alt="La vitrine">
+        </figure>
+     Les blocs sont repérés par des commentaires « PHOTO · … ».
+     ══════════════════════════════════════════════════════════════ -->
+
+<title>Les Fleurs de Lahna — Fleuriste &amp; paysagiste d'intérieur, Paris 12e</title>
+<meta name="description" content="Fleuriste au 270 avenue Daumesnil, Paris 12e. Bouquets, mariages, naissances, balconnières et paysagisme d'intérieur. 4,8 sur Google. 01 71 50 62 59.">
+<meta name="theme-color" content="#23261F">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Les Fleurs de Lahna — Fleuriste &amp; paysagiste d'intérieur, Paris 12e">
+<meta property="og:description" content="Des fleurs pour aujourd'hui, des plantes pour longtemps. 270 avenue Daumesnil, Paris 12e.">
+<meta property="og:locale" content="fr_FR">
+
+<!-- LOGO : remplacer ce favicon par le vrai logo si le commerce en a un -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2323261F'/%3E%3Cpath d='M16 27V13' stroke='%23FBF9F4' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M16 19c-4.5-1-6.8-3.8-7.3-8.4C13.2 11.4 15.5 14.2 16 19z' fill='%2358A45C'/%3E%3Cpath d='M16 21c4.5-1 6.8-3.8 7.3-8.4C18.8 13.4 16.5 16.2 16 21z' fill='%2358A45C'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════ 1. VARIABLES — toute la charte tient ici ══════════ */
+:root {
+  --creme:       #FBF9F4;   /* fond principal */
+  --sable:       #F0EBE0;   /* fond des sections alternées */
+  --sable-2:     #E2D9CA;   /* aplats de substitution photo */
+  --encre:       #23261F;   /* texte, voile du hero, pied de page */
+  --encre-clair: #63675C;   /* texte secondaire */
+  --feuille:     #35703A;   /* accent : boutons, surtitres */
+  --feuille-f:   #285A2C;
+  --feuille-c:   #7FB183;
+  --trait:       rgba(35, 38, 31, 0.13);
+  --ombre:       0 18px 42px -26px rgba(35, 38, 31, 0.5);
+  --ombre-forte: 0 28px 54px -24px rgba(35, 38, 31, 0.55);
+  --rayon:       14px;
+}
+
+/* ══════════ 2. BASES ══════════ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--encre);
+  font-family: 'Public Sans', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: 'Faustina', Georgia, serif; font-weight: 500; margin: 0; line-height: 1.2; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--feuille); outline-offset: 3px; }
+img { display: block; max-width: 100%; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.center { text-align: center; }
+
+.surtitre {
+  font-size: 0.7rem; letter-spacing: 0.21em; text-transform: uppercase;
+  font-weight: 700; color: var(--feuille); margin-bottom: 14px;
+}
+.titre-section { font-size: clamp(1.95rem, 3.9vw, 2.8rem); }
+.chapo { margin-top: 18px; color: var(--encre-clair); font-size: 1.05rem; max-width: 57ch; }
+.center .chapo { margin-left: auto; margin-right: auto; }
+
+.skip { position: absolute; left: -9999px; top: 0; z-index: 999; background: var(--encre); color: var(--creme); padding: 12px 20px; }
+.skip:focus { left: 0; }
+
+/* ══════════ 3. BOUTONS ══════════ */
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 600;
+  font-size: 0.94rem; padding: 15px 32px; border-radius: 999px;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.btn-plein { background: var(--feuille); color: #fff; box-shadow: 0 12px 28px -14px rgba(53,112,58,.95); }
+.btn-plein:hover { background: var(--feuille-f); transform: translateY(-2px); }
+.btn-clair { background: rgba(255,255,255,.96); color: var(--encre); }
+.btn-clair:hover { background: #fff; transform: translateY(-2px); }
+.btn-ligne { border: 1.5px solid var(--trait); }
+.btn-ligne:hover { border-color: var(--feuille); color: var(--feuille); }
+
+/* ══════════ 4. EMPLACEMENTS PHOTO ══════════
+   Fond de substitution + étiquette. Dès qu'une balise <img> est
+   déposée dans le bloc, elle passe par-dessus et masque le tout. */
+.ph {
+  position: relative; margin: 0; overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255,255,255,.72), transparent 58%),
+    linear-gradient(145deg, var(--sable-2), #D3C8B6);
+  display: grid; place-items: center;
+}
+.ph img { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
+.ph-icone { width: 42px; height: 42px; stroke: var(--feuille); opacity: .45; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.ph-tag {
+  position: absolute; left: 14px; bottom: 12px; z-index: 1;
+  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 600; color: var(--encre-clair); opacity: .6;
+}
+/* Le hero est plus profond, pour rester lisible sous le voile */
+.ph--hero {
+  background:
+    radial-gradient(circle at 22% 18%, rgba(214,224,182,.6), transparent 55%),
+    radial-gradient(circle at 80% 78%, rgba(53,112,58,.6), transparent 60%),
+    linear-gradient(150deg, #5F7A55, #33452F 55%, #1E2619);
+}
+.ph--hero .ph-icone { stroke: #DCE8CE; opacity: .3; width: 62px; height: 62px; }
+.ph--hero .ph-tag { color: #DCE8CE; opacity: .45; }
+
+/* ══════════ 5. EN-TÊTE ══════════ */
+#entete {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251, 249, 244, .94); backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent; transition: border-color .25s, box-shadow .25s;
+}
+#entete.colle { border-bottom-color: var(--trait); box-shadow: 0 8px 26px -22px rgba(35,38,31,.6); }
+.entete-in { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 15px 0; }
+.logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.logo-marque { width: 40px; height: 40px; border-radius: 12px; background: var(--encre); flex: none; display: grid; place-items: center; }
+.logo-marque svg { width: 23px; height: 23px; }
+.logo-nom { font-family: 'Faustina', serif; font-size: 1.2rem; line-height: 1.12; }
+.logo-nom span { display: block; font-family: 'Public Sans', sans-serif; font-size: 0.56rem; letter-spacing: 0.17em; text-transform: uppercase; color: var(--encre-clair); margin-top: 3px; font-weight: 600; }
+.menu { display: flex; gap: 25px; font-size: 0.87rem; font-weight: 500; }
+.menu a { text-decoration: none; color: var(--encre-clair); padding-bottom: 3px; border-bottom: 2px solid transparent; }
+.menu a:hover { color: var(--encre); border-bottom-color: var(--feuille); }
+.entete-cta { font-size: 0.85rem; padding: 12px 24px; }
+.burger { display: none; background: none; border: 1px solid var(--trait); border-radius: 10px; padding: 9px 11px; cursor: pointer; }
+.burger span { display: block; width: 20px; height: 2px; background: var(--encre); border-radius: 2px; }
+.burger span + span { margin-top: 5px; }
+#menu-mobile { display: none; background: var(--creme); border-bottom: 1px solid var(--trait); }
+#menu-mobile.ouvert { display: block; }
+#menu-mobile a { display: block; padding: 14px 28px; text-decoration: none; font-weight: 600; border-top: 1px solid var(--trait); }
+#menu-mobile .tel { color: var(--feuille); }
+
+/* ══════════ 6. HERO ══════════
+   La photo et le texte sont empilés dans la même cellule de grille :
+   la hauteur du hero suit toujours le plus grand des deux, le texte
+   ne peut donc jamais être rogné, même sur un petit écran. */
+.hero { position: relative; display: grid; }
+.hero > * { grid-area: 1 / 1; }
+.hero .ph { min-height: min(82vh, 660px); }
+.hero-voile { position: absolute; inset: 0; z-index: 3; background: linear-gradient(180deg, rgba(25,32,22,.32) 0%, rgba(25,32,22,.5) 48%, rgba(25,32,22,.72) 100%); }
+.hero-texte { position: relative; z-index: 4; display: flex; flex-direction: column; justify-content: flex-end; padding: 110px 0 60px; }
+.hero-texte .surtitre { color: #B9D4B0; }
+.hero h1 { color: #fff; font-size: clamp(2.3rem, 5.4vw, 4rem); max-width: 18ch; }
+.hero h1 em { font-style: italic; }
+.hero .slogan { color: rgba(255,255,255,.9); font-size: clamp(1.02rem, 2vw, 1.24rem); margin-top: 20px; max-width: 46ch; }
+.hero-actions { margin-top: 32px; display: flex; gap: 13px; flex-wrap: wrap; }
+.hero-bas { margin-top: 28px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; color: rgba(255,255,255,.85); font-size: 0.9rem; }
+.etoiles { color: #E2C25E; letter-spacing: 2px; }
+
+/* ══════════ 7. SECTIONS ══════════ */
+section { padding: 96px 0; }
+.fond-sable { background: var(--sable); }
+
+/* À propos */
+.propos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.propos-texte p + p { margin-top: 18px; }
+.propos-texte .accroche { font-family: 'Faustina', serif; font-size: 1.4rem; line-height: 1.45; }
+.propos-grid .ph { aspect-ratio: 4 / 5; border-radius: var(--rayon); box-shadow: var(--ombre); }
+.valeurs { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--trait); }
+.valeur { flex: 1 1 150px; }
+.valeur .v-t { font-family: 'Faustina', serif; font-size: 1.16rem; }
+.valeur .v-d { font-size: 0.88rem; color: var(--encre-clair); margin-top: 4px; }
+
+/* ══════════ BLOC VEDETTE — le paysagisme d'intérieur ══════════ */
+.vedette { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; gap: 0; border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre-forte); background: var(--encre); color: #fff; }
+/* Pas d'aspect-ratio ici : la photo remplit la hauteur de sa colonne. */
+.vedette .ph { min-height: 420px; }
+.vedette-corps { padding: 54px 48px; display: flex; flex-direction: column; justify-content: center; }
+.vedette-corps .surtitre { color: var(--feuille-c); }
+.vedette-corps h3 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); color: #fff; margin-bottom: 18px; }
+.vedette-corps p { color: rgba(255,255,255,.82); }
+.vedette-corps p + p { margin-top: 14px; }
+.vedette-liste { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+.puce { border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 7px 16px; font-size: 0.86rem; }
+.vedette-corps .btn { margin-top: 30px; align-self: flex-start; }
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 30px; }
+.service { background: var(--creme); border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); transition: transform .3s ease, box-shadow .3s ease; }
+.service:hover { transform: translateY(-6px); box-shadow: var(--ombre-forte); }
+.service .ph { aspect-ratio: 4 / 3; }
+.service .corps { padding: 24px 22px 28px; }
+.service h3 { font-size: 1.28rem; }
+.service p { font-size: 0.92rem; color: var(--encre-clair); margin-top: 9px; }
+
+/* Galerie — mosaïque 4 × 2, sans trou */
+.galerie { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 215px; gap: 14px; margin-top: 52px; }
+.galerie .ph { border-radius: 11px; transition: transform .35s ease; }
+.galerie .ph:hover { transform: scale(1.02); }
+.g-large { grid-column: span 2; }
+
+/* Avis */
+.avis-bloc { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 26px; }
+.avis-bloc .n { font-family: 'Faustina', serif; font-size: 3.2rem; line-height: 1; }
+.avis-bloc .d { font-size: 0.92rem; color: var(--encre-clair); text-align: left; }
+.avis-bloc .etoiles { color: #C09A2E; }
+.temoignages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 46px; }
+/* Cartes d'avis en attente : remplacer par un vrai avis Google */
+.temoignage { background: var(--creme); border: 1px dashed var(--trait); border-radius: var(--rayon); padding: 30px 26px; margin: 0; text-align: center; }
+.temoignage .guillemet { font-family: 'Faustina', serif; font-size: 2.6rem; line-height: 1; color: var(--feuille); opacity: .45; }
+.temoignage p { margin-top: 10px; font-size: 0.92rem; color: var(--encre-clair); }
+.temoignage .quoi { display: block; margin-top: 12px; font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 700; color: var(--feuille); }
+.avis-lien { display: inline-block; margin-top: 38px; font-size: 0.87rem; font-weight: 600; text-decoration: none; color: var(--feuille); border-bottom: 2px solid var(--feuille); padding-bottom: 3px; }
+
+/* Infos pratiques */
+.infos-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 52px; }
+.info-bloc + .info-bloc { margin-top: 32px; }
+.info-bloc h3 { font-size: 1.28rem; margin-bottom: 12px; }
+.horaire { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--trait); font-size: 0.95rem; }
+.horaire:first-of-type { border-top: 1px solid var(--trait); }
+.horaire span:last-child { color: var(--encre-clair); font-variant-numeric: tabular-nums; }
+.horaire.aujourdhui { font-weight: 700; color: var(--feuille); }
+.horaire.aujourdhui span:last-child { color: var(--feuille); }
+.contact-l { display: flex; align-items: center; gap: 12px; padding: 11px 0; font-size: 1.02rem; }
+.contact-l svg { width: 19px; height: 19px; stroke: var(--feuille); fill: none; stroke-width: 1.7; flex: none; }
+.contact-l a { text-decoration: none; font-weight: 600; }
+.reseaux { display: flex; gap: 11px; margin-top: 18px; }
+.reseaux a { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--trait); display: grid; place-items: center; text-decoration: none; }
+.reseaux a:hover { border-color: var(--feuille); background: var(--feuille); color: #fff; }
+.reseaux svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.7; }
+.carte { border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); height: 100%; min-height: 400px; }
+.carte iframe { width: 100%; height: 100%; min-height: 400px; display: block; border: 0; }
+
+/* Bandeau d'appel */
+.bandeau { background: var(--feuille); color: #fff; padding: 66px 0; }
+.bandeau h2 { font-size: clamp(1.85rem, 3.6vw, 2.6rem); color: #fff; }
+.bandeau p { margin-top: 14px; color: rgba(255,255,255,.9); }
+.bandeau .btn { margin-top: 28px; }
+
+/* ══════════ 8. PIED DE PAGE ══════════ */
+footer { background: var(--encre); color: rgba(251,249,244,.74); padding: 56px 0 26px; font-size: 0.92rem; }
+.pied-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+footer h4 { font-family: 'Faustina', serif; font-size: 1.12rem; color: #fff; margin: 0 0 14px; font-weight: 500; }
+footer .pied-nom { font-family: 'Faustina', serif; font-size: 1.5rem; color: #fff; }
+footer ul { list-style: none; margin: 0; padding: 0; }
+footer li { margin-bottom: 8px; }
+footer a { text-decoration: none; }
+footer a:hover { color: #fff; text-decoration: underline; }
+.pied-bas { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(251,249,244,.16); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: rgba(251,249,244,.5); }
+
+/* Barre d'appel mobile */
+.appel-mobile { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--feuille); color: #fff; text-align: center; padding: 15px; text-decoration: none; font-weight: 700; font-size: 0.94rem; }
+
+/* ══════════ 9. ANIMATIONS AU SCROLL ══════════
+   Le fondu ne s'active que si le JavaScript fonctionne : sans lui,
+   tout le contenu reste visible normalement. */
+.js .anim { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.js .anim.vu { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .anim { opacity: 1 !important; transform: none !important; transition: none; }
+  .service:hover, .galerie .ph:hover, .btn:hover { transform: none; }
+}
+
+/* ══════════ 10. RESPONSIVE — priorité mobile ══════════ */
+@media (max-width: 980px) {
+  .menu, .entete-cta { display: none; }
+  .burger { display: block; }
+  section { padding: 62px 0; }
+  .propos-grid { grid-template-columns: 1fr; gap: 34px; }
+  .propos-grid .ph { aspect-ratio: 16 / 10; }
+  .vedette { grid-template-columns: 1fr; }
+  .vedette .ph { min-height: 260px; }
+  .vedette-corps { padding: 34px 26px 40px; }
+  .services { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .temoignages { grid-template-columns: 1fr; gap: 16px; }
+  .infos-grid { grid-template-columns: 1fr; gap: 34px; }
+  .carte, .carte iframe { min-height: 320px; }
+  .galerie { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 155px; }
+  .pied-grid { grid-template-columns: 1fr; gap: 28px; }
+  .appel-mobile { display: block; }
+  footer { padding-bottom: 84px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 20px; }
+  .hero .ph { min-height: 80vh; }
+  .hero-texte { padding: 90px 0 46px; }
+  .services { grid-template-columns: 1fr; }
+  .g-large { grid-column: span 1; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<!-- ═══════════ EN-TÊTE ═══════════ -->
+<header id="entete">
+  <div class="wrap entete-in">
+    <!-- LOGO · remplacer le carré par <img src="photos/logo.png" alt="Les Fleurs de Lahna"> -->
+    <a class="logo" href="#accueil">
+      <span class="logo-marque">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21V10" stroke="#FBF9F4" stroke-width="1.6" stroke-linecap="round"/><path d="M12 15c-3.5-.8-5.3-3-5.7-6.6C10 9 11.6 11.2 12 15z" fill="#7FB183"/><path d="M12 16.5c3.5-.8 5.3-3 5.7-6.6C14 10.5 12.4 12.7 12 16.5z" fill="#7FB183"/></svg>
+      </span>
+      <span class="logo-nom">Les Fleurs de Lahna<span>Fleuriste · Paris 12e</span></span>
+    </a>
+
+    <nav class="menu" aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <a href="#propos">À propos</a>
+      <a href="#services">Nos services</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="btn btn-plein entete-cta" href="tel:+33171506259">Nous appeler</a>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav id="menu-mobile" aria-label="Navigation">
+  <a href="#accueil">Accueil</a>
+  <a href="#propos">À propos</a>
+  <a href="#services">Nos services</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#avis">Avis</a>
+  <a href="#contact">Contact</a>
+  <a class="tel" href="tel:+33171506259">Appeler · 01 71 50 62 59</a>
+</nav>
+
+<main id="contenu">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="accueil" style="padding:0">
+    <!-- PHOTO · HERO — la devanture, ou une composition en gros plan.
+         Format paysage, 1920 × 1080 px minimum.
+         Déposer ici : <img src="photos/devanture.jpg" alt="La devanture des Fleurs de Lahna"> -->
+    <figure class="ph ph--hero">
+      <svg class="ph-icone" viewBox="0 0 24 24"><path d="M12 21V9"/><path d="M12 14c-3.5-.9-5.3-3-5.7-6.6C10 8.4 11.6 10.7 12 14z"/><path d="M12 16c3.5-.9 5.3-3 5.7-6.6C14 10.4 12.4 12.7 12 16z"/><path d="M8.5 21h7"/></svg>
+      <figcaption class="ph-tag">Photo · la devanture</figcaption>
+    </figure>
+
+    <div class="hero-voile"></div>
+
+    <div class="hero-texte">
+      <div class="wrap">
+        <p class="surtitre">Fleuriste &amp; paysagiste d'intérieur · Paris 12<sup>e</sup></p>
+        <!-- SLOGAN · à valider avec le commerçant -->
+        <h1>Des fleurs pour aujourd'hui, <em>des plantes pour longtemps</em>.</h1>
+        <p class="slogan">Fleuriste de quartier et paysagistes d'intérieur, au 270 avenue Daumesnil. Compositions pour toutes les occasions, et aménagement végétal de vos espaces.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-plein" href="tel:+33171506259">Nous appeler</a>
+          <a class="btn btn-clair" href="#services">Voir nos services</a>
+        </div>
+
+        <div class="hero-bas">
+          <span><span class="etoiles" aria-hidden="true">★★★★★</span> <strong>4,8 sur 5</strong> — 17 avis Google</span>
+          <span>·</span>
+          <span>270 avenue Daumesnil, Paris 12<sup>e</sup></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ À PROPOS ═══════════ -->
+  <section id="propos">
+    <div class="wrap propos-grid">
+      <div class="propos-texte anim">
+        <p class="surtitre">La maison</p>
+        <h2 class="titre-section">Deux métiers, une même adresse</h2>
+        <!-- TEXTE À PROPOS · la première phrase reprend la présentation
+             officielle de la boutique. À compléter avec son histoire
+             (ouverture, parcours, références en paysagisme). -->
+        <p class="accroche">Les Fleurs de Lahna, fleuriste de quartier et paysagistes d'intérieur, avenue Daumesnil dans le 12<sup>e</sup>.</p>
+        <p>Nous composons des créations florales uniques et personnalisées pour chaque occasion, et nous sommes spécialisés dans la décoration florale pour tous vos événements, à l'intérieur comme à l'extérieur.</p>
+        <p>Le second métier est plus rare : concevoir et entretenir le végétal dans un lieu qui dure — un salon, une vitrine, un bureau, un hall. On vient sur place, on regarde la lumière, et on propose ce qui tiendra.</p>
+
+        <div class="valeurs">
+          <div class="valeur">
+            <div class="v-t">Sur mesure</div>
+            <div class="v-d">Pour chaque occasion</div>
+          </div>
+          <div class="valeur">
+            <div class="v-t">Événements</div>
+            <div class="v-d">Intérieur et extérieur</div>
+          </div>
+          <div class="valeur">
+            <div class="v-t">4,8 sur 17 avis</div>
+            <div class="v-d">La note du quartier</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO · ÉQUIPE — l'équipe ou l'atelier.
+           Format portrait, 1200 × 1500 px minimum.
+           Déposer ici : <img src="photos/equipe.jpg" alt="L'équipe des Fleurs de Lahna"> -->
+      <figure class="ph anim">
+        <svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <figcaption class="ph-tag">Photo · l'équipe</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══════════ NOS SERVICES ═══════════ -->
+  <section id="services" class="fond-sable">
+    <div class="wrap">
+      <div class="center anim" style="margin-bottom:52px">
+        <p class="surtitre">Nos services</p>
+        <h2 class="titre-section">De la fleur du jour au projet végétal</h2>
+        <p class="chapo">Un bouquet à emporter ou l'aménagement complet d'un lieu : les deux se préparent ici.</p>
+      </div>
+
+      <!-- ═══ BLOC VEDETTE : le paysagisme d'intérieur ═══ -->
+      <div class="vedette anim">
+        <!-- PHOTO · PAYSAGISME — une réalisation d'aménagement végétal
+             (bureau, hall, boutique, restaurant). C'est LA photo la plus
+             importante du site : elle justifie le service le plus rentable.
+             Déposer ici : <img src="photos/paysagisme.jpg" alt="Un aménagement végétal d'intérieur"> -->
+        <figure class="ph">
+          <svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 21h16"/><path d="M7 21v-6M17 21v-9"/><path d="M7 17c-2.4-.5-3.6-2-4-4.6C5.6 12.9 6.7 14.6 7 17z"/><path d="M7 15.5c2.4-.5 3.6-2 4-4.6C8.4 11.4 7.3 13.1 7 15.5z"/><path d="M17 14c-2.4-.5-3.6-2-4-4.6 2.6.5 3.7 2.2 4 4.6z"/><path d="M17 12.5c2.4-.5 3.6-2 4-4.6-2.6.5-3.7 2.2-4 4.6z"/></svg>
+          <figcaption class="ph-tag">Photo · paysagisme d'intérieur</figcaption>
+        </figure>
+
+        <div class="vedette-corps">
+          <p class="surtitre">La spécialité</p>
+          <h3>Paysagiste d'intérieur</h3>
+          <p>Concevoir le végétal dans un lieu qui dure : choisir les plantes selon la lumière et l'usage, les installer, et les entretenir dans le temps.</p>
+          <p>Un métier que peu de fleuristes exercent, et qui change tout pour une vitrine, un hall d'accueil, un restaurant ou un bureau.</p>
+
+          <div class="vedette-liste">
+            <span class="puce">Bureaux</span>
+            <span class="puce">Commerces &amp; vitrines</span>
+            <span class="puce">Restaurants</span>
+            <span class="puce">Particuliers</span>
+          </div>
+
+          <a class="btn btn-plein" href="tel:+33171506259">Demander un devis</a>
+        </div>
+      </div>
+
+      <!-- Les quatre autres services -->
+      <div class="services">
+        <!-- PHOTO · SERVICE 1 — bouquets & compositions -->
+        <article class="service anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M12 11.4V21"/><path d="M12 16c-2.6-.5-4.2-2-5-4.4"/><circle cx="7" cy="6.5" r="2.2"/><circle cx="17" cy="6.5" r="2.2"/></svg>
+            <figcaption class="ph-tag">Photo · bouquets</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Bouquets &amp; compositions</h3>
+            <p>Des créations uniques et personnalisées, composées selon l'occasion et votre budget.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · SERVICE 2 — mariage -->
+        <article class="service anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M12 21V12"/><circle cx="12" cy="8" r="4"/><path d="M8 21c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg>
+            <figcaption class="ph-tag">Photo · mariage</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Mariage</h3>
+            <p>Bouquet de mariée et décoration florale de la cérémonie, à préparer ensemble en amont.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · SERVICE 3 — naissance -->
+        <article class="service anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M12 20c-4-2.5-7-5-7-8.5A3.5 3.5 0 0 1 12 9a3.5 3.5 0 0 1 7 2.5c0 3.5-3 6-7 8.5z"/></svg>
+            <figcaption class="ph-tag">Photo · naissance</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Naissance</h3>
+            <p>Compositions douces pour accueillir un nouveau-né, à emporter ou à faire livrer.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · SERVICE 4 — balconnières & livraison -->
+        <article class="service anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 15h16l-1.5 6h-13z"/><path d="M8 15V9M12 15V7M16 15v-5"/><circle cx="8" cy="8" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="16" cy="9" r="1.6"/></svg>
+            <figcaption class="ph-tag">Photo · balconnières</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Balconnières &amp; livraison</h3>
+            <p>Jardinières composées pour vos balcons, et livraison de fleurs sur demande.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ GALERIE ═══════════ -->
+  <section id="galerie">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">En images</p>
+        <h2 class="titre-section">Nos réalisations</h2>
+        <p class="chapo">Six photos suffisent : la devanture, la vitrine, un bouquet, et deux ou trois aménagements végétaux terminés.</p>
+      </div>
+
+      <!-- PHOTOS · GALERIE — déposer une <img> dans chaque bloc ci-dessous -->
+      <div class="galerie">
+        <figure class="ph g-large anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg><figcaption class="ph-tag">Photo · devanture</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 11h18M9 6v13"/></svg><figcaption class="ph-tag">Photo · vitrine</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.6"/><path d="M12 12.6V20"/></svg><figcaption class="ph-tag">Photo · bouquet</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 21h16"/><path d="M9 21v-7M15 21v-9"/><path d="M9 16c-2-.4-3-1.7-3.4-3.9C7.9 12.5 8.8 13.9 9 16z"/></svg><figcaption class="ph-tag">Photo · aménagement</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 15h16l-1.5 6h-13z"/><path d="M8 15V9M12 15V7"/></svg><figcaption class="ph-tag">Photo · balconnière</figcaption></figure>
+        <figure class="ph g-large anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 20h16M6 20v-8h12v8"/><path d="M9 12V8h6v4"/><circle cx="12" cy="16" r="1.6"/></svg><figcaption class="ph-tag">Photo · l'atelier</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ AVIS ═══════════ -->
+  <section id="avis" class="fond-sable">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">Avis clients</p>
+        <h2 class="titre-section">Ce qu'en dit le quartier</h2>
+        <div class="avis-bloc">
+          <span class="n">4,8</span>
+          <span class="d"><span class="etoiles" aria-hidden="true">★★★★★</span><br>17 avis sur Google</span>
+        </div>
+      </div>
+
+      <!-- ═══ TÉMOIGNAGES · À REMPLIR ═══
+           Ces trois cartes sont des emplacements. Choisir trois avis réels sur
+           la fiche Google et remplacer le contenu de chaque carte par :
+
+             <figure class="temoignage" style="border-style:solid;text-align:left">
+               <span class="etoiles">★★★★★</span>
+               <blockquote style="font-family:'Faustina',serif;font-size:1.1rem;margin:12px 0 0">
+                 « Texte de l'avis, cité tel quel. »
+               </blockquote>
+               <figcaption style="margin-top:16px;font-weight:700;font-size:.85rem">
+                 Prénom <span style="display:block;font-weight:400;color:var(--encre-clair);font-size:.78rem">Avis Google · 5/5</span>
+               </figcaption>
+             </figure>
+      -->
+      <div class="temoignages">
+        <figure class="temoignage anim">
+          <span class="guillemet" aria-hidden="true">“</span>
+          <p>Emplacement pour un avis client, à choisir parmi les 17 avis de la fiche Google.</p>
+          <span class="quoi">Avis 1</span>
+        </figure>
+        <figure class="temoignage anim">
+          <span class="guillemet" aria-hidden="true">“</span>
+          <p>Emplacement pour un avis client, à choisir parmi les 17 avis de la fiche Google.</p>
+          <span class="quoi">Avis 2</span>
+        </figure>
+        <figure class="temoignage anim">
+          <span class="guillemet" aria-hidden="true">“</span>
+          <p>Emplacement pour un avis client, à choisir parmi les 17 avis de la fiche Google.</p>
+          <span class="quoi">Avis 3</span>
+        </figure>
+      </div>
+
+      <div class="center">
+        <a class="avis-lien" href="https://www.google.com/maps/search/?api=1&query=Les+Fleurs+de+Lahna+270+Avenue+Daumesnil+75012+Paris" target="_blank" rel="noopener">Lire les avis sur Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ INFOS PRATIQUES ═══════════ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="anim" style="margin-bottom:48px">
+        <p class="surtitre">Infos pratiques</p>
+        <h2 class="titre-section">Nous trouver</h2>
+      </div>
+
+      <div class="infos-grid">
+        <div class="anim">
+          <div class="info-bloc">
+            <h3>Adresse &amp; contact</h3>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>270 avenue Daumesnil<br>75012 Paris</span>
+            </div>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+33171506259">01 71 50 62 59</a>
+            </div>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+              <span>Devis sur rendez-vous pour le paysagisme</span>
+            </div>
+
+            <!-- RÉSEAUX SOCIAUX · remplacer les # par les vrais liens,
+                 ou supprimer le bloc si le commerce n'en a pas. -->
+            <div class="reseaux">
+              <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+              <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            </div>
+          </div>
+
+          <div class="info-bloc">
+            <h3>Horaires</h3>
+            <!-- HORAIRES · seule la fermeture à 20h30 est connue à ce jour.
+                 Remplacer les tirets par les horaires réels, jour par jour.
+                 Le jour courant est mis en valeur automatiquement. -->
+            <div class="horaire" data-jour="1"><span>Lundi</span><span>—</span></div>
+            <div class="horaire" data-jour="2"><span>Mardi</span><span>—</span></div>
+            <div class="horaire" data-jour="3"><span>Mercredi</span><span>—</span></div>
+            <div class="horaire" data-jour="4"><span>Jeudi</span><span>—</span></div>
+            <div class="horaire" data-jour="5"><span>Vendredi</span><span>—</span></div>
+            <div class="horaire" data-jour="6"><span>Samedi</span><span>—</span></div>
+            <div class="horaire" data-jour="0"><span>Dimanche</span><span>—</span></div>
+            <p style="margin-top:14px;font-size:.88rem;color:var(--encre-clair)">Fermeture à 20h30. <em>Horaires détaillés à confirmer avec la boutique.</em></p>
+          </div>
+        </div>
+
+        <!-- CARTE GOOGLE MAPS -->
+        <div class="carte anim">
+          <iframe
+            title="Plan — 270 avenue Daumesnil, 75012 Paris"
+            src="https://www.google.com/maps?q=270+Avenue+Daumesnil,+75012+Paris&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ BANDEAU D'APPEL ═══════════ -->
+  <div class="bandeau">
+    <div class="wrap center">
+      <h2>Un bouquet, un événement, un projet végétal ?</h2>
+      <p>Appelez-nous pour en parler — on se déplace pour les projets d'aménagement.</p>
+      <a class="btn btn-clair" href="tel:+33171506259">01 71 50 62 59</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════ PIED DE PAGE ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="pied-grid">
+      <div>
+        <p class="pied-nom">Les Fleurs de Lahna</p>
+        <p style="margin-top:10px">Fleuriste &amp; paysagiste d'intérieur<br>270 avenue Daumesnil<br>75012 Paris</p>
+        <p style="margin-top:12px"><a href="tel:+33171506259">01 71 50 62 59</a></p>
+      </div>
+      <div>
+        <h4>Liens rapides</h4>
+        <ul>
+          <li><a href="#propos">À propos</a></li>
+          <li><a href="#services">Nos services</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#avis">Avis clients</a></li>
+          <li><a href="#contact">Infos pratiques</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informations</h4>
+        <ul>
+          <!-- MENTIONS LÉGALES · à rédiger avec les informations de l'entreprise
+               (raison sociale, SIRET, hébergeur, directeur de publication) -->
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&destination=270+Avenue+Daumesnil,+75012+Paris" target="_blank" rel="noopener">Itinéraire</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pied-bas">
+      <span>© <span id="annee"></span> Les Fleurs de Lahna — Tous droits réservés</span>
+      <span>Paris 12<sup>e</sup> · Avenue Daumesnil</span>
+    </div>
+  </div>
+</footer>
+
+<a class="appel-mobile" href="tel:+33171506259">Appeler · 01 71 50 62 59</a>
+
+<!-- Données structurées : aident Google à afficher correctement la fiche -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Florist",
+  "name": "Les Fleurs de Lahna",
+  "description": "Fleuriste de quartier et paysagistes d'intérieur : compositions florales personnalisées, décoration florale d'événements, aménagement végétal d'intérieur.",
+  "telephone": "+33171506259",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "270 avenue Daumesnil",
+    "addressLocality": "Paris",
+    "postalCode": "75012",
+    "addressCountry": "FR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "17"
+  }
+}
+</script>
+
+<script>
+/* ══════════ JAVASCRIPT — volontairement minimal ══════════ */
+(function () {
+  document.documentElement.classList.add('js');
+
+  /* 1. Ombre sous l'en-tête au défilement */
+  var entete = document.getElementById('entete');
+  function auScroll() { entete.classList.toggle('colle', window.scrollY > 8); }
+  window.addEventListener('scroll', auScroll, { passive: true });
+  auScroll();
+
+  /* 2. Menu mobile */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu-mobile');
+  burger.addEventListener('click', function () {
+    var ouvert = menu.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function (lien) {
+    lien.addEventListener('click', function () {
+      menu.classList.remove('ouvert');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* 3. Apparition en fondu au défilement */
+  var blocs = document.querySelectorAll('.anim');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    blocs.forEach(function (b) { obs.observe(b); });
+  } else {
+    blocs.forEach(function (b) { b.classList.add('vu'); });
+  }
+
+  /* 4. Mise en valeur du jour courant dans le tableau des horaires */
+  var ligneDuJour = document.querySelector('.horaire[data-jour="' + new Date().getDay() + '"]');
+  if (ligneDuJour) ligneDuJour.classList.add('aujourdhui');
+
+  /* 5. Année du copyright */
+  var annee = document.getElementById('annee');
+  if (annee) annee.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
