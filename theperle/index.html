@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══════════════════════════════════════════════════════════════
+     THÉPERLÉ — Bubble tea & salon de thé, Nogent-sur-Marne
+     Site vitrine one-page. Fichier autonome : tout le CSS et le JS
+     sont dans cette page, il n'y a rien d'autre à installer.
+
+     POUR REMPLACER LES PHOTOS :
+     chaque emplacement est un bloc <figure class="ph">.
+     Déposer une balise <img> à l'intérieur suffit : elle recouvre
+     automatiquement le visuel de substitution. Exemple :
+        <figure class="ph ph--hero">
+          <img src="photos/comptoir.jpg" alt="Le comptoir">
+        </figure>
+     Les blocs sont repérés par des commentaires « PHOTO · … ».
+     ══════════════════════════════════════════════════════════════ -->
+
+<title>ThéPerlé — Bubble tea &amp; salon de thé à Nogent-sur-Marne</title>
+<meta name="description" content="Bubble tea, thés au lait et matcha préparés à la commande. 158 Grande Rue Charles de Gaulle, Nogent-sur-Marne. 5,0 sur Google. 01 87 36 20 85.">
+<meta name="theme-color" content="#5B3F68">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="ThéPerlé — Bubble tea à Nogent-sur-Marne">
+<meta property="og:description" content="Thés perlés, matcha et boissons préparés à la commande. 158 Grande Rue Charles de Gaulle, Nogent-sur-Marne.">
+<meta property="og:locale" content="fr_FR">
+
+<!-- LOGO : remplacer ce favicon par le vrai logo si le commerce en a un -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235B3F68'/%3E%3Ccircle cx='11' cy='22' r='3' fill='%23FBF8F3'/%3E%3Ccircle cx='19' cy='23' r='2.4' fill='%23FBF8F3'/%3E%3Ccircle cx='16' cy='13' r='4.5' fill='%238BAE63'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════ 1. VARIABLES — toute la charte tient ici ══════════ */
+:root {
+  --lait:        #FBF8F3;   /* fond principal (thé au lait) */
+  --creme:       #F3ECE2;   /* fond des sections alternées */
+  --creme-2:     #E8DDD0;   /* aplats de substitution photo */
+  --encre:       #2A2130;   /* texte principal */
+  --encre-clair: #6B6172;   /* texte secondaire */
+  --taro:        #5B3F68;   /* couleur dominante : hero, boutons, pied */
+  --taro-fonce:  #452F50;   /* survol */
+  --taro-clair:  #8C6D99;
+  --matcha:      #5F7F42;   /* accent : surtitres, détails */
+  --trait:       rgba(42, 33, 48, 0.13);
+  --ombre:       0 18px 40px -24px rgba(42, 33, 48, 0.45);
+  --ombre-forte: 0 26px 50px -22px rgba(42, 33, 48, 0.5);
+  --rayon:       16px;
+}
+
+/* ══════════ 2. BASES ══════════ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--lait);
+  color: var(--encre);
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; margin: 0; line-height: 1.14; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--taro); outline-offset: 3px; }
+img { display: block; max-width: 100%; }
+
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+.center { text-align: center; }
+
+.surtitre {
+  font-size: 0.71rem; letter-spacing: 0.21em; text-transform: uppercase;
+  font-weight: 700; color: var(--matcha); margin-bottom: 14px;
+}
+.titre-section { font-size: clamp(2.1rem, 4.2vw, 3.1rem); }
+.chapo { margin-top: 16px; color: var(--encre-clair); font-size: 1.05rem; max-width: 56ch; }
+.center .chapo { margin-left: auto; margin-right: auto; }
+
+.skip { position: absolute; left: -9999px; top: 0; z-index: 999; background: var(--encre); color: var(--lait); padding: 12px 20px; }
+.skip:focus { left: 0; }
+
+/* ══════════ 3. BOUTONS ══════════ */
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 600;
+  font-size: 0.95rem; padding: 15px 30px; border-radius: 999px;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.btn-plein { background: var(--taro); color: #fff; box-shadow: 0 10px 26px -14px rgba(91,63,104,.95); }
+.btn-plein:hover { background: var(--taro-fonce); transform: translateY(-2px); }
+.btn-clair { background: rgba(255,255,255,.95); color: var(--taro); }
+.btn-clair:hover { background: #fff; transform: translateY(-2px); }
+.btn-ligne { border: 1.5px solid var(--trait); }
+.btn-ligne:hover { border-color: var(--taro); color: var(--taro); }
+
+/* ══════════ 4. EMPLACEMENTS PHOTO ══════════
+   Fond de substitution + étiquette. Dès qu'une balise <img> est
+   déposée dans le bloc, elle passe par-dessus et masque le tout. */
+.ph {
+  position: relative; margin: 0; overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255,255,255,.65), transparent 58%),
+    linear-gradient(145deg, var(--creme-2), #DCCFC0);
+  display: grid; place-items: center;
+}
+.ph img { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
+.ph-icone { width: 42px; height: 42px; stroke: var(--taro); opacity: .45; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.ph-tag {
+  position: absolute; left: 14px; bottom: 12px; z-index: 1;
+  font-size: 0.63rem; letter-spacing: 0.15em; text-transform: uppercase;
+  font-weight: 600; color: var(--encre-clair); opacity: .6;
+}
+/* Le hero est plus profond, pour rester lisible sous le voile */
+.ph--hero {
+  background:
+    radial-gradient(circle at 22% 18%, rgba(214,188,224,.75), transparent 55%),
+    radial-gradient(circle at 78% 80%, rgba(139,174,99,.45), transparent 58%),
+    linear-gradient(150deg, #7B5A88, #5B3F68 55%, #3A2743);
+}
+.ph--hero .ph-icone { stroke: #F0E4F5; opacity: .3; width: 62px; height: 62px; }
+.ph--hero .ph-tag { color: #F0E4F5; opacity: .45; }
+
+/* ══════════ 5. EN-TÊTE ══════════ */
+#entete {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251, 248, 243, .93); backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent; transition: border-color .25s, box-shadow .25s;
+}
+#entete.colle { border-bottom-color: var(--trait); box-shadow: 0 8px 26px -22px rgba(42,33,48,.6); }
+.entete-in { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 15px 0; }
+.logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.logo-marque { width: 40px; height: 40px; border-radius: 12px; background: var(--taro); flex: none; display: grid; place-items: center; }
+.logo-marque svg { width: 22px; height: 22px; }
+.logo-nom { font-family: 'Instrument Serif', serif; font-size: 1.4rem; line-height: 1.1; }
+.logo-nom span { display: block; font-family: 'Figtree', sans-serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--encre-clair); margin-top: 2px; font-weight: 600; }
+.menu { display: flex; gap: 26px; font-size: 0.88rem; font-weight: 600; }
+.menu a { text-decoration: none; color: var(--encre-clair); padding-bottom: 3px; border-bottom: 2px solid transparent; }
+.menu a:hover { color: var(--encre); border-bottom-color: var(--matcha); }
+.entete-cta { font-size: 0.86rem; padding: 12px 22px; }
+.burger { display: none; background: none; border: 1px solid var(--trait); border-radius: 10px; padding: 9px 11px; cursor: pointer; }
+.burger span { display: block; width: 20px; height: 2px; background: var(--encre); border-radius: 2px; }
+.burger span + span { margin-top: 5px; }
+#menu-mobile { display: none; background: var(--lait); border-bottom: 1px solid var(--trait); }
+#menu-mobile.ouvert { display: block; }
+#menu-mobile a { display: block; padding: 14px 28px; text-decoration: none; font-weight: 600; border-top: 1px solid var(--trait); }
+#menu-mobile .tel { color: var(--taro); }
+
+/* ══════════ 6. HERO ══════════ */
+.hero { position: relative; }
+.hero .ph { min-height: min(78vh, 620px); }
+.hero-voile { position: absolute; inset: 0; z-index: 3; background: linear-gradient(180deg, rgba(42,33,48,.34) 0%, rgba(42,33,48,.5) 50%, rgba(42,33,48,.66) 100%); }
+.hero-texte { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px 0; }
+.pastille {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.3);
+  color: #fff; padding: 8px 18px; border-radius: 999px;
+  font-size: 0.83rem; font-weight: 600; backdrop-filter: blur(4px);
+}
+.pastille .etoiles { color: #F2C94C; letter-spacing: 1px; }
+.hero h1 { color: #fff; font-size: clamp(2.6rem, 7vw, 4.6rem); max-width: 16ch; margin-top: 22px; }
+.hero h1 em { font-style: italic; }
+.hero .slogan { color: rgba(255,255,255,.9); font-size: clamp(1.02rem, 2vw, 1.25rem); margin-top: 18px; max-width: 44ch; }
+.hero-actions { margin-top: 32px; display: flex; gap: 13px; flex-wrap: wrap; justify-content: center; }
+.hero-etat { margin-top: 24px; font-size: 0.9rem; color: rgba(255,255,255,.85); display: flex; align-items: center; gap: 8px; }
+.point { width: 8px; height: 8px; border-radius: 50%; background: #8BAE63; display: inline-block; }
+.point.ferme { background: #C9736A; }
+
+/* ══════════ 7. SECTIONS ══════════ */
+section { padding: 94px 0; }
+.fond-creme { background: var(--creme); }
+
+/* À propos */
+.propos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 62px; align-items: center; }
+.propos-texte p + p { margin-top: 17px; }
+.propos-texte .accroche { font-family: 'Instrument Serif', serif; font-size: 1.5rem; line-height: 1.4; }
+.propos-grid .ph { aspect-ratio: 4 / 5; border-radius: var(--rayon); box-shadow: var(--ombre); }
+.valeurs { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 32px; padding-top: 26px; border-top: 1px solid var(--trait); }
+.valeur { flex: 1 1 150px; }
+.valeur .v-t { font-family: 'Instrument Serif', serif; font-size: 1.25rem; }
+.valeur .v-d { font-size: 0.89rem; color: var(--encre-clair); margin-top: 2px; }
+
+/* Produits — la carte */
+.produits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 54px; }
+.produit { background: var(--lait); border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); transition: transform .3s ease, box-shadow .3s ease; }
+.produit:hover { transform: translateY(-6px); box-shadow: var(--ombre-forte); }
+.produit .ph { aspect-ratio: 1 / 1; }
+.produit .corps { padding: 22px 22px 26px; }
+.produit h3 { font-size: 1.42rem; }
+.produit p { font-size: 0.92rem; color: var(--encre-clair); margin-top: 8px; }
+
+/* Bandeau toppings */
+.toppings { margin-top: 30px; background: var(--lait); border-radius: var(--rayon); padding: 28px 30px; box-shadow: var(--ombre); display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.toppings h3 { font-size: 1.3rem; flex: none; }
+.toppings-liste { display: flex; gap: 10px; flex-wrap: wrap; }
+.puce { border: 1px solid var(--trait); border-radius: 999px; padding: 7px 16px; font-size: 0.87rem; font-weight: 500; }
+
+/* Galerie — mosaïque 4 × 2, sans trou */
+.galerie { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 215px; gap: 14px; margin-top: 52px; }
+.galerie .ph { border-radius: 12px; transition: transform .35s ease; }
+.galerie .ph:hover { transform: scale(1.02); }
+.g-large { grid-column: span 2; }
+
+/* Avis */
+.avis-note { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 24px; }
+.avis-note .n { font-family: 'Instrument Serif', serif; font-size: 3.2rem; line-height: 1; }
+.avis-note .d { font-size: 0.92rem; color: var(--encre-clair); text-align: left; }
+.avis-note .etoiles { color: #E0A93B; letter-spacing: 2px; }
+.temoignages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.temoignage { background: var(--lait); border-radius: var(--rayon); padding: 32px 28px; box-shadow: var(--ombre); margin: 0; display: flex; flex-direction: column; }
+.temoignage .etoiles { color: #E0A93B; letter-spacing: 2px; font-size: .95rem; }
+.temoignage blockquote { margin: 14px 0 0; font-family: 'Instrument Serif', serif; font-size: 1.24rem; line-height: 1.5; flex-grow: 1; }
+.temoignage figcaption { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--trait); font-size: 0.84rem; font-weight: 700; }
+.temoignage figcaption span { display: block; font-weight: 400; color: var(--encre-clair); font-size: 0.78rem; margin-top: 2px; }
+.avis-lien { display: inline-block; margin-top: 38px; font-size: 0.88rem; font-weight: 700; text-decoration: none; color: var(--taro); border-bottom: 2px solid var(--taro); padding-bottom: 3px; }
+
+/* Infos pratiques */
+.infos-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 52px; }
+.info-bloc + .info-bloc { margin-top: 32px; }
+.info-bloc h3 { font-size: 1.35rem; margin-bottom: 12px; }
+.horaire { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--trait); font-size: 0.95rem; }
+.horaire:first-of-type { border-top: 1px solid var(--trait); }
+.horaire span:last-child { color: var(--encre-clair); font-variant-numeric: tabular-nums; }
+.horaire.aujourdhui { font-weight: 700; color: var(--taro); }
+.horaire.aujourdhui span:last-child { color: var(--taro); }
+.contact-l { display: flex; align-items: center; gap: 11px; padding: 11px 0; font-size: 1.02rem; }
+.contact-l svg { width: 19px; height: 19px; stroke: var(--matcha); fill: none; stroke-width: 1.7; flex: none; }
+.contact-l a { text-decoration: none; font-weight: 600; }
+.reseaux { display: flex; gap: 11px; margin-top: 18px; }
+.reseaux a { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--trait); display: grid; place-items: center; text-decoration: none; }
+.reseaux a:hover { border-color: var(--taro); background: var(--taro); color: #fff; }
+.reseaux svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.7; }
+.carte { border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); height: 100%; min-height: 400px; }
+.carte iframe { width: 100%; height: 100%; min-height: 400px; display: block; border: 0; }
+
+/* Bandeau d'appel */
+.bandeau { background: var(--taro); color: #fff; padding: 62px 0; }
+.bandeau h2 { font-size: clamp(1.9rem, 3.8vw, 2.6rem); color: #fff; }
+.bandeau p { margin-top: 12px; color: rgba(255,255,255,.88); }
+.bandeau .btn { margin-top: 26px; }
+
+/* ══════════ 8. PIED DE PAGE ══════════ */
+footer { background: var(--encre); color: rgba(251,248,243,.75); padding: 56px 0 26px; font-size: 0.92rem; }
+.pied-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+footer h4 { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: #fff; margin: 0 0 14px; }
+footer .pied-nom { font-family: 'Instrument Serif', serif; font-size: 1.6rem; color: #fff; }
+footer ul { list-style: none; margin: 0; padding: 0; }
+footer li { margin-bottom: 8px; }
+footer a { text-decoration: none; }
+footer a:hover { color: #fff; text-decoration: underline; }
+.pied-bas { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(251,248,243,.16); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: rgba(251,248,243,.5); }
+
+/* Barre d'appel mobile */
+.appel-mobile { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--taro); color: #fff; text-align: center; padding: 15px; text-decoration: none; font-weight: 700; font-size: 0.94rem; }
+
+/* ══════════ 9. ANIMATIONS AU SCROLL ══════════
+   Le fondu ne s'active que si le JavaScript fonctionne : sans lui,
+   tout le contenu reste visible normalement. */
+.js .anim { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.js .anim.vu { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .anim { opacity: 1 !important; transform: none !important; transition: none; }
+  .produit:hover, .galerie .ph:hover, .btn:hover { transform: none; }
+}
+
+/* ══════════ 10. RESPONSIVE — priorité mobile ══════════ */
+@media (max-width: 980px) {
+  .menu, .entete-cta { display: none; }
+  .burger { display: block; }
+  section { padding: 62px 0; }
+  .propos-grid { grid-template-columns: 1fr; gap: 34px; }
+  .propos-grid .ph { aspect-ratio: 16 / 10; }
+  .produits { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .temoignages { grid-template-columns: 1fr; gap: 18px; }
+  .infos-grid { grid-template-columns: 1fr; gap: 34px; }
+  .carte, .carte iframe { min-height: 320px; }
+  .galerie { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 155px; }
+  .pied-grid { grid-template-columns: 1fr; gap: 28px; }
+  .appel-mobile { display: block; }
+  footer { padding-bottom: 84px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 20px; }
+  .hero .ph { min-height: 76vh; }
+  .produits { grid-template-columns: 1fr; }
+  .g-large { grid-column: span 1; }
+  .toppings { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<!-- ═══════════ EN-TÊTE ═══════════ -->
+<header id="entete">
+  <div class="wrap entete-in">
+    <!-- LOGO · remplacer le carré coloré par <img src="photos/logo.png" alt="ThéPerlé"> -->
+    <a class="logo" href="#accueil">
+      <span class="logo-marque">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="17" r="2.4" fill="#FBF8F3"/><circle cx="15" cy="18" r="1.9" fill="#FBF8F3"/><circle cx="12" cy="8.5" r="3.6" fill="#8BAE63"/></svg>
+      </span>
+      <span class="logo-nom">ThéPerlé<span>Bubble tea · Nogent</span></span>
+    </a>
+
+    <nav class="menu" aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <a href="#propos">À propos</a>
+      <a href="#carte">La carte</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="btn btn-plein entete-cta" href="tel:+33187362085">Nous appeler</a>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav id="menu-mobile" aria-label="Navigation">
+  <a href="#accueil">Accueil</a>
+  <a href="#propos">À propos</a>
+  <a href="#carte">La carte</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#avis">Avis</a>
+  <a href="#contact">Contact</a>
+  <a class="tel" href="tel:+33187362085">Appeler · 01 87 36 20 85</a>
+</nav>
+
+<main id="contenu">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="accueil" style="padding:0">
+    <!-- PHOTO · HERO — le comptoir, la vitrine ou un bubble tea en gros plan.
+         Format paysage, 1920 × 1080 px minimum.
+         Déposer ici : <img src="photos/comptoir.jpg" alt="Le comptoir de ThéPerlé"> -->
+    <figure class="ph ph--hero">
+      <svg class="ph-icone" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M6 8c0-2 2.7-3.5 6-3.5S18 6 18 8"/><circle cx="10" cy="17" r="1.1"/><circle cx="14" cy="17.5" r="1.1"/><circle cx="12" cy="14.5" r="1.1"/></svg>
+      <figcaption class="ph-tag">Photo · le comptoir</figcaption>
+    </figure>
+
+    <div class="hero-voile"></div>
+
+    <div class="hero-texte">
+      <div class="wrap">
+        <span class="pastille">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          5,0 sur Google — 44 avis
+        </span>
+
+        <!-- SLOGAN · à valider avec le commerçant -->
+        <h1>Le goût du thé, la douceur des <em>perles</em>.</h1>
+        <p class="slogan">Bubble tea, thés au lait et matcha préparés à la commande, Grande Rue à Nogent-sur-Marne.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-clair" href="#carte">Voir la carte</a>
+          <a class="btn btn-plein" href="tel:+33187362085">Nous appeler</a>
+        </div>
+
+        <!-- État d'ouverture calculé automatiquement à partir des horaires -->
+        <p class="hero-etat" id="etat"><span class="point"></span><span id="etat-texte">Ouvert de 12h à 19h30</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ À PROPOS ═══════════ -->
+  <section id="propos">
+    <div class="wrap propos-grid">
+      <div class="propos-texte anim">
+        <p class="surtitre">La maison</p>
+        <h2 class="titre-section">Chaque boisson est faite pour vous</h2>
+        <!-- TEXTE À PROPOS · à compléter avec l'histoire réelle du commerce
+             (date d'ouverture, parcours, spécialités maison) -->
+        <p class="accroche">Rien n'est préparé à l'avance : on choisit le thé, la base, le sucre et les perles, et la boisson se monte devant vous.</p>
+        <p>ThéPerlé a ouvert Grande Rue Charles de Gaulle, à Nogent-sur-Marne. On y vient l'après-midi pour un bubble tea aux fruits, un thé au lait ou un matcha, à emporter ou à boire sur place.</p>
+        <p>Quarante-quatre clients ont laissé un avis, et aucun n'a mis moins de cinq étoiles. C'est rare, et c'est ce qui résume le mieux la maison.</p>
+
+        <div class="valeurs">
+          <div class="valeur">
+            <div class="v-t">À la commande</div>
+            <div class="v-d">Rien de préparé d'avance</div>
+          </div>
+          <div class="valeur">
+            <div class="v-t">5,0 sur 44 avis</div>
+            <div class="v-d">Aucun avis en dessous de 5</div>
+          </div>
+          <div class="valeur">
+            <div class="v-t">Ouvert tard</div>
+            <div class="v-d">Le dimanche jusqu'à 00h30</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO · ÉQUIPE — l'équipe derrière le comptoir, ou la salle.
+           Format portrait, 1200 × 1500 px minimum.
+           Déposer ici : <img src="photos/equipe.jpg" alt="L'équipe de ThéPerlé"> -->
+      <figure class="ph anim">
+        <svg class="ph-icone" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <figcaption class="ph-tag">Photo · l'équipe</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══════════ LA CARTE ═══════════ -->
+  <section id="carte" class="fond-creme">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">La carte</p>
+        <h2 class="titre-section">Ce que l'on sert</h2>
+        <p class="chapo">Chaque boisson se personnalise : le niveau de sucre, la glace, et les perles que vous choisissez.</p>
+      </div>
+
+      <div class="produits">
+        <!-- PHOTO · PRODUIT 1 — bubble tea aux fruits -->
+        <article class="produit anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M6 8c0-2 2.7-3.5 6-3.5S18 6 18 8"/><circle cx="10" cy="17" r="1.1"/><circle cx="14" cy="17.5" r="1.1"/></svg>
+            <figcaption class="ph-tag">Photo · bubble tea</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Bubble teas aux fruits</h3>
+            <p>Mangue, fraise et les autres parfums de la carte, avec les perles de votre choix.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · PRODUIT 2 — thés au lait -->
+        <article class="produit anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M5 9h13v7a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M18 11h2a2 2 0 0 1 0 4h-2"/><path d="M9 5c0 1-1 1.5-1 2.5M13 4.5c0 1-1 1.5-1 2.5"/></svg>
+            <figcaption class="ph-tag">Photo · thé au lait</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Thés au lait</h3>
+            <p>Les classiques du bubble tea, doux et onctueux, à doser selon votre goût.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · PRODUIT 3 — matcha -->
+        <article class="produit anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M6 10h12l-1.2 9.5H7.2z"/><path d="M8 13c1.5 1 3 1 4.5 0s3-1 3.5-.3"/><path d="M12 6.5c-2-1.5-1-3.5 0-4 1 .5 2 2.5 0 4z"/></svg>
+            <figcaption class="ph-tag">Photo · matcha</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Matcha latte</h3>
+            <p>Le matcha préparé au lait, chaud ou glacé, seul ou avec des nata de coco.</p>
+          </div>
+        </article>
+
+        <!-- PHOTO · PRODUIT 4 — à emporter -->
+        <article class="produit anim">
+          <figure class="ph">
+            <svg class="ph-icone" viewBox="0 0 24 24"><path d="M7 9h10l-1 11H8z"/><path d="M5 9h14l-.5-3h-13z"/><path d="M12 6V3"/></svg>
+            <figcaption class="ph-tag">Photo · à emporter</figcaption>
+          </figure>
+          <div class="corps">
+            <h3>Sur place ou à emporter</h3>
+            <p>Tout se prend à emporter. Un appel avant de passer et c'est prêt à votre arrivée.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- TOPPINGS · compléter avec la liste réelle de la carte -->
+      <div class="toppings anim">
+        <h3>Les perles &amp; toppings</h3>
+        <div class="toppings-liste">
+          <span class="puce">Perles de tapioca</span>
+          <span class="puce">Nata de coco</span>
+          <span class="puce">…</span>
+        </div>
+      </div>
+
+      <p class="center chapo" style="margin-top:30px;font-size:.9rem">La carte complète est affichée en boutique — 7 photos du menu sont disponibles sur la fiche Google.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ GALERIE ═══════════ -->
+  <section id="galerie">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">En images</p>
+        <h2 class="titre-section">La boutique et les boissons</h2>
+        <p class="chapo">Six photos suffisent : la devanture, le comptoir, la salle, et quelques boissons en gros plan.</p>
+      </div>
+
+      <!-- PHOTOS · GALERIE — déposer une <img> dans chaque bloc ci-dessous -->
+      <div class="galerie">
+        <figure class="ph g-large anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg><figcaption class="ph-tag">Photo · devanture</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><circle cx="10" cy="17" r="1.1"/><circle cx="14" cy="17.5" r="1.1"/></svg><figcaption class="ph-tag">Photo · bubble tea</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 11h18"/></svg><figcaption class="ph-tag">Photo · comptoir</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M6 10h12l-1.2 9.5H7.2z"/><path d="M12 6.5c-2-1.5-1-3.5 0-4 1 .5 2 2.5 0 4z"/></svg><figcaption class="ph-tag">Photo · matcha</figcaption></figure>
+        <figure class="ph anim"><svg class="ph-icone" viewBox="0 0 24 24"><circle cx="8" cy="15" r="2.2"/><circle cx="14" cy="16" r="2.2"/><circle cx="11" cy="10" r="2.2"/></svg><figcaption class="ph-tag">Photo · les perles</figcaption></figure>
+        <figure class="ph g-large anim"><svg class="ph-icone" viewBox="0 0 24 24"><path d="M4 20h16M6 20v-8h12v8"/><path d="M9 12V8h6v4"/><circle cx="12" cy="16" r="1.5"/></svg><figcaption class="ph-tag">Photo · la salle</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ AVIS ═══════════ -->
+  <section id="avis" class="fond-creme">
+    <div class="wrap">
+      <div class="center anim">
+        <p class="surtitre">Avis clients</p>
+        <h2 class="titre-section">Quarante-quatre avis, cinq étoiles</h2>
+        <div class="avis-note">
+          <span class="n">5,0</span>
+          <span class="d"><span class="etoiles" aria-hidden="true">★★★★★</span><br>44 avis sur Google</span>
+        </div>
+      </div>
+
+      <!-- TÉMOIGNAGES · avis Google réels, cités tels quels -->
+      <div class="temoignages">
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« Très bon ! Nous avons déjà goûté un bubble tea mangue-fraise et un matcha latte avec des nata de coco. »</blockquote>
+          <figcaption>Nathalie<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« Super endroit, avec une super attention. Venez goûter ! »</blockquote>
+          <figcaption>Maria<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+
+        <figure class="temoignage anim">
+          <span class="etoiles" aria-hidden="true">★★★★★</span>
+          <blockquote>« Délicieux ! Je recommande. »</blockquote>
+          <figcaption>Andrii<span>Avis Google · 5/5</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="center">
+        <a class="avis-lien" href="https://www.google.com/maps/search/?api=1&query=Th%C3%A9Perl%C3%A9+158+Grande+Rue+Charles+de+Gaulle+94130+Nogent-sur-Marne" target="_blank" rel="noopener">Lire tous les avis sur Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ INFOS PRATIQUES ═══════════ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="anim" style="margin-bottom:46px">
+        <p class="surtitre">Infos pratiques</p>
+        <h2 class="titre-section">Nous trouver</h2>
+      </div>
+
+      <div class="infos-grid">
+        <div class="anim">
+          <div class="info-bloc">
+            <h3>Adresse &amp; contact</h3>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>158 Grande Rue Charles de Gaulle<br>94130 Nogent-sur-Marne</span>
+            </div>
+            <div class="contact-l">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+33187362085">01 87 36 20 85</a>
+            </div>
+
+            <!-- RÉSEAUX SOCIAUX · remplacer les # par les vrais liens, ou supprimer le bloc -->
+            <div class="reseaux">
+              <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+              <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 4v10.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 6.5c.8 1.6 2.3 2.6 4.5 2.7"/></svg></a>
+            </div>
+          </div>
+
+          <div class="info-bloc">
+            <h3>Horaires</h3>
+            <!-- HORAIRES · repris de la fiche Google. Le jour courant est mis en
+                 valeur automatiquement par le script en bas de page. -->
+            <div class="horaire" data-jour="1"><span>Lundi</span><span>12h00 – 19h30</span></div>
+            <div class="horaire" data-jour="2"><span>Mardi</span><span>12h00 – 19h30</span></div>
+            <div class="horaire" data-jour="3"><span>Mercredi</span><span>12h00 – 19h30</span></div>
+            <div class="horaire" data-jour="4"><span>Jeudi</span><span>12h00 – 19h30</span></div>
+            <div class="horaire" data-jour="5"><span>Vendredi</span><span>12h00 – 19h30</span></div>
+            <div class="horaire" data-jour="6"><span>Samedi</span><span>12h00 – 19h30</span></div>
+            <div class="horaire" data-jour="0"><span>Dimanche</span><span>12h00 – 00h30</span></div>
+          </div>
+        </div>
+
+        <!-- CARTE GOOGLE MAPS -->
+        <div class="carte anim">
+          <iframe
+            title="Plan — 158 Grande Rue Charles de Gaulle, 94130 Nogent-sur-Marne"
+            src="https://www.google.com/maps?q=158+Grande+Rue+Charles+de+Gaulle,+94130+Nogent-sur-Marne&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ BANDEAU D'APPEL ═══════════ -->
+  <div class="bandeau">
+    <div class="wrap center">
+      <h2>Une commande à emporter ?</h2>
+      <p>Un coup de fil et c'est prêt à votre arrivée.</p>
+      <a class="btn btn-clair" href="tel:+33187362085">01 87 36 20 85</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════ PIED DE PAGE ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="pied-grid">
+      <div>
+        <p class="pied-nom">ThéPerlé</p>
+        <p style="margin-top:10px">Bubble tea &amp; salon de thé<br>158 Grande Rue Charles de Gaulle<br>94130 Nogent-sur-Marne</p>
+        <p style="margin-top:12px"><a href="tel:+33187362085">01 87 36 20 85</a></p>
+      </div>
+      <div>
+        <h4>Liens rapides</h4>
+        <ul>
+          <li><a href="#propos">À propos</a></li>
+          <li><a href="#carte">La carte</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#avis">Avis clients</a></li>
+          <li><a href="#contact">Infos pratiques</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informations</h4>
+        <ul>
+          <!-- MENTIONS LÉGALES · à rédiger avec les informations de l'entreprise
+               (raison sociale, SIRET, hébergeur, directeur de publication) -->
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&destination=158+Grande+Rue+Charles+de+Gaulle,+94130+Nogent-sur-Marne" target="_blank" rel="noopener">Itinéraire</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pied-bas">
+      <span>© <span id="annee"></span> ThéPerlé — Tous droits réservés</span>
+      <span>Nogent-sur-Marne · Val-de-Marne</span>
+    </div>
+  </div>
+</footer>
+
+<a class="appel-mobile" href="tel:+33187362085">Appeler · 01 87 36 20 85</a>
+
+<!-- Données structurées : aident Google à afficher correctement la fiche -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "ThéPerlé",
+  "servesCuisine": "Bubble tea",
+  "telephone": "+33187362085",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "158 Grande Rue Charles de Gaulle",
+    "addressLocality": "Nogent-sur-Marne",
+    "postalCode": "94130",
+    "addressCountry": "FR"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "12:00", "closes": "19:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday"], "opens": "12:00", "closes": "00:30" }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "44"
+  }
+}
+</script>
+
+<script>
+/* ══════════ JAVASCRIPT — volontairement minimal ══════════ */
+(function () {
+  document.documentElement.classList.add('js');
+
+  /* 1. Ombre sous l'en-tête au défilement */
+  var entete = document.getElementById('entete');
+  function auScroll() { entete.classList.toggle('colle', window.scrollY > 8); }
+  window.addEventListener('scroll', auScroll, { passive: true });
+  auScroll();
+
+  /* 2. Menu mobile */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu-mobile');
+  burger.addEventListener('click', function () {
+    var ouvert = menu.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function (lien) {
+    lien.addEventListener('click', function () {
+      menu.classList.remove('ouvert');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* 3. Apparition en fondu au défilement */
+  var blocs = document.querySelectorAll('.anim');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    blocs.forEach(function (b) { obs.observe(b); });
+  } else {
+    blocs.forEach(function (b) { b.classList.add('vu'); });
+  }
+
+  /* 4. État d'ouverture + mise en valeur du jour
+        Horaires : 12h–19h30 du lundi au samedi, 12h–00h30 le dimanche.
+        Le service du dimanche se termine le lundi à 00h30. */
+  var maintenant = new Date();
+  var jour = maintenant.getDay();               // 0 = dimanche
+  var heure = maintenant.getHours() + maintenant.getMinutes() / 60;
+  var ouvert, texte;
+
+  if (jour === 0) {                              // dimanche
+    ouvert = heure >= 12;
+    texte = ouvert ? 'Ouvert, ce soir jusqu’à 00h30' : 'Ouvre à 12h';
+  } else if (jour === 1 && heure < 0.5) {        // nuit de dimanche à lundi
+    ouvert = true;
+    texte = 'Ouvert jusqu’à 00h30';
+  } else {
+    ouvert = heure >= 12 && heure < 19.5;
+    texte = ouvert ? 'Ouvert aujourd’hui jusqu’à 19h30'
+                   : (heure < 12 ? 'Ouvre à 12h' : 'Fermé — réouverture demain à 12h');
+  }
+
+  var etatTexte = document.getElementById('etat-texte');
+  if (etatTexte) etatTexte.textContent = texte;
+  var etat = document.getElementById('etat');
+  if (etat && !ouvert) etat.querySelector('.point').classList.add('ferme');
+
+  var ligneDuJour = document.querySelector('.horaire[data-jour="' + jour + '"]');
+  if (ligneDuJour) ligneDuJour.classList.add('aujourdhui');
+
+  /* 5. Année du copyright */
+  var annee = document.getElementById('annee');
+  if (annee) annee.textContent = maintenant.getFullYear();
+})();
+</script>
+</body>
+</html>
