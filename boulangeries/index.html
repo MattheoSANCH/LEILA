@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Page d'index INTERNE — navigation entre les 4 démos boulangeries.
+     Ne pas mettre en ligne chez un client. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Démos — Boulangeries de Saint-Cloud</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E%F0%9F%A5%96%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --fond:#2E1C0E;--carte:#3B2513;--creme:#F6EDDD;--dore:#D9A13B;--terre:#C96A2B;
+  --ligne:rgba(246,237,221,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--fond);color:var(--creme);line-height:1.6;
+  min-height:100vh;padding:3rem 5% 4rem;
+}
+.badge{display:inline-block;background:var(--terre);color:var(--fond);font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.35rem .8rem;border-radius:999px;margin-bottom:1rem}
+h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.5rem}
+h1 em{color:var(--dore)}
+.sous{color:rgba(246,237,221,.65);max-width:44rem;margin-bottom:2.4rem}
+.grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;max-width:1200px}
+.carte{
+  display:block;text-decoration:none;color:inherit;background:var(--carte);
+  border:1px solid var(--ligne);border-radius:14px;padding:1.5rem 1.4rem;
+  transition:transform .2s,border-color .2s;
+}
+.carte:hover{transform:translateY(-4px);border-color:var(--dore)}
+.carte .pastille{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;margin-bottom:.9rem}
+.carte h2{font-family:Georgia,serif;font-size:1.2rem;margin-bottom:.3rem}
+.carte .meta{font-size:.82rem;color:rgba(246,237,221,.6);margin-bottom:.7rem}
+.carte .note{font-size:.82rem;color:var(--dore);font-weight:700}
+.carte .diff{font-size:.85rem;color:rgba(246,237,221,.8);margin-top:.5rem}
+.pied{margin-top:2.6rem;font-size:.8rem;color:rgba(246,237,221,.45)}
+a.pied-lien{color:rgba(246,237,221,.6)}
+</style>
+</head>
+<body>
+
+<span class="badge">Démos internes · ne pas diffuser</span>
+<h1>Boulangeries de <em>Saint-Cloud</em> — 4 maquettes</h1>
+<p class="sous">
+  Sites vitrines de démonstration pour la prospection. Données NAP et horaires
+  réels (sept. 2026) ; photos, prix et textes d'histoire = placeholders à
+  compléter avec chaque client — voir <code>README.md</code>.
+</p>
+
+<div class="grille">
+  <a class="carte" href="au-pas-de-saint-cloud/index.html">
+    <span class="pastille" style="background:#F6EDDD">🥐</span>
+    <h2>Au Pas de Saint Cloud</h2>
+    <p class="meta">4, place du Pas de Saint-Cloud · 01 49 11 12 63</p>
+    <p class="note">★ 3,5 · 446 avis Google</p>
+    <p class="diff">Style « institution » — crème &amp; doré, traiteur mis en avant</p>
+  </a>
+
+  <a class="carte" href="le-fournil-de-saint-cloud/index.html">
+    <span class="pastille" style="background:#C96A2B">🔥</span>
+    <h2>Le Fournil de Saint-Cloud</h2>
+    <p class="meta">19, rue du Mont Valérien · 01 46 02 86 06</p>
+    <p class="note">★ 4,0 · 115 avis Google</p>
+    <p class="diff">Style « feu du fournil » — héro sombre, ouvert le dimanche matin</p>
+  </a>
+
+  <a class="carte" href="la-boulangerie-d-odile/index.html">
+    <span class="pastille" style="background:#B65C38">🍞</span>
+    <h2>La Boulangerie d'Odile</h2>
+    <p class="meta">1, rue de l'Yser · 06 52 79 36 48</p>
+    <p class="note">★ 4,7 · 157 avis Google</p>
+    <p class="diff">Style « maison élégante » — arches, levain, salon de thé</p>
+  </a>
+
+  <a class="carte" href="le-moulin-de-buzenval/index.html">
+    <span class="pastille" style="background:#D9A13B">🌾</span>
+    <h2>Le Moulin de Buzenval</h2>
+    <p class="meta">84, rue de Buzenval · 01 46 02 00 68</p>
+    <p class="note">★ 4,1 · 143 avis Google</p>
+    <p class="diff">Style « du grain au pain » — blé doré, ouvert 7j/7</p>
+  </a>
+</div>
+
+<p class="pied">Détails, données vérifiées et checklist client : voir <code>README.md</code> dans ce dossier.</p>
+
+</body>
+</html>

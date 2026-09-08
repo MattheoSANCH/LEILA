@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- ============================================================
+  MAQUETTE DE DÉMONSTRATION — LA BOULANGERIE D'ODILE
+  Boulangerie · Pâtisserie · Salon de thé — 1, rue de l'Yser, Saint-Cloud (92210)
+
+  DONNÉES RÉELLES (article ville de Saint-Cloud + annuaires + fiche Google, sept. 2026) :
+  · Tenue par Odile Canet, quartier des Coteaux — tout est fabriqué sur place
+  · Pains au levain naturel, farines meulées à la pierre (moulin du Val d'Oise) :
+    blés anciens (rouge de Bordeaux), tradition sur levain, sarrasin aux
+    graines torréfiées, tourte de seigle, pain complet
+  · Petit salon de thé avec vue sur la passerelle de l'Avre
+  · Téléphone : 06 52 79 36 48
+  · Horaires : lun–ven 7h00–14h30 / 16h00–20h00 · sam 7h30–13h30 · dim fermé
+    (une source indique 16h30 pour la réouverture — à trancher avec le client)
+  · Le dimanche matin : stand d'Odile sur un marché couvert (mentionné par un
+    client — préciser LEQUEL avec la cliente avant publication)
+  · Note Google : 4,7/5 sur 157 avis (affichée sur le site — à tenir à jour)
+  · Instagram réel : @la_boulangerie_dodile
+  · Avis : extraits d'avis Google publics (Julie, William, Fabrice)
+
+  À VALIDER AVEC LA CLIENTE AVANT MISE EN LIGNE :
+  · [TEXTE_HISTOIRE] : la présentation d'Odile est une proposition
+  · [PRIX_PRODUITS] : TOUS les prix sont indicatifs
+  · L'appellation « tradition » est reprise de l'article municipal — vérifier
+    la conformité au décret n°93-1074 avant de la mettre en avant
+  · Toutes les photos sont des visuels de substitution (illustrations)
+============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Boulangerie d'Odile — Boulangerie artisanale &amp; salon de thé à Saint-Cloud</title>
+<meta name="description" content="Boulangerie-pâtisserie artisanale aux Coteaux de Saint-Cloud : pains au levain naturel, farines meulées à la pierre, pâtisseries maison et salon de thé avec vue sur la passerelle de l'Avre. Tout est fait sur place.">
+<meta name="theme-color" content="#46281A">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="La Boulangerie d'Odile — Boulangerie artisanale &amp; salon de thé à Saint-Cloud">
+<meta property="og:description" content="Pains au levain naturel, farines meulées à la pierre, pâtisseries maison et un salon de thé cosy face à la passerelle de l'Avre, dans le quartier des Coteaux.">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E%F0%9F%8D%9E%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "La Boulangerie d'Odile",
+  "description": "Boulangerie-pâtisserie artisanale et salon de thé dans le quartier des Coteaux à Saint-Cloud : pains au levain naturel, farines meulées à la pierre, pâtisseries maison, tout est fabriqué sur place.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1 rue de l'Yser",
+    "addressLocality": "Saint-Cloud",
+    "postalCode": "92210",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33652793648",
+  "priceRange": "€",
+  "servesCuisine": "Boulangerie, pâtisserie, salon de thé",
+  "sameAs": ["https://www.instagram.com/la_boulangerie_dodile/"],
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"14:30"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"16:00","closes":"20:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"07:30","closes":"13:30"}
+  ]
+}
+</script>
+
+<style>
+/* ============ PALETTE — crème rosée, cacao & sauge ============ */
+:root{
+  --creme:#FBF3E8;        /* fond, crème rosée */
+  --voile:#F4E4D0;        /* fonds de section */
+  --cacao:#46281A;        /* texte principal */
+  --noisette:#7A5A42;     /* texte secondaire */
+  --terre:#B65C38;        /* terracotta rosé, accents */
+  --terre-soft:#D8926E;
+  --sauge:#7E8D6E;        /* accent salon de thé */
+  --ble:#DCA95E;
+  --ligne:rgba(70,40,26,.14);
+  --ombre:0 22px 44px -22px rgba(70,40,26,.35);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family:'Mulish',system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--creme);
+  color:var(--cacao);
+  line-height:1.7;
+  font-size:16.5px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:600;line-height:1.12}
+.wrap{width:min(1080px,92%);margin-inline:auto}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--cacao);color:var(--creme);padding:.6rem 1rem;z-index:99;border-radius:0 0 8px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--terre);outline-offset:3px;border-radius:4px}
+
+/* ============ HEADER ============ */
+#site-header{position:sticky;top:0;z-index:50;background:rgba(251,243,232,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--ligne)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 0}
+.brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.35rem;text-decoration:none;line-height:1;white-space:nowrap}
+.brand em{font-style:italic;color:var(--terre)}
+.brand small{display:block;font-family:'Mulish',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sauge);margin-top:.25rem}
+.nav-desktop{display:flex;gap:1.15rem}
+.nav-desktop a{text-decoration:none;font-weight:600;font-size:.88rem;color:var(--noisette);padding:.3rem 0;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.nav-desktop a:hover{color:var(--cacao);border-color:var(--terre)}
+.header-actions{display:flex;align-items:center;gap:.7rem}
+.call-pill{display:inline-flex;align-items:center;gap:.45rem;background:var(--terre);color:var(--creme);text-decoration:none;padding:.55rem 1.05rem;border-radius:999px;font-weight:700;font-size:.86rem;transition:background .2s,transform .2s;white-space:nowrap}
+.call-pill:hover{background:var(--cacao);transform:translateY(-1px)}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}
+.menu-toggle span{display:block;width:24px;height:2px;background:var(--cacao);margin:5px 0;transition:transform .25s,opacity .25s}
+.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;background:var(--voile);border-bottom:1px solid var(--ligne);padding:.6rem 4%}
+.mobile-menu.open{display:flex}
+.mobile-menu a{text-decoration:none;padding:.85rem .2rem;font-weight:700;border-bottom:1px solid var(--ligne)}
+.mobile-menu a:last-child{border-bottom:none;color:var(--terre)}
+
+/* ============ HERO — arche centrale ============ */
+.hero{padding:3.4rem 0 4rem;text-align:center;position:relative;overflow:hidden}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--terre);margin-bottom:1rem}
+.hero h1{font-size:clamp(2.6rem,6vw,4.3rem);font-weight:600;margin-bottom:.9rem;text-wrap:balance}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--terre)}
+.hero-sub{color:var(--noisette);font-size:1.1rem;max-width:37rem;margin:0 auto 1.4rem}
+.note-google{display:inline-flex;align-items:center;gap:.5rem;background:var(--voile);border:1px solid var(--ligne);border-radius:999px;padding:.45rem 1.05rem;font-size:.86rem;font-weight:700;color:var(--noisette);margin-bottom:1rem}
+.note-google .stars{color:var(--ble);letter-spacing:.1em}
+.status-pill{display:flex;width:fit-content;margin:0 auto 1.6rem;align-items:center;gap:.55rem;background:#fff9f1;border:1px solid var(--ligne);border-radius:999px;padding:.5rem 1.1rem;font-weight:700;font-size:.9rem}
+.status-dot{width:9px;height:9px;border-radius:50%;background:#5F8F5C;box-shadow:0 0 0 4px rgba(95,143,92,.15)}
+.status-pill.closed .status-dot{background:var(--terre);box-shadow:0 0 0 4px rgba(182,92,56,.15)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-bottom:2.6rem}
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:.95rem;padding:.85rem 1.7rem;border-radius:999px;transition:transform .2s,background .2s,color .2s;border:1.5px solid var(--cacao)}
+.btn-primary{background:var(--cacao);color:var(--creme)}
+.btn-primary:hover{background:var(--terre);border-color:var(--terre);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--cacao)}
+.btn-ghost:hover{background:var(--cacao);color:var(--creme);transform:translateY(-2px)}
+/* grande arche visuelle */
+.hero-arch{
+  width:min(560px,88%);margin-inline:auto;position:relative;
+  border-radius:999px 999px 20px 20px;overflow:hidden;
+  border:1px solid var(--ligne);box-shadow:var(--ombre);
+}
+.hero-arch::before{content:"";position:absolute;inset:10px;border:1.5px solid rgba(251,243,232,.65);border-radius:inherit;pointer-events:none;z-index:2}
+.visual-tag{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(70,40,26,.78);color:var(--creme);font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.32rem .8rem;border-radius:999px;z-index:3;white-space:nowrap}
+/* petites arches décoratives latérales */
+.hero-side{position:absolute;bottom:-30px;width:170px;opacity:.5;pointer-events:none}
+.hero-side.left{left:-30px}
+.hero-side.right{right:-30px}
+
+/* ============ SECTIONS ============ */
+section{padding:4.4rem 0}
+.section-head{max-width:44rem;margin:0 auto 2.6rem;text-align:center}
+.section-head h2{font-size:clamp(1.9rem,3.8vw,2.8rem);margin-bottom:.7rem}
+.section-head h2 em{font-style:italic;color:var(--terre)}
+.section-head p{color:var(--noisette)}
+.divider{width:52px;height:2px;background:var(--terre);margin:1.1rem auto 0;border-radius:2px}
+
+/* Les pains au levain */
+#levain{background:var(--voile);border-block:1px solid var(--ligne)}
+.levain-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.levain-card{background:var(--creme);border:1px solid var(--ligne);border-radius:120px 120px 16px 16px;padding:1.6rem 1rem 1.3rem;text-align:center;transition:transform .25s,box-shadow .25s}
+.levain-card:hover{transform:translateY(-6px);box-shadow:var(--ombre)}
+.levain-card svg{width:64px;height:64px;margin:0 auto .8rem}
+.levain-card h3{font-size:1.12rem;margin-bottom:.3rem}
+.levain-card p{font-size:.8rem;color:var(--noisette);line-height:1.5}
+.levain-note{text-align:center;margin-top:1.8rem;font-size:.92rem;color:var(--noisette);font-style:italic;max-width:38rem;margin-inline:auto}
+
+/* Notre histoire */
+.histoire-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:3.2rem;align-items:center}
+.histoire-visual{border-radius:999px 999px 20px 20px;overflow:hidden;border:1px solid var(--ligne);box-shadow:var(--ombre)}
+.histoire-txt h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-bottom:1rem}
+.histoire-txt h2 em{font-style:italic;color:var(--terre)}
+.histoire-txt p{margin-bottom:1rem;color:var(--noisette)}
+.histoire-txt strong{color:var(--cacao)}
+.signature{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--terre);margin-top:1.2rem}
+
+/* Produits */
+.produits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem}
+.prod-card{background:#fff9f1;border:1px solid var(--ligne);border-radius:18px;overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column}
+.prod-card:hover{transform:translateY(-5px);box-shadow:var(--ombre)}
+.prod-visual{aspect-ratio:1/0.72;border-bottom:1px solid var(--ligne)}
+.prod-visual svg{width:100%;height:100%}
+.prod-body{padding:1.1rem 1.2rem 1.3rem;flex:1}
+.prod-body h3{font-size:1.35rem;margin-bottom:.5rem}
+.prod-list{list-style:none;font-size:.88rem;color:var(--noisette)}
+.prod-list li{display:flex;align-items:baseline;gap:.45rem;padding:.26rem 0}
+.prod-list .dots{flex:1;border-bottom:1.5px dotted rgba(70,40,26,.3);transform:translateY(-3px)}
+.prod-list .prix{font-weight:800;color:var(--cacao);white-space:nowrap}
+.mention-prix{margin-top:1.4rem;font-size:.82rem;color:var(--noisette);text-align:center}
+.mention-allergenes{margin:.6rem auto 0;font-size:.82rem;color:var(--noisette);border-left:3px solid var(--ble);padding-left:.8rem;max-width:44rem}
+
+/* Salon de thé */
+#salon{background:var(--sauge);color:#F6F3EA;border-block:1px solid var(--ligne)}
+.salon-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+.salon-txt .eyebrow{color:#E8E3D2}
+.salon-txt h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-bottom:1rem;color:#FDFBF4}
+.salon-txt h2 em{font-style:italic;color:#F2D8A0}
+.salon-txt p{color:rgba(253,251,244,.88);margin-bottom:1rem}
+.salon-points{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+.salon-chip{background:rgba(253,251,244,.14);border:1px solid rgba(253,251,244,.35);border-radius:999px;padding:.45rem 1rem;font-size:.84rem;font-weight:700}
+.salon-visual{border-radius:999px 999px 20px 20px;overflow:hidden;border:1.5px solid rgba(253,251,244,.5);box-shadow:0 24px 48px -24px rgba(0,0,0,.4)}
+
+/* Marché du dimanche */
+.marche{background:var(--voile);border:1px dashed var(--terre);border-radius:18px;padding:1.6rem 2rem;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;justify-content:center;text-align:center}
+.marche p{color:var(--noisette);font-size:.98rem}
+.marche strong{color:var(--cacao)}
+
+/* Galerie */
+.galerie-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;align-items:end}
+.galerie-item{border-radius:999px 999px 14px 14px;overflow:hidden;border:1px solid var(--ligne);position:relative}
+.galerie-item:nth-child(odd){border-radius:14px}
+.galerie-item svg{width:100%;height:100%}
+.galerie-item.haut{height:300px}
+.galerie-item.bas{height:240px}
+.galerie-tag{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(70,40,26,.75);color:var(--creme);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.26rem .6rem;border-radius:999px;white-space:nowrap}
+
+/* Avis */
+#avis{background:var(--voile);border-block:1px solid var(--ligne)}
+.avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.avis-card{background:var(--creme);border:1px solid var(--ligne);border-radius:18px;padding:1.7rem 1.5rem;display:flex;flex-direction:column;gap:.9rem}
+.avis-stars{color:var(--ble);letter-spacing:.16em;font-size:.9rem}
+.avis-card blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18rem;line-height:1.45;flex:1}
+.avis-card figcaption{font-size:.84rem;color:var(--noisette);font-weight:700}
+.avis-note{margin-top:1.3rem;font-size:.8rem;color:var(--noisette);text-align:center}
+
+/* Infos pratiques */
+.infos-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;align-items:start}
+.infos-bloc{margin-bottom:1.7rem}
+.infos-bloc h3{font-size:1.3rem;margin-bottom:.55rem;display:flex;align-items:center;gap:.5rem}
+.infos-bloc h3 svg{color:var(--terre);flex:none}
+.infos-bloc p,.infos-bloc address{font-style:normal;color:var(--noisette)}
+.horaires-table{width:100%;border-collapse:collapse;font-size:.94rem}
+.horaires-table td{padding:.42rem 0;border-bottom:1px dashed var(--ligne);color:var(--noisette)}
+.horaires-table td:last-child{text-align:right;font-weight:700;color:var(--cacao)}
+.horaires-table tr.today td{color:var(--terre);font-weight:800}
+.ferme{color:var(--terre)!important;font-weight:800}
+.insta-link{display:inline-flex;align-items:center;gap:.5rem;font-weight:700;color:var(--terre);text-decoration:none;border-bottom:1.5px solid var(--terre)}
+.insta-link:hover{color:var(--cacao);border-color:var(--cacao)}
+.map-shell{border-radius:999px 999px 16px 16px;overflow:hidden;border:1px solid var(--ligne);box-shadow:var(--ombre);background:linear-gradient(135deg,#EBD9BE,#E0C8A4)}
+.map-shell iframe{width:100%;height:380px;border:0;display:block}
+.map-links{display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap;justify-content:center}
+.map-links .btn{font-size:.86rem;padding:.6rem 1.3rem}
+
+/* Footer */
+footer{background:var(--cacao);color:rgba(251,243,232,.8);padding:2.6rem 0 2rem;margin-top:2rem}
+.footer-grid{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--creme)}
+.footer-brand em{font-style:italic;color:var(--terre-soft)}
+.footer-brand small{display:block;font-family:'Mulish',sans-serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sauge);margin-top:.3rem;font-weight:700}
+footer nav{display:flex;gap:1.3rem;flex-wrap:wrap}
+footer nav a{color:rgba(251,243,232,.8);text-decoration:none;font-size:.9rem;font-weight:600}
+footer nav a:hover{color:var(--terre-soft)}
+.footer-legal{border-top:1px solid rgba(251,243,232,.18);padding-top:1.3rem;font-size:.8rem}
+.footer-legal summary{cursor:pointer;font-weight:700;color:rgba(251,243,232,.85)}
+.footer-legal .legal-body{margin-top:.8rem;line-height:1.7;color:rgba(251,243,232,.6)}
+.copyright{margin-top:1rem;font-size:.78rem;color:rgba(251,243,232,.55)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1120px){
+  .call-text{display:none}
+  .call-pill{padding:.55rem .7rem}
+}
+@media (max-width:860px){
+  .nav-desktop{display:none}
+  .menu-toggle{display:block}
+}
+@media (max-width:980px){
+  .levain-grid{grid-template-columns:repeat(3,1fr)}
+  .produits-grid,.galerie-grid{grid-template-columns:repeat(2,1fr)}
+  .avis-grid{grid-template-columns:1fr}
+  .histoire-grid,.salon-grid,.infos-grid{grid-template-columns:1fr;gap:2.2rem}
+  .hero-side{display:none}
+}
+@media (max-width:640px){
+  .levain-grid{grid-template-columns:repeat(2,1fr)}
+  .galerie-item.haut{height:220px}
+  .galerie-item.bas{height:180px}
+  section{padding:3.2rem 0}
+  .marche{padding:1.3rem 1.2rem}
+}
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body id="top">
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="brand">La Boulangerie <em>d'Odile</em><small>Artisan · Salon de thé · Les Coteaux</small></a>
+
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      <a href="#top">Accueil</a>
+      <a href="#produits">Nos produits</a>
+      <a href="#histoire">Notre histoire</a>
+      <a href="#salon">Salon de thé</a>
+      <a href="#trouver">Nous trouver</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="call-pill" href="tel:+33652793648" aria-label="Appeler le 06 52 79 36 48">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="call-text">06 52 79 36 48</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Accueil</a>
+  <a href="#produits">Nos produits</a>
+  <a href="#histoire">Notre histoire</a>
+  <a href="#salon">Salon de thé</a>
+  <a href="#trouver">Nous trouver</a>
+  <a href="tel:+33652793648">Appeler · 06 52 79 36 48</a>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <p class="eyebrow">Boulangerie artisanale · Les Coteaux, Saint-Cloud</p>
+    <!-- [SLOGAN] : proposition d'accroche — à valider avec la cliente -->
+    <h1 id="hero-title">Le levain, la meule <em>&amp; le temps qu'il faut.</em></h1>
+    <p class="hero-sub">
+      Chez Odile, tout est fabriqué sur place : pains au levain naturel,
+      farines meulées à la pierre, pâtisseries maison — et un petit salon de
+      thé pour s'attarder, face à la passerelle de l'Avre.
+    </p>
+    <!-- Note réelle relevée sur la fiche Google (sept. 2026) — à tenir à jour -->
+    <p class="note-google"><span class="stars" aria-hidden="true">★★★★★</span> 4,7/5 · 157 avis Google</p>
+    <!-- Horaires du jour : calculés en JS depuis HORAIRES (voir script) -->
+    <p class="status-pill" id="statusPill"><span class="status-dot" aria-hidden="true"></span><span id="statusText">Lun–ven 7h–14h30 / 16h–20h · sam 7h30–13h30</span></p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#levain">Découvrir nos pains</a>
+      <a class="btn btn-ghost" href="#trouver">Nous trouver</a>
+    </div>
+
+    <div class="hero-arch reveal">
+      <!-- [PHOTO_HERO] : remplacer par une vraie photo (vitrine de pâtisseries ou
+           pains au levain sur l'étagère, cadrage vertical, lumière douce) -->
+      <svg viewBox="0 0 560 640" role="img" aria-label="Illustration : présentoir de gourmandises et théière, en attendant les photos de la boutique">
+        <rect width="560" height="640" fill="#EAD9C0"/>
+        <circle cx="280" cy="180" r="200" fill="#F4E4D0" opacity=".8"/>
+        <circle cx="280" cy="180" r="140" fill="#DCA95E" opacity=".25"/>
+        <!-- présentoir à gâteaux -->
+        <g>
+          <rect x="264" y="330" width="32" height="120" rx="10" fill="#B65C38"/>
+          <ellipse cx="280" cy="452" rx="120" ry="22" fill="#B65C38"/>
+          <ellipse cx="280" cy="330" rx="150" ry="26" fill="#D8926E"/>
+          <ellipse cx="280" cy="322" rx="150" ry="24" fill="#FBF3E8"/>
+          <!-- tartelettes -->
+          <g transform="translate(160 268)"><ellipse cx="40" cy="40" rx="40" ry="18" fill="#DCA95E"/><ellipse cx="40" cy="33" rx="32" ry="13" fill="#A8433C"/><g fill="#C96A5A"><circle cx="26" cy="31" r="6"/><circle cx="42" cy="27" r="6"/><circle cx="56" cy="32" r="6"/></g></g>
+          <g transform="translate(252 258)"><ellipse cx="34" cy="42" rx="34" ry="16" fill="#EFD9AF"/><path d="M8 36 Q34 10 60 36" fill="#F2D8A0"/><circle cx="34" cy="18" r="7" fill="#A8433C"/></g>
+          <g transform="translate(330 270)"><ellipse cx="36" cy="38" rx="36" ry="16" fill="#DCA95E"/><rect x="12" y="14" width="48" height="22" rx="10" fill="#7A4A2B"/><path d="M14 22 H58" stroke="#B65C38" stroke-width="4" stroke-linecap="round"/></g>
+        </g>
+        <!-- théière -->
+        <g transform="translate(64 452)">
+          <ellipse cx="70" cy="86" rx="64" ry="14" fill="#5F6B4F" opacity=".3"/>
+          <path d="M18 46 Q18 86 70 86 Q122 86 122 46 Q122 20 70 20 Q18 20 18 46Z" fill="#7E8D6E"/>
+          <path d="M118 36 Q150 30 152 54 Q142 50 120 52" fill="#7E8D6E"/>
+          <path d="M40 20 Q70 2 100 20" stroke="#7E8D6E" stroke-width="9" fill="none" stroke-linecap="round"/>
+          <circle cx="70" cy="14" r="7" fill="#5F6B4F"/>
+          <path d="M34 42 H106" stroke="#F6F3EA" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+        </g>
+        <!-- pain au levain -->
+        <g transform="translate(330 460)">
+          <ellipse cx="80" cy="72" rx="82" ry="16" fill="#B08A52" opacity=".4"/>
+          <ellipse cx="80" cy="48" rx="78" ry="44" fill="#C08040"/>
+          <path d="M28 30 Q80 -4 132 30 M40 62 Q80 34 120 62" stroke="#8A5A28" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <g fill="#FBF3E8" opacity=".85"><circle cx="52" cy="22" r="5"/><circle cx="108" cy="18" r="4"/></g>
+        </g>
+        <!-- vapeur -->
+        <g stroke="#B65C38" stroke-width="4" fill="none" stroke-linecap="round" opacity=".45">
+          <path d="M120 430 q-10 -18 2 -34 q10 -14 2 -30"/>
+          <path d="M160 438 q-10 -18 2 -34"/>
+        </g>
+      </svg>
+      <span class="visual-tag">Photo à venir — vitrine &amp; salon</span>
+    </div>
+  </div>
+  <!-- brins de blé décoratifs -->
+  <svg class="hero-side left" viewBox="0 0 160 240" aria-hidden="true">
+    <g stroke="#DCA95E" stroke-width="5" fill="none" stroke-linecap="round">
+      <path d="M80 240 Q76 150 84 60"/>
+      <path d="M84 66 q-26 -8 -30 -34 q26 6 30 34z" fill="#DCA95E"/>
+      <path d="M86 100 q-28 -6 -34 -32 q28 4 34 32z" fill="#E3BC79"/>
+      <path d="M84 66 q26 -8 30 -34 q-26 6 -30 34z" fill="#E3BC79"/>
+      <path d="M88 100 q28 -6 34 -32 q-28 4 -34 32z" fill="#DCA95E"/>
+    </g>
+  </svg>
+  <svg class="hero-side right" viewBox="0 0 160 240" aria-hidden="true">
+    <g stroke="#D8926E" stroke-width="5" fill="none" stroke-linecap="round">
+      <path d="M80 240 Q84 150 76 60"/>
+      <path d="M76 66 q-26 -8 -30 -34 q26 6 30 34z" fill="#D8926E"/>
+      <path d="M78 100 q-28 -6 -34 -32 q28 4 34 32z" fill="#E5AD8C"/>
+      <path d="M76 66 q26 -8 30 -34 q-26 6 -30 34z" fill="#E5AD8C"/>
+      <path d="M80 100 q28 -6 34 -32 q-28 4 -34 32z" fill="#D8926E"/>
+    </g>
+  </svg>
+</section>
+
+<!-- ============ LES PAINS AU LEVAIN ============ -->
+<section id="levain" aria-labelledby="levain-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">La fierté de la maison</p>
+      <h2 id="levain-title">Les pains au <em>levain naturel</em></h2>
+      <p>Farines sélectionnées, moulues à la meule de pierre dans le Val d'Oise — des pains plus digestes, qui se gardent plus longtemps.</p>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+    <!-- Gamme réelle citée par l'article de la ville de Saint-Cloud — descriptions à affiner avec la cliente -->
+    <div class="levain-grid">
+      <article class="levain-card reveal">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><ellipse cx="40" cy="46" rx="30" ry="22" fill="#C08040"/><path d="M18 38 Q40 22 62 38" stroke="#8A5A28" stroke-width="4" fill="none" stroke-linecap="round"/><g stroke="#DCA95E" stroke-width="3" fill="none" stroke-linecap="round"><path d="M40 20 V6"/><path d="M40 12 q-8 -2 -10 -10 q8 2 10 10z" fill="#DCA95E"/><path d="M40 12 q8 -2 10 -10 q-8 2 -10 10z" fill="#DCA95E"/></g></svg>
+        <h3>Blés anciens</h3>
+        <p>Rouge de Bordeaux, variété ancienne au goût profond</p>
+      </article>
+      <article class="levain-card reveal">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><rect x="12" y="34" width="56" height="26" rx="13" fill="#C08040"/><path d="M22 40 l10 14 M38 38 l10 16 M54 40 l8 12" stroke="#8A5A28" stroke-width="3.5" stroke-linecap="round"/><path d="M14 52 Q40 62 66 50" stroke="#DCA95E" stroke-width="4" fill="none" opacity=".7" stroke-linecap="round"/></svg>
+        <h3>Tradition sur levain</h3>
+        <!-- Appellation « tradition » : vérifier la conformité au décret n°93-1074 avant mise en avant -->
+        <p>La baguette du quotidien, fermentée lentement</p>
+      </article>
+      <article class="levain-card reveal">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><ellipse cx="40" cy="46" rx="28" ry="21" fill="#8A6844"/><g fill="#46281A"><circle cx="30" cy="40" r="2.5"/><circle cx="44" cy="36" r="2.5"/><circle cx="52" cy="46" r="2.5"/><circle cx="36" cy="52" r="2.5"/></g><path d="M20 38 Q40 26 60 38" stroke="#5E4630" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+        <h3>Sarrasin</h3>
+        <p>Aux graines de sarrasin torréfiées</p>
+      </article>
+      <article class="levain-card reveal">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="46" r="25" fill="#7A5A42"/><path d="M25 34 L55 58 M55 34 L25 58 M40 18 L40 74" stroke="#46281A" stroke-width="4" stroke-linecap="round" transform="rotate(14 40 46)" opacity=".7"/><circle cx="40" cy="46" r="25" fill="none" stroke="#5E4630" stroke-width="3"/></svg>
+        <h3>Tourte de seigle</h3>
+        <p>Dense, aromatique, parfaite avec le fromage</p>
+      </article>
+      <article class="levain-card reveal">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><ellipse cx="40" cy="46" rx="30" ry="22" fill="#A87E50"/><path d="M16 46 Q40 30 64 46" stroke="#6E4E2E" stroke-width="4" fill="none" stroke-linecap="round"/><g fill="#F4E4D0" opacity=".9"><circle cx="28" cy="38" r="2"/><circle cx="46" cy="34" r="2"/><circle cx="56" cy="44" r="2"/></g></svg>
+        <h3>Pain complet</h3>
+        <p>Toute la richesse du grain, en douceur</p>
+      </article>
+    </div>
+    <p class="levain-note">
+      Levain naturel, fermentations longues, cuissons du jour : demandez conseil,
+      chaque pain a son moment — et son fromage.
+    </p>
+  </div>
+</section>
+
+<!-- ============ NOTRE HISTOIRE ============ -->
+<section id="histoire" aria-labelledby="histoire-title">
+  <div class="wrap histoire-grid">
+    <div class="histoire-visual reveal">
+      <!-- [PHOTO_EQUIPE] : remplacer par une vraie photo d'Odile / de l'équipe en boutique -->
+      <svg viewBox="0 0 480 560" role="img" aria-label="Illustration : la boulangère et son fournil, en attendant la photo d'Odile">
+        <rect width="480" height="560" fill="#EAD9C0"/>
+        <circle cx="240" cy="200" r="150" fill="#F4E4D0"/>
+        <!-- tablier -->
+        <path d="M240 560 L146 560 Q140 420 168 348 L192 300 L288 300 L312 348 Q340 420 334 560 Z" fill="#B65C38"/>
+        <path d="M196 300 L284 300 L284 250 Q284 226 240 226 Q196 226 196 250 Z" fill="#B65C38"/>
+        <path d="M206 316 Q240 336 274 316" stroke="#8C4326" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <rect x="196" y="380" width="88" height="64" rx="10" fill="#8C4326" opacity=".55"/>
+        <!-- tête stylisée -->
+        <circle cx="240" cy="176" r="52" fill="#E8C29C"/>
+        <path d="M188 160 Q192 108 240 108 Q288 108 292 160 Q288 132 240 130 Q192 132 188 160Z" fill="#7A5A42"/>
+        <path d="M186 166 Q182 196 196 210 M294 166 Q298 196 284 210" stroke="#7A5A42" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <path d="M226 196 Q240 204 254 196" stroke="#8C4326" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- pain dans les mains -->
+        <ellipse cx="240" cy="330" rx="66" ry="34" fill="#C08040"/>
+        <path d="M192 316 Q240 288 288 316" stroke="#8A5A28" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <ellipse cx="160" cy="336" rx="18" ry="14" fill="#E8C29C"/>
+        <ellipse cx="320" cy="336" rx="18" ry="14" fill="#E8C29C"/>
+        <text x="240" y="524" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="21" fill="#7A5A42">Photo d'Odile à venir…</text>
+      </svg>
+    </div>
+    <div class="histoire-txt reveal">
+      <p class="eyebrow">Notre histoire</p>
+      <h2 id="histoire-title">La maison <em>d'Odile</em></h2>
+      <!-- [TEXTE_HISTOIRE] : proposition rédigée à partir de l'article de la ville de
+           Saint-Cloud (« Les bons pains d'Odile ») — à réécrire avec les mots de la cliente -->
+      <p>
+        Dans le quartier des Coteaux, <strong>Odile Canet</strong> tient une
+        boulangerie comme on n'en fait plus beaucoup : <strong>tout y est
+        fabriqué sur place</strong>, du pain qui lève lentement sur levain
+        naturel aux pâtisseries de la vitrine.
+      </p>
+      <p>
+        Les farines sont choisies avec soin, <strong>moulues à la meule de
+        pierre</strong> dans un moulin du Val d'Oise, pour des pains vivants,
+        plus digestes, qui se conservent naturellement.
+      </p>
+      <p>
+        Et parce qu'une boulangerie de quartier est d'abord un lieu où l'on se
+        retrouve, la maison s'est offert un petit salon de thé — le temps d'un
+        café, la passerelle de l'Avre en toile de fond.
+      </p>
+      <p class="signature">— Odile &amp; son équipe</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOS PRODUITS ============ -->
+<section id="produits" aria-labelledby="produits-title" style="padding-top:1rem">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Nos produits</p>
+      <h2 id="produits-title">La vitrine <em>du jour</em></h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+
+    <!-- [PHOTOS_PRODUITS] : remplacer chaque illustration par une vraie photo -->
+    <!-- [PRIX_PRODUITS] : prix INDICATIFS — à remplacer par les tarifs réels -->
+    <div class="produits-grid">
+
+      <article class="prod-card reveal">
+        <div class="prod-visual">
+          <svg viewBox="0 0 400 288" role="img" aria-label="Illustration de pains">
+            <rect width="400" height="288" fill="#F4E4D0"/>
+            <ellipse cx="200" cy="250" rx="140" ry="16" fill="#D9C0A0"/>
+            <ellipse cx="150" cy="196" rx="90" ry="56" fill="#C08040"/>
+            <path d="M84 172 Q150 130 216 172 M100 218 Q150 186 200 218" stroke="#8A5A28" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <g transform="translate(240 130) rotate(16)"><rect width="120" height="34" rx="17" fill="#DCA95E"/><path d="M22 6 l14 20 M52 4 l14 24 M84 6 l12 20" stroke="#A87838" stroke-width="4.5" stroke-linecap="round"/></g>
+          </svg>
+        </div>
+        <div class="prod-body">
+          <h3>Pains</h3>
+          <ul class="prod-list">
+            <li>Tradition sur levain <span class="dots"></span> <span class="prix">1,50&nbsp;€</span></li>
+            <li>Blés anciens <span class="dots"></span> <span class="prix">5,20&nbsp;€/kg</span></li>
+            <li>Tourte de seigle <span class="dots"></span> <span class="prix">4,80&nbsp;€</span></li>
+            <li>Sarrasin torréfié <span class="dots"></span> <span class="prix">4,60&nbsp;€</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="prod-card reveal">
+        <div class="prod-visual">
+          <svg viewBox="0 0 400 288" role="img" aria-label="Illustration de viennoiseries">
+            <rect width="400" height="288" fill="#F6E8D2"/>
+            <ellipse cx="200" cy="252" rx="140" ry="15" fill="#DCC39C"/>
+            <g transform="translate(66 108) scale(1.2)"><path d="M8 38 Q2 16 24 8 Q56 -6 90 10 Q114 20 106 42 Q96 62 66 60 Q32 60 8 38Z" fill="#DCA95E"/><path d="M24 10 Q34 34 30 52 M48 2 Q58 32 54 58 M74 4 Q80 34 78 58 M94 12 Q98 32 96 48" stroke="#A87838" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+            <g transform="translate(230 168) rotate(6)"><rect width="112" height="56" rx="12" fill="#E3B269"/><rect x="13" y="-3" width="11" height="62" rx="5" fill="#6B4226"/><rect x="86" y="-3" width="11" height="62" rx="5" fill="#6B4226"/><path d="M6 20 H106 M6 38 H106" stroke="#B8874238" stroke-width="4"/></g>
+          </svg>
+        </div>
+        <div class="prod-body">
+          <h3>Viennoiseries</h3>
+          <ul class="prod-list">
+            <li>Croissant pur beurre <span class="dots"></span> <span class="prix">1,40&nbsp;€</span></li>
+            <li>Pain au chocolat <span class="dots"></span> <span class="prix">1,60&nbsp;€</span></li>
+            <li>Brioche au levain <span class="dots"></span> <span class="prix">4,90&nbsp;€</span></li>
+            <li>Roulé aux raisins <span class="dots"></span> <span class="prix">2,20&nbsp;€</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="prod-card reveal">
+        <div class="prod-visual">
+          <svg viewBox="0 0 400 288" role="img" aria-label="Illustration de pâtisseries">
+            <rect width="400" height="288" fill="#F4E0CC"/>
+            <ellipse cx="200" cy="252" rx="140" ry="15" fill="#D9BB98"/>
+            <g transform="translate(56 150)"><ellipse cx="76" cy="52" rx="76" ry="30" fill="#DCA95E"/><ellipse cx="76" cy="44" rx="62" ry="22" fill="#A8433C"/><g fill="#C96A5A"><circle cx="46" cy="40" r="8"/><circle cx="76" cy="34" r="8"/><circle cx="106" cy="40" r="8"/></g></g>
+            <g transform="translate(232 140)"><path d="M10 76 Q10 36 52 36 Q94 36 94 76 Z" fill="#EFD9AF"/><path d="M18 44 Q52 8 86 44" fill="#F2D8A0"/><circle cx="52" cy="22" r="9" fill="#A8433C"/><rect x="4" y="76" width="96" height="10" rx="5" fill="#B65C38"/></g>
+          </svg>
+        </div>
+        <div class="prod-body">
+          <h3>Pâtisseries</h3>
+          <ul class="prod-list">
+            <li>Tarte fine du moment <span class="dots"></span> <span class="prix">4,20&nbsp;€</span></li>
+            <li>Choux &amp; religieuses <span class="dots"></span> <span class="prix">3,90&nbsp;€</span></li>
+            <li>Flan à la vanille <span class="dots"></span> <span class="prix">3,50&nbsp;€</span></li>
+            <li>Gâteaux à partager <span class="dots"></span> <span class="prix">sur commande</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="prod-card reveal">
+        <div class="prod-visual">
+          <svg viewBox="0 0 400 288" role="img" aria-label="Illustration du salon de thé et des douceurs">
+            <rect width="400" height="288" fill="#EFE2CE"/>
+            <ellipse cx="200" cy="252" rx="140" ry="15" fill="#D3BC96"/>
+            <g transform="translate(84 130)"><ellipse cx="60" cy="76" rx="56" ry="12" fill="#5F6B4F" opacity=".3"/><path d="M16 40 Q16 76 60 76 Q104 76 104 40 Q104 18 60 18 Q16 18 16 40Z" fill="#7E8D6E"/><path d="M100 32 Q128 26 130 48 Q120 44 102 46" fill="#7E8D6E"/><path d="M34 18 Q60 4 86 18" stroke="#7E8D6E" stroke-width="8" fill="none" stroke-linecap="round"/><circle cx="60" cy="12" r="6" fill="#5F6B4F"/></g>
+            <g transform="translate(226 168)"><ellipse cx="50" cy="42" rx="52" ry="11" fill="#C9AA80" opacity=".5"/><path d="M14 14 Q14 42 50 42 Q86 42 86 14 Z" fill="#FBF3E8"/><path d="M86 18 Q104 16 104 30 Q96 30 84 30" fill="#FBF3E8"/><path d="M24 6 q-6 -10 2 -18 M40 4 q-6 -10 2 -18 M58 6 q-6 -10 2 -18" stroke="#B65C38" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".6"/></g>
+          </svg>
+        </div>
+        <div class="prod-body">
+          <h3>Côté salon</h3>
+          <ul class="prod-list">
+            <li>Café &amp; boissons chaudes <span class="dots"></span> <span class="prix">dès 2,00&nbsp;€</span></li>
+            <li>Thés sélectionnés <span class="dots"></span> <span class="prix">dès 3,00&nbsp;€</span></li>
+            <li>Formule goûter <span class="dots"></span> <span class="prix">dès 5,50&nbsp;€</span></li>
+            <li>Petit déjeuner <span class="dots"></span> <span class="prix">dès 6,50&nbsp;€</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <p class="mention-prix">Prix indicatifs — la carte complète et les tarifs du jour sont affichés en boutique.</p>
+    <p class="mention-allergenes">
+      <strong>Allergènes :</strong> la liste des allergènes de nos produits est disponible
+      en boutique et sur simple demande auprès de notre équipe.
+      <!-- Obligation allergènes (produits non préemballés) : à reporter sur chaque
+           fiche produit si un module click &amp; collect est ajouté en V2 -->
+    </p>
+  </div>
+</section>
+
+<!-- ============ SALON DE THÉ ============ -->
+<section id="salon" aria-labelledby="salon-title">
+  <div class="wrap salon-grid">
+    <div class="salon-txt reveal">
+      <p class="eyebrow">Le petit plus de la maison</p>
+      <h2 id="salon-title">Un salon de thé, <em>la passerelle en toile de fond</em></h2>
+      <p>
+        Quelques tables, une lumière douce et la vue sur la passerelle de
+        l'Avre : le salon de thé d'Odile est fait pour les petits déjeuners
+        tranquilles, les goûters d'après-école et les pauses qui s'étirent.
+      </p>
+      <p>
+        On y vient pour un café et une part de flan, on y reste pour le
+        deuxième thé.
+      </p>
+      <div class="salon-points">
+        <span class="salon-chip">☕ Sur place ou à emporter</span>
+        <span class="salon-chip">🌤 Vue sur la passerelle de l'Avre</span>
+        <span class="salon-chip">🧸 Goûters bienvenus</span>
+      </div>
+    </div>
+    <div class="salon-visual reveal">
+      <!-- [PHOTO_GALERIE — salon] : remplacer par une vraie photo du salon de thé -->
+      <svg viewBox="0 0 480 520" role="img" aria-label="Illustration : le salon de thé et la passerelle, en attendant la photo">
+        <rect width="480" height="520" fill="#8E9C7E"/>
+        <rect x="40" y="60" width="400" height="260" rx="200" fill="#DCE4D2"/>
+        <!-- passerelle stylisée dans la fenêtre -->
+        <path d="M60 250 Q240 160 420 250" stroke="#7A5A42" stroke-width="8" fill="none"/>
+        <path d="M100 244 V210 M170 224 V196 M240 216 V190 M310 224 V196 M380 244 V210" stroke="#7A5A42" stroke-width="5" stroke-linecap="round"/>
+        <path d="M60 252 H420" stroke="#5E4630" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="150" cy="120" r="26" fill="#F2D8A0" opacity=".9"/>
+        <!-- table + thé -->
+        <ellipse cx="240" cy="440" rx="150" ry="24" fill="#5F6B4F"/>
+        <rect x="110" y="360" width="260" height="84" rx="14" fill="#B65C38"/>
+        <rect x="110" y="360" width="260" height="16" rx="8" fill="#8C4326"/>
+        <g transform="translate(150 300)"><path d="M10 30 Q10 56 42 56 Q74 56 74 30 Q74 12 42 12 Q10 12 10 30Z" fill="#FBF3E8"/><path d="M72 26 Q94 22 94 38 Q84 40 70 38" fill="#FBF3E8"/><path d="M24 12 Q42 2 60 12" stroke="#FBF3E8" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+        <g transform="translate(268 316)"><ellipse cx="34" cy="34" rx="36" ry="9" fill="#5E4630" opacity=".4"/><path d="M8 8 Q8 34 34 34 Q60 34 60 8 Z" fill="#FBF3E8"/><path d="M58 12 Q74 10 74 20 Q66 22 56 20" fill="#FBF3E8"/></g>
+        <text x="240" y="496" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F6F3EA">Photo du salon à venir…</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARCHÉ DU DIMANCHE ============ -->
+<section aria-label="Le dimanche au marché" style="padding-top:2.6rem;padding-bottom:2.6rem">
+  <div class="wrap">
+    <div class="marche reveal">
+      <!-- Info issue d'un avis client : Odile tient un stand le dimanche matin sur un
+           marché couvert — PRÉCISER LEQUEL avec la cliente avant publication -->
+      <p>🧺 <strong>Le dimanche matin,</strong> la boutique se repose… mais retrouvez
+      les pains d'Odile sur son stand du marché <strong>[MARCHÉ À PRÉCISER]</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section id="galerie" aria-labelledby="galerie-title" style="padding-top:1rem">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">La maison en images</p>
+      <h2 id="galerie-title">Entre fournil <em>&amp; salon</em></h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+    <!-- [PHOTOS_GALERIE] x4 : remplacer chaque tuile par une vraie photo
+         (vitrine, pains au levain, salon de thé, pâtisseries) -->
+    <div class="galerie-grid">
+      <div class="galerie-item bas reveal">
+        <svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : pains au levain">
+          <rect width="300" height="240" fill="#E4CFAE"/>
+          <ellipse cx="150" cy="150" rx="94" ry="60" fill="#C08040"/>
+          <path d="M82 126 Q150 82 218 126 M96 172 Q150 138 204 172" stroke="#8A5A28" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <g fill="#FBF3E8" opacity=".85"><circle cx="112" cy="104" r="5"/><circle cx="196" cy="98" r="4"/></g>
+        </svg>
+        <span class="galerie-tag">Levain</span>
+      </div>
+      <div class="galerie-item haut reveal">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : la vitrine de pâtisseries">
+          <rect width="300" height="300" fill="#B65C38"/>
+          <rect x="30" y="40" width="240" height="220" rx="120" fill="#FBF3E8"/>
+          <g transform="translate(70 120)"><ellipse cx="30" cy="24" rx="30" ry="14" fill="#DCA95E"/><ellipse cx="30" cy="18" rx="24" ry="10" fill="#A8433C"/></g>
+          <g transform="translate(150 110)"><path d="M8 40 Q8 16 40 16 Q72 16 72 40Z" fill="#EFD9AF"/><circle cx="40" cy="10" r="7" fill="#A8433C"/></g>
+          <g transform="translate(96 190)"><ellipse cx="52" cy="20" rx="52" ry="14" fill="#E3B269"/><rect x="22" y="0" width="60" height="18" rx="9" fill="#7A4A2B"/></g>
+        </svg>
+        <span class="galerie-tag">La vitrine</span>
+      </div>
+      <div class="galerie-item bas reveal">
+        <svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : le coin salon">
+          <rect width="300" height="240" fill="#7E8D6E"/>
+          <ellipse cx="150" cy="196" rx="110" ry="16" fill="#5F6B4F"/>
+          <rect x="60" y="130" width="180" height="60" rx="10" fill="#B65C38"/>
+          <g transform="translate(102 76)"><path d="M8 28 Q8 50 36 50 Q64 50 64 28 Q64 12 36 12 Q8 12 8 28Z" fill="#FBF3E8"/><path d="M62 24 Q80 20 80 34 Q72 36 60 34" fill="#FBF3E8"/></g>
+          <g transform="translate(180 92)"><path d="M6 6 Q6 30 28 30 Q50 30 50 6Z" fill="#FBF3E8"/></g>
+        </svg>
+        <span class="galerie-tag">Le salon</span>
+      </div>
+      <div class="galerie-item haut reveal">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : viennoiseries dorées">
+          <rect width="300" height="300" fill="#F6E8D2"/>
+          <g transform="translate(44 84) scale(1.15)"><path d="M8 38 Q2 16 24 8 Q56 -6 90 10 Q114 20 106 42 Q96 62 66 60 Q32 60 8 38Z" fill="#DCA95E"/><path d="M24 10 Q34 34 30 52 M48 2 Q58 32 54 58 M74 4 Q80 34 78 58" stroke="#A87838" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+          <g transform="translate(90 200) rotate(-4)"><rect width="120" height="52" rx="12" fill="#E3B269"/><rect x="14" y="-3" width="11" height="58" rx="5" fill="#6B4226"/><rect x="94" y="-3" width="11" height="58" rx="5" fill="#6B4226"/></g>
+        </svg>
+        <span class="galerie-tag">Viennoiseries</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS ============ -->
+<section id="avis" aria-labelledby="avis-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">4,7/5 sur Google</p>
+      <h2 id="avis-title">Ils ont trouvé <em>leur boulangerie</em></h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+    <!-- [TEMOIGNAGES_CLIENTS] : extraits d'avis Google publics (2026) — à valider avec la
+         cliente, qui peut préférer d'autres avis. Ne jamais inventer d'avis. -->
+    <div class="avis-grid">
+      <figure class="avis-card reveal">
+        <p class="avis-stars" aria-hidden="true">★★★★★</p>
+        <blockquote>« Je viens de déménager dans l'immeuble juste au-dessus… ma mère a adoré cette boulangerie. »</blockquote>
+        <figcaption>Julie — avis Google</figcaption>
+      </figure>
+      <figure class="avis-card reveal">
+        <p class="avis-stars" aria-hidden="true">★★★★★</p>
+        <blockquote>« Une très belle boulangerie avec un choix vaste de gâteaux, pains et viennoiseries. Le plus : le petit salon de thé, avec vue sur la passerelle de l'Avre. »</blockquote>
+        <figcaption>William — avis Google</figcaption>
+      </figure>
+      <figure class="avis-card reveal">
+        <p class="avis-stars" aria-hidden="true">★★★★★</p>
+        <blockquote>« Odile a un stand le dimanche matin dans un marché couvert que je fréquente — enfin une visite dans la boulangerie à Saint-Cloud ! »</blockquote>
+        <figcaption>Fabrice — avis Google</figcaption>
+      </figure>
+    </div>
+    <p class="avis-note">Extraits d'avis publiés sur Google (note 4,7/5 · 157 avis, sept. 2026).</p>
+  </div>
+</section>
+
+<!-- ============ INFOS PRATIQUES ============ -->
+<section id="trouver" aria-labelledby="trouver-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Infos pratiques</p>
+      <h2 id="trouver-title">Nous trouver, <em>aux Coteaux</em></h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+
+    <div class="infos-grid">
+      <div class="reveal">
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Adresse</h3>
+          <!-- NAP : reprendre EXACTEMENT la forme de la fiche Google Business de la cliente -->
+          <address>
+            La Boulangerie d'Odile<br>
+            1, rue de l'Yser<br>
+            92210 Saint-Cloud — quartier des Coteaux
+          </address>
+        </div>
+
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Horaires</h3>
+          <!-- Horaires : article ville de Saint-Cloud (réouverture 16h) ; un annuaire indique
+               16h30 — à trancher avec la cliente -->
+          <table class="horaires-table" id="horairesTable">
+            <tr data-day="1"><td>Lundi</td><td>7h – 14h30 · 16h – 20h</td></tr>
+            <tr data-day="2"><td>Mardi</td><td>7h – 14h30 · 16h – 20h</td></tr>
+            <tr data-day="3"><td>Mercredi</td><td>7h – 14h30 · 16h – 20h</td></tr>
+            <tr data-day="4"><td>Jeudi</td><td>7h – 14h30 · 16h – 20h</td></tr>
+            <tr data-day="5"><td>Vendredi</td><td>7h – 14h30 · 16h – 20h</td></tr>
+            <tr data-day="6"><td>Samedi</td><td>7h30 – 13h30</td></tr>
+            <tr data-day="0"><td>Dimanche</td><td class="ferme">Fermé — stand au marché</td></tr>
+          </table>
+        </div>
+
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Téléphone</h3>
+          <p><a href="tel:+33652793648">06 52 79 36 48</a></p>
+        </div>
+
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> Suivez-nous</h3>
+          <!-- [RESEAUX_SOCIAUX] : compte Instagram réel trouvé — vérifier avec la cliente
+               qu'il s'agit bien du compte officiel -->
+          <p><a class="insta-link" href="https://www.instagram.com/la_boulangerie_dodile/" target="_blank" rel="noopener">@la_boulangerie_dodile</a></p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="map-shell">
+          <iframe
+            title="Carte Google Maps — La Boulangerie d'Odile"
+            src="https://maps.google.com/maps?q=La%20Boulangerie%20d%27Odile%2C%201%20Rue%20de%20l%27Yser%2C%2092210%20Saint-Cloud&z=17&hl=fr&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="map-links">
+          <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=La%20Boulangerie%20d%27Odile%2C%201%20Rue%20de%20l%27Yser%2C%2092210%20Saint-Cloud" target="_blank" rel="noopener">Itinéraire</a>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=La%20Boulangerie%20d%27Odile%2C%201%20Rue%20de%20l%27Yser%2C%2092210%20Saint-Cloud" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">La Boulangerie <em>d'Odile</em><small>Artisan · Salon de thé · Les Coteaux</small></p>
+        <p style="margin-top:.6rem;font-size:.86rem">1, rue de l'Yser · 92210 Saint-Cloud<br>
+        <a href="tel:+33652793648" style="color:inherit">06 52 79 36 48</a> ·
+        <a href="https://www.instagram.com/la_boulangerie_dodile/" target="_blank" rel="noopener" style="color:inherit">Instagram</a></p>
+      </div>
+      <nav aria-label="Navigation pied de page">
+        <a href="#top">Accueil</a>
+        <a href="#produits">Nos produits</a>
+        <a href="#histoire">Notre histoire</a>
+        <a href="#salon">Salon de thé</a>
+        <a href="#trouver">Nous trouver</a>
+      </nav>
+    </div>
+
+    <div class="footer-legal">
+      <details>
+        <summary>Mentions légales</summary>
+        <div class="legal-body">
+          <!-- [MENTIONS_LEGALES] : à compléter avec les informations officielles de la cliente -->
+          <p>Éditeur du site : La Boulangerie d'Odile SARL — au capital de [CAPITAL] €<br>
+          Siège social : 1, rue de l'Yser, 92210 Saint-Cloud — SIRET : [SIRET] — TVA : [TVA_INTRA]<br>
+          Directrice de la publication : Odile Canet — Contact : 06 52 79 36 48<br>
+          Hébergement : [HÉBERGEUR, adresse]<br>
+          Ce site ne dépose aucun cookie de suivi et ne collecte aucune donnée personnelle.<br>
+          Crédits visuels : illustrations provisoires en attente des photographies de la boutique.</p>
+        </div>
+      </details>
+      <p class="copyright">© <span id="year">2026</span> La Boulangerie d'Odile — Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Menu mobile ===== */
+var toggle = document.getElementById('menuToggle');
+var menu = document.getElementById('mobileMenu');
+toggle.addEventListener('click', function () {
+  var open = menu.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+});
+menu.querySelectorAll('a').forEach(function (a) {
+  a.addEventListener('click', function () {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ===== Statut ouvert/fermé (hero) =====
+   HORAIRES — sources : article ville de Saint-Cloud + annuaires (sept. 2026).
+   À confirmer avec la cliente (réouverture 16h ou 16h30 ?).
+   Index 0 = dimanche … 6 = samedi ; plages [début, fin] en minutes. */
+var HORAIRES = [
+  [],                            // dimanche : boutique fermée (stand au marché)
+  [[420, 870],[960, 1200]],      // lundi    : 7h00–14h30 / 16h00–20h00
+  [[420, 870],[960, 1200]],      // mardi
+  [[420, 870],[960, 1200]],      // mercredi
+  [[420, 870],[960, 1200]],      // jeudi
+  [[420, 870],[960, 1200]],      // vendredi
+  [[450, 810]]                   // samedi   : 7h30–13h30
+];
+var JOURS = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+function fmt(m){ var h=Math.floor(m/60), mn=m%60; return h+'h'+(mn<10?'0':'')+mn; }
+(function () {
+  var now = new Date();
+  var day = now.getDay(), mins = now.getHours()*60 + now.getMinutes();
+  var pill = document.getElementById('statusPill'), txt = document.getElementById('statusText');
+  if (!pill || !txt) return;
+  var plages = HORAIRES[day], msg = null;
+  for (var i=0;i<plages.length;i++){
+    if (mins >= plages[i][0] && mins < plages[i][1]) { msg = 'Ouvert · ferme à ' + fmt(plages[i][1]); break; }
+    if (mins < plages[i][0]) { msg = 'Fermé · ' + (i>0?'rouvre':'ouvre') + ' à ' + fmt(plages[i][0]); pill.classList.add('closed'); break; }
+  }
+  if (!msg) {
+    pill.classList.add('closed');
+    for (var d=1;d<=7;d++){
+      var nd=(day+d)%7;
+      if (HORAIRES[nd].length){ msg='Fermé · rouvre '+(d===1?'demain':JOURS[nd])+' à '+fmt(HORAIRES[nd][0][0]); break; }
+    }
+  }
+  if (msg) txt.textContent = msg;
+  var row = document.querySelector('#horairesTable tr[data-day="'+day+'"]');
+  if (row) row.classList.add('today');
+})();
+
+/* ===== Année du copyright ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== Apparition au scroll ===== */
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+} else {
+  document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+}
+</script>
+
+</body>
+</html>

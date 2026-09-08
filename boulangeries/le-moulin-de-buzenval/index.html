@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- ============================================================
+  MAQUETTE DE DÉMONSTRATION — LE MOULIN DE BUZENVAL
+  Boulangerie · Pâtisserie — 84, rue de Buzenval, Saint-Cloud (92210)
+
+  DONNÉES RÉELLES (vérifiées sur annuaires + fiche Google, sept. 2026) :
+  · Téléphone : 01 46 02 00 68
+  · Horaires : OUVERT 7J/7, 7h00–20h00 — vrai différenciateur local, mis en avant
+  · Positionnement (repris de la description de l'établissement sur les annuaires) :
+    « pains et pâtisseries élaborés avec des ingrédients issus de l'agriculture
+    biologique, dans le respect de l'environnement et du bien-être animal »
+    → à faire reformuler/confirmer par le client (ne pas afficher de logo AB
+    sans certification)
+  · Avis : extraits d'avis Google publics (Sylvie, Awa)
+  · SIRET trouvé sur annuaire d'entreprises : 879 474 302 00012 — à vérifier
+
+  À VALIDER AVEC LE CLIENT AVANT MISE EN LIGNE :
+  · [TEXTE_HISTOIRE] : texte "Notre histoire" = proposition à réécrire
+  · [PRIX_PRODUITS] : TOUS les prix sont indicatifs
+  · Toutes les photos sont des visuels de substitution (illustrations)
+  · [RESEAUX_SOCIAUX] : aucun compte trouvé — à créer ou à ajouter
+  · Appellation « pain de tradition française » volontairement évitée :
+    ne l'ajouter que si le client confirme respecter le décret n°93-1074.
+============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Moulin de Buzenval — Boulangerie artisanale à Saint-Cloud, ouverte 7j/7</title>
+<meta name="description" content="Boulangerie-pâtisserie artisanale au 84 rue de Buzenval à Saint-Cloud : pains et pâtisseries élaborés avec des ingrédients choisis, dans le respect de l'environnement. Ouvert tous les jours de 7h à 20h.">
+<meta name="theme-color" content="#54331D">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Le Moulin de Buzenval — Boulangerie artisanale à Saint-Cloud, ouverte 7j/7">
+<meta property="og:description" content="Du grain au pain : une boulangerie de quartier ouverte tous les jours, rue de Buzenval à Saint-Cloud. Pains, viennoiseries et pâtisseries élaborés avec des ingrédients choisis.">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E%F0%9F%8C%BE%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Le moulin de Buzenval",
+  "description": "Boulangerie-pâtisserie artisanale à Saint-Cloud, ouverte 7 jours sur 7 : pains, viennoiseries et pâtisseries élaborés avec des ingrédients choisis, dans le respect de l'environnement.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "84 rue de Buzenval",
+    "addressLocality": "Saint-Cloud",
+    "postalCode": "92210",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33146020068",
+  "priceRange": "€",
+  "servesCuisine": "Boulangerie, pâtisserie",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "07:00",
+      "closes": "20:00"
+    }
+  ]
+}
+</script>
+
+<style>
+/* ============ PALETTE — blé doré, meule & écru ============ */
+:root{
+  --ecru:#FAF3E3;         /* fond principal */
+  --creme:#FFFBF0;        /* cartes */
+  --meule:#54331D;        /* brun meule, texte */
+  --terreux:#7C5A38;      /* texte secondaire */
+  --ble:#D9A13B;          /* jaune blé */
+  --ble-fonce:#B67E22;
+  --cuivre:#B4642C;       /* accent cuivré */
+  --ligne:rgba(84,51,29,.15);
+  --ombre:0 20px 42px -20px rgba(84,51,29,.38);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{
+  font-family:'Jost',system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--ecru);
+  color:var(--meule);
+  line-height:1.65;
+  font-size:16.5px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .36 0 0 0 0 .16 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:'Bitter',Georgia,'Times New Roman',serif;font-weight:600;line-height:1.15}
+.wrap{width:min(1120px,92%);margin-inline:auto}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--meule);color:var(--ecru);padding:.6rem 1rem;z-index:99;border-radius:0 0 8px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--cuivre);outline-offset:3px;border-radius:4px}
+
+/* ============ HEADER ============ */
+#site-header{position:sticky;top:0;z-index:50;background:rgba(250,243,227,.93);backdrop-filter:blur(8px);border-bottom:2px solid var(--ble)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.72rem 0}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.brand-moulin{width:42px;height:42px;flex:none;color:var(--cuivre)}
+.brand-name{font-family:'Bitter',serif;font-weight:700;font-size:1.08rem;line-height:1.12}
+.brand-name small{display:block;font-family:'Jost',sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ble-fonce)}
+.nav-desktop{display:flex;gap:1.6rem}
+.nav-desktop a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--terreux);padding:.3rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.nav-desktop a:hover{color:var(--meule);border-color:var(--ble)}
+.header-actions{display:flex;align-items:center;gap:.7rem}
+.call-pill{display:inline-flex;align-items:center;gap:.45rem;background:var(--meule);color:var(--ecru);text-decoration:none;padding:.55rem 1rem;border-radius:999px;font-weight:600;font-size:.88rem;transition:background .2s,transform .2s;white-space:nowrap}
+.call-pill:hover{background:var(--cuivre);transform:translateY(-1px)}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}
+.menu-toggle span{display:block;width:24px;height:2px;background:var(--meule);margin:5px 0;transition:transform .25s,opacity .25s}
+.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;background:var(--creme);border-bottom:2px solid var(--ble);padding:.6rem 4%}
+.mobile-menu.open{display:flex}
+.mobile-menu a{text-decoration:none;padding:.85rem .2rem;font-weight:600;border-bottom:1px solid var(--ligne)}
+.mobile-menu a:last-child{border-bottom:none;color:var(--cuivre)}
+
+/* ============ HERO ============ */
+.hero{padding:3.4rem 0 0;overflow:hidden;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:center}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--cuivre);margin-bottom:1rem}
+.badge-7j{display:inline-flex;align-items:center;gap:.5rem;background:var(--ble);color:var(--meule);font-weight:700;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;padding:.5rem 1rem;border-radius:999px;margin-bottom:1.2rem;box-shadow:0 6px 16px -8px rgba(182,126,34,.7)}
+.hero h1{font-size:clamp(2.4rem,5.4vw,3.9rem);margin-bottom:1.1rem;text-wrap:balance}
+.hero h1 .ble{color:var(--cuivre)}
+.hero-sub{color:var(--terreux);font-size:1.08rem;max-width:33rem;margin-bottom:1.5rem}
+.status-pill{display:inline-flex;align-items:center;gap:.55rem;background:var(--creme);border:1px solid var(--ligne);border-radius:999px;padding:.5rem 1.05rem;font-weight:600;font-size:.92rem;margin-bottom:1.6rem}
+.status-dot{width:9px;height:9px;border-radius:50%;background:#4C8A50;box-shadow:0 0 0 4px rgba(76,138,80,.15)}
+.status-pill.closed .status-dot{background:var(--cuivre);box-shadow:0 0 0 4px rgba(180,100,44,.15)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.98rem;padding:.85rem 1.6rem;border-radius:999px;transition:transform .2s,background .2s,color .2s;border:1.5px solid var(--meule)}
+.btn-primary{background:var(--meule);color:var(--ecru)}
+.btn-primary:hover{background:var(--cuivre);border-color:var(--cuivre);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--meule)}
+.btn-ghost:hover{background:var(--meule);color:var(--ecru);transform:translateY(-2px)}
+.hero-visual svg{width:100%;height:auto}
+/* champ de blé en bas du héro */
+.champ{margin-top:2.6rem}
+.champ svg{width:100%;height:auto;display:block}
+
+/* ============ SECTIONS ============ */
+section{padding:4.2rem 0}
+.section-head{max-width:46rem;margin-bottom:2.4rem}
+.section-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-bottom:.7rem}
+.section-head h2 .ble{color:var(--cuivre)}
+.section-head p{color:var(--terreux)}
+.center{text-align:center;margin-inline:auto}
+
+/* Valeurs */
+#valeurs{background:var(--creme);border-block:1px solid var(--ligne);padding:3.4rem 0}
+.valeurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.valeur-card{text-align:center;padding:1.6rem 1.2rem;border-radius:16px;border:1px solid var(--ligne);background:var(--ecru);transition:transform .25s,box-shadow .25s}
+.valeur-card:hover{transform:translateY(-5px);box-shadow:var(--ombre)}
+.valeur-card svg{width:56px;height:56px;margin:0 auto .9rem;color:var(--cuivre)}
+.valeur-card h3{font-size:1.12rem;margin-bottom:.4rem}
+.valeur-card p{font-size:.88rem;color:var(--terreux)}
+.valeurs-note{margin-top:1.4rem;text-align:center;font-size:.8rem;color:var(--terreux);font-style:italic}
+
+/* Du grain au pain */
+.etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;counter-reset:etape}
+.etape{position:relative;background:var(--creme);border:1px solid var(--ligne);border-radius:16px;padding:2.2rem 1.5rem 1.6rem;counter-increment:etape}
+.etape::before{
+  content:counter(etape,decimal-leading-zero);
+  position:absolute;top:-16px;left:1.3rem;
+  font-family:'Bitter',serif;font-weight:700;font-size:1rem;
+  background:var(--ble);color:var(--meule);padding:.3rem .7rem;border-radius:8px;
+}
+.etape h3{font-size:1.2rem;margin-bottom:.5rem}
+.etape p{font-size:.92rem;color:var(--terreux)}
+.etape svg{width:64px;height:64px;margin-bottom:.9rem;color:var(--cuivre)}
+
+/* Notre histoire */
+#histoire{background:var(--meule);color:var(--ecru)}
+#histoire .eyebrow{color:var(--ble)}
+.histoire-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.histoire-txt h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-bottom:1rem;color:var(--creme)}
+.histoire-txt h2 .ble{color:var(--ble)}
+.histoire-txt p{margin-bottom:1rem;color:rgba(250,243,227,.85)}
+.histoire-txt strong{color:var(--ble)}
+.histoire-visual{border-radius:16px;overflow:hidden;box-shadow:0 24px 48px -22px rgba(0,0,0,.5);border:1px solid rgba(250,243,227,.25)}
+
+/* La carte du moulin */
+.carte-panel{
+  background:var(--meule);color:var(--ecru);border-radius:20px;
+  padding:2.8rem 2.6rem;box-shadow:var(--ombre);
+  border:6px double var(--ble);
+}
+.carte-panel-head{text-align:center;margin-bottom:2rem}
+.carte-panel-head h2{color:var(--creme);font-size:clamp(1.7rem,3.4vw,2.4rem)}
+.carte-panel-head p{color:rgba(250,243,227,.7);font-size:.95rem;margin-top:.4rem}
+.carte-cols{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem 3.2rem}
+.carte-cat h3{color:var(--ble);font-size:1.25rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem}
+.carte-cat h3 svg{width:26px;height:26px;flex:none}
+.carte-list{list-style:none;font-size:.94rem;color:rgba(250,243,227,.88)}
+.carte-list li{display:flex;align-items:baseline;gap:.5rem;padding:.3rem 0}
+.carte-list .dots{flex:1;border-bottom:1.5px dotted rgba(250,243,227,.35);transform:translateY(-3px)}
+.carte-list .prix{font-weight:700;color:var(--creme);white-space:nowrap}
+.mention-prix{margin-top:1.8rem;font-size:.8rem;color:rgba(250,243,227,.6);text-align:center}
+.mention-allergenes{margin:.6rem auto 0;font-size:.8rem;color:rgba(250,243,227,.7);border-left:3px solid var(--ble);padding-left:.8rem;max-width:44rem}
+
+/* Galerie */
+.galerie-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:190px;gap:1.1rem}
+.galerie-item{border-radius:14px;overflow:hidden;border:1px solid var(--ligne);position:relative;transition:transform .25s}
+.galerie-item:hover{transform:rotate(-1deg) scale(1.02)}
+.galerie-item svg{width:100%;height:100%}
+.galerie-item.tall{grid-row:span 2}
+.galerie-tag{position:absolute;bottom:8px;left:8px;background:rgba(84,51,29,.78);color:var(--ecru);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.26rem .6rem;border-radius:999px}
+
+/* Avis */
+#avis{background:var(--creme);border-block:1px solid var(--ligne)}
+.avis-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
+.avis-card{background:var(--ecru);border:1px solid var(--ligne);border-radius:16px;padding:1.8rem 1.6rem;position:relative}
+.avis-stars{color:var(--ble-fonce);letter-spacing:.16em;font-size:.95rem;margin-bottom:.7rem}
+.avis-card blockquote{font-family:'Bitter',serif;font-style:italic;font-size:1.1rem;line-height:1.5;margin-bottom:1rem}
+.avis-card figcaption{font-size:.85rem;color:var(--terreux);font-weight:600}
+.avis-note{margin-top:1.2rem;font-size:.8rem;color:var(--terreux)}
+
+/* Infos pratiques */
+.infos-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;align-items:start}
+.infos-bloc{margin-bottom:1.7rem}
+.infos-bloc h3{font-size:1.12rem;margin-bottom:.55rem;display:flex;align-items:center;gap:.5rem}
+.infos-bloc h3 svg{color:var(--cuivre);flex:none}
+.infos-bloc p,.infos-bloc address{font-style:normal;color:var(--terreux)}
+.horaires-table{width:100%;border-collapse:collapse;font-size:.95rem}
+.horaires-table td{padding:.42rem 0;border-bottom:1px dashed var(--ligne);color:var(--terreux)}
+.horaires-table td:last-child{text-align:right;font-weight:600;color:var(--meule)}
+.horaires-table tr.today td{color:var(--cuivre);font-weight:700}
+.sept-badge{display:inline-block;background:var(--ble);color:var(--meule);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:.2rem .55rem;margin-left:.5rem}
+.map-shell{border-radius:16px;overflow:hidden;border:1px solid var(--ligne);box-shadow:var(--ombre);background:linear-gradient(135deg,#EBDBB8,#E0CB9E)}
+.map-shell iframe{width:100%;height:340px;border:0;display:block}
+.map-links{display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap}
+.map-links .btn{font-size:.88rem;padding:.6rem 1.2rem}
+
+/* Footer */
+footer{background:var(--meule);color:rgba(250,243,227,.8);padding:2.6rem 0 2rem;margin-top:2rem;border-top:6px solid var(--ble)}
+.footer-grid{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.footer-brand{font-family:'Bitter',serif;font-size:1.2rem;font-weight:700;color:var(--creme)}
+.footer-brand small{display:block;font-family:'Jost',sans-serif;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ble);margin-top:.25rem;font-weight:600}
+footer nav{display:flex;gap:1.3rem;flex-wrap:wrap}
+footer nav a{color:rgba(250,243,227,.8);text-decoration:none;font-size:.9rem;font-weight:500}
+footer nav a:hover{color:var(--ble)}
+.footer-legal{border-top:1px solid rgba(250,243,227,.18);padding-top:1.3rem;font-size:.8rem}
+.footer-legal summary{cursor:pointer;font-weight:600;color:rgba(250,243,227,.85)}
+.footer-legal .legal-body{margin-top:.8rem;line-height:1.7;color:rgba(250,243,227,.62)}
+.copyright{margin-top:1rem;font-size:.78rem;color:rgba(250,243,227,.55)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}.galerie-item:hover{transform:none}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:920px){
+  .hero-grid,.histoire-grid,.infos-grid,.carte-cols{grid-template-columns:1fr;gap:2.2rem}
+  .valeurs-grid,.etapes{grid-template-columns:1fr}
+  .etapes{gap:2rem}
+  .galerie-grid{grid-template-columns:repeat(2,1fr)}
+  .avis-grid{grid-template-columns:1fr}
+  .hero-visual{max-width:380px;margin-inline:auto;order:-1}
+  .carte-panel{padding:2.2rem 1.6rem}
+}
+@media (max-width:800px){
+  .nav-desktop{display:none}
+  .menu-toggle{display:block}
+}
+@media (max-width:640px){
+  .call-text{display:none}
+  .call-pill{padding:.55rem .7rem}
+  .galerie-grid{grid-auto-rows:150px}
+  section{padding:3.2rem 0}
+}
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body id="top">
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="brand" aria-label="Le Moulin de Buzenval — accueil">
+      <svg class="brand-moulin" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+        <path d="M18 44 L20 22 L28 22 L30 44 Z" fill="currentColor" opacity=".15"/>
+        <path d="M18 44 L20 22 L28 22 L30 44"/>
+        <circle cx="24" cy="18" r="2.4" fill="currentColor"/>
+        <path d="M24 18 L34 8 M24 18 L34 28 M24 18 L14 8 M24 18 L14 28"/>
+        <path d="M31 8 L37 11 M31 28 L37 25 M17 8 L11 11 M17 28 L11 25"/>
+      </svg>
+      <span class="brand-name">Le Moulin<br>de Buzenval<small>Boulangerie · Pâtisserie</small></span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      <a href="#top">Accueil</a>
+      <a href="#carte">Nos produits</a>
+      <a href="#histoire">Notre histoire</a>
+      <a href="#trouver">Nous trouver</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="call-pill" href="tel:+33146020068" aria-label="Appeler le 01 46 02 00 68">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="call-text">01 46 02 00 68</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Accueil</a>
+  <a href="#carte">Nos produits</a>
+  <a href="#histoire">Notre histoire</a>
+  <a href="#trouver">Nous trouver</a>
+  <a href="tel:+33146020068">Appeler · 01 46 02 00 68</a>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Boulangerie artisanale · Saint-Cloud</p>
+      <p class="badge-7j">🌾 Ouvert 7 jours sur 7 · 7h – 20h</p>
+      <!-- [SLOGAN] : proposition d'accroche — à valider avec le client -->
+      <h1 id="hero-title">Du grain au pain, <span class="ble">tous les jours.</span></h1>
+      <p class="hero-sub">
+        Rue de Buzenval, le moulin ne s'arrête jamais : pains, viennoiseries et
+        pâtisseries élaborés avec des ingrédients choisis, du lundi au dimanche —
+        parce qu'un bon pain, ça ne prend pas de jour de repos.
+      </p>
+      <!-- Horaires du jour : calculés en JS depuis HORAIRES (voir script) -->
+      <p class="status-pill" id="statusPill"><span class="status-dot" aria-hidden="true"></span><span id="statusText">Tous les jours · 7h00 – 20h00</span></p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#carte">Découvrir nos pains</a>
+        <a class="btn btn-ghost" href="#trouver">Nous trouver</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <!-- [PHOTO_HERO] : remplacer cette illustration par une vraie photo
+           (devanture ou pain signature en gros plan) -->
+      <svg viewBox="0 0 480 460" role="img" aria-label="Illustration : le moulin dans les blés, en attendant les photos de la boulangerie">
+        <circle cx="240" cy="200" r="170" fill="#F2E2BC"/>
+        <circle cx="240" cy="200" r="130" fill="#EED9A8" opacity=".7"/>
+        <circle cx="312" cy="96" r="38" fill="#D9A13B" opacity=".8"/>
+        <!-- moulin -->
+        <g>
+          <path d="M204 356 L216 210 L264 210 L276 356 Z" fill="#B4642C"/>
+          <path d="M204 356 L216 210 L264 210 L276 356 Z" fill="none" stroke="#8A4A1E" stroke-width="4"/>
+          <path d="M216 240 H264 M212 280 H268 M208 320 H272" stroke="#8A4A1E" stroke-width="3.4" opacity=".6"/>
+          <path d="M210 210 Q240 186 270 210" fill="#54331D"/>
+          <rect x="228" y="306" width="24" height="50" rx="10" fill="#54331D"/>
+          <circle cx="240" cy="196" r="7" fill="#54331D"/>
+          <!-- ailes -->
+          <g stroke="#54331D" stroke-width="7" stroke-linecap="round">
+            <path d="M240 196 L310 128"/><path d="M240 196 L172 128"/>
+            <path d="M240 196 L310 264"/><path d="M240 196 L172 264"/>
+          </g>
+          <g fill="#EED9A8" stroke="#54331D" stroke-width="4">
+            <path d="M306 132 L268 158 L294 184 Z" opacity=".95"/>
+            <path d="M176 132 L214 158 L188 184 Z" opacity=".95"/>
+            <path d="M306 260 L268 234 L294 208 Z" opacity=".95"/>
+            <path d="M176 260 L214 234 L188 208 Z" opacity=".95"/>
+          </g>
+        </g>
+        <!-- blés au premier plan -->
+        <g stroke="#B67E22" stroke-width="5" fill="none" stroke-linecap="round">
+          <path d="M96 440 Q92 380 100 330"/><path d="M144 448 Q142 396 136 350"/>
+          <path d="M340 448 Q344 396 350 350"/><path d="M390 440 Q386 380 380 330"/>
+        </g>
+        <g fill="#D9A13B">
+          <path d="M100 334 q-20 -6 -24 -28 q20 4 24 28z"/><path d="M100 334 q20 -6 24 -28 q-20 4 -24 28z"/>
+          <path d="M136 354 q-18 -6 -22 -26 q18 4 22 26z"/><path d="M136 354 q18 -6 22 -26 q-18 4 -22 26z"/>
+          <path d="M350 354 q-18 -6 -22 -26 q18 4 22 26z"/><path d="M350 354 q18 -6 22 -26 q-18 4 -22 26z"/>
+          <path d="M380 334 q-20 -6 -24 -28 q20 4 24 28z"/><path d="M380 334 q20 -6 24 -28 q-20 4 -24 28z"/>
+        </g>
+        <!-- pain au pied du moulin -->
+        <g transform="translate(150 368)">
+          <ellipse cx="90" cy="40" rx="92" ry="18" fill="#C9A263" opacity=".5"/>
+          <rect x="8" y="6" width="164" height="40" rx="20" fill="#D9A13B"/>
+          <path d="M36 12 l18 26 M76 10 l18 30 M118 10 l18 28" stroke="#8A5A18" stroke-width="5" stroke-linecap="round"/>
+          <path d="M14 34 Q90 48 166 32" stroke="#F2E2BC" stroke-width="5" fill="none" opacity=".7" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- champ de blé décoratif -->
+  <div class="champ" aria-hidden="true">
+    <svg viewBox="0 0 1200 70" preserveAspectRatio="none">
+      <path d="M0 70 L0 40 Q60 20 120 38 Q180 54 240 34 Q300 16 360 36 Q420 54 480 32 Q540 14 600 34 Q660 52 720 32 Q780 14 840 36 Q900 54 960 34 Q1020 16 1080 38 Q1140 56 1200 36 L1200 70 Z" fill="#D9A13B" opacity=".35"/>
+      <path d="M0 70 L0 52 Q80 34 160 50 Q240 64 320 48 Q400 32 480 50 Q560 64 640 48 Q720 32 800 50 Q880 64 960 48 Q1040 34 1120 52 Q1160 58 1200 50 L1200 70 Z" fill="#B67E22" opacity=".4"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ VALEURS ============ -->
+<section id="valeurs" aria-labelledby="valeurs-title">
+  <div class="wrap">
+    <div class="section-head center reveal" style="text-align:center">
+      <p class="eyebrow">Ce qui nous guide</p>
+      <h2 id="valeurs-title">Bien faire, <span class="ble">du champ au fournil</span></h2>
+    </div>
+    <!-- Engagements repris de la description publiée par l'établissement sur les annuaires —
+         à faire confirmer/reformuler par le client. Ne pas afficher de logo AB sans certification. -->
+    <div class="valeurs-grid">
+      <div class="valeur-card reveal">
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M28 48 Q24 30 30 14"/>
+          <path d="M30 16 q-12 -2 -16 -14 q12 2 16 14z" fill="currentColor" opacity=".25"/>
+          <path d="M30 16 q12 -2 16 -14 q-12 2 -16 14z"/>
+          <path d="M28 30 q-11 -2 -15 -13 q11 2 15 13z"/>
+          <path d="M29 30 q11 -2 15 -13 q-11 2 -15 13z" fill="currentColor" opacity=".25"/>
+        </svg>
+        <h3>Ingrédients choisis</h3>
+        <p>Farines et matières premières sélectionnées, issues de l'agriculture biologique.</p>
+      </div>
+      <div class="valeur-card reveal">
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M28 8 Q44 16 44 32 Q44 46 28 48 Q12 46 12 32 Q12 16 28 8Z"/>
+          <path d="M28 20 Q34 26 34 32 Q34 40 28 42 Q22 40 22 32 Q22 26 28 20Z" fill="currentColor" opacity=".25"/>
+        </svg>
+        <h3>Respect de l'environnement</h3>
+        <p>Des recettes et des pratiques pensées pour limiter notre empreinte.</p>
+      </div>
+      <div class="valeur-card reveal">
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M28 46 Q10 34 10 22 Q10 12 19 12 Q25 12 28 18 Q31 12 37 12 Q46 12 46 22 Q46 34 28 46Z" fill="currentColor" opacity=".2"/>
+          <path d="M28 46 Q10 34 10 22 Q10 12 19 12 Q25 12 28 18 Q31 12 37 12 Q46 12 46 22 Q46 34 28 46Z"/>
+        </svg>
+        <h3>Bien-être animal</h3>
+        <p>Œufs, beurre et crème choisis avec exigence, dans le respect du vivant.</p>
+      </div>
+    </div>
+    <p class="valeurs-note">Chaque création est élaborée avec soin, pour des produits authentiques et généreux.</p>
+  </div>
+</section>
+
+<!-- ============ DU GRAIN AU PAIN ============ -->
+<section aria-labelledby="etapes-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Notre façon de faire</p>
+      <h2 id="etapes-title">Du grain au pain, <span class="ble">en trois temps</span></h2>
+    </div>
+    <!-- [TEXTE_HISTOIRE — process] : proposition à valider avec le client -->
+    <div class="etapes">
+      <div class="etape reveal">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true">
+          <ellipse cx="24" cy="44" rx="6" ry="9" fill="currentColor" opacity=".25"/>
+          <ellipse cx="38" cy="38" rx="6" ry="9" fill="currentColor" opacity=".25" transform="rotate(24 38 38)"/>
+          <ellipse cx="24" cy="44" rx="6" ry="9"/><ellipse cx="38" cy="38" rx="6" ry="9" transform="rotate(24 38 38)"/>
+          <path d="M46 14 Q48 24 44 30"/>
+        </svg>
+        <h3>Le grain</h3>
+        <p>Des farines sélectionnées auprès de meuniers de confiance, pour un pain qui a du goût dès la première mie.</p>
+      </div>
+      <div class="etape reveal">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 34 Q12 50 32 50 Q52 50 52 34 L52 26 L12 26 Z" fill="currentColor" opacity=".2"/>
+          <path d="M12 34 Q12 50 32 50 Q52 50 52 34 L52 26 L12 26 Z"/>
+          <ellipse cx="32" cy="26" rx="20" ry="5"/>
+          <path d="M32 8 L32 20 M24 12 Q32 18 40 12"/>
+        </svg>
+        <h3>Le pétrin</h3>
+        <p>Pétrissage doux, longues fermentations, façonnage à la main : on laisse à la pâte le temps de bien faire les choses.</p>
+      </div>
+      <div class="etape reveal">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="10" y="14" width="44" height="38" rx="6"/>
+          <path d="M18 40 a14 10 0 0 1 28 0Z" fill="currentColor" opacity=".25"/>
+          <path d="M18 40 a14 10 0 0 1 28 0Z"/>
+          <path d="M26 24 q-3 -5 1 -9 M34 24 q-3 -5 1 -9"/>
+        </svg>
+        <h3>Le four</h3>
+        <p>Des cuissons étalées sur la journée, pour du pain chaud du premier café au dernier dîner — 7 jours sur 7.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOTRE HISTOIRE ============ -->
+<section id="histoire" aria-labelledby="histoire-title">
+  <div class="wrap histoire-grid">
+    <div class="histoire-txt reveal">
+      <p class="eyebrow">Notre histoire</p>
+      <h2 id="histoire-title">Le moulin du quartier <span class="ble">Buzenval</span></h2>
+      <!-- [TEXTE_HISTOIRE] : proposition — à réécrire avec les mots du client
+           (depuis quand, qui sont les artisans, d'où vient le nom) -->
+      <p>
+        Au <strong>84 de la rue de Buzenval</strong>, le Moulin est devenu le
+        rendez-vous des matins pressés comme des dimanches tranquilles — la
+        vitrine, elle, fait le spectacle toute la semaine.
+      </p>
+      <p>
+        Derrière le comptoir, une équipe accueillante et une conviction simple :
+        un bon pain commence par de <strong>bons ingrédients</strong>, choisis
+        avec exigence et travaillés dans le respect de l'environnement et du
+        bien-être animal.
+      </p>
+      <p>
+        Et parce que le quartier ne s'arrête jamais vraiment, le Moulin non
+        plus : <strong>ouvert tous les jours</strong>, de 7h à 20h.
+      </p>
+    </div>
+    <div class="histoire-visual reveal">
+      <!-- [PHOTO_EQUIPE] : remplacer par une vraie photo de l'équipe / de la vitrine -->
+      <svg viewBox="0 0 520 420" role="img" aria-label="Illustration : la vitrine du Moulin, en attendant la photo de l'équipe">
+        <rect width="520" height="420" fill="#7C5A38"/>
+        <rect x="50" y="50" width="420" height="300" rx="10" fill="#FAF3E3"/>
+        <rect x="50" y="50" width="420" height="64" fill="#54331D"/>
+        <text x="260" y="92" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#D9A13B" font-style="italic">Le Moulin de Buzenval</text>
+        <!-- étagères garnies -->
+        <g transform="translate(86 150)">
+          <ellipse cx="44" cy="26" rx="44" ry="20" fill="#D9A13B"/><path d="M12 18 Q44 0 76 18" stroke="#8A5A18" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="152" cy="26" rx="44" ry="20" fill="#B4642C"/><path d="M124 14 l14 12 M146 10 l14 14 M170 14 l12 12" stroke="#7A3E16" stroke-width="4" stroke-linecap="round"/>
+          <ellipse cx="256" cy="26" rx="40" ry="19" fill="#C9A263"/>
+          <g transform="translate(304 2)"><path d="M4 26 Q0 12 14 7 Q34 -2 54 8 Q68 14 62 28 Q56 40 38 39 Q16 39 4 26Z" fill="#D9A13B"/></g>
+          <rect x="-10" y="50" width="384" height="9" rx="4" fill="#8A5A18"/>
+        </g>
+        <g transform="translate(86 250)">
+          <g><ellipse cx="40" cy="24" rx="40" ry="17" fill="#EED9A8"/><ellipse cx="40" cy="18" rx="32" ry="12" fill="#A8433C"/></g>
+          <g transform="translate(104 6)"><rect width="96" height="36" rx="9" fill="#E3B269"/><rect x="12" y="-3" width="10" height="42" rx="5" fill="#6B4226"/><rect x="74" y="-3" width="10" height="42" rx="5" fill="#6B4226"/></g>
+          <g transform="translate(226 0)"><ellipse cx="42" cy="26" rx="42" ry="18" fill="#B4642C"/><path d="M14 18 Q42 2 70 18" stroke="#7A3E16" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+          <rect x="-10" y="48" width="384" height="9" rx="4" fill="#8A5A18"/>
+        </g>
+        <text x="260" y="392" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#FAF3E3">Photo de la vitrine à venir…</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LA CARTE DU MOULIN ============ -->
+<section id="carte" aria-labelledby="carte-title">
+  <div class="wrap">
+    <div class="carte-panel reveal">
+      <div class="carte-panel-head">
+        <p class="eyebrow" style="color:var(--ble)">Nos produits</p>
+        <h2 id="carte-title">La carte du Moulin</h2>
+        <p>Pétri, façonné et cuit sur place, toute la journée.</p>
+      </div>
+
+      <!-- [PRIX_PRODUITS] : prix INDICATIFS — à remplacer par les tarifs réels du client -->
+      <!-- [PHOTOS_PRODUITS] : en V2, possibilité d'ajouter une photo par catégorie -->
+      <div class="carte-cols">
+        <div class="carte-cat">
+          <h3><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="10" width="22" height="8" rx="4"/><path d="M7 12 l3 4 M12 11.5 l3 5 M17 12 l3 4"/></svg> Les pains</h3>
+          <ul class="carte-list">
+            <li>Baguette du Moulin <span class="dots"></span> <span class="prix">1,30&nbsp;€</span></li>
+            <li>Pain de campagne <span class="dots"></span> <span class="prix">3,80&nbsp;€</span></li>
+            <li>Pain aux graines <span class="dots"></span> <span class="prix">4,20&nbsp;€</span></li>
+            <li>Pain complet <span class="dots"></span> <span class="prix">3,90&nbsp;€</span></li>
+            <li>Pain du week-end <span class="dots"></span> <span class="prix">selon saison</span></li>
+          </ul>
+        </div>
+
+        <div class="carte-cat">
+          <h3><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 17 Q2 9 10 7 Q16 5 21 8 Q25 10 23 15 Q21 20 14 19 Q8 19 4 17Z"/><path d="M9 8 q2 6 1 10 M14 6.5 q2 7 1.5 12"/></svg> Les viennoiseries</h3>
+          <ul class="carte-list">
+            <li>Croissant pur beurre <span class="dots"></span> <span class="prix">1,40&nbsp;€</span></li>
+            <li>Pain au chocolat <span class="dots"></span> <span class="prix">1,60&nbsp;€</span></li>
+            <li>Pain aux raisins <span class="dots"></span> <span class="prix">2,10&nbsp;€</span></li>
+            <li>Chausson aux pommes <span class="dots"></span> <span class="prix">2,50&nbsp;€</span></li>
+            <li>Brioche du dimanche <span class="dots"></span> <span class="prix">4,50&nbsp;€</span></li>
+          </ul>
+        </div>
+
+        <div class="carte-cat">
+          <h3><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20 L6 10 Q13 6 20 10 L22 20 Z"/><circle cx="13" cy="7" r="2"/></svg> Les pâtisseries</h3>
+          <ul class="carte-list">
+            <li>Tarte aux fruits de saison <span class="dots"></span> <span class="prix">4,30&nbsp;€</span></li>
+            <li>Éclairs &amp; choux <span class="dots"></span> <span class="prix">3,70&nbsp;€</span></li>
+            <li>Flan du Moulin <span class="dots"></span> <span class="prix">3,40&nbsp;€</span></li>
+            <li>Millefeuille <span class="dots"></span> <span class="prix">4,20&nbsp;€</span></li>
+            <li>Gâteaux à partager <span class="dots"></span> <span class="prix">sur commande</span></li>
+          </ul>
+        </div>
+
+        <div class="carte-cat">
+          <h3><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="13" cy="13" r="9"/><path d="M13 4 V2 M13 24 V22 M4 13 H2 M24 13 H22 M19 7 l1.5 -1.5 M5.5 20.5 L7 19 M19 19 l1.5 1.5 M5.5 5.5 L7 7"/></svg> Les saisons</h3>
+          <ul class="carte-list">
+            <li>Galette des rois <span class="dots"></span> <span class="prix">janvier</span></li>
+            <li>Fraisier &amp; fruits rouges <span class="dots"></span> <span class="prix">été</span></li>
+            <li>Tartes aux pommes du verger <span class="dots"></span> <span class="prix">automne</span></li>
+            <li>Bûches de Noël <span class="dots"></span> <span class="prix">décembre</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="mention-prix">Prix indicatifs — la carte complète et les tarifs du jour sont affichés en boutique.</p>
+      <p class="mention-allergenes">
+        <strong>Allergènes :</strong> la liste des allergènes de nos produits est disponible
+        en boutique et sur simple demande auprès de notre équipe.
+        <!-- Obligation allergènes (produits non préemballés) : à reporter sur chaque
+             fiche produit si un module click &amp; collect est ajouté en V2 -->
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section id="galerie" aria-labelledby="galerie-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Le Moulin en images</p>
+      <h2 id="galerie-title">Une vitrine <span class="ble">magique</span></h2>
+      <p>« La vitrine, elle est magique » — mot d'une cliente. À illustrer avec les vraies photos.</p>
+    </div>
+    <!-- [PHOTOS_GALERIE] x5 : remplacer chaque tuile par une vraie photo -->
+    <div class="galerie-grid">
+      <div class="galerie-item tall reveal">
+        <svg viewBox="0 0 400 780" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : la devanture du Moulin">
+          <rect width="400" height="780" fill="#B4642C"/>
+          <rect x="36" y="80" width="328" height="470" rx="10" fill="#FAF3E3"/>
+          <rect x="36" y="80" width="328" height="64" fill="#54331D"/>
+          <text x="200" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#D9A13B" font-style="italic">Le Moulin</text>
+          <g transform="translate(66 190)"><ellipse cx="46" cy="26" rx="46" ry="20" fill="#D9A13B"/><ellipse cx="150" cy="26" rx="46" ry="20" fill="#C9A263"/><ellipse cx="248" cy="26" rx="40" ry="18" fill="#B4642C"/><rect x="-6" y="52" width="290" height="8" rx="4" fill="#8A5A18"/></g>
+          <g transform="translate(66 300)"><g><ellipse cx="40" cy="22" rx="40" ry="16" fill="#EED9A8"/><ellipse cx="40" cy="16" rx="30" ry="11" fill="#A8433C"/></g><g transform="translate(100 4)"><rect width="92" height="34" rx="9" fill="#E3B269"/><rect x="12" y="-3" width="9" height="40" rx="4" fill="#6B4226"/><rect x="70" y="-3" width="9" height="40" rx="4" fill="#6B4226"/></g><rect x="-6" y="48" width="290" height="8" rx="4" fill="#8A5A18"/></g>
+          <g transform="translate(66 408)"><ellipse cx="52" cy="26" rx="52" ry="21" fill="#C08040"/><path d="M14 18 Q52 -2 90 18" stroke="#7A4A1D" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse cx="180" cy="26" rx="52" ry="21" fill="#D9A13B"/><rect x="-6" y="52" width="290" height="8" rx="4" fill="#8A5A18"/></g>
+          <rect x="60" y="580" width="280" height="100" rx="10" fill="#8A4A1E"/>
+          <text x="200" y="732" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#FAF3E3">Photo devanture à venir…</text>
+        </svg>
+        <span class="galerie-tag">La devanture</span>
+      </div>
+      <div class="galerie-item reveal">
+        <svg viewBox="0 0 400 380" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : pains rustiques">
+          <rect width="400" height="380" fill="#EED9A8"/>
+          <ellipse cx="200" cy="330" rx="160" ry="20" fill="#C9A263" opacity=".6"/>
+          <ellipse cx="150" cy="230" rx="100" ry="66" fill="#B4642C"/>
+          <path d="M74 200 Q150 152 226 200 M90 258 Q150 218 210 258" stroke="#7A3E16" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <g transform="translate(230 160) rotate(18)"><rect width="150" height="40" rx="20" fill="#D9A13B"/><path d="M28 6 l18 26 M66 4 l18 30 M108 6 l16 26" stroke="#8A5A18" stroke-width="5" stroke-linecap="round"/></g>
+          <g fill="#FAF3E3" opacity=".85"><circle cx="120" cy="170" r="6"/><circle cx="196" cy="160" r="5"/></g>
+        </svg>
+        <span class="galerie-tag">Les pains</span>
+      </div>
+      <div class="galerie-item reveal">
+        <svg viewBox="0 0 400 380" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : pâtisseries de la vitrine">
+          <rect width="400" height="380" fill="#F2E2BC"/>
+          <ellipse cx="200" cy="332" rx="150" ry="18" fill="#C9A263" opacity=".6"/>
+          <g transform="translate(60 180)"><ellipse cx="70" cy="52" rx="70" ry="28" fill="#DCA95E"/><ellipse cx="70" cy="42" rx="58" ry="21" fill="#A8433C"/><g fill="#C96A5A"><circle cx="44" cy="38" r="8"/><circle cx="70" cy="32" r="8"/><circle cx="96" cy="38" r="8"/></g></g>
+          <g transform="translate(226 170)"><path d="M10 70 Q10 34 50 34 Q90 34 90 70Z" fill="#EFD9AF"/><path d="M18 42 Q50 8 82 42" fill="#F2D8A0"/><circle cx="50" cy="22" r="8" fill="#A8433C"/><rect x="4" y="70" width="92" height="9" rx="4" fill="#B4642C"/></g>
+        </svg>
+        <span class="galerie-tag">Pâtisseries</span>
+      </div>
+      <div class="galerie-item reveal">
+        <svg viewBox="0 0 400 380" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : viennoiseries dorées">
+          <rect width="400" height="380" fill="#F6E8CE"/>
+          <g transform="translate(48 110) scale(1.35)"><path d="M8 38 Q2 16 24 8 Q56 -6 90 10 Q114 20 106 42 Q96 62 66 60 Q32 60 8 38Z" fill="#D9A13B"/><path d="M24 10 Q34 34 30 52 M48 2 Q58 32 54 58 M74 4 Q80 34 78 58" stroke="#A87838" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+          <g transform="translate(210 240) rotate(-6)"><rect width="130" height="58" rx="13" fill="#E3B269"/><rect x="15" y="-3" width="12" height="64" rx="6" fill="#6B4226"/><rect x="100" y="-3" width="12" height="64" rx="6" fill="#6B4226"/><path d="M8 22 H122 M8 40 H122" stroke="#B67E22" stroke-width="4" stroke-linecap="round"/></g>
+        </svg>
+        <span class="galerie-tag">Viennoiseries</span>
+      </div>
+      <div class="galerie-item reveal">
+        <svg viewBox="0 0 400 380" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : l'équipe du Moulin">
+          <rect width="400" height="380" fill="#7C5A38"/>
+          <circle cx="200" cy="140" r="90" fill="#FAF3E3" opacity=".9"/>
+          <circle cx="200" cy="118" r="34" fill="#E8C29C"/>
+          <path d="M166 108 Q170 74 200 74 Q230 74 234 108 Q228 88 200 88 Q172 88 166 108Z" fill="#54331D"/>
+          <path d="M140 260 Q144 196 200 196 Q256 196 260 260 L260 300 L140 300 Z" fill="#D9A13B"/>
+          <path d="M172 216 Q200 232 228 216" stroke="#8A5A18" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <text x="200" y="348" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#FAF3E3">Photo de l'équipe à venir…</text>
+        </svg>
+        <span class="galerie-tag">L'équipe</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS ============ -->
+<section id="avis" aria-labelledby="avis-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Ils passent la porte du Moulin</p>
+      <h2 id="avis-title">Le mot des <span class="ble">habitués</span></h2>
+    </div>
+    <!-- [TEMOIGNAGES_CLIENTS] : extraits d'avis Google publics (2026) — à valider avec le
+         client, qui peut préférer d'autres avis. Ne jamais inventer d'avis. -->
+    <div class="avis-grid">
+      <figure class="avis-card reveal">
+        <p class="avis-stars" aria-hidden="true">★★★★★</p>
+        <blockquote>« Très très très bon pain. La vitrine, elle est magique — et un accueil gentil, souriant et professionnel. »</blockquote>
+        <figcaption>Sylvie — avis Google</figcaption>
+      </figure>
+      <figure class="avis-card reveal">
+        <p class="avis-stars" aria-hidden="true">★★★★★</p>
+        <blockquote>« Une boulangerie incroyable ! Tout est délicieux et l'accueil est super chaleureux. »</blockquote>
+        <figcaption>Awa — avis Google</figcaption>
+      </figure>
+    </div>
+    <p class="avis-note">Extraits d'avis publiés sur Google.</p>
+  </div>
+</section>
+
+<!-- ============ INFOS PRATIQUES ============ -->
+<section id="trouver" aria-labelledby="trouver-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Infos pratiques</p>
+      <h2 id="trouver-title">Nous trouver, rue de Buzenval</h2>
+    </div>
+
+    <div class="infos-grid">
+      <div class="reveal">
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Adresse</h3>
+          <!-- NAP : reprendre EXACTEMENT la forme de la fiche Google Business du client -->
+          <address>
+            Le Moulin de Buzenval<br>
+            84, rue de Buzenval<br>
+            92210 Saint-Cloud
+          </address>
+        </div>
+
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Horaires <span class="sept-badge">7j/7</span></h3>
+          <table class="horaires-table" id="horairesTable">
+            <tr data-day="1"><td>Lundi</td><td>7h00 – 20h00</td></tr>
+            <tr data-day="2"><td>Mardi</td><td>7h00 – 20h00</td></tr>
+            <tr data-day="3"><td>Mercredi</td><td>7h00 – 20h00</td></tr>
+            <tr data-day="4"><td>Jeudi</td><td>7h00 – 20h00</td></tr>
+            <tr data-day="5"><td>Vendredi</td><td>7h00 – 20h00</td></tr>
+            <tr data-day="6"><td>Samedi</td><td>7h00 – 20h00</td></tr>
+            <tr data-day="0"><td>Dimanche</td><td>7h00 – 20h00</td></tr>
+          </table>
+        </div>
+
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Téléphone</h3>
+          <p><a href="tel:+33146020068">01 46 02 00 68</a></p>
+        </div>
+
+        <!-- [RESEAUX_SOCIAUX] : aucun compte Instagram/Facebook trouvé.
+             Ajouter ici les liens dès que le client les fournit. -->
+      </div>
+
+      <div class="reveal">
+        <div class="map-shell">
+          <iframe
+            title="Carte Google Maps — Le Moulin de Buzenval"
+            src="https://maps.google.com/maps?q=Le%20moulin%20de%20Buzenval%2C%2084%20Rue%20de%20Buzenval%2C%2092210%20Saint-Cloud&z=17&hl=fr&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="map-links">
+          <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=Le%20moulin%20de%20Buzenval%2C%2084%20Rue%20de%20Buzenval%2C%2092210%20Saint-Cloud" target="_blank" rel="noopener">Itinéraire</a>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Le%20moulin%20de%20Buzenval%2C%2084%20Rue%20de%20Buzenval%2C%2092210%20Saint-Cloud" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">Le Moulin de Buzenval<small>Boulangerie · Pâtisserie · 7j/7</small></p>
+        <p style="margin-top:.6rem;font-size:.86rem">84, rue de Buzenval · 92210 Saint-Cloud<br>
+        <a href="tel:+33146020068" style="color:inherit">01 46 02 00 68</a></p>
+      </div>
+      <nav aria-label="Navigation pied de page">
+        <a href="#top">Accueil</a>
+        <a href="#carte">Nos produits</a>
+        <a href="#histoire">Notre histoire</a>
+        <a href="#trouver">Nous trouver</a>
+      </nav>
+    </div>
+
+    <div class="footer-legal">
+      <details>
+        <summary>Mentions légales</summary>
+        <div class="legal-body">
+          <!-- [MENTIONS_LEGALES] : à compléter — SIRET trouvé sur annuaire d'entreprises, À VÉRIFIER -->
+          <p>Éditeur du site : Le Moulin de Buzenval — [FORME JURIDIQUE] au capital de [CAPITAL] €<br>
+          Siège social : 84, rue de Buzenval, 92210 Saint-Cloud — SIRET : 879 474 302 00012 (à vérifier) — TVA : [TVA_INTRA]<br>
+          Directeur de la publication : [NOM DU GÉRANT] — Contact : 01 46 02 00 68<br>
+          Hébergement : [HÉBERGEUR, adresse]<br>
+          Ce site ne dépose aucun cookie de suivi et ne collecte aucune donnée personnelle.<br>
+          Crédits visuels : illustrations provisoires en attente des photographies de la boulangerie.</p>
+        </div>
+      </details>
+      <p class="copyright">© <span id="year">2026</span> Le Moulin de Buzenval — Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Menu mobile ===== */
+var toggle = document.getElementById('menuToggle');
+var menu = document.getElementById('mobileMenu');
+toggle.addEventListener('click', function () {
+  var open = menu.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+});
+menu.querySelectorAll('a').forEach(function (a) {
+  a.addEventListener('click', function () {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ===== Statut ouvert/fermé (hero) =====
+   HORAIRES — source : annuaires + fiche Google (sept. 2026) : 7j/7, 7h–20h.
+   À confirmer avec le client. Index 0 = dimanche … 6 = samedi ; [début, fin] en minutes. */
+var HORAIRES = [
+  [[420, 1200]],   // dimanche : 7h00 – 20h00
+  [[420, 1200]],   // lundi
+  [[420, 1200]],   // mardi
+  [[420, 1200]],   // mercredi
+  [[420, 1200]],   // jeudi
+  [[420, 1200]],   // vendredi
+  [[420, 1200]]    // samedi
+];
+var JOURS = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+function fmt(m){ var h=Math.floor(m/60), mn=m%60; return h+'h'+(mn<10?'0':'')+mn; }
+(function () {
+  var now = new Date();
+  var day = now.getDay(), mins = now.getHours()*60 + now.getMinutes();
+  var pill = document.getElementById('statusPill'), txt = document.getElementById('statusText');
+  if (!pill || !txt) return;
+  var plages = HORAIRES[day], msg = null;
+  for (var i=0;i<plages.length;i++){
+    if (mins >= plages[i][0] && mins < plages[i][1]) { msg = 'Ouvert · ferme à ' + fmt(plages[i][1]); break; }
+    if (mins < plages[i][0]) { msg = 'Fermé · ouvre à ' + fmt(plages[i][0]); pill.classList.add('closed'); break; }
+  }
+  if (!msg) {
+    pill.classList.add('closed');
+    for (var d=1;d<=7;d++){
+      var nd=(day+d)%7;
+      if (HORAIRES[nd].length){ msg='Fermé · rouvre '+(d===1?'demain':JOURS[nd])+' à '+fmt(HORAIRES[nd][0][0]); break; }
+    }
+  }
+  if (msg) txt.textContent = msg;
+  var row = document.querySelector('#horairesTable tr[data-day="'+day+'"]');
+  if (row) row.classList.add('today');
+})();
+
+/* ===== Année du copyright ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== Apparition au scroll ===== */
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+} else {
+  document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+}
+</script>
+
+</body>
+</html>

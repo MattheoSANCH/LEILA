@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- ============================================================
+  MAQUETTE DE DÉMONSTRATION — LE FOURNIL DE SAINT-CLOUD
+  Boulangerie · Pâtisserie — 19, rue du Mont Valérien, Saint-Cloud (92210)
+
+  DONNÉES RÉELLES (vérifiées sur annuaires + fiche Google, sept. 2026) :
+  · Téléphone : 01 46 02 86 06
+  · Horaires : lun–sam 7h30–13h30 / 15h00–20h00 · dimanche 8h00–14h00
+    (certains annuaires indiquent 20h30 le soir — la fiche Google dit 20h00 :
+     à trancher avec le client)
+  · OUVERT LE DIMANCHE MATIN : vrai différenciateur local, mis en avant
+  · Avis : 1 avis Pages Jaunes 5/5 authentique (ancien) — à remplacer dès
+    que le client fournit des témoignages plus récents
+
+  À VALIDER AVEC LE CLIENT AVANT MISE EN LIGNE :
+  · [TEXTE_HISTOIRE] : texte "Notre histoire" = proposition à réécrire
+  · [PRIX_PRODUITS] : TOUS les prix sont indicatifs
+  · La formule « deux fournées par jour » est déduite de la coupure du midi
+    (rallumage à 15h) — à confirmer, c'est un bel argument si c'est exact
+  · Toutes les photos sont des visuels de substitution (illustrations)
+  · [RESEAUX_SOCIAUX] : aucun compte trouvé — à créer ou à ajouter
+  · Appellation « pain de tradition française » volontairement évitée :
+    ne l'ajouter que si le client confirme respecter le décret n°93-1074.
+============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Fournil de Saint-Cloud — Boulangerie artisanale à Saint-Cloud, ouverte le dimanche matin</title>
+<meta name="description" content="Boulangerie-pâtisserie artisanale rue du Mont Valérien à Saint-Cloud. Pain cuit sur place matin et après-midi, viennoiseries, pâtisseries. Ouvert le dimanche matin. Tél. 01 46 02 86 06.">
+<meta name="theme-color" content="#2B1608">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Le Fournil de Saint-Cloud — Boulangerie artisanale, ouverte le dimanche matin">
+<meta property="og:description" content="Le pain sort du four matin et après-midi, rue du Mont Valérien à Saint-Cloud. Viennoiseries, pâtisseries, commandes particulières.">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Le Fournil de Saint-Cloud",
+  "description": "Boulangerie-pâtisserie artisanale à Saint-Cloud : pain cuit sur place matin et après-midi, viennoiseries, pâtisseries, commandes particulières. Ouvert le dimanche matin.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "19 rue du Mont Valérien",
+    "addressLocality": "Saint-Cloud",
+    "postalCode": "92210",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33146028606",
+  "priceRange": "€",
+  "servesCuisine": "Boulangerie, pâtisserie",
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:30","closes":"13:30"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"15:00","closes":"20:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"08:00","closes":"14:00"}
+  ]
+}
+</script>
+
+<style>
+/* ============ PALETTE — braise, brique & farine ============ */
+:root{
+  --nuit:#2B1608;         /* fond four éteint */
+  --braise:#C96A2B;       /* orange braise */
+  --flamme:#E8963F;
+  --brique:#8C3B22;       /* rouge brique */
+  --farine:#F7EFE1;       /* fond clair */
+  --farine-2:#FDF8EE;
+  --encre:#31200F;
+  --taupe:#6E5334;
+  --ligne:rgba(49,32,15,.16);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{
+  font-family:'Nunito Sans',system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--farine);
+  color:var(--encre);
+  line-height:1.66;
+  font-size:16.5px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .28 0 0 0 0 .13 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:'Young Serif',Georgia,'Times New Roman',serif;font-weight:400;line-height:1.14}
+.wrap{width:min(1100px,92%);margin-inline:auto}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--nuit);color:var(--farine);padding:.6rem 1rem;z-index:99}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--braise);outline-offset:3px;border-radius:3px}
+
+/* ============ HEADER (sombre) ============ */
+#site-header{position:sticky;top:0;z-index:50;background:rgba(43,22,8,.96);backdrop-filter:blur(6px);color:var(--farine);border-bottom:2px solid var(--braise)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.brand-mark{
+  width:40px;height:40px;flex:none;background:var(--braise);color:var(--nuit);
+  font-family:'Young Serif',serif;font-size:1.35rem;display:grid;place-items:center;
+  border-radius:6px;box-shadow:3px 3px 0 rgba(232,150,63,.4);
+}
+.brand-name{font-family:'Young Serif',serif;font-size:1.05rem;line-height:1.15}
+.brand-name small{display:block;font-family:'Nunito Sans',sans-serif;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--flamme);font-weight:700}
+.nav-desktop{display:flex;gap:1.5rem}
+.nav-desktop a{text-decoration:none;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,239,225,.85);padding:.3rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.nav-desktop a:hover{color:var(--flamme);border-color:var(--flamme)}
+.header-actions{display:flex;align-items:center;gap:.7rem}
+.call-pill{display:inline-flex;align-items:center;gap:.45rem;background:var(--braise);color:var(--nuit);text-decoration:none;padding:.55rem 1rem;border-radius:6px;font-weight:800;font-size:.86rem;box-shadow:3px 3px 0 rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s;white-space:nowrap}
+.call-pill:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 rgba(0,0,0,.35)}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}
+.menu-toggle span{display:block;width:24px;height:2px;background:var(--farine);margin:5px 0;transition:transform .25s,opacity .25s}
+.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;background:var(--nuit);color:var(--farine);border-bottom:2px solid var(--braise);padding:.6rem 4%}
+.mobile-menu.open{display:flex}
+.mobile-menu a{text-decoration:none;padding:.9rem .2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem;border-bottom:1px solid rgba(247,239,225,.14)}
+.mobile-menu a:last-child{border-bottom:none;color:var(--flamme)}
+
+/* ============ HERO SOMBRE — la gueule du four ============ */
+.hero{
+  position:relative;color:var(--farine);overflow:hidden;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 108%, rgba(232,150,63,.55), rgba(201,106,43,.25) 40%, transparent 70%),
+    radial-gradient(ellipse 60% 45% at 50% 112%, rgba(255,196,110,.8), transparent 65%),
+    var(--nuit);
+  padding:4rem 0 5.5rem;
+}
+.hero-inner{max-width:820px;margin-inline:auto;text-align:center;position:relative;z-index:2}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--flamme);margin-bottom:1.1rem}
+.hero h1{font-size:clamp(2.4rem,6vw,4rem);margin-bottom:1.1rem;text-wrap:balance}
+.hero h1 .braise{color:var(--flamme)}
+.hero-sub{color:rgba(247,239,225,.82);font-size:1.1rem;max-width:36rem;margin:0 auto 1.5rem}
+.status-pill{display:inline-flex;align-items:center;gap:.55rem;background:rgba(247,239,225,.1);border:1px solid rgba(247,239,225,.3);border-radius:6px;padding:.5rem 1.05rem;font-weight:700;font-size:.92rem;margin-bottom:1.7rem}
+.status-dot{width:9px;height:9px;border-radius:50%;background:#7FC98B;box-shadow:0 0 10px rgba(127,201,139,.8)}
+.status-pill.closed .status-dot{background:var(--flamme);box-shadow:0 0 10px rgba(232,150,63,.8)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center}
+.btn{display:inline-block;text-decoration:none;font-weight:800;font-size:.95rem;padding:.85rem 1.6rem;border-radius:6px;border:2px solid var(--braise);transition:transform .15s,box-shadow .15s,background .2s}
+.btn-primary{background:var(--braise);color:var(--nuit);box-shadow:4px 4px 0 rgba(0,0,0,.4)}
+.btn-primary:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(0,0,0,.4)}
+.btn-ghost{background:transparent;color:var(--farine);border-color:rgba(247,239,225,.5)}
+.btn-ghost:hover{border-color:var(--flamme);color:var(--flamme)}
+/* pains qui cuisent, en bas du héro */
+.hero-loaves{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);width:min(680px,92%);opacity:.95;z-index:1}
+/* badge dimanche */
+.badge-dimanche{
+  position:absolute;top:1.6rem;right:4%;z-index:3;
+  background:var(--brique);color:var(--farine);
+  font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.6rem .9rem;border-radius:6px;transform:rotate(3deg);
+  box-shadow:4px 4px 0 rgba(0,0,0,.35);
+}
+/* bord déchiré entre héro sombre et page claire */
+.dechirure{display:block;width:100%;height:26px;margin-top:-1px;background:var(--nuit)}
+.dechirure path{fill:var(--farine)}
+
+/* ============ SECTIONS ============ */
+section{padding:4.2rem 0}
+.section-head{max-width:46rem;margin-bottom:2.3rem}
+.section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.7rem}
+.section-head p{color:var(--taupe)}
+.center{text-align:center;margin-inline:auto}
+
+/* Les fournées — bandeau rythmé */
+.fournees{background:var(--farine-2);border-block:2px solid var(--encre)}
+.fournees-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem}
+.fournee-card{border:2px solid var(--encre);border-radius:10px;background:var(--farine);padding:1.4rem 1.3rem;box-shadow:6px 6px 0 var(--braise);transition:transform .2s,box-shadow .2s}
+.fournee-card:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--braise)}
+.fournee-card .heure{font-family:'Young Serif',serif;font-size:1.9rem;color:var(--brique)}
+.fournee-card h3{font-size:1.1rem;margin:.3rem 0 .4rem}
+.fournee-card p{font-size:.92rem;color:var(--taupe)}
+.fournees-note{margin-top:1.3rem;font-size:.85rem;color:var(--taupe);font-style:italic}
+
+/* Notre histoire */
+.histoire-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:center}
+.histoire-visual{border:2px solid var(--encre);border-radius:10px;overflow:hidden;box-shadow:8px 8px 0 var(--brique)}
+.histoire-txt p{margin-bottom:1rem;color:var(--taupe)}
+.histoire-txt strong{color:var(--encre)}
+.histoire-points{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.3rem}
+.point-chip{background:var(--farine-2);border:2px solid var(--encre);border-radius:6px;padding:.42rem .95rem;font-size:.84rem;font-weight:700}
+
+/* Produits */
+#produits{background:var(--nuit);color:var(--farine)}
+#produits .section-head p{color:rgba(247,239,225,.7)}
+#produits h2 .braise{color:var(--flamme)}
+.produits-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.prod-card{display:grid;grid-template-columns:150px 1fr;background:rgba(247,239,225,.06);border:1px solid rgba(247,239,225,.2);border-radius:10px;overflow:hidden;transition:border-color .2s,background .2s}
+.prod-card:hover{border-color:var(--flamme);background:rgba(247,239,225,.09)}
+.prod-visual{background:var(--brique);display:grid;place-items:center;padding:.6rem}
+.prod-visual svg{width:100%;height:auto}
+.prod-body{padding:1.1rem 1.3rem 1.2rem}
+.prod-body h3{font-size:1.2rem;color:var(--flamme);margin-bottom:.5rem}
+.prod-list{list-style:none;font-size:.9rem;color:rgba(247,239,225,.85)}
+.prod-list li{display:flex;align-items:baseline;gap:.45rem;padding:.24rem 0}
+.prod-list .dots{flex:1;border-bottom:1.5px dotted rgba(247,239,225,.35);transform:translateY(-3px)}
+.prod-list .prix{font-weight:800;color:var(--farine);white-space:nowrap}
+.mention-prix{margin-top:1.4rem;font-size:.82rem;color:rgba(247,239,225,.6)}
+.mention-allergenes{margin-top:.5rem;font-size:.82rem;color:rgba(247,239,225,.7);border-left:3px solid var(--braise);padding-left:.8rem}
+
+/* Commandes particulières */
+.commandes{border:2px solid var(--encre);border-radius:12px;background:var(--farine-2);padding:2.4rem 2.2rem;display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;box-shadow:8px 8px 0 var(--braise)}
+.commandes h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:.6rem}
+.commandes p{color:var(--taupe)}
+.commandes-cta{text-align:center}
+.commandes-cta .btn{border-color:var(--encre);background:var(--encre);color:var(--farine);box-shadow:4px 4px 0 var(--braise)}
+.commandes-cta .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--braise)}
+.commandes-cta small{display:block;margin-top:.7rem;color:var(--taupe);font-size:.8rem}
+
+/* Galerie */
+.galerie-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:1rem}
+.galerie-item{border:2px solid var(--encre);border-radius:10px;overflow:hidden;position:relative}
+.galerie-item svg{width:100%;height:100%}
+.galerie-item.large{grid-column:span 2;grid-row:span 2}
+.galerie-tag{position:absolute;bottom:8px;left:8px;background:var(--nuit);color:var(--farine);font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .6rem;border-radius:4px}
+
+/* Avis */
+#avis{background:var(--farine-2);border-block:2px solid var(--encre)}
+.avis-solo{max-width:640px;margin-inline:auto;text-align:center}
+.avis-solo blockquote{font-family:'Young Serif',serif;font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.4;color:var(--brique);margin:1.1rem 0}
+.avis-solo figcaption{font-size:.9rem;color:var(--taupe);font-weight:700}
+.avis-stars{color:var(--braise);letter-spacing:.18em;font-size:1rem}
+.avis-note{margin-top:1.2rem;font-size:.8rem;color:var(--taupe)}
+
+/* Infos pratiques */
+.infos-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;align-items:start}
+.infos-bloc{margin-bottom:1.7rem}
+.infos-bloc h3{font-size:1.1rem;margin-bottom:.55rem;display:flex;align-items:center;gap:.5rem}
+.infos-bloc h3 svg{color:var(--brique)}
+.infos-bloc p,.infos-bloc address{font-style:normal;color:var(--taupe)}
+.horaires-table{width:100%;border-collapse:collapse;font-size:.95rem}
+.horaires-table td{padding:.4rem 0;border-bottom:1px dashed var(--ligne);color:var(--taupe)}
+.horaires-table td:last-child{text-align:right;font-weight:700;color:var(--encre)}
+.horaires-table tr.today td{color:var(--brique);font-weight:800}
+.dimanche-hl{background:rgba(201,106,43,.12)}
+.map-shell{border:2px solid var(--encre);border-radius:10px;overflow:hidden;box-shadow:8px 8px 0 var(--brique);background:linear-gradient(135deg,#E5D4B5,#D9BF95)}
+.map-shell iframe{width:100%;height:340px;border:0;display:block}
+.map-links{display:flex;gap:.7rem;margin-top:1.1rem;flex-wrap:wrap}
+.map-links .btn{font-size:.85rem;padding:.6rem 1.2rem}
+.map-links .btn-primary{box-shadow:4px 4px 0 rgba(49,32,15,.3)}
+.map-links .btn-ghost{color:var(--encre);border-color:var(--encre)}
+.map-links .btn-ghost:hover{color:var(--brique);border-color:var(--brique)}
+
+/* Footer */
+footer{background:var(--nuit);color:rgba(247,239,225,.8);padding:2.6rem 0 2rem;border-top:3px solid var(--braise)}
+.footer-grid{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.footer-brand{font-family:'Young Serif',serif;font-size:1.2rem;color:var(--farine)}
+.footer-brand small{display:block;font-family:'Nunito Sans',sans-serif;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--flamme);font-weight:800;margin-top:.25rem}
+footer nav{display:flex;gap:1.3rem;flex-wrap:wrap}
+footer nav a{color:rgba(247,239,225,.8);text-decoration:none;font-size:.88rem;font-weight:700}
+footer nav a:hover{color:var(--flamme)}
+.footer-legal{border-top:1px solid rgba(247,239,225,.16);padding-top:1.3rem;font-size:.8rem}
+.footer-legal summary{cursor:pointer;font-weight:700;color:rgba(247,239,225,.85)}
+.footer-legal .legal-body{margin-top:.8rem;line-height:1.7;color:rgba(247,239,225,.6)}
+.copyright{margin-top:1rem;font-size:.78rem;color:rgba(247,239,225,.5)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:920px){
+  .histoire-grid,.infos-grid{grid-template-columns:1fr;gap:2.2rem}
+  .produits-grid{grid-template-columns:1fr}
+  .commandes{grid-template-columns:1fr;text-align:center;padding:2rem 1.5rem}
+  .galerie-grid{grid-template-columns:repeat(2,1fr)}
+  .badge-dimanche{position:static;display:inline-block;margin-bottom:1.2rem;transform:rotate(-2deg)}
+  .hero{padding-top:2.6rem}
+}
+@media (max-width:800px){
+  .nav-desktop{display:none}
+  .menu-toggle{display:block}
+}
+@media (max-width:640px){
+  .call-text{display:none}
+  .call-pill{padding:.55rem .7rem}
+  .commandes-cta .btn{width:100%;font-size:.9rem;padding:.8rem 1rem}
+  .fournees-grid{grid-template-columns:1fr}
+  .prod-card{grid-template-columns:110px 1fr}
+  .galerie-grid{grid-auto-rows:140px}
+  section{padding:3.2rem 0}
+}
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body id="top">
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="brand" aria-label="Le Fournil de Saint-Cloud — accueil">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span class="brand-name">Le Fournil<br>de Saint-Cloud<small>Boulangerie · Pâtisserie</small></span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      <a href="#top">Accueil</a>
+      <a href="#produits">Nos produits</a>
+      <a href="#histoire">Notre histoire</a>
+      <a href="#trouver">Nous trouver</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="call-pill" href="tel:+33146028606" aria-label="Appeler le 01 46 02 86 06">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="call-text">01 46 02 86 06</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Accueil</a>
+  <a href="#produits">Nos produits</a>
+  <a href="#histoire">Notre histoire</a>
+  <a href="#trouver">Nous trouver</a>
+  <a href="tel:+33146028606">Appeler · 01 46 02 86 06</a>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <span class="badge-dimanche">☀️ Ouvert le dimanche matin</span>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Boulangerie artisanale · Saint-Cloud</p>
+    <!-- [SLOGAN] : proposition d'accroche — à valider avec le client -->
+    <h1 id="hero-title">Ici, le four ne dort <span class="braise">jamais longtemps.</span></h1>
+    <p class="hero-sub">
+      Rue du Mont Valérien, le fournil cuit matin et après-midi : du pain chaud
+      à toute heure, des viennoiseries dorées et des pâtisseries de maison —
+      même le dimanche matin.
+    </p>
+    <!-- Horaires du jour : calculés en JS depuis HORAIRES (voir script) -->
+    <p class="status-pill" id="statusPill"><span class="status-dot" aria-hidden="true"></span><span id="statusText">Lun–sam 7h30–13h30 / 15h–20h · dim 8h–14h</span></p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#produits">Découvrir nos pains</a>
+      <a class="btn btn-ghost" href="#trouver">Nous trouver</a>
+    </div>
+  </div>
+  <!-- pains dans la lueur du four -->
+  <svg class="hero-loaves" viewBox="0 0 680 120" aria-hidden="true">
+    <ellipse cx="340" cy="118" rx="330" ry="16" fill="#1D0F05"/>
+    <g transform="translate(70 40)">
+      <ellipse cx="60" cy="50" rx="62" ry="34" fill="#C4802F"/>
+      <path d="M18 36 Q60 12 102 36" stroke="#8C5B2E" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="60" cy="50" rx="62" ry="34" fill="none" stroke="#E8963F" stroke-width="3" opacity=".5"/>
+    </g>
+    <g transform="translate(210 24)">
+      <rect x="0" y="40" width="250" height="48" rx="24" fill="#D89A46"/>
+      <path d="M36 46 l24 32 M92 44 l26 36 M150 44 l26 36 M206 46 l24 32" stroke="#96591C" stroke-width="6" stroke-linecap="round"/>
+      <path d="M10 74 Q125 92 240 72" stroke="#F2C079" stroke-width="6" fill="none" opacity=".6" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(480 38)">
+      <ellipse cx="66" cy="52" rx="66" ry="36" fill="#B57431"/>
+      <path d="M26 32 l18 14 M50 24 l18 18 M78 22 l18 18 M104 30 l16 14" stroke="#7A4A1D" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="66" cy="52" rx="66" ry="36" fill="none" stroke="#E8963F" stroke-width="3" opacity=".5"/>
+    </g>
+  </svg>
+</section>
+<svg class="dechirure" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 26 L0 14 Q30 4 60 12 T120 10 T180 16 T240 8 T300 14 T360 6 T420 14 T480 10 T540 16 T600 8 T660 12 T720 6 T780 14 T840 10 T900 16 T960 8 T1020 12 T1080 6 T1140 12 T1200 10 L1200 26 Z"/>
+</svg>
+
+<!-- ============ LES FOURNÉES ============ -->
+<section class="fournees" aria-labelledby="fournees-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="color:var(--brique)">Le rythme de la maison</p>
+      <h2 id="fournees-title">Trois rendez-vous avec le pain chaud</h2>
+    </div>
+    <!-- Formulation déduite des horaires réels (coupure 13h30–15h) — à valider avec le client -->
+    <div class="fournees-grid">
+      <div class="fournee-card reveal">
+        <p class="heure">7h30</p>
+        <h3>La fournée du matin</h3>
+        <p>Baguettes croustillantes et viennoiseries tout juste sorties du four pour le petit déjeuner.</p>
+      </div>
+      <div class="fournee-card reveal">
+        <p class="heure">15h00</p>
+        <h3>Le four se rallume</h3>
+        <p>Le fournil rouvre après la coupure : pain chaud pour le goûter et le dîner, jusqu'à 20h.</p>
+      </div>
+      <div class="fournee-card reveal">
+        <p class="heure">Dim. 8h</p>
+        <h3>Le dimanche matin</h3>
+        <p>Ouvert jusqu'à 14h pour la brioche du dimanche et le pain du déjeuner en famille.</p>
+      </div>
+    </div>
+    <p class="fournees-note">Le pain revient plusieurs fois par jour en boutique — demandez-nous l'heure de la prochaine sortie de four.</p>
+  </div>
+</section>
+
+<!-- ============ NOTRE HISTOIRE ============ -->
+<section id="histoire" aria-labelledby="histoire-title">
+  <div class="wrap histoire-grid">
+    <div class="histoire-visual reveal">
+      <!-- [PHOTO_EQUIPE] : remplacer par une vraie photo du boulanger / de l'équipe -->
+      <svg viewBox="0 0 520 430" role="img" aria-label="Illustration : le boulanger au pétrin, en attendant la photo de l'équipe">
+        <rect width="520" height="430" fill="#E9D6B4"/>
+        <rect x="0" y="330" width="520" height="100" fill="#C9AA78" opacity=".55"/>
+        <!-- pétrin -->
+        <path d="M110 210 Q110 300 200 300 L320 300 Q410 300 410 210 L410 190 L110 190 Z" fill="#8C3B22"/>
+        <rect x="96" y="176" width="328" height="22" rx="11" fill="#6E2D18"/>
+        <ellipse cx="260" cy="188" rx="140" ry="18" fill="#F2E3C4"/>
+        <ellipse cx="260" cy="184" rx="110" ry="13" fill="#E8D3A8"/>
+        <!-- bras du pétrin -->
+        <rect x="248" y="60" width="24" height="120" rx="12" fill="#59391C"/>
+        <rect x="180" y="42" width="160" height="26" rx="13" fill="#6B4A28"/>
+        <!-- nuage de farine -->
+        <g fill="#FDF8EE" opacity=".85">
+          <circle cx="150" cy="140" r="14"/><circle cx="178" cy="126" r="10"/><circle cx="130" cy="122" r="8"/>
+          <circle cx="386" cy="132" r="12"/><circle cx="360" cy="118" r="8"/>
+        </g>
+        <!-- sac de farine -->
+        <g transform="translate(52 240)">
+          <path d="M6 24 Q0 90 14 92 L74 92 Q88 90 82 24 Q70 8 44 8 Q18 8 6 24Z" fill="#F2E3C4"/>
+          <path d="M10 40 H78" stroke="#C9AA78" stroke-width="4"/>
+          <text x="44" y="72" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#8C3B22" font-style="italic">farine</text>
+        </g>
+        <text x="60" y="400" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#6E5334">Photo de l'équipe à venir…</text>
+      </svg>
+    </div>
+    <div class="histoire-txt reveal">
+      <p class="eyebrow" style="color:var(--brique)">Notre histoire</p>
+      <h2 id="histoire-title" style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:1rem">Un fournil de quartier, au pied du Mont Valérien</h2>
+      <!-- [TEXTE_HISTOIRE] : proposition — à réécrire avec les mots du client
+           (depuis quand, qui tient le fournil, ce qui fait sa fierté) -->
+      <p>
+        Au <strong>19 de la rue du Mont Valérien</strong>, le Fournil de
+        Saint-Cloud fait partie de ces boulangeries où l'on vient autant pour
+        le pain que pour le bonjour du matin.
+      </p>
+      <p>
+        Pétrissage, façonnage, cuisson : tout se fait sur place, à quelques
+        mètres du comptoir. Et parce qu'un bon pain se mange frais, le four
+        reprend du service l'après-midi — la maison est aussi <strong>à l'écoute
+        des commandes particulières</strong>, des grandes tablées et des petites
+        envies.
+      </p>
+      <div class="histoire-points">
+        <span class="point-chip">🔥 Cuit sur place</span>
+        <span class="point-chip">🌅 Deux services par jour</span>
+        <span class="point-chip">📋 Commandes particulières</span>
+        <span class="point-chip">☀️ Dimanche matin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOS PRODUITS ============ -->
+<section id="produits" aria-labelledby="produits-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Nos produits</p>
+      <h2 id="produits-title">Ce qui sort du <span class="braise">four</span></h2>
+      <p>Pains, viennoiseries, pâtisseries et petites faims — préparés au fournil.</p>
+    </div>
+
+    <!-- [PHOTOS_PRODUITS] : remplacer chaque illustration par une vraie photo -->
+    <!-- [PRIX_PRODUITS] : prix INDICATIFS — à remplacer par les tarifs réels du client -->
+    <div class="produits-grid">
+
+      <article class="prod-card reveal">
+        <div class="prod-visual">
+          <svg viewBox="0 0 130 110" role="img" aria-label="Illustration de pains">
+            <ellipse cx="65" cy="96" rx="56" ry="9" fill="#5E2415"/>
+            <ellipse cx="65" cy="62" rx="52" ry="30" fill="#D89A46"/>
+            <path d="M32 48 Q65 28 98 48 M40 70 Q65 54 90 70" stroke="#8C5B2E" stroke-width="5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="prod-body">
+          <h3>Pains</h3>
+          <ul class="prod-list">
+            <li>Baguette du fournil <span class="dots"></span> <span class="prix">1,30&nbsp;€</span></li>
+            <li>Pain de campagne <span class="dots"></span> <span class="prix">3,60&nbsp;€</span></li>
+            <li>Pain aux céréales <span class="dots"></span> <span class="prix">3,90&nbsp;€</span></li>
+            <li>Pain viennois <span class="dots"></span> <span class="prix">2,60&nbsp;€</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="prod-card reveal">
+        <div class="prod-visual">
+          <svg viewBox="0 0 130 110" role="img" aria-label="Illustration de viennoiseries">
+            <ellipse cx="65" cy="96" rx="56" ry="9" fill="#5E2415"/>
+            <g transform="translate(14 30)">
+              <path d="M8 38 Q2 16 24 8 Q56 -6 90 10 Q114 20 106 42 Q96 62 66 60 Q32 60 8 38Z" fill="#E8963F"/>
+              <path d="M24 10 Q34 34 30 52 M48 2 Q58 32 54 58 M74 4 Q80 34 78 58 M94 12 Q100 34 96 50" stroke="#A96A24" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <div class="prod-body">
+          <h3>Viennoiseries</h3>
+          <ul class="prod-list">
+            <li>Croissant pur beurre <span class="dots"></span> <span class="prix">1,30&nbsp;€</span></li>
+            <li>Pain au chocolat <span class="dots"></span> <span class="prix">1,50&nbsp;€</span></li>
+            <li>Pain suédois <span class="dots"></span> <span class="prix">2,20&nbsp;€</span></li>
+            <li>Chausson aux pommes <span class="dots"></span> <span class="prix">2,30&nbsp;€</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="prod-card reveal">
+        <div class="prod-visual">
+          <svg viewBox="0 0 130 110" role="img" aria-label="Illustration de pâtisseries">
+            <ellipse cx="65" cy="96" rx="56" ry="9" fill="#5E2415"/>
+            <g transform="translate(18 34)">
+              <ellipse cx="48" cy="42" rx="46" ry="20" fill="#E0A855"/>
+              <ellipse cx="48" cy="36" rx="38" ry="15" fill="#8C3B22"/>
+              <g fill="#C96A2B"><circle cx="30" cy="33" r="6"/><circle cx="48" cy="29" r="6"/><circle cx="66" cy="33" r="6"/></g>
+            </g>
+          </svg>
+        </div>
+        <div class="prod-body">
+          <h3>Pâtisseries</h3>
+          <ul class="prod-list">
+            <li>Tarte aux pommes <span class="dots"></span> <span class="prix">3,90&nbsp;€</span></li>
+            <li>Éclair au chocolat <span class="dots"></span> <span class="prix">3,50&nbsp;€</span></li>
+            <li>Flan boulanger <span class="dots"></span> <span class="prix">3,20&nbsp;€</span></li>
+            <li>Gâteaux à partager <span class="dots"></span> <span class="prix">sur commande</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="prod-card reveal">
+        <div class="prod-visual">
+          <svg viewBox="0 0 130 110" role="img" aria-label="Illustration des en-cas du midi">
+            <ellipse cx="65" cy="96" rx="56" ry="9" fill="#5E2415"/>
+            <g transform="translate(12 40)">
+              <path d="M0 26 Q0 10 18 10 L88 10 Q106 10 106 26 L106 30 Q106 40 94 40 L12 40 Q0 40 0 30Z" fill="#E8963F"/>
+              <rect x="6" y="22" width="94" height="7" rx="3" fill="#7FA05C"/>
+              <rect x="6" y="28" width="94" height="6" rx="3" fill="#B0532E"/>
+            </g>
+          </svg>
+        </div>
+        <div class="prod-body">
+          <h3>Le midi</h3>
+          <ul class="prod-list">
+            <li>Sandwichs baguette <span class="dots"></span> <span class="prix">dès 4,50&nbsp;€</span></li>
+            <li>Formule midi <span class="dots"></span> <span class="prix">dès 7,90&nbsp;€</span></li>
+            <li>Quiches &amp; pizzas <span class="dots"></span> <span class="prix">dès 3,80&nbsp;€</span></li>
+            <li>Salades fraîches <span class="dots"></span> <span class="prix">dès 5,50&nbsp;€</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <p class="mention-prix">Prix indicatifs — la carte complète et les tarifs du jour sont affichés en boutique.</p>
+    <p class="mention-allergenes">
+      <strong>Allergènes :</strong> la liste des allergènes de nos produits est disponible
+      en boutique et sur simple demande auprès de notre équipe.
+      <!-- Obligation d'information allergènes (produits non préemballés) : à reporter
+           sur chaque fiche produit si un module click &amp; collect est ajouté en V2 -->
+    </p>
+  </div>
+</section>
+
+<!-- ============ COMMANDES ============ -->
+<section aria-labelledby="commandes-title">
+  <div class="wrap">
+    <div class="commandes reveal">
+      <div>
+        <h2 id="commandes-title">Une commande particulière&nbsp;?</h2>
+        <p>
+          Pain de fête, brioches pour le bureau, tartes pour douze : la maison
+          est à l'écoute de vos demandes, même les plus spéciales. Un coup de
+          fil suffit pour réserver votre fournée.
+        </p>
+      </div>
+      <div class="commandes-cta">
+        <a class="btn" href="tel:+33146028606">Commander · 01 46 02 86 06</a>
+        <small>Commandes particulières bienvenues — pensez à appeler la veille.</small>
+        <!-- [OPTIONNEL — V2] : module click &amp; collect (produit, quantité, créneau)
+             à brancher ici si le client le souhaite ; prévoir les allergènes par produit -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section id="galerie" aria-labelledby="galerie-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="color:var(--brique)">Le fournil en images</p>
+      <h2 id="galerie-title">Entre le four et la vitrine</h2>
+    </div>
+    <!-- [PHOTOS_GALERIE] x5 : remplacer chaque tuile par une vraie photo -->
+    <div class="galerie-grid">
+      <div class="galerie-item large reveal">
+        <svg viewBox="0 0 800 720" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : la gueule du four">
+          <rect width="800" height="720" fill="#2B1608"/>
+          <rect x="120" y="120" width="560" height="420" rx="20" fill="#4A2410"/>
+          <path d="M180 470 a220 150 0 0 1 440 0 Z" fill="#1D0F05"/>
+          <path d="M220 470 a180 120 0 0 1 360 0 Z" fill="#C96A2B"/>
+          <path d="M260 470 a140 92 0 0 1 280 0 Z" fill="#E8963F"/>
+          <path d="M300 470 a100 66 0 0 1 200 0 Z" fill="#FFD79A"/>
+          <ellipse cx="400" cy="452" rx="70" ry="26" fill="#C4802F"/>
+          <path d="M348 440 Q400 418 452 440" stroke="#8C5B2E" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <rect x="90" y="560" width="620" height="16" rx="8" fill="#59391C"/>
+          <text x="400" y="646" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="26" fill="#E9D6B4">Photo du four à venir…</text>
+        </svg>
+        <span class="galerie-tag">Le four</span>
+      </div>
+      <div class="galerie-item reveal">
+        <svg viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : baguettes en panière">
+          <rect width="400" height="340" fill="#E9D6B4"/>
+          <path d="M60 320 L90 150 L310 150 L340 320 Z" fill="#B57431"/>
+          <path d="M84 200 H316 M76 250 H324 M68 300 H332" stroke="#8C5B2E" stroke-width="7"/>
+          <g transform="translate(104 44) rotate(8)"><rect width="36" height="150" rx="18" fill="#D89A46"/><path d="M8 24 l20 12 M8 60 l20 12 M8 96 l20 12" stroke="#96591C" stroke-width="5" stroke-linecap="round"/></g>
+          <g transform="translate(164 30) rotate(-2)"><rect width="36" height="160" rx="18" fill="#C4802F"/><path d="M8 24 l20 12 M8 62 l20 12 M8 100 l20 12" stroke="#8C5B2E" stroke-width="5" stroke-linecap="round"/></g>
+          <g transform="translate(224 40) rotate(-10)"><rect width="36" height="150" rx="18" fill="#E0A855"/><path d="M8 24 l20 12 M8 60 l20 12 M8 96 l20 12" stroke="#A96A24" stroke-width="5" stroke-linecap="round"/></g>
+        </svg>
+        <span class="galerie-tag">La panière</span>
+      </div>
+      <div class="galerie-item reveal">
+        <svg viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : viennoiseries">
+          <rect width="400" height="340" fill="#F2E3C4"/>
+          <g transform="translate(52 90) scale(1.3)"><path d="M8 38 Q2 16 24 8 Q56 -6 90 10 Q114 20 106 42 Q96 62 66 60 Q32 60 8 38Z" fill="#E8963F"/><path d="M24 10 Q34 34 30 52 M48 2 Q58 32 54 58 M74 4 Q80 34 78 58" stroke="#A96A24" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+          <g transform="translate(212 190) rotate(4)"><rect width="120" height="58" rx="12" fill="#E0A855"/><rect x="14" y="-3" width="12" height="64" rx="6" fill="#6B4226"/><rect x="92" y="-3" width="12" height="64" rx="6" fill="#6B4226"/></g>
+        </svg>
+        <span class="galerie-tag">Viennoiseries</span>
+      </div>
+      <div class="galerie-item reveal">
+        <svg viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : la boutique">
+          <rect width="400" height="340" fill="#8C3B22"/>
+          <rect x="40" y="60" width="320" height="220" rx="8" fill="#F7EFE1"/>
+          <rect x="40" y="60" width="320" height="54" fill="#2B1608"/>
+          <text x="200" y="96" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#E8963F" font-style="italic">Le Fournil</text>
+          <g transform="translate(70 150)"><ellipse cx="40" cy="24" rx="40" ry="18" fill="#C4802F"/><ellipse cx="140" cy="24" rx="40" ry="18" fill="#D89A46"/><ellipse cx="230" cy="24" rx="34" ry="16" fill="#E0A855"/><rect x="0" y="48" width="260" height="7" rx="3" fill="#8C5B2E"/></g>
+          <text x="200" y="316" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F7EFE1">Photo boutique à venir…</text>
+        </svg>
+        <span class="galerie-tag">La boutique</span>
+      </div>
+      <div class="galerie-item reveal">
+        <svg viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement photo : pain de campagne">
+          <rect width="400" height="340" fill="#E4CFA8"/>
+          <ellipse cx="200" cy="300" rx="150" ry="18" fill="#B08A52" opacity=".6"/>
+          <ellipse cx="200" cy="190" rx="130" ry="86" fill="#B57431"/>
+          <path d="M110 150 Q200 96 290 150 M124 210 Q200 164 276 210 M150 258 Q200 226 250 258" stroke="#7A4A1D" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <ellipse cx="200" cy="190" rx="130" ry="86" fill="none" stroke="#8C5B2E" stroke-width="4" opacity=".5"/>
+          <g fill="#FDF8EE" opacity=".8"><circle cx="140" cy="130" r="6"/><circle cx="250" cy="120" r="5"/><circle cx="286" cy="160" r="4"/></g>
+        </svg>
+        <span class="galerie-tag">Pain de campagne</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS ============ -->
+<section id="avis" aria-labelledby="avis-title">
+  <div class="wrap">
+    <div class="section-head center reveal" style="text-align:center">
+      <p class="eyebrow" style="color:var(--brique)">On parle de nous</p>
+      <h2 id="avis-title">Le mot des clients</h2>
+    </div>
+    <!-- [TEMOIGNAGES_CLIENTS] : un seul avis positif authentique trouvé (Pages Jaunes, ancien).
+         À remplacer par 2-3 témoignages récents fournis par le client dès que possible.
+         Ne jamais inventer d'avis. -->
+    <figure class="avis-solo reveal">
+      <p class="avis-stars" aria-hidden="true">★★★★★</p>
+      <blockquote>« Accueil très agréable. Produits de qualité. À l'écoute du client, même pour les commandes particulières. »</blockquote>
+      <figcaption>Avis client publié sur Pages Jaunes</figcaption>
+    </figure>
+    <p class="avis-note" style="text-align:center">Extrait d'avis publié en ligne.</p>
+  </div>
+</section>
+
+<!-- ============ INFOS PRATIQUES ============ -->
+<section id="trouver" aria-labelledby="trouver-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="color:var(--brique)">Infos pratiques</p>
+      <h2 id="trouver-title">Nous trouver, rue du Mont Valérien</h2>
+    </div>
+
+    <div class="infos-grid">
+      <div class="reveal">
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Adresse</h3>
+          <!-- NAP : reprendre EXACTEMENT la forme de la fiche Google Business du client -->
+          <address>
+            Le Fournil de Saint-Cloud<br>
+            19, rue du Mont Valérien<br>
+            92210 Saint-Cloud
+          </address>
+        </div>
+
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Horaires</h3>
+          <!-- Horaires relevés sur les annuaires (sept. 2026). Fin de journée : 20h00 selon Google,
+               20h30 selon certains annuaires — à trancher avec le client. -->
+          <table class="horaires-table" id="horairesTable">
+            <tr data-day="1"><td>Lundi</td><td>7h30 – 13h30 · 15h – 20h</td></tr>
+            <tr data-day="2"><td>Mardi</td><td>7h30 – 13h30 · 15h – 20h</td></tr>
+            <tr data-day="3"><td>Mercredi</td><td>7h30 – 13h30 · 15h – 20h</td></tr>
+            <tr data-day="4"><td>Jeudi</td><td>7h30 – 13h30 · 15h – 20h</td></tr>
+            <tr data-day="5"><td>Vendredi</td><td>7h30 – 13h30 · 15h – 20h</td></tr>
+            <tr data-day="6"><td>Samedi</td><td>7h30 – 13h30 · 15h – 20h</td></tr>
+            <tr data-day="0" class="dimanche-hl"><td>Dimanche</td><td>8h00 – 14h00</td></tr>
+          </table>
+        </div>
+
+        <div class="infos-bloc">
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Téléphone</h3>
+          <p><a href="tel:+33146028606">01 46 02 86 06</a></p>
+        </div>
+
+        <!-- [RESEAUX_SOCIAUX] : aucun compte Instagram/Facebook trouvé.
+             Ajouter ici les liens dès que le client les fournit. -->
+      </div>
+
+      <div class="reveal">
+        <div class="map-shell">
+          <iframe
+            title="Carte Google Maps — Le Fournil de Saint-Cloud"
+            src="https://maps.google.com/maps?q=Le%20Fournil%20de%20Saint-Cloud%2C%2019%20Rue%20du%20Mont%20Val%C3%A9rien%2C%2092210%20Saint-Cloud&z=17&hl=fr&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="map-links">
+          <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=Le%20Fournil%20de%20Saint-Cloud%2C%2019%20Rue%20du%20Mont%20Val%C3%A9rien%2C%2092210%20Saint-Cloud" target="_blank" rel="noopener">Itinéraire</a>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Le%20Fournil%20de%20Saint-Cloud%2C%2019%20Rue%20du%20Mont%20Val%C3%A9rien%2C%2092210%20Saint-Cloud" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">Le Fournil de Saint-Cloud<small>Boulangerie · Pâtisserie</small></p>
+        <p style="margin-top:.6rem;font-size:.86rem">19, rue du Mont Valérien · 92210 Saint-Cloud<br>
+        <a href="tel:+33146028606" style="color:inherit">01 46 02 86 06</a></p>
+      </div>
+      <nav aria-label="Navigation pied de page">
+        <a href="#top">Accueil</a>
+        <a href="#produits">Nos produits</a>
+        <a href="#histoire">Notre histoire</a>
+        <a href="#trouver">Nous trouver</a>
+      </nav>
+    </div>
+
+    <div class="footer-legal">
+      <details>
+        <summary>Mentions légales</summary>
+        <div class="legal-body">
+          <!-- [MENTIONS_LEGALES] : à compléter avec les informations officielles du client -->
+          <p>Éditeur du site : [RAISON SOCIALE] — [FORME JURIDIQUE] au capital de [CAPITAL] €<br>
+          Siège social : 19, rue du Mont Valérien, 92210 Saint-Cloud — SIRET : [SIRET] — TVA : [TVA_INTRA]<br>
+          Directeur de la publication : [NOM DU GÉRANT] — Contact : 01 46 02 86 06<br>
+          Hébergement : [HÉBERGEUR, adresse]<br>
+          Ce site ne dépose aucun cookie de suivi et ne collecte aucune donnée personnelle.<br>
+          Crédits visuels : illustrations provisoires en attente des photographies de la boulangerie.</p>
+        </div>
+      </details>
+      <p class="copyright">© <span id="year">2026</span> Le Fournil de Saint-Cloud — Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Menu mobile ===== */
+var toggle = document.getElementById('menuToggle');
+var menu = document.getElementById('mobileMenu');
+toggle.addEventListener('click', function () {
+  var open = menu.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+});
+menu.querySelectorAll('a').forEach(function (a) {
+  a.addEventListener('click', function () {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ===== Statut ouvert/fermé (hero) =====
+   HORAIRES — source : annuaires + fiche Google (sept. 2026). À confirmer avec le client.
+   Index 0 = dimanche … 6 = samedi ; plages [début, fin] en minutes. */
+var HORAIRES = [
+  [[480, 840]],                  // dimanche : 8h00 – 14h00
+  [[450, 810],[900, 1200]],      // lundi    : 7h30–13h30 / 15h00–20h00
+  [[450, 810],[900, 1200]],      // mardi
+  [[450, 810],[900, 1200]],      // mercredi
+  [[450, 810],[900, 1200]],      // jeudi
+  [[450, 810],[900, 1200]],      // vendredi
+  [[450, 810],[900, 1200]]       // samedi
+];
+var JOURS = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+function fmt(m){ var h=Math.floor(m/60), mn=m%60; return h+'h'+(mn<10?'0':'')+mn; }
+(function () {
+  var now = new Date();
+  var day = now.getDay(), mins = now.getHours()*60 + now.getMinutes();
+  var pill = document.getElementById('statusPill'), txt = document.getElementById('statusText');
+  if (!pill || !txt) return;
+  var plages = HORAIRES[day], msg = null;
+  for (var i=0;i<plages.length;i++){
+    if (mins >= plages[i][0] && mins < plages[i][1]) { msg = 'Ouvert · ferme à ' + fmt(plages[i][1]); break; }
+    if (mins < plages[i][0]) { msg = 'Fermé · ' + (i>0?'rouvre':'ouvre') + ' à ' + fmt(plages[i][0]); pill.classList.add('closed'); break; }
+  }
+  if (!msg) {
+    pill.classList.add('closed');
+    for (var d=1;d<=7;d++){
+      var nd=(day+d)%7;
+      if (HORAIRES[nd].length){ msg='Fermé · rouvre '+(d===1?'demain':JOURS[nd])+' à '+fmt(HORAIRES[nd][0][0]); break; }
+    }
+  }
+  if (msg) txt.textContent = msg;
+  var row = document.querySelector('#horairesTable tr[data-day="'+day+'"]');
+  if (row) row.classList.add('today');
+})();
+
+/* ===== Année du copyright ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== Apparition au scroll ===== */
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+} else {
+  document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+}
+</script>
+
+</body>
+</html>
