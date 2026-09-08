@@ -523,7 +523,32 @@ html:not(.js) .cabecera{
   pointer-events:none;
 }
 .marco__ojo{ color:var(--turquesa); opacity:.30; }
-.marco img{ width:100%; height:100%; object-fit:cover; }
+.marco img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ── Con foto real ──────────────────────────────────────────
+   El marcador de posición era una pieza compuesta (almendra, escuadra,
+   passe-partout). Con una fotografía dentro, todo eso sobra: el marco se
+   queda en superficie limpia, radio y sombra. */
+.marco--foto{ background:var(--bruma-clara); }
+.marco--foto::after,
+.marco--foto .marco__esquina,
+.marco--foto .marco__ojo{ display:none; }
+.marco--foto picture{ display:block; width:100%; height:100%; }
+
+/* Póliza de color, opcional: añadir la clase .marco--tratado si la
+   temperatura del retrato riñe con la familia verdeazul de la página.
+   Se deja fuera por defecto — una foto en color natural casi siempre
+   inspira más confianza que una tratada. */
+.marco--tratado img{ filter:grayscale(.28) contrast(1.05) brightness(1.02); }
+.marco--tratado::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(180deg, rgba(24,145,132,.10), rgba(11,38,44,.18));
+  mix-blend-mode:color;
+  pointer-events:none;
+}
 
 @media (min-width:768px) and (max-width:1023px){
   /* En la banda intermedia el marco vive en una pista «auto»: una anchura en
