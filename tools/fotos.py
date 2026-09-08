@@ -27,18 +27,17 @@ SATURACION = 0.92
 CONTRASTE = 1.04
 
 FOTOS = [
-    dict(clave='retrato', archivo='IMG_1259_2.png', recorte_previo=(0, 681, 1170, 1850),
-         caja=(117, 0, 1052, 1169), anchuras=[600, 935],
-         nota='Portada — retrato de estudio, fondo neutro'),
-    dict(clave='consultorio', archivo='IMG_1260_2.jpeg', caja=(250, 55, 1090, 895),
-         anchuras=[420, 840],
-         nota='Sobre mí — consultorio, diplomas al fondo (el rótulo ajeno empieza en y=928: la caja se detiene antes)'),
-    dict(clave='optotipo', archivo='IMG_1261_2.jpeg', caja=(170, 330, 950, 1110),
-         anchuras=[420, 780],
-         nota='Áreas — explicando sobre el optotipo'),
-    dict(clave='equipo', archivo='IMG_1263_2.jpeg', caja=(0, 230, 1165, 885),
-         anchuras=[900, 1165],
-         nota='Antes del logro — pasillo de la clínica'),
+    # Una sola fotografía en todo el sitio. Se probaron cuatro repartidas por la
+    # página y el resultado se degradaba: la dirección «Respiración larga» vive
+    # del aire, y cada imagen añadida le restaba el blanco que la sostenía.
+    # Se elige la del consultorio y no el retrato de estudio por dos razones:
+    # es cálida —entra en el papel en vez de posarse encima— y trae detrás el
+    # muro de diplomas, que hace por la credibilidad lo que un fondo gris no
+    # puede hacer. La caja se detiene en y=915 porque el rótulo de otro diseño
+    # empieza en y=928.
+    dict(clave='retrato', archivo='IMG_1260_2.jpeg', caja=(344, 25, 1056, 915),
+         anchuras=[480, 712],
+         nota='Portada — consultorio, diplomas al fondo'),
 ]
 
 

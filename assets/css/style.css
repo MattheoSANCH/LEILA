@@ -535,21 +535,6 @@ html:not(.js) .cabecera{
 .marco--foto .marco__ojo{ display:none; }
 .marco--foto picture{ display:block; width:100%; height:100%; }
 
-/* Póliza de color, opcional: añadir la clase .marco--tratado si la
-   temperatura del retrato riñe con la familia verdeazul de la página.
-   Se deja fuera por defecto — una foto en color natural casi siempre
-   inspira más confianza que una tratada. */
-.marco--tratado img{ filter:grayscale(.28) contrast(1.05) brightness(1.02); }
-.marco--tratado::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  background:linear-gradient(180deg, rgba(24,145,132,.10), rgba(11,38,44,.18));
-  mix-blend-mode:color;
-  pointer-events:none;
-}
-
 @media (min-width:768px) and (max-width:1023px){
   /* En la banda intermedia el marco vive en una pista «auto»: una anchura en
      porcentaje sería cíclica y lo encogería hasta el tamaño del SVG interior.
@@ -563,7 +548,11 @@ html:not(.js) .cabecera{
     justify-self:end;
     align-self:start;
     width:auto;
-    height:clamp(420px,62svh,660px);
+    /* Techo de 580px, no 660: la fuente mide 712px de ancho y por encima de
+       ese tamaño el estiramiento en pantalla de alta densidad pasa de 1.3x y
+       empieza a notarse. Cuando lleguen los archivos originales en plena
+       definición, este techo puede subir a 660px sin tocar nada más. */
+    height:clamp(420px,58svh,580px);
     max-height:none;
     /* Sangrado acotado al espacio que realmente existe a la derecha del
        contenedor —su relleno más el margen exterior— y nunca más de 180px.
@@ -577,52 +566,11 @@ html:not(.js) .cabecera{
   }
 }
 
-/* ── Fotografías del cuerpo de página ────────────────────
-   Tres imágenes de contexto, repartidas y nunca apiladas en galería:
-   una acompaña las credenciales, otra el índice de áreas, y la tercera
-   es una banda a sangre que sirve de respiración antes del logro. */
-.foto{
-  margin:0;
-  border-radius:var(--radio);
-  overflow:hidden;
-  background:var(--bruma-clara);
-}
-.foto picture{ display:block; }
-.foto img{ width:100%; height:auto; display:block; }
-
-/* En la columna de identidad y en la entrada de Áreas la foto no manda:
-   se topa para que no compita con el texto en pantalla estrecha. */
-.foto--aside,
-.foto--areas{ width:min(100%, 320px); }
-.foto--aside{ margin-bottom:28px; }
-.foto--areas{ margin-top:32px; }
-
-@media (min-width:1024px){
-  .foto--aside,
-  .foto--areas{ width:100%; }
-}
-
-/* La banda a sangre: ancho completo del documento, altura por proporción.
-   No lleva max-width porque su papel es justamente romper el contenedor. */
-.banda{
-  margin:0;
-  overflow:hidden;
-  background:var(--bruma);
-}
-.banda img{ width:100%; height:auto; display:block; }
-
-@media (min-width:768px){
-  /* Se recorta en altura para que no domine —es una respiración, no una
-     portada— pero lo justo para que el pasillo y el muro de certificados
-     sigan leyéndose: encuadrada más arriba, las cabezas quedan holgadas. */
-  .banda{ max-height:clamp(300px, 32vw, 440px); }
-  .banda picture{ display:block; height:100%; }
-  .banda img{
-    height:clamp(300px, 32vw, 440px);
-    object-fit:cover;
-    object-position:center 26%;
-  }
-}
+/* Sin capa de color en CSS. Se probó una —desaturación más velo verdeazul
+   con mix-blend-mode:color— y volvía la piel cetrina: ese modo sustituye el
+   tono por completo, lo que ningún retrato aguanta. La armonización se hace
+   donde corresponde, sobre el píxel de origen y con la ganancia acotada
+   (ver tools/fotos.py), no apilando un filtro encima de la cara. */
 
 /* =========================================================
    06. SOBRE MÍ
