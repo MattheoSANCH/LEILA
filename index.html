@@ -1,299 +1,431 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="es-MX">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aux fleurs d'Ambre — Fleuriste à Vincennes</title>
-<meta name="description" content="Fleuriste à Vincennes : bouquets et compositions préparés chaque matin, place du Château. Bouquet du jour, compositions en vase, mariages & événements.">
-<meta name="theme-color" content="#FF6F61">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Alejandra Sánchez Navarro Palazuelos | Oftalmóloga en Mexicali</title>
+<meta name="description" content="Consulta de oftalmología en Mexicali: córnea, queratocono, cataratas y cirugía refractiva. Más de 15 años de ejercicio. EYE CENTER Mexicali.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#F8F7F3">
 
-<meta property="og:type" content="business.business">
-<meta property="og:title" content="Aux fleurs d'Ambre — Fleuriste à Vincennes">
-<meta property="og:description" content="Des fleurs choisies chaque matin, des fleurs fraîches du jour. Bouquets et compositions préparés le jour même, place du Château à Vincennes.">
-<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="es_MX">
+<meta property="og:title" content="Dra. Alejandra Sánchez Navarro Palazuelos | Oftalmóloga en Mexicali">
+<meta property="og:description" content="Consulta de oftalmología en Mexicali: córnea, queratocono, cataratas y cirugía refractiva. Más de 15 años de ejercicio. EYE CENTER Mexicali.">
+<!-- AL PUBLICAR, con el dominio ya contratado, añadir aquí estas tres líneas
+     (se dejan fuera a propósito: una URL inventada rompe el canónico y la
+     tarjeta al compartir, y la imagen no existe hasta que llegue el retrato):
+     <link rel="canonical" href="https://EL-DOMINIO/">
+     <meta property="og:url" content="https://EL-DOMINIO/">
+     <meta property="og:image" content="https://EL-DOMINIO/assets/img/retrato.jpg"> -->
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 20'%3E%3Cpath d='M2 10 Q14 1 26 10 Q14 19 2 10 Z' fill='none' stroke='%2310333A' stroke-width='1.8'/%3E%3Ccircle cx='14' cy='10' r='2.8' fill='%23189184'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..600&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
 
 <link rel="stylesheet" href="assets/css/style.css">
-<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+
+<script>
+/* Todo lo que se anima nace oculto SOLO si esta clase está puesta. Así, sin
+   JavaScript, la página se ve entera sin depender de un <noscript>.
+   Si main.js no llega a ejecutarse (404, bloqueador, red caída), al evento
+   «load» se retira la clase y el contenido reaparece: nunca queda en blanco. */
+document.documentElement.classList.add('js');
+addEventListener('load', function () {
+  if (!document.documentElement.classList.contains('animado')) {
+    document.documentElement.classList.remove('js');
+  }
+});
+</script>
 </head>
-<body>
+<body id="top">
 
-<a class="skip-link" href="#main">Aller au contenu</a>
+<a class="saltar" href="#contenido">Ir al contenido</a>
+<div id="centinela" aria-hidden="true"></div>
 
-<header id="site-header">
-  <div class="wrap header-inner">
-    <a href="#top" class="brand">Aux fleurs <span>d'Ambre</span></a>
+<header class="cabecera" id="cabecera">
+  <div class="env cabecera__inner">
 
-    <nav class="nav-desktop" aria-label="Navigation principale">
-      <a href="#bouquets">Bouquets</a>
-      <a href="#apropos">La boutique</a>
-      <a href="#horaires">Horaires</a>
-      <a href="#contact">Contact</a>
+    <a class="marca" href="#top">
+      <svg class="almendra" width="28" height="20" viewBox="0 0 28 20" aria-hidden="true" focusable="false">
+        <path d="M2 10 Q14 1 26 10 Q14 19 2 10 Z" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+        <circle cx="14" cy="10" r="2.6" fill="#189184"/>
+      </svg>
+      <span class="marca__largo">Dra. Alejandra Sánchez Navarro Palazuelos</span>
+      <span class="marca__corto">Dra. Sánchez Navarro</span>
+    </a>
+
+    <nav class="nav" aria-label="Secciones">
+      <a href="#sobre-mi">Sobre mí</a>
+      <span class="punto punto--4" aria-hidden="true"></span>
+      <a href="#areas">Áreas</a>
+      <span class="punto punto--4" aria-hidden="true"></span>
+      <a href="#contacto">Contacto</a>
     </nav>
 
-    <div class="header-actions">
-      <a class="call-pill" href="tel:+33171368546" aria-label="Appeler le 01 71 36 85 46">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span class="call-text">01 71 36 85 46</span>
-      </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <a class="cabecera__tel" href="tel:+526865556060">
+      <span class="punto punto--6" aria-hidden="true"></span>
+      <span class="vh">Llamar al </span><span>686.555.6060</span>
+    </a>
+
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#bouquets">Bouquets</a>
-  <a href="#apropos">La boutique</a>
-  <a href="#horaires">Horaires</a>
-  <a href="#contact">Contact</a>
-  <a class="mobile-call" href="tel:+33171368546">Appeler · 01 71 36 85 46</a>
-</div>
+<main id="contenido">
 
-<main id="main">
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" aria-labelledby="t-hero">
+    <div class="env hero__grid">
 
-  <section class="hero" id="top">
-    <div class="hero-blob hero-blob--1" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob--2" aria-hidden="true"></div>
-    <div class="petals" aria-hidden="true">
-      <span class="petal petal--1"></span>
-      <span class="petal petal--2"></span>
-      <span class="petal petal--3"></span>
-      <span class="petal petal--4"></span>
-      <span class="petal petal--5"></span>
-      <span class="petal petal--6"></span>
-    </div>
+      <div class="hero__intro">
+        <p class="etiqueta etiqueta--acento rev">Mexicali <span class="sep" aria-hidden="true">·</span> Baja California</p>
 
-    <div class="wrap hero-inner">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Fleuriste à Vincennes</p>
-        <h1>Des fleurs choisies chaque matin, <span class="highlight">des fleurs fraîches du jour.</span></h1>
-        <p class="lede">Bouquets et compositions préparés le jour même, place du Château à Vincennes.</p>
+        <h1 id="t-hero" class="rev" style="--d:1">
+          <span>Dra. Alejandra Sánchez</span> <span>Navarro Palazuelos</span>
+        </h1>
 
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="tel:+33171368546">Appeler la boutique</a>
-          <a class="btn btn-ghost" href="#bouquets">Voir les bouquets</a>
-        </div>
+        <p class="hero__especialidad rev" style="--d:2">
+          Oftalmología <span class="sep" aria-hidden="true">·</span>
+          Córnea <span class="sep" aria-hidden="true">·</span>
+          Cirugía Refractiva <span class="sep" aria-hidden="true">·</span>
+          Enfermedades Oculares Externas
+        </p>
 
-        <div class="hero-trust">
-          <a class="rating-badge" href="https://www.google.com/maps/search/?api=1&query=Aux+fleurs+d%27Ambre+Vincennes" target="_blank" rel="noopener">
-            <span class="stars" aria-hidden="true">★★★★★</span>
-            <strong>4,9/5</strong> sur Google · 64 avis
-          </a>
-          <span class="trust-sep" aria-hidden="true">•</span>
-          <span class="trust-item">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            35 av. du Château, Vincennes
-          </span>
-        </div>
+        <span class="filete-anim" aria-hidden="true"></span>
+
+        <p class="hero__lead rev" style="--d:3">La córnea es la ventana por la que entra todo lo que usted ve. Ese es mi terreno.</p>
       </div>
 
-      <div class="hero-visual reveal" aria-hidden="true">
-        <svg viewBox="0 0 320 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="bouquet-illustration">
-          <path d="M160 372c-3-70 6-140-2-190" stroke="#2F9E5B" stroke-width="4" stroke-linecap="round"/>
-          <path d="M160 260c-26-8-44-28-54-56" stroke="#2F9E5B" stroke-width="3" stroke-linecap="round" fill="none"/>
-          <path d="M160 290c30-6 50-24 62-52" stroke="#2F9E5B" stroke-width="3" stroke-linecap="round" fill="none"/>
-          <path d="M160 230c-18-4-30-16-38-34" stroke="#2F9E5B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <div class="hero__cierre">
+        <p class="hero__acciones rev" style="--d:4">
+          <a class="enlace-linea enlace-linea--fuerte" href="tel:+526865556060">Llamar al 686.555.6060</a>
+          <a class="enlace-linea" href="#sobre-mi">Conocer mi formación</a>
+        </p>
 
-          <g class="flower flower--a">
-            <circle cx="160" cy="108" r="26" fill="#FF6F61"/>
-            <circle cx="122" cy="132" r="19" fill="#FF9EBB"/>
-            <circle cx="198" cy="132" r="19" fill="#FF9EBB"/>
-            <circle cx="160" cy="150" r="17" fill="#7C4DFF" opacity="0.9"/>
-            <circle cx="160" cy="122" r="10" fill="#FFC145"/>
-          </g>
-          <g class="flower flower--b">
-            <circle cx="96" cy="180" r="15" fill="#FFC145"/>
-            <circle cx="96" cy="180" r="6" fill="#FF6F61"/>
-          </g>
-          <g class="flower flower--c">
-            <circle cx="228" cy="176" r="13" fill="#7C4DFF"/>
-            <circle cx="228" cy="176" r="5" fill="#FFC145"/>
-          </g>
-          <g class="flower flower--d">
-            <circle cx="140" cy="200" r="10" fill="#FF9EBB"/>
-            <circle cx="184" cy="204" r="9" fill="#FF6F61"/>
-          </g>
+        <p class="hero__pie rev" style="--d:5">
+          Más de 15 años de experiencia<span class="vh">.</span>
+          <span class="punto punto--4" aria-hidden="true"></span>
+          EYE CENTER Mexicali
+        </p>
+      </div>
+
+      <figure class="marco rev" style="--d:2" aria-hidden="true">
+        <!-- FOTO DEFINITIVA: sustituir todo el contenido de .marco por
+             <img src="assets/img/retrato.jpg" alt="Retrato de la Dra. Alejandra Sánchez Navarro Palazuelos"
+                  width="1200" height="1500" loading="eager" decoding="async">
+             Formato requerido: 4:5, mínimo 1200 × 1500 px. Al hacerlo, retirar aria-hidden de <figure>. -->
+        <span class="marco__esquina"></span>
+        <svg class="almendra marco__ojo" width="64" height="46" viewBox="0 0 28 20" aria-hidden="true" focusable="false">
+          <path d="M2 10 Q14 1 26 10 Q14 19 2 10 Z" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+          <circle cx="14" cy="10" r="2.6" fill="currentColor"/>
         </svg>
-      </div>
-    </div>
+      </figure>
 
-    <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,32 C240,80 480,0 720,24 C960,48 1200,88 1440,40 L1440,90 L0,90 Z" fill="#FFF8F2"></path>
-    </svg>
-  </section>
-
-  <section class="bouquets" id="bouquets">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow eyebrow--dark">Notre sélection</p>
-        <h2>Nos bouquets</h2>
-        <p class="section-sub">Un aperçu des formats les plus demandés. Chaque bouquet reste ajustable selon vos envies et la saison.</p>
-      </div>
-
-      <div class="catalog">
-        <article class="item reveal" style="--accent:#FF6F61;--accent-soft:#FFE3DF;">
-          <span class="item-icon"><svg viewBox="0 0 44 44" stroke="#fff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="22" r="5"/><circle cx="22" cy="10" r="6"/><circle cx="22" cy="34" r="6"/><circle cx="10" cy="22" r="6"/><circle cx="34" cy="22" r="6"/></svg></span>
-          <h3>Bouquet du jour</h3>
-          <p class="desc">La sélection la plus fraîche du matin, composée sur place.</p>
-          <div class="price">à partir de 25€</div>
-        </article>
-
-        <article class="item reveal" style="--accent:#7C4DFF;--accent-soft:#EAE1FF;">
-          <span class="item-icon"><svg viewBox="0 0 44 44" stroke="#fff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 40V22"/><path d="M22 26c-6-2-10-6-12-12"/><path d="M22 26c6-2 10-6 12-12"/><circle cx="22" cy="20" r="4"/><circle cx="10" cy="12" r="3.5"/><circle cx="34" cy="12" r="3.5"/></svg></span>
-          <h3>Bouquet rond classique</h3>
-          <p class="desc">Une composition ronde et généreuse, pour toutes les occasions.</p>
-          <div class="price">à partir de 35€</div>
-        </article>
-
-        <article class="item reveal" style="--accent:#FFB238;--accent-soft:#FFF1D6;">
-          <span class="item-icon"><svg viewBox="0 0 44 44" stroke="#fff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 34h16l-2-16H16z"/><circle cx="18" cy="14" r="4"/><circle cx="26" cy="12" r="4"/><circle cx="22" cy="18" r="4"/></svg></span>
-          <h3>Composition en vase</h3>
-          <p class="desc">Prête à poser, sans entretien particulier les premiers jours.</p>
-          <div class="price">à partir de 45€</div>
-        </article>
-
-        <article class="item reveal" style="--accent:#2F9E5B;--accent-soft:#DDF3E4;">
-          <span class="item-icon"><svg viewBox="0 0 44 44" stroke="#fff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 32c14-2 24-12 28-26-14 2-24 12-28 26z"/><path d="M12 30c4-6 10-11 18-14"/></svg></span>
-          <h3>Plante fleurie</h3>
-          <p class="desc">Pour la maison ou pour offrir, sans date de péremption.</p>
-          <div class="price">à partir de 20€</div>
-        </article>
-
-        <article class="item reveal" style="--accent:#FF9EBB;--accent-soft:#FFE9F0;">
-          <span class="item-icon"><svg viewBox="0 0 44 44" stroke="#fff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 20c0-8 4-14 8-14s8 6 8 14c-8 4-8 4-16 0z"/><path d="M22 40V20"/></svg></span>
-          <h3>Bouquet de saison</h3>
-          <p class="desc">Ce qu'il y a de mieux en ce moment, choisi par nos soins.</p>
-          <div class="price">à partir de 30€</div>
-        </article>
-
-        <article class="item item--feature reveal" style="--accent:#FF6F61;--accent-soft:#FFE3DF;">
-          <span class="item-icon"><svg viewBox="0 0 44 44" stroke="#fff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30h28M12 30V16h20v14"/><path d="M18 16v-4h8v4"/></svg></span>
-          <h3>Mariage &amp; événements</h3>
-          <p class="desc">Compositions sur mesure, à discuter ensemble en amont.</p>
-          <div class="price">sur devis</div>
-        </article>
-      </div>
-
-      <p class="catalog-note reveal">Formats et tarifs indicatifs, à ajuster ensemble selon vos habitudes de vente.</p>
     </div>
   </section>
 
-  <section class="engagement">
-    <div class="wrap">
-      <div class="engagement-grid">
-        <div class="point reveal" style="--accent:#FF6F61;">
-          <span class="point-icon">🌅</span>
-          <h3>Sélection du matin</h3>
-          <p>Les fleurs sont choisies chaque jour selon ce qu'il y a de plus frais.</p>
-        </div>
-        <div class="point reveal" style="--accent:#7C4DFF;">
-          <span class="point-icon">✂️</span>
-          <h3>Fait sur place</h3>
-          <p>Chaque bouquet est composé au moment de la commande.</p>
-        </div>
-        <div class="point reveal" style="--accent:#FFB238;">
-          <span class="point-icon">💬</span>
-          <h3>Conseil pris le temps</h3>
-          <p>Une occasion, un budget, une couleur : on prend le temps d'écouter.</p>
+  <!-- ═══ SOBRE MÍ ═══ -->
+  <section id="sobre-mi" class="sobre" aria-labelledby="t-sobre">
+    <div class="env sobre__grid">
+
+      <div class="sobre__aside">
+        <p class="etiqueta rev"><span aria-hidden="true">01 — </span>Sobre mí</p>
+
+        <div class="sobre__ficha rev" style="--d:1">
+          <div class="ficha">
+            <dl class="ficha__lista">
+              <dt>Cédula<span class="vh">:</span> <span class="sep" aria-hidden="true">·</span> Médico cirujano</dt>
+              <dd>3312725</dd>
+              <dt>Cédula<span class="vh">:</span> <span class="sep" aria-hidden="true">·</span> Oftalmología</dt>
+              <dd>4371608</dd>
+            </dl>
+          </div>
+          <p class="dato">Más de 15 años de experiencia</p>
+          <p class="dato">EYE CENTER Mexicali</p>
         </div>
       </div>
+
+      <div class="sobre__prosa">
+        <h2 id="t-sobre" class="rev">Cómo llegué a la córnea</h2>
+        <p class="rev" style="--d:1">Soy oftalmóloga y llevo más de quince años ejerciendo. Mi trabajo se concentra en la córnea, en la cirugía refractiva y en las enfermedades de la superficie del ojo.</p>
+        <p class="rev" style="--d:2">Me formé como médica cirujana en el Instituto Tecnológico y de Estudios Superiores de Monterrey, en la escuela de medicina «Ignacio A. Santos», entre 1993 y 1999, y salí de ahí con Mención Honorífica.</p>
+        <p class="rev" style="--d:3">Completé además la Maestría en Biología Celular en el Instituto Politécnico Nacional, la especialidad en Oftalmología en la Universidad Nacional Autónoma de México y la subespecialidad en Córnea y Cirugía Refractiva en el Instituto de Oftalmología Fundación Conde de Valenciana.</p>
+        <p class="rev" style="--d:4">Hoy doy consulta en EYE CENTER Mexicali, donde atiendo padecimientos de la córnea y de la superficie ocular y realizo cirugía refractiva.</p>
+      </div>
+
+      <div class="sobre__formacion">
+        <p class="etiqueta rev">Formación</p>
+        <ol class="formacion" role="list">
+          <li class="rev" style="--d:1">
+            <p class="formacion__grado">Médico cirujano</p>
+            <p class="formacion__inst">Instituto Tecnológico y de Estudios Superiores de Monterrey (ITESM)</p>
+            <p class="formacion__detalle">Escuela de medicina «Ignacio A. Santos», Monterrey, N.L.<span class="vh">.</span> <span class="sep" aria-hidden="true">·</span> Mención Honorífica</p>
+            <p class="formacion__anios">1993-1999</p>
+          </li>
+          <li class="rev" style="--d:2">
+            <p class="formacion__grado">Maestría</p>
+            <p class="formacion__inst">Instituto Politécnico Nacional (IPN)</p>
+            <p class="formacion__detalle">Biología Celular</p>
+          </li>
+          <li class="rev" style="--d:3">
+            <p class="formacion__grado">Especialidad</p>
+            <p class="formacion__inst">Universidad Nacional Autónoma de México (UNAM)</p>
+            <p class="formacion__detalle">Oftalmología</p>
+          </li>
+          <li class="rev" style="--d:4">
+            <p class="formacion__grado">Subespecialidad</p>
+            <p class="formacion__inst">Instituto de Oftalmología Fundación Conde de Valenciana</p>
+            <p class="formacion__detalle">Córnea y Cirugía Refractiva</p>
+          </li>
+        </ol>
+      </div>
+
     </div>
   </section>
 
-  <section class="apropos" id="apropos">
-    <div class="wrap apropos-grid">
-      <div class="reveal">
-        <p class="eyebrow eyebrow--dark">Depuis Vincennes</p>
-        <h2>La boutique</h2>
-        <p>Une adresse de quartier, pensée pour qu'on puisse passer sans rendez-vous comme pour une occasion précise. Le choix change avec les saisons plutôt que de suivre un catalogue figé.</p>
+  <!-- ═══ ÁREAS DE EXPERIENCIA ═══ -->
+  <section id="areas" class="areas" aria-labelledby="t-areas">
+    <div class="env areas__grid">
+
+      <div class="areas__intro">
+        <p class="etiqueta rev"><span aria-hidden="true">02 — </span>Áreas de experiencia</p>
+        <h2 id="t-areas" class="rev" style="--d:1">En qué trabajo</h2>
+        <p class="areas__lead rev" style="--d:2">Estos son los terrenos en los que se concentra mi trabajo. Lo que corresponde a cada ojo se decide después de explorarlo.</p>
       </div>
-      <div class="reveal">
-        <p class="eyebrow eyebrow--dark">Notre méthode</p>
-        <h2>Notre façon de faire</h2>
-        <p>Chaque bouquet est composé au moment de la demande, pas préparé à l'avance en série. On prend le temps d'écouter ce que vous cherchez, même quand ce n'est pas encore très clair.</p>
-      </div>
+
+      <ol class="areas__lista" role="list">
+        <li class="area rev" style="--i:0;--d:0">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">01</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Cirugía refractiva con láser</h3>
+              <p class="area__desc">Corrección de la graduación con láser aplicado sobre la córnea. Los estudios previos son los que dicen si un ojo reúne las condiciones.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li class="area rev" style="--i:1;--d:1">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">02</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Queratocono</h3>
+              <p class="area__desc">La córnea se adelgaza y se abomba de forma progresiva, y la visión se distorsiona con ella.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li class="area rev" style="--i:2;--d:2">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">03</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Trasplante de córnea</h3>
+              <p class="area__desc">Sustitución del tejido corneal dañado u opaco por tejido donado.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li class="area rev" style="--i:3;--d:3">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">04</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Pterigión y pingüécula</h3>
+              <p class="area__desc">Crecimientos de tejido sobre la superficie del ojo. Se revisan para decidir entre vigilarlos o retirarlos.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li class="area rev" style="--i:4;--d:4">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">05</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Miopía</h3>
+              <p class="area__desc">Lo lejano se ve borroso porque la imagen se forma antes de llegar a la retina.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li class="area rev" style="--i:5;--d:5">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">06</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Astigmatismo</h3>
+              <p class="area__desc">Curvatura irregular, casi siempre de la córnea: las imágenes se ven estiradas o con sombra a cualquier distancia.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li class="area rev" style="--i:6;--d:6">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">07</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Cataratas</h3>
+              <p class="area__desc">El cristalino pierde transparencia con los años y la vista se vuelve opaca o amarillenta.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li class="area rev" style="--i:7;--d:7">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">08</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Cirugía láser</h3>
+              <p class="area__desc">Nombre general de los procedimientos oculares en los que el instrumento es el láser. Cuál corresponde se define en la exploración.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li class="area rev" style="--i:8;--d:8">
+          <div class="area__inner">
+            <span class="area__num" aria-hidden="true">09</span>
+            <div class="area__cuerpo">
+              <h3 class="area__nombre">Degeneración macular (DMAE)</h3>
+              <p class="area__desc">Padecimiento asociado a la edad que afecta la mácula, la zona central de la retina, de la que depende el detalle fino.</p>
+            </div>
+            <span class="punto punto--8" aria-hidden="true"></span>
+          </div>
+        </li>
+      </ol>
+
     </div>
   </section>
 
-  <section class="horaires" id="horaires">
-    <div class="wrap horaires-grid">
-      <div class="reveal">
-        <h2>Horaires</h2>
-        <div class="schedule">
-          <div class="schedule-line"><span class="closed">Lundi</span><span class="closed">Fermé</span></div>
-          <div class="schedule-line"><span>Mardi</span><span>10h – 20h</span></div>
-          <div class="schedule-line"><span>Mercredi</span><span>10h – 20h</span></div>
-          <div class="schedule-line"><span>Jeudi</span><span>10h – 20h</span></div>
-          <div class="schedule-line"><span>Vendredi</span><span>10h – 20h30</span></div>
-          <div class="schedule-line"><span>Samedi</span><span>10h – 20h30</span></div>
-          <div class="schedule-line"><span class="closed">Dimanche</span><span class="closed">Fermé</span></div>
-        </div>
+  <!-- ═══ UN LOGRO DESTACADO ═══ -->
+  <section class="logro noche" aria-labelledby="t-logro">
+    <h2 id="t-logro" class="vh">Un logro destacado</h2>
+    <div class="env logro__grid">
+
+      <span class="meridiano" aria-hidden="true"></span>
+
+      <div class="logro__marca rev">
+        <svg class="almendra logro__ojo" width="40" height="29" viewBox="0 0 28 20" aria-hidden="true" focusable="false">
+          <path d="M2 10 Q14 1 26 10 Q14 19 2 10 Z" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+          <circle cx="14" cy="10" r="2.6" fill="currentColor"/>
+        </svg>
+        <p class="etiqueta etiqueta--noche" aria-hidden="true">03 — Un logro</p>
       </div>
-      <div class="visit reveal" id="contact">
-        <h2>Venir</h2>
-        <p>35 avenue du Château, à deux pas du centre de Vincennes. Une commande la veille est bienvenue pour les compositions sur mesure, mais pas nécessaire pour un bouquet du jour.</p>
-        <div class="map-frame">
-          <iframe
-            title="Localisation Aux fleurs d'Ambre, 35 avenue du Château, Vincennes"
-            src="https://www.google.com/maps?q=35+avenue+du+Ch%C3%A2teau,+94300+Vincennes&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            style="border:0;">
-          </iframe>
+
+      <div class="logro__cuerpo">
+        <p class="cita rev" style="--d:1">Conseguí que un trasplante de córnea pueda hacerse aquí, en EYE CENTER Mexicali, con la certificación del <span class="acento">Centro Nacional de Trasplantes</span>.</p>
+        <p class="logro__apoyo rev" style="--d:2">Subespecialidad en Córnea y Cirugía Refractiva — Instituto de Oftalmología Fundación Conde de Valenciana</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CONTACTO ═══ -->
+  <section id="contacto" class="contacto" aria-labelledby="t-contacto">
+    <div class="env contacto__grid">
+
+      <div class="contacto__intro">
+        <p class="etiqueta rev"><span aria-hidden="true">04 — </span>Contacto</p>
+        <h2 id="t-contacto" class="rev" style="--d:1">Dónde encontrarme</h2>
+        <p class="contacto__lead rev" style="--d:2">Para pedir informes o una cita, marque cualquiera de estos números.</p>
+      </div>
+
+      <div class="contacto__nap">
+
+        <div class="donde rev">
+          <p class="sede">EYE CENTER Mexicali</p>
+          <address>
+            <span class="nw">Av. Madero #939,</span><br>
+            Col. Segunda Sección, entre calle <span class="nw">«A»</span> y <span class="nw">«B»</span>,<br>
+            <span class="nw">C.P. 21100,</span> Mexicali
+          </address>
+          <a class="enlace-linea" href="https://www.google.com/maps/dir/?api=1&amp;destination=Av.%20Madero%20939%2C%20Col.%20Segunda%20Secci%C3%B3n%2C%2021100%20Mexicali%2C%20Baja%20California%2C%20M%C3%A9xico" target="_blank" rel="noopener">Cómo llegar</a>
         </div>
+
+        <div class="telefonos rev" style="--d:1">
+          <p class="etiqueta" id="rot-tel">Teléfonos</p>
+          <ul class="telefonos__lista" role="list" aria-labelledby="rot-tel">
+            <li style="--d:1"><a class="tel" href="tel:+526865556060"><span class="punto punto--6" aria-hidden="true"></span><span class="tel__num">686.555.6060</span> <span class="tel__accion">Llamar</span></a></li>
+            <li style="--d:2"><a class="tel" href="tel:+526865556161"><span class="punto punto--6" aria-hidden="true"></span><span class="tel__num">686.555.6161</span> <span class="tel__accion">Llamar</span></a></li>
+            <li style="--d:3"><a class="tel" href="tel:+526865168601"><span class="punto punto--6" aria-hidden="true"></span><span class="tel__num">686.516.8601</span> <span class="tel__accion">Llamar</span></a></li>
+            <li style="--d:4"><a class="tel" href="tel:+526863100855"><span class="punto punto--6" aria-hidden="true"></span><span class="tel__num">686.310.0855</span> <span class="tel__accion">Llamar</span></a></li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
 
 </main>
 
-<footer>
-  <div class="footer-blob" aria-hidden="true"></div>
-  <div class="wrap footer-inner">
-    <p class="cta-line reveal">Besoin d'un bouquet aujourd'hui, ou d'une composition pour une occasion précise ?</p>
-    <a class="phone-button reveal" href="tel:+33171368546">01 71 36 85 46</a>
-    <div class="addr">35 avenue du Château, 94300 Vincennes</div>
+<footer class="pie noche">
+  <div class="env">
 
-    <div class="foot-bottom">
-      <span>Aux fleurs d'Ambre — Fleuriste</span>
-      <span>© <span id="year"></span></span>
+    <div class="pie__grid">
+      <p class="pie__nombre">
+        <svg class="almendra" width="22" height="16" viewBox="0 0 28 20" aria-hidden="true" focusable="false">
+          <path d="M2 10 Q14 1 26 10 Q14 19 2 10 Z" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+          <circle cx="14" cy="10" r="2.6" fill="#7ED0C6"/>
+        </svg>
+        <span>Dra. Alejandra Sánchez Navarro Palazuelos</span>
+      </p>
+      <p class="pie__esp">Oftalmología <span class="sep" aria-hidden="true">·</span> Córnea <span class="sep" aria-hidden="true">·</span> Cirugía Refractiva <span class="sep" aria-hidden="true">·</span> Enfermedades Oculares Externas</p>
+      <p class="pie__cedulas">
+        Cédula profesional de médico cirujano — 3312725<br>
+        Cédula profesional de oftalmología — 4371608
+      </p>
     </div>
+
+    <div class="pie__final">
+      <span>Mexicali, Baja California — 2026</span>
+      <span class="pie__legal">Este sitio es informativo y no sustituye una consulta oftalmológica.</span>
+      <a class="enlace-linea" href="#top">Volver arriba</a>
+    </div>
+
   </div>
 </footer>
-
-<a class="fab-call" href="tel:+33171368546" aria-label="Appeler Aux fleurs d'Ambre">
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-</a>
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Florist",
-  "name": "Aux fleurs d'Ambre",
-  "telephone": "+33171368546",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "35 avenue du Château",
-    "addressLocality": "Vincennes",
-    "postalCode": "94300",
-    "addressCountry": "FR"
-  },
-  "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday"], "opens": "10:00", "closes": "20:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "10:00", "closes": "20:30" }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "64"
-  }
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "#dra-alejandra-sanchez-navarro",
+      "name": "Dra. Alejandra Sánchez Navarro Palazuelos",
+      "honorificPrefix": "Dra.",
+      "jobTitle": "Oftalmóloga",
+      "description": "Oftalmóloga con subespecialidad en Córnea y Cirugía Refractiva y más de 15 años de ejercicio.",
+      "knowsAbout": [
+        "Córnea",
+        "Cirugía refractiva",
+        "Enfermedades oculares externas",
+        "Queratocono",
+        "Trasplante de córnea",
+        "Pterigión y pingüécula",
+        "Miopía",
+        "Astigmatismo",
+        "Cataratas",
+        "Degeneración macular"
+      ],
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Instituto Tecnológico y de Estudios Superiores de Monterrey" },
+        { "@type": "CollegeOrUniversity", "name": "Instituto Politécnico Nacional" },
+        { "@type": "CollegeOrUniversity", "name": "Universidad Nacional Autónoma de México" },
+        { "@type": "MedicalOrganization", "name": "Instituto de Oftalmología Fundación Conde de Valenciana" }
+      ],
+      "worksFor": { "@id": "#eye-center-mexicali" }
+    },
+    {
+      "@type": ["MedicalClinic", "Physician"],
+      "@id": "#eye-center-mexicali",
+      "name": "EYE CENTER Mexicali",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Madero #939, Col. Segunda Sección, entre calle «A» y «B»",
+        "addressLocality": "Mexicali",
+        "addressRegion": "Baja California",
+        "postalCode": "21100",
+        "addressCountry": "MX"
+      },
+      "telephone": ["+52 686 555 6060", "+52 686 555 6161", "+52 686 516 8601", "+52 686 310 0855"],
+      "employee": { "@id": "#dra-alejandra-sanchez-navarro" }
+    }
+  ]
 }
 </script>
 
