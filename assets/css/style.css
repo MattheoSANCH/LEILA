@@ -577,6 +577,53 @@ html:not(.js) .cabecera{
   }
 }
 
+/* ── Fotografías del cuerpo de página ────────────────────
+   Tres imágenes de contexto, repartidas y nunca apiladas en galería:
+   una acompaña las credenciales, otra el índice de áreas, y la tercera
+   es una banda a sangre que sirve de respiración antes del logro. */
+.foto{
+  margin:0;
+  border-radius:var(--radio);
+  overflow:hidden;
+  background:var(--bruma-clara);
+}
+.foto picture{ display:block; }
+.foto img{ width:100%; height:auto; display:block; }
+
+/* En la columna de identidad y en la entrada de Áreas la foto no manda:
+   se topa para que no compita con el texto en pantalla estrecha. */
+.foto--aside,
+.foto--areas{ width:min(100%, 320px); }
+.foto--aside{ margin-bottom:28px; }
+.foto--areas{ margin-top:32px; }
+
+@media (min-width:1024px){
+  .foto--aside,
+  .foto--areas{ width:100%; }
+}
+
+/* La banda a sangre: ancho completo del documento, altura por proporción.
+   No lleva max-width porque su papel es justamente romper el contenedor. */
+.banda{
+  margin:0;
+  overflow:hidden;
+  background:var(--bruma);
+}
+.banda img{ width:100%; height:auto; display:block; }
+
+@media (min-width:768px){
+  /* Se recorta en altura para que no domine —es una respiración, no una
+     portada— pero lo justo para que el pasillo y el muro de certificados
+     sigan leyéndose: encuadrada más arriba, las cabezas quedan holgadas. */
+  .banda{ max-height:clamp(300px, 32vw, 440px); }
+  .banda picture{ display:block; height:100%; }
+  .banda img{
+    height:clamp(300px, 32vw, 440px);
+    object-fit:cover;
+    object-position:center 26%;
+  }
+}
+
 /* =========================================================
    06. SOBRE MÍ
    ========================================================= */
