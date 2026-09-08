@@ -1,0 +1,4 @@
+# Les originaux restent dans l'historique (commit 3f948fa).
+retrato-original.jpeg est la source du portrait publié.
+Recadrage appliqué : boîte (344, 25, 1056, 915) → 712 × 890 px,
+choisie pour exclure le bandeau graphique qui commence à y=928.

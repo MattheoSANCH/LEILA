@@ -111,16 +111,13 @@ addEventListener('load', function () {
         </p>
       </div>
 
-      <figure class="marco rev" style="--d:2" aria-hidden="true">
-        <!-- FOTO DEFINITIVA: sustituir todo el contenido de .marco por
-             <img src="assets/img/retrato.jpg" alt="Retrato de la Dra. Alejandra Sánchez Navarro Palazuelos"
-                  width="1200" height="1500" loading="eager" decoding="async">
-             Formato requerido: 4:5, mínimo 1200 × 1500 px. Al hacerlo, retirar aria-hidden de <figure>. -->
-        <span class="marco__esquina"></span>
-        <svg class="almendra marco__ojo" width="64" height="46" viewBox="0 0 28 20" aria-hidden="true" focusable="false">
-          <path d="M2 10 Q14 1 26 10 Q14 19 2 10 Z" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
-          <circle cx="14" cy="10" r="2.6" fill="currentColor"/>
-        </svg>
+<figure class="marco marco--foto rev" style="--d:2">
+        <picture>
+          <source type="image/webp" srcset="assets/img/retrato-600.webp 600w, assets/img/retrato-712.webp 712w" sizes="(min-width:1024px) 450px, (min-width:768px) 300px, 100vw">
+          <img src="assets/img/retrato-712.jpg" srcset="assets/img/retrato-600.jpg 600w, assets/img/retrato-712.jpg 712w" sizes="(min-width:1024px) 450px, (min-width:768px) 300px, 100vw"
+               width="712" height="890" loading="eager" decoding="async" fetchpriority="high"
+               alt="Retrato de la Dra. Alejandra Sánchez Navarro Palazuelos">
+        </picture>
       </figure>
 
     </div>

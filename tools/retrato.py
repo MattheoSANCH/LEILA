@@ -96,7 +96,10 @@ def main():
     os.makedirs(DESTINO, exist_ok=True)
     print(f"\n── Salidas ────────────────────────────────────────")
     generados = []
-    for w in ANCHURAS:
+    # La definición nativa entra siempre como variante mayor: si el original no
+    # llega a 1200 px, servir solo 600 dejaría la foto borrosa en escritorio.
+    anchuras = sorted({w for w in ANCHURAS if w <= im.width} | {im.width})
+    for w in anchuras:
         if w > im.width * 1.15:
             print(f"  {w}px omitido (excede la definición del original)")
             continue
