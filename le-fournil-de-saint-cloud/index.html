@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- =========================================================================
+     LE FOURNIL DE SAINT-CLOUD — Boulangerie artisanale
+     19 rue du Mont Valérien, 92210 Saint-Cloud — 01 46 02 86 06
+
+     Site vitrine one-page, fichier unique et autonome (CSS + JS inclus).
+
+     COMMENT REMPLACER LES PLACEHOLDERS
+     ----------------------------------
+     Chaque emplacement à compléter est signalé par un commentaire
+     <!== [NOM_DU_PLACEHOLDER] ... ==>  dans le corps de la page.
+
+     1. PHOTOS : remplacer le bloc
+              <div class="ph" ...><svg …></svg></div>
+        par  <img src="photos/ma-photo.jpg" alt="Description de la photo">
+        Le cadre (.media) gère le recadrage, les arrondis et les voiles.
+     2. TEXTES : repérer [TEXTE_A_PROPOS], [DESCRIPTIONS_PRODUITS], etc.
+     3. INFOS : téléphone, adresse et horaires sont regroupés dans la
+        section « Infos pratiques » + dans le bloc JSON-LD en bas de page.
+
+     ⚠ À VÉRIFIER AVEC LE COMMERÇANT AVANT MISE EN LIGNE
+        - les horaires (provisoires : seule la fermeture à 20h est connue)
+        - les gammes de produits présentées
+        - le témoignage repris d'un avis en ligne
+        - les liens réseaux sociaux (placeholders)
+     ========================================================================= -->
+
+<title>Le Fournil de Saint-Cloud — Boulangerie artisanale</title>
+<meta name="description" content="Boulangerie artisanale à Saint-Cloud, rue du Mont Valérien. Pains cuits sur place plusieurs fois par jour, viennoiseries pur beurre, pâtisseries et commandes sur mesure.">
+<meta name="theme-color" content="#1F3D34">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Le Fournil de Saint-Cloud — Boulangerie artisanale">
+<meta property="og:description" content="Du pain cuit ici même, plusieurs fois par jour, rue du Mont Valérien à Saint-Cloud.">
+<meta property="og:locale" content="fr_FR">
+
+<!-- [LOGO] — favicon provisoire (emoji). Remplacer par un vrai favicon :
+     <link rel="icon" href="assets/favicon.png"> -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E%F0%9F%8D%9E%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   Le Fournil de Saint-Cloud — Design system
+   Palette : ivoire + vert bouteille (la devanture de
+   boulangerie parisienne), rehaussé de laiton doré.
+   ========================================================= */
+:root {
+  --ivory: #FAF6EE;
+  --ivory-soft: #F2EADC;
+  --paper: #FFFFFF;
+
+  --forest: #1F3D34;
+  --forest-deep: #16302A;
+  --forest-soft: #E6EEE9;
+
+  --brass: #C9A227;        /* filets, ornements */
+  --brass-ink: #8A6D12;    /* même famille, lisible en texte */
+  --brass-soft: #F7EFD6;
+
+  --toast: #7A5230;        /* brun grillé, accent secondaire */
+
+  --ink: #24231F;
+  --ink-soft: rgba(36, 35, 31, 0.70);
+  --ink-mute: rgba(36, 35, 31, 0.52);
+  --line: rgba(36, 35, 31, 0.13);
+
+  --shadow-sm: 0 2px 10px rgba(31, 61, 52, 0.07);
+  --shadow-md: 0 18px 40px rgba(31, 61, 52, 0.16);
+  --shadow-lg: 0 30px 70px rgba(31, 61, 52, 0.20);
+
+  --radius: 18px;
+  --radius-sm: 10px;
+  --header-h: 76px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+html, body { max-width: 100%; overflow-x: hidden; }
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16.5px;
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Cormorant Garamond', Garamond, Georgia, serif;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+}
+h1 { font-size: clamp(2.7rem, 7.5vw, 4.8rem); }
+h2 { font-size: clamp(2.05rem, 4.8vw, 3.1rem); }
+h3 { font-size: 1.32rem; }
+p  { margin: 0 0 1rem; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--brass-ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 26px; }
+.section { padding: clamp(66px, 9vw, 118px) 0; }
+.section--paper { background: var(--paper); }
+
+.skip-link {
+  position: absolute; left: -999px; top: auto;
+  background: var(--forest); color: var(--ivory);
+  padding: 12px 18px; border-radius: 0 0 8px 0; z-index: 1000;
+}
+.skip-link:focus { left: 0; top: 0; }
+
+/* ---------- ornements & titres ---------- */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--brass-ink);
+  margin: 0 0 18px;
+}
+.eyebrow::before {
+  content: ''; width: 28px; height: 1px; background: var(--brass); flex: none;
+}
+.eyebrow--center { justify-content: center; }
+.eyebrow--light { color: var(--brass); }
+
+.section-head { max-width: 640px; margin-bottom: 52px; }
+.section-head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-head--split { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; max-width: none; }
+.section-head--split > div { max-width: 620px; }
+.section-head h2 + p { margin-top: 20px; }
+.section-sub { color: var(--ink-soft); font-size: 1.06rem; }
+
+.rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* ---------- boutons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 15px 26px; border-radius: 2px;
+  font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.91rem;
+  letter-spacing: 0.06em; text-transform: uppercase; line-height: 1;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+}
+.btn svg { width: 17px; height: 17px; }
+.btn-primary { background: var(--forest); color: var(--ivory); }
+.btn-primary:hover { background: var(--forest-deep); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--forest); border-color: rgba(31,61,52,.32); }
+.btn-outline:hover { border-color: var(--forest); background: var(--forest-soft); transform: translateY(-2px); }
+.btn-outline--light { color: var(--ivory); border-color: rgba(250,246,238,.42); }
+.btn-outline--light:hover { color: var(--ivory); border-color: var(--ivory); background: rgba(250,246,238,.12); }
+.btn-brass { background: var(--brass); color: var(--forest-deep); }
+.btn-brass:hover { background: #D8B33C; transform: translateY(-2px); }
+
+/* ---------- header ---------- */
+#site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 900;
+  height: var(--header-h); display: flex; align-items: center;
+  transition: background .3s ease, box-shadow .3s ease;
+}
+#site-header.scrolled {
+  background: rgba(250, 246, 238, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--line);
+}
+.header-inner { display: flex; align-items: center; gap: 22px; width: 100%; }
+
+.brand { margin-right: auto; line-height: 1.05; }
+.brand b {
+  display: block; font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.42rem; font-weight: 600; letter-spacing: 0.01em;
+}
+.brand span {
+  display: block; font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase; color: var(--brass-ink);
+  margin-top: 3px;
+}
+
+.nav-desktop { display: flex; gap: 30px; }
+.nav-desktop a {
+  font-size: 0.88rem; font-weight: 400; letter-spacing: 0.04em;
+  position: relative; padding: 6px 0;
+}
+.nav-desktop a::after {
+  content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
+  background: var(--brass); transition: width .28s ease;
+}
+.nav-desktop a:hover::after { width: 100%; }
+
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.call-pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 12px 20px; border-radius: 2px;
+  background: var(--forest); color: var(--ivory);
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+  transition: background .25s ease;
+}
+.call-pill:hover { background: var(--forest-deep); }
+
+.menu-toggle {
+  display: none; width: 44px; height: 44px; border: 1px solid var(--line);
+  background: transparent; border-radius: 2px; cursor: pointer; padding: 0;
+  flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.menu-toggle span { display: block; width: 20px; height: 1.5px; background: var(--ink); }
+
+.mobile-menu {
+  position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 890;
+  background: var(--ivory); border-bottom: 1px solid var(--line);
+  padding: 6px 26px 26px;
+  transform: translateY(-135%); transition: transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow: var(--shadow-lg);
+}
+.mobile-menu.open { transform: translateY(0); }
+.mobile-menu a {
+  display: block; padding: 15px 0; font-size: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-menu .mobile-call {
+  margin-top: 20px; border: 0; text-align: center; background: var(--forest);
+  color: var(--ivory); padding: 16px; letter-spacing: 0.05em;
+}
+
+/* ---------- apparitions au scroll ---------- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal[data-delay="1"] { transition-delay: .09s; }
+.reveal[data-delay="2"] { transition-delay: .18s; }
+.reveal[data-delay="3"] { transition-delay: .27s; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; }
+}
+
+/* =========================================================
+   HERO — composition en deux colonnes, photo en arche
+   (le cintre du four à pain)
+   ========================================================= */
+.hero { position: relative; padding: calc(var(--header-h) + 54px) 0 clamp(54px, 7vw, 92px); }
+.hero::before {
+  content: ''; position: absolute; top: 0; right: 0; width: 46%; height: 100%;
+  background: var(--ivory-soft); z-index: -1;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1.12fr .88fr;
+  gap: clamp(34px, 5vw, 76px); align-items: center;
+}
+.hero h1 { margin-bottom: 22px; }
+.hero h1 em { font-style: italic; font-weight: 500; color: var(--brass-ink); }
+.hero .lede { font-size: 1.09rem; color: var(--ink-soft); max-width: 470px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin: 34px 0 32px; }
+.hero-trust {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px;
+  font-size: .89rem; color: var(--ink-soft);
+  padding-top: 26px; border-top: 1px solid var(--line);
+}
+.trust-item { display: inline-flex; align-items: center; gap: 9px; }
+.trust-item svg { width: 16px; height: 16px; flex: none; color: var(--brass-ink); }
+.rating-badge { display: inline-flex; align-items: center; gap: 9px; }
+.rating-badge .stars { color: var(--brass); letter-spacing: 2px; font-size: .95rem; }
+.rating-badge strong { font-weight: 600; color: var(--ink); }
+.rating-badge:hover strong { color: var(--brass-ink); }
+
+/* photo du hero + filet doré décalé */
+.hero-visual { position: relative; }
+.hero-visual .frame {
+  position: absolute; inset: 26px -26px -26px 26px;
+  border: 1px solid var(--brass); border-radius: 240px 240px var(--radius) var(--radius);
+}
+.hero-visual .media {
+  aspect-ratio: 4 / 5; border-radius: 240px 240px var(--radius) var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- bandeau défilant ---------- */
+.marquee { background: var(--forest); color: var(--ivory); padding: 15px 0; overflow: hidden; }
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee-track span {
+  display: inline-flex; align-items: center; gap: 34px; padding-right: 34px;
+  font-size: .74rem; font-weight: 400; letter-spacing: .26em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.marquee-track span::after { content: '✦'; color: var(--brass); letter-spacing: 0; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* =========================================================
+   VISUELS DE SUBSTITUTION
+   .media = cadre photo ; .ph = aplat + illustration en attendant
+   la vraie image (voir le mode d'emploi en haut de fichier).
+   ========================================================= */
+.media { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--ivory-soft); }
+.media img, .media .ph { width: 100%; height: 100%; object-fit: cover; }
+
+.ph {
+  display: grid; place-items: center; min-height: 100%;
+  background: linear-gradient(155deg, var(--ph-a) 0%, var(--ph-b) 100%);
+  color: var(--ph-ink);
+}
+.ph svg {
+  width: 40%; max-width: 140px; height: auto; opacity: .62;
+  fill: none; stroke: currentColor; stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .6s ease;
+}
+.ph[data-tone="sauge"]  { --ph-a: #E6EEE9; --ph-b: #C6D9CF; --ph-ink: #35604F; }
+.ph[data-tone="ble"]    { --ph-a: #F7EFD6; --ph-b: #E7D3A2; --ph-ink: #8A6D12; }
+.ph[data-tone="grille"] { --ph-a: #EFE4D8; --ph-b: #D9C2A9; --ph-ink: #7A5230; }
+.ph[data-tone="ivoire"] { --ph-a: #FBF8F2; --ph-b: #EADFCC; --ph-ink: #9A8153; }
+.ph[data-tone="foret"]  { --ph-a: #2E5749; --ph-b: #16302A; --ph-ink: #A8C6B8; }
+
+.icon { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* =========================================================
+   À PROPOS
+   ========================================================= */
+.about-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: clamp(34px, 5vw, 78px); align-items: center; }
+.about-visual { position: relative; }
+.about-visual .media { aspect-ratio: 5 / 6; box-shadow: var(--shadow-md); }
+.about-visual .media--small {
+  position: absolute; right: -34px; bottom: -38px; width: 47%; aspect-ratio: 1 / 1;
+  border: 6px solid var(--ivory); box-shadow: var(--shadow-md);
+}
+.about-copy h2 + p { margin-top: 22px; }
+.about-copy p { color: var(--ink-soft); font-size: 1.04rem; }
+.about-copy .lead { font-size: 1.2rem; color: var(--ink); line-height: 1.6; }
+.signature {
+  margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line);
+  font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+  font-size: 1.18rem; color: var(--forest);
+}
+
+/* ---------- les 3 engagements, en colonnes filetées ---------- */
+.values {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  margin-top: clamp(52px, 7vw, 88px);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.value { padding: 36px 34px; border-right: 1px solid var(--line); }
+.value:last-child { border-right: 0; }
+.value .num {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.9rem;
+  color: var(--brass); line-height: 1; display: block; margin-bottom: 14px;
+}
+.value h3 { margin-bottom: 10px; }
+.value p { color: var(--ink-soft); font-size: .96rem; margin: 0; }
+
+/* =========================================================
+   PRODUITS — cartes photo, texte en surimpression
+   ========================================================= */
+.dishes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.dish {
+  position: relative; aspect-ratio: 3 / 4; border-radius: var(--radius);
+  overflow: hidden; display: flex; align-items: flex-end;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.dish:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.dish .media { position: absolute; inset: 0; border-radius: 0; }
+.dish .ph { align-items: start; padding-top: 14%; }
+.dish .ph svg { opacity: .72; }
+.dish:hover .ph svg { transform: scale(1.07); }
+.dish::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(18,32,27,0) 42%, rgba(18,32,27,.5) 66%, rgba(18,32,27,.88) 100%);
+}
+.dish-body { position: relative; z-index: 1; padding: 26px 24px 24px; color: #fff; }
+.dish-body .tag {
+  display: inline-block; margin-bottom: 12px;
+  font-size: .66rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--brass); border-bottom: 1px solid rgba(201,162,39,.5); padding-bottom: 4px;
+}
+.dish-body h3 { margin-bottom: 8px; }
+.dish-body p { margin: 0; font-size: .95rem; color: rgba(255,255,255,.86); line-height: 1.6; }
+.dishes-note { margin-top: 34px; text-align: center; color: var(--ink-mute); font-size: .9rem; }
+
+/* =========================================================
+   GALERIE — bandeau horizontal, on fait défiler
+   ========================================================= */
+.strip {
+  display: flex; gap: 16px; overflow-x: auto;
+  padding: 4px max(26px, calc((100% - 1200px) / 2 + 26px)) 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin; scrollbar-color: var(--brass) var(--ivory-soft);
+}
+.strip .media {
+  flex: 0 0 auto; width: 300px; height: 400px; scroll-snap-align: start;
+}
+.strip .media--wide { width: 440px; }
+.strip::-webkit-scrollbar { height: 6px; }
+.strip::-webkit-scrollbar-track { background: var(--ivory-soft); border-radius: 99px; }
+.strip::-webkit-scrollbar-thumb { background: var(--brass); border-radius: 99px; }
+.strip-hint {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--ink-mute); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+}
+.strip-hint svg { width: 18px; height: 18px; color: var(--brass); }
+
+/* =========================================================
+   AVIS
+   ========================================================= */
+.reviews-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 24px; }
+.rating-panel {
+  background: var(--forest); color: var(--ivory); border-radius: var(--radius);
+  padding: 44px 38px; display: flex; flex-direction: column; justify-content: center;
+}
+.rating-panel .score {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 4.4rem;
+  line-height: 1; color: #fff;
+}
+.rating-panel .score small { font-size: 1.4rem; color: rgba(250,246,238,.6); }
+.rating-panel .stars { color: var(--brass); letter-spacing: 3px; margin: 12px 0 8px; }
+.rating-panel p { color: rgba(250,246,238,.74); font-size: .95rem; margin: 0 0 22px; }
+.rating-panel .more {
+  display: inline-flex; align-items: center; gap: 9px; color: var(--brass);
+  font-size: .84rem; letter-spacing: .12em; text-transform: uppercase;
+}
+.rating-panel .more svg { width: 17px; height: 17px; }
+
+.testimonial {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(32px, 4vw, 50px); display: flex; flex-direction: column; justify-content: center;
+}
+.testimonial .stars { color: var(--brass); letter-spacing: 2px; margin-bottom: 20px; }
+.testimonial blockquote {
+  margin: 0 0 26px; font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.45rem, 2.5vw, 2rem); font-style: italic; line-height: 1.4;
+}
+.testimonial figcaption { font-size: .85rem; color: var(--ink-mute); letter-spacing: .04em; }
+.testimonial figcaption strong { display: block; color: var(--ink); font-size: .95rem; font-weight: 500; }
+
+/* =========================================================
+   INFOS PRATIQUES — bandeau vert
+   ========================================================= */
+.infos { background: var(--forest); color: var(--ivory); }
+.infos h2 { color: #fff; }
+.infos .section-head { margin-bottom: 46px; }
+.infos .section-sub { color: rgba(250,246,238,.72); }
+.infos-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(30px, 4vw, 62px); align-items: start; }
+.info-block + .info-block { margin-top: 28px; padding-top: 28px; border-top: 1px solid rgba(250,246,238,.16); }
+.info-block h3 { display: flex; align-items: center; gap: 11px; color: #fff; font-size: 1.28rem; margin-bottom: 14px; }
+.info-block h3 .icon { color: var(--brass); }
+.info-block p { color: rgba(250,246,238,.78); margin: 0; }
+.info-block a:hover { color: var(--brass); }
+
+.schedule { font-variant-numeric: tabular-nums; }
+.schedule-line {
+  display: flex; justify-content: space-between; gap: 16px; padding: 8px 0;
+  border-bottom: 1px dashed rgba(250,246,238,.18); font-size: .95rem; color: rgba(250,246,238,.78);
+}
+.schedule-line:last-child { border-bottom: 0; }
+.schedule-line.today { color: #fff; }
+.schedule-line.today .day::after { content: ' · aujourd\'hui'; color: var(--brass); font-size: .82em; letter-spacing: .04em; }
+.schedule-note { margin-top: 14px; font-size: .82rem; color: rgba(250,246,238,.5); }
+
+.phone-big {
+  display: inline-flex; align-items: center; gap: 13px;
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2rem; color: #fff;
+}
+.phone-big .icon { color: var(--brass); width: 22px; height: 22px; }
+.socials { display: flex; gap: 10px; }
+.social {
+  width: 44px; height: 44px; display: grid; place-items: center; border-radius: 2px;
+  border: 1px solid rgba(250,246,238,.26); color: var(--ivory);
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+.social:hover { background: var(--brass); border-color: var(--brass); color: var(--forest-deep); }
+
+.map-frame {
+  border-radius: var(--radius); overflow: hidden; min-height: 600px; height: 100%;
+  background: rgba(0,0,0,.18); box-shadow: var(--shadow-lg);
+}
+.map-frame iframe { width: 100%; height: 100%; min-height: 600px; display: block; border: 0; }
+.map-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer { background: var(--ivory); padding: clamp(58px, 7vw, 88px) 0 30px; }
+.footer-cta { text-align: center; max-width: 640px; margin: 0 auto clamp(48px, 6vw, 72px); }
+.footer-cta h2 { margin-bottom: 16px; }
+.footer-cta p { color: var(--ink-soft); }
+.footer-cols {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 36px;
+  padding: 34px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.footer-brand { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.5rem; margin-bottom: 10px; }
+.footer-cols h4 {
+  font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--brass-ink); margin: 0 0 16px;
+}
+.footer-cols p, .footer-cols li { color: var(--ink-soft); font-size: .94rem; }
+.footer-cols ul { list-style: none; margin: 0; padding: 0; }
+.footer-cols li { margin-bottom: 10px; }
+.footer-cols a:hover { color: var(--brass-ink); }
+.foot-bottom {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+  padding-top: 24px; font-size: .82rem; color: var(--ink-mute);
+}
+.legal { margin-top: 18px; font-size: .82rem; color: var(--ink-mute); }
+.legal summary { cursor: pointer; color: var(--ink-soft); }
+.legal p { margin: 12px 0 0; max-width: 660px; }
+.demo-note { margin-top: 14px; font-size: .76rem; color: rgba(36,35,31,.38); }
+
+/* bouton d'appel flottant (mobile) */
+.fab-call {
+  position: fixed; right: 18px; bottom: 18px; z-index: 880;
+  width: 56px; height: 56px; border-radius: 50%; display: none;
+  align-items: center; justify-content: center;
+  background: var(--forest); color: var(--ivory); box-shadow: var(--shadow-md);
+}
+.fab-call:active { transform: scale(.94); }
+
+/* =========================================================
+   RESPONSIVE — priorité mobile
+   ========================================================= */
+@media (max-width: 1024px) {
+  .hero::before { display: none; }
+  .hero-grid { grid-template-columns: 1fr; gap: 46px; }
+  .hero-visual { max-width: 460px; }
+  .hero-visual .media { aspect-ratio: 4 / 4.4; }
+  .about-grid { grid-template-columns: 1fr; gap: 60px; }
+  .about-visual .media { aspect-ratio: 4 / 3; }
+  .dishes { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid, .infos-grid { grid-template-columns: 1fr; }
+  .map-frame, .map-frame iframe { min-height: 380px; }
+  .rating-panel { padding: 34px 30px; }
+}
+
+@media (max-width: 860px) {
+  .nav-desktop { display: none; }
+  .menu-toggle { display: flex; }
+  .call-pill .call-text { display: none; }
+  .call-pill { padding: 12px 14px; }
+  .values { grid-template-columns: 1fr; }
+  .value { border-right: 0; border-bottom: 1px solid var(--line); }
+  .value:last-child { border-bottom: 0; }
+  .footer-cols { grid-template-columns: 1fr; gap: 30px; }
+  .fab-call { display: flex; }
+}
+
+@media (max-width: 640px) {
+  .section-head--split { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+
+@media (max-width: 560px) {
+  .wrap { padding: 0 18px; }
+  .strip { padding-left: 18px; padding-right: 18px; }
+  .dishes { grid-template-columns: 1fr; }
+  .dish { aspect-ratio: 4 / 3.4; }
+  .hero-ctas .btn { flex: 1 1 100%; }
+  .hero-visual .frame { inset: 18px -18px -18px 18px; }
+  .about-visual .media--small { right: -8px; bottom: -22px; width: 44%; border-width: 5px; }
+  .strip .media { width: 78vw; height: 340px; }
+  .strip .media--wide { width: 86vw; }
+  .value { padding: 30px 0; }
+  .phone-big { font-size: 1.7rem; }
+}
+</style>
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<!-- =========================================================================
+     SPRITE D'ICÔNES — illustrations de substitution + pictos d'interface.
+     Utilisation : <svg …><use href="#i-boule"></use></svg>
+     ========================================================================= -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-boule" viewBox="0 0 64 64">
+    <circle cx="32" cy="34" r="22"/>
+    <path d="M20 26c4 3 8 6 11 11M28 22c4 3 8 6 11 11M36 21c4 3 7 5 10 9"/>
+  </symbol>
+  <symbol id="i-baguette" viewBox="0 0 64 64">
+    <rect x="6" y="25" width="52" height="16" rx="8"/>
+    <path d="M19 29l-4 8M30 28l-4 10M41 29l-4 8"/>
+  </symbol>
+  <symbol id="i-croissant" viewBox="0 0 64 64">
+    <path d="M10 44c0-15 12-27 27-27 5 0 9 1 13 4-3-1-6-1-9-1-13 0-23 10-23 23 0 3 1 7 2 9-6-2-10-5-10-8z"/>
+    <path d="M13 34c3 1 6 3 8 6M18 25c3 1 6 3 8 6M27 20c3 1 5 2 7 4"/>
+  </symbol>
+  <symbol id="i-tarte" viewBox="0 0 64 64">
+    <path d="M8 36h48l-3 9a5 5 0 0 1-5 3H16a5 5 0 0 1-5-3z"/>
+    <path d="M11 36c0-8 9-14 21-14s21 6 21 14"/>
+    <circle cx="23" cy="30" r="3"/><circle cx="33" cy="27" r="3"/><circle cx="43" cy="30" r="3"/>
+  </symbol>
+  <symbol id="i-sandwich" viewBox="0 0 64 64">
+    <path d="M13 28c0-7 8-12 19-12s19 5 19 12z"/>
+    <path d="M11 32h42"/>
+    <path d="M13 37c4 4 8 4 12 0s8-4 12 0 8 4 12 0"/>
+    <path d="M13 44h38a5 5 0 0 1-5 5H18a5 5 0 0 1-5-5z"/>
+  </symbol>
+  <symbol id="i-fournil" viewBox="0 0 64 64">
+    <path d="M10 50V33a22 22 0 0 1 44 0v17"/>
+    <path d="M5 50h54"/>
+    <path d="M23 50V40a9 9 0 0 1 18 0v10"/>
+    <path d="M27 22c0-3 3-4 3-7M36 20c0-3 3-4 3-7"/>
+  </symbol>
+  <symbol id="i-panier" viewBox="0 0 64 64">
+    <path d="M10 32h44l-5 20H15z"/>
+    <path d="M10 32c0-2 2-4 4-4h36c2 0 4 2 4 4"/>
+    <path d="M22 28l6-14M32 28V14M42 28l-6-14"/>
+  </symbol>
+  <symbol id="i-devanture" viewBox="0 0 64 64">
+    <path d="M8 30l7-12h34l7 12z"/>
+    <path d="M22 18l-4 12M32 18v12M42 18l4 12"/>
+    <path d="M13 30v22h38V30"/>
+    <path d="M24 52V38h16v14"/>
+  </symbol>
+  <symbol id="i-wheat" viewBox="0 0 64 64">
+    <path d="M32 58V22"/>
+    <path d="M32 24c0-6 3-11 8-14 2 6-.4 12-8 14z"/><path d="M32 24c0-6-3-11-8-14-2 6 .4 12 8 14z"/>
+    <path d="M32 36c0-6 3-11 8-14 2 6-.4 12-8 14z"/><path d="M32 36c0-6-3-11-8-14-2 6 .4 12 8 14z"/>
+    <path d="M32 48c0-6 3-11 8-14 2 6-.4 12-8 14z"/><path d="M32 48c0-6-3-11-8-14-2 6 .4 12 8 14z"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1l8.8 8.8 8.8-8.8a5 5 0 0 0 0-7.1z"/></symbol>
+  <symbol id="i-swipe" viewBox="0 0 24 24"><path d="M3 12h18M15 6l6 6-6 6M9 6l-6 6 6 6"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.5 6.6h.01"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2.5h-3a5 5 0 0 0-5 5v3H7v4h3v7h4v-7h3l1-4h-4v-3a1 1 0 0 1 1-1h3z"/></symbol>
+</svg>
+
+<!-- ========================= HEADER ========================= -->
+<header id="site-header">
+  <div class="wrap header-inner">
+    <!-- [LOGO] / [NOM_DU_COMMERCE] -->
+    <a href="#top" class="brand"><b>Le Fournil</b><span>de Saint-Cloud</span></a>
+
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      <a href="#top">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#produits">Nos produits</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- [TELEPHONE] — 01 46 02 86 06 -->
+      <a class="call-pill" href="tel:+33146028606" aria-label="Appeler la boulangerie au 01 46 02 86 06">
+        <svg class="icon" width="15" height="15" aria-hidden="true"><use href="#i-phone"></use></svg>
+        <span class="call-text">Nous contacter</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Accueil</a>
+  <a href="#apropos">À propos</a>
+  <a href="#produits">Nos produits</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#avis">Avis</a>
+  <a href="#contact">Contact</a>
+  <a class="mobile-call" href="tel:+33146028606">Appeler · 01 46 02 86 06</a>
+</div>
+
+<main id="main">
+
+  <!-- ========================= HERO ========================= -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow reveal">Boulangerie artisanale — Saint-Cloud</p>
+        <h1 class="reveal" data-delay="1">Le Fournil<br><em>de Saint-Cloud</em></h1>
+        <!-- [SLOGAN] -->
+        <p class="lede reveal" data-delay="2">Le pain est cuit ici même, plusieurs fois par jour. Viennoiseries pur beurre, pâtisseries maison et commandes préparées avec vous, au 19 rue du Mont Valérien.</p>
+
+        <div class="hero-ctas reveal" data-delay="2">
+          <a class="btn btn-primary" href="tel:+33146028606">
+            <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+            Appeler la boulangerie
+          </a>
+          <a class="btn btn-outline" href="#produits">Voir nos produits</a>
+        </div>
+
+        <div class="hero-trust reveal" data-delay="3">
+          <a class="rating-badge" href="https://www.google.com/maps/search/?api=1&amp;query=Le+Fournil+de+Saint-Cloud+19+rue+du+Mont+Val%C3%A9rien" target="_blank" rel="noopener">
+            <span class="stars" aria-hidden="true">★★★★☆</span>
+            <span><strong>4,0/5</strong> · 115 avis Google</span>
+          </a>
+          <span class="trust-item">
+            <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+            19 rue du Mont Valérien
+          </span>
+          <span class="trust-item">
+            <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+            Ouvert jusqu'à 20h
+          </span>
+        </div>
+      </div>
+
+      <!-- [PHOTO_HERO] — remplacer le bloc .ph par :
+           <img src="photos/hero.jpg" alt="La boulangerie Le Fournil de Saint-Cloud">
+           La forme en arche et l'ombre sont portées par .media, rien d'autre à changer. -->
+      <div class="hero-visual reveal" data-delay="1">
+        <span class="frame" aria-hidden="true"></span>
+        <div class="media">
+          <div class="ph" data-tone="grille" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-fournil"></use></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- bandeau défilant -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Pain au levain</span><span>Viennoiseries pur beurre</span><span>Cuit sur place</span><span>Pâtisseries maison</span><span>Commandes sur mesure</span><span>Ouvert jusqu'à 20h</span>
+      <span>Pain au levain</span><span>Viennoiseries pur beurre</span><span>Cuit sur place</span><span>Pâtisseries maison</span><span>Commandes sur mesure</span><span>Ouvert jusqu'à 20h</span>
+    </div>
+  </div>
+
+  <!-- ========================= À PROPOS ========================= -->
+  <section class="section" id="apropos">
+    <div class="wrap about-grid">
+      <!-- [PHOTO_EQUIPE] — deux emplacements : la devanture (grand cadre)
+           et un détail (petit cadre). Remplacer les blocs .ph par des <img>. -->
+      <div class="about-visual reveal">
+        <div class="media">
+          <div class="ph" data-tone="sauge" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-devanture"></use></svg></div>
+        </div>
+        <div class="media media--small">
+          <div class="ph" data-tone="ble" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-boule"></use></svg></div>
+        </div>
+      </div>
+
+      <div class="about-copy reveal" data-delay="1">
+        <p class="eyebrow">La maison</p>
+        <h2>Un fournil, une rue, et du pain toute la journée</h2>
+        <!-- [TEXTE_A_PROPOS] — remplacer par l'histoire réelle : date de reprise,
+             parcours du boulanger, spécialité maison, farines utilisées… -->
+        <p class="lead">Le Fournil de Saint-Cloud, c'est d'abord un four qui tourne du petit matin jusqu'au soir, au 19 rue du Mont Valérien.</p>
+        <p>Le pain est pétri et cuit sur place, en fournées successives : celle du matin pour les premiers passages, celle de midi pour les sandwichs, celle de fin d'après-midi pour le pain du dîner. C'est ce qui change tout entre un pain qui attend et un pain qu'on vient de sortir.</p>
+        <p>Le reste suit la même idée : des viennoiseries pur beurre, des pâtisseries préparées ici, et le temps qu'il faut pour une commande particulière — un pain précis, une quantité, une heure de retrait.</p>
+        <p class="signature">— L'équipe du Fournil de Saint-Cloud</p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="values">
+        <div class="value reveal">
+          <span class="num">01</span>
+          <h3>Cuit sur place, toute la journée</h3>
+          <p>Plusieurs fournées plutôt qu'une seule le matin : le pain de 18 h n'est pas celui de 7 h.</p>
+        </div>
+        <div class="value reveal" data-delay="1">
+          <span class="num">02</span>
+          <h3>Les commandes particulières</h3>
+          <p>Un pain précis, une quantité, une heure de retrait : on s'organise avec vous, un appel suffit.</p>
+        </div>
+        <div class="value reveal" data-delay="2">
+          <span class="num">03</span>
+          <h3>Ouvert jusqu'à 20 h</h3>
+          <p>De quoi rentrer du bureau et passer chercher le pain avant le dîner, sans courir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= PRODUITS ========================= -->
+  <!-- [PHOTOS_PRODUITS] + [DESCRIPTIONS_PRODUITS]
+       Pour chaque carte : remplacer le bloc .ph par
+       <img src="photos/produit-1.jpg" alt="…">. Le dégradé de lisibilité
+       posé sur la carte fonctionne aussi bien sur une vraie photo. -->
+  <section class="section section--paper" id="produits">
+    <div class="wrap">
+      <div class="section-head section-head--center">
+        <p class="eyebrow eyebrow--center reveal">La vitrine</p>
+        <h2 class="reveal">Ce qu'on trouve en boutique</h2>
+        <p class="section-sub reveal" data-delay="1">Le pain d'abord, et tout ce qui l'accompagne du petit matin jusqu'au soir.</p>
+      </div>
+
+      <div class="dishes">
+        <article class="dish reveal">
+          <div class="media"><div class="ph" data-tone="ble" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-baguette"></use></svg></div></div>
+          <div class="dish-body">
+            <span class="tag">Le quotidien</span>
+            <h3>Les pains</h3>
+            <p>Tradition, campagne, seigle : des fournées successives du matin jusqu'au soir.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal" data-delay="1">
+          <div class="media"><div class="ph" data-tone="grille" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-croissant"></use></svg></div></div>
+          <div class="dish-body">
+            <span class="tag">Dès l'ouverture</span>
+            <h3>Les viennoiseries</h3>
+            <p>Croissants, pains au chocolat et chaussons pur beurre, sortis du four au petit matin.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal" data-delay="2">
+          <div class="media"><div class="ph" data-tone="foret" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-tarte"></use></svg></div></div>
+          <div class="dish-body">
+            <span class="tag">Le dimanche</span>
+            <h3>Les pâtisseries</h3>
+            <p>Tartes de saison, éclairs et gâteaux préparés sur place pour la table du dimanche.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal">
+          <div class="media"><div class="ph" data-tone="sauge" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-sandwich"></use></svg></div></div>
+          <div class="dish-body">
+            <span class="tag">Le midi</span>
+            <h3>Sandwichs &amp; parts salées</h3>
+            <p>Garnis sur le pain du jour, avec les quiches et les parts salées : déjeuner réglé en cinq minutes.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal" data-delay="1">
+          <div class="media"><div class="ph" data-tone="ivoire" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-boule"></use></svg></div></div>
+          <div class="dish-body">
+            <span class="tag">Pour changer</span>
+            <h3>Les pains spéciaux</h3>
+            <p>Viennois, suédois, aux céréales : de quoi sortir de la baguette quand l'envie prend.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal" data-delay="2">
+          <div class="media"><div class="ph" data-tone="foret" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-panier"></use></svg></div></div>
+          <div class="dish-body">
+            <span class="tag">Sur commande</span>
+            <h3>Réceptions &amp; grandes commandes</h3>
+            <p>Plateaux salés, pièces cocktail, grandes quantités de pain : prévenez-nous, on prépare.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Note de travail destinée au commerçant — à retirer à la mise en ligne -->
+      <p class="dishes-note reveal">Sélection donnée à titre d'exemple : à ajuster ensemble avec vos produits phares et vos photos.</p>
+    </div>
+  </section>
+
+  <!-- ========================= GALERIE ========================= -->
+  <!-- [PHOTOS_GALERIE] — 8 emplacements dans un bandeau défilant.
+       Remplacer chaque bloc .ph par <img src="photos/galerie-1.jpg" alt="…">.
+       Les cadres larges (.media--wide) conviennent aux photos en paysage. -->
+  <section class="section" id="galerie">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow reveal">En images</p>
+          <h2 class="reveal">La boutique et le fournil</h2>
+        </div>
+        <span class="strip-hint reveal" data-delay="1">
+          Faites défiler
+          <svg class="icon" aria-hidden="true"><use href="#i-swipe"></use></svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="strip reveal">
+      <div class="media media--wide"><div class="ph" data-tone="grille" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-devanture"></use></svg></div></div>
+      <div class="media"><div class="ph" data-tone="ble" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-croissant"></use></svg></div></div>
+      <div class="media"><div class="ph" data-tone="sauge" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-boule"></use></svg></div></div>
+      <div class="media media--wide"><div class="ph" data-tone="ivoire" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-baguette"></use></svg></div></div>
+      <div class="media"><div class="ph" data-tone="foret" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-tarte"></use></svg></div></div>
+      <div class="media"><div class="ph" data-tone="grille" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-panier"></use></svg></div></div>
+      <div class="media media--wide"><div class="ph" data-tone="ble" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-wheat"></use></svg></div></div>
+      <div class="media"><div class="ph" data-tone="sauge" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-sandwich"></use></svg></div></div>
+    </div>
+  </section>
+
+  <!-- ========================= AVIS ========================= -->
+  <!-- [TEMOIGNAGES_CLIENTS]
+       Un seul témoignage positif était disponible publiquement (Pages Jaunes).
+       Demander au commerçant 1 ou 2 avis supplémentaires : le bloc
+       <figure class="testimonial"> se duplique tel quel. -->
+  <section class="section section--paper" id="avis">
+    <div class="wrap">
+      <div class="section-head section-head--center">
+        <p class="eyebrow eyebrow--center reveal">Ils sont passés</p>
+        <h2 class="reveal">Ce que disent les clients</h2>
+      </div>
+
+      <div class="reviews-grid">
+        <a class="rating-panel reveal" href="https://www.google.com/maps/search/?api=1&amp;query=Le+Fournil+de+Saint-Cloud+19+rue+du+Mont+Val%C3%A9rien" target="_blank" rel="noopener">
+          <span class="score">4,0<small>/5</small></span>
+          <span class="stars" aria-label="4 étoiles sur 5">★★★★☆</span>
+          <p>115 avis publiés sur la fiche Google de la boulangerie.</p>
+          <span class="more">Lire les avis <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
+        </a>
+
+        <figure class="testimonial reveal" data-delay="1">
+          <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <blockquote>Accueil très agréable. Produits de qualité. À l'écoute du client, même pour les commandes particulières.</blockquote>
+          <figcaption>
+            <strong>Un client du quartier</strong>
+            Avis publié sur Pages Jaunes
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= INFOS PRATIQUES ========================= -->
+  <section class="section infos" id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow eyebrow--light reveal">Infos pratiques</p>
+        <h2 class="reveal">Venir au fournil</h2>
+        <p class="section-sub reveal" data-delay="1">Au 19 rue du Mont Valérien, sur la montée. Pour une commande, le plus simple reste le téléphone.</p>
+      </div>
+
+      <div class="infos-grid">
+        <div class="reveal">
+          <!-- [ADRESSE] -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg> Adresse</h3>
+            <p>19 rue du Mont Valérien<br>92210 Saint-Cloud</p>
+          </div>
+
+          <!-- [HORAIRES]
+               ⚠ HORAIRES PROVISOIRES : seule la fermeture à 20h est confirmée
+               par la fiche Google. À valider avec le commerçant, puis à
+               reporter à l'identique dans le bloc JSON-LD en bas de page. -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> Horaires</h3>
+            <div class="schedule">
+              <div class="schedule-line" data-day="1"><span class="day">Lundi</span><span>6h45 – 20h00</span></div>
+              <div class="schedule-line" data-day="2"><span class="day">Mardi</span><span>6h45 – 20h00</span></div>
+              <div class="schedule-line" data-day="3"><span class="day">Mercredi</span><span>6h45 – 20h00</span></div>
+              <div class="schedule-line" data-day="4"><span class="day">Jeudi</span><span>6h45 – 20h00</span></div>
+              <div class="schedule-line" data-day="5"><span class="day">Vendredi</span><span>6h45 – 20h00</span></div>
+              <div class="schedule-line" data-day="6"><span class="day">Samedi</span><span>6h45 – 20h00</span></div>
+              <div class="schedule-line" data-day="0"><span class="day">Dimanche</span><span>7h00 – 13h30</span></div>
+            </div>
+            <p class="schedule-note">Horaires susceptibles de varier les jours fériés.</p>
+          </div>
+
+          <!-- [TELEPHONE] -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg> Téléphone</h3>
+            <a class="phone-big" href="tel:+33146028606">01 46 02 86 06</a>
+          </div>
+
+          <!-- [RESEAUX_SOCIAUX] — remplacer les href="#" par les vraies pages,
+               ou supprimer ce bloc si le commerce n'a pas de réseaux. -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg> Nous suivre</h3>
+            <div class="socials">
+              <a class="social" href="#" aria-label="Instagram de la boulangerie">
+                <svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg>
+              </a>
+              <a class="social" href="#" aria-label="Facebook de la boulangerie">
+                <svg class="icon" aria-hidden="true"><use href="#i-facebook"></use></svg>
+              </a>
+              <a class="social" href="https://www.google.com/maps/search/?api=1&amp;query=Le+Fournil+de+Saint-Cloud+19+rue+du+Mont+Val%C3%A9rien" target="_blank" rel="noopener" aria-label="Fiche Google de la boulangerie">
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" data-delay="1">
+          <div class="map-frame">
+            <iframe
+              title="Localisation du Fournil de Saint-Cloud, 19 rue du Mont Valérien, 92210 Saint-Cloud"
+              src="https://www.google.com/maps?q=19+Rue+du+Mont+Val%C3%A9rien,+92210+Saint-Cloud&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="map-actions">
+            <a class="btn btn-brass" href="tel:+33146028606">
+              <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+              01 46 02 86 06
+            </a>
+            <a class="btn btn-outline btn-outline--light" href="https://www.google.com/maps/dir/?api=1&amp;destination=19+Rue+du+Mont+Val%C3%A9rien,+92210+Saint-Cloud" target="_blank" rel="noopener">
+              Itinéraire
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================= FOOTER ========================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-cta reveal">
+      <p class="eyebrow eyebrow--center">Une commande&nbsp;?</p>
+      <h2>Un pain précis, une quantité, une heure de retrait</h2>
+      <p>Dites-nous ce qu'il vous faut : on le prépare pour l'heure qui vous arrange.</p>
+      <a class="btn btn-primary" href="tel:+33146028606">
+        <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+        01 46 02 86 06
+      </a>
+    </div>
+
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">Le Fournil de Saint-Cloud</div>
+        <p>Boulangerie artisanale<br>
+          19 rue du Mont Valérien<br>
+          92210 Saint-Cloud</p>
+      </div>
+      <div>
+        <h4>Le site</h4>
+        <ul>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#produits">Nos produits</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="#contact">Infos pratiques</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Nous joindre</h4>
+        <ul>
+          <li><a href="tel:+33146028606">01 46 02 86 06</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=19+Rue+du+Mont+Val%C3%A9rien,+92210+Saint-Cloud" target="_blank" rel="noopener">Itinéraire</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Fournil+de+Saint-Cloud+19+rue+du+Mont+Val%C3%A9rien" target="_blank" rel="noopener">Avis Google</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Mentions légales — compléter avec les informations du commerce -->
+    <details class="legal">
+      <summary>Mentions légales</summary>
+      <p>
+        Éditeur du site : [RAISON_SOCIALE] — [FORME_JURIDIQUE] au capital de [CAPITAL] €,
+        19 rue du Mont Valérien, 92210 Saint-Cloud.
+        SIRET [SIRET] — Directeur de la publication : [NOM_DU_RESPONSABLE].
+        Téléphone : 01 46 02 86 06 — E-mail : [EMAIL].
+        Hébergeur : [HEBERGEUR]. Photographies : [CREDITS_PHOTOS].
+        Ce site ne collecte aucune donnée personnelle et n'utilise pas de cookie de mesure d'audience.
+      </p>
+    </details>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Le Fournil de Saint-Cloud — Tous droits réservés</span>
+      <span>Boulangerie à Saint-Cloud (92210)</span>
+    </div>
+
+    <!-- À retirer une fois le site validé et mis en ligne par le commerce -->
+    <p class="demo-note">Maquette de présentation — site non officiel, réalisé à titre de proposition.</p>
+  </div>
+</footer>
+
+<!-- bouton d'appel flottant, visible sur mobile uniquement -->
+<a class="fab-call" href="tel:+33146028606" aria-label="Appeler Le Fournil de Saint-Cloud">
+  <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-phone"></use></svg>
+</a>
+
+<!-- Données structurées : aident Google à afficher la fiche du commerce.
+     Mettre à jour en même temps que les horaires et le téléphone. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Le Fournil de Saint-Cloud",
+  "description": "Boulangerie artisanale à Saint-Cloud : pains cuits sur place en fournées successives, viennoiseries pur beurre, pâtisseries maison et commandes sur mesure.",
+  "telephone": "+33146028606",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "19 rue du Mont Valérien",
+    "addressLocality": "Saint-Cloud",
+    "postalCode": "92210",
+    "addressCountry": "FR"
+  },
+  "servesCuisine": "Boulangerie",
+  "priceRange": "€",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "06:45", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday"], "opens": "07:00", "closes": "13:30" }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  var header = document.getElementById('site-header');
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  /* --- header au scroll --- */
+  function onScroll() {
+    if (window.scrollY > 8) { header.classList.add('scrolled'); }
+    else { header.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* --- menu mobile --- */
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+    document.body.style.overflow = '';
+  }
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Fermer le menu');
+    document.body.style.overflow = 'hidden';
+  }
+  menuToggle.addEventListener('click', function () {
+    if (mobileMenu.classList.contains('open')) { closeMenu(); } else { openMenu(); }
+  });
+  mobileMenu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  /* --- apparition des blocs au scroll --- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* --- mise en avant du jour dans les horaires --- */
+  var today = document.querySelector('.schedule-line[data-day="' + new Date().getDay() + '"]');
+  if (today) today.classList.add('today');
+
+  /* --- année du copyright --- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
