@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- =========================================================================
+     AU PAS DE SAINT CLOUD — Boulangerie · Pâtisserie · Saint-Cloud (92210)
+     Site vitrine one-page, fichier unique et autonome (CSS + JS inclus).
+
+     COMMENT REMPLACER LES PLACEHOLDERS
+     ----------------------------------
+     Chaque emplacement à compléter est signalé par un commentaire
+     <!== [NOM_DU_PLACEHOLDER] ... ==>  dans le corps de la page.
+
+     1. PHOTOS DE FOND (hero)  : une seule ligne à changer dans le CSS,
+        variable --hero-photo (voir "PHOTO HERO" dans la feuille de style).
+     2. PHOTOS DE CONTENU      : remplacer le bloc
+              <div class="ph" ...><svg …></svg></div>
+        par  <img src="photos/ma-photo.jpg" alt="Description de la photo">
+        Le cadre (.media) gère automatiquement le recadrage et les arrondis.
+     3. TEXTES                 : repérer les commentaires [TEXTE_A_PROPOS],
+        [DESCRIPTIONS_PRODUITS], [TEMOIGNAGES_CLIENTS], etc.
+     4. INFOS PRATIQUES        : téléphone, adresse et horaires sont regroupés
+        en fin de page + dans le bloc JSON-LD (à mettre à jour ensemble).
+
+     ⚠ À VÉRIFIER AVEC LE COMMERÇANT AVANT MISE EN LIGNE
+        - les horaires (provisoires, voir section "Infos pratiques")
+        - les gammes de produits présentées
+        - les avis clients repris de la fiche Google
+        - les liens réseaux sociaux (placeholders)
+     ========================================================================= -->
+
+<title>Au Pas de Saint Cloud — Boulangerie à Saint-Cloud</title>
+<meta name="description" content="Boulangerie-pâtisserie à Saint-Cloud, place du Passage. Pains cuits sur place, viennoiseries pur beurre, sandwichs et pâtisseries. Ouvert du matin jusqu'à 20h.">
+<meta name="theme-color" content="#B5622F">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Au Pas de Saint Cloud — Boulangerie à Saint-Cloud">
+<meta property="og:description" content="Le pain sort du four, la journée peut commencer. Pains, viennoiseries et sandwichs préparés sur place, 4 place du Passage de Saint-Cloud.">
+<meta property="og:locale" content="fr_FR">
+
+<!-- [LOGO] — favicon provisoire (emoji). Remplacer par un vrai favicon :
+     <link rel="icon" href="assets/favicon.png"> -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E%F0%9F%A5%96%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   Au Pas de Saint Cloud — Design system
+   Palette : crème + brun mie (dominantes), croûte terracotta
+             (couleur principale), blé doré (accent).
+   ========================================================= */
+:root {
+  /* --- dominantes --- */
+  --cream: #FDF8F1;
+  --cream-soft: #F6EBDC;
+  --cream-deep: #EFDFCB;
+  --ink: #2E2119;
+  --ink-soft: rgba(46, 33, 25, 0.72);
+  --ink-mute: rgba(46, 33, 25, 0.55);
+
+  /* --- couleur principale + accents --- */
+  --crust: #B5622F;
+  --crust-dark: #97501F;
+  --crust-soft: #F7E4D5;
+  --wheat: #D9A441;
+  --wheat-soft: #FBEECF;
+  --cocoa: #6B4226;
+  --cocoa-soft: #EFE0D5;
+
+  --line: rgba(46, 33, 25, 0.10);
+  --shadow-sm: 0 2px 10px rgba(46, 33, 25, 0.06);
+  --shadow-md: 0 16px 36px rgba(181, 98, 47, 0.18);
+  --shadow-lg: 0 26px 64px rgba(46, 33, 25, 0.16);
+
+  --radius: 20px;
+  --radius-sm: 12px;
+  --header-h: 74px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+html, body { max-width: 100%; overflow-x: hidden; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Karla', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: clamp(2.1rem, 6.2vw, 3.9rem); }
+h2 { font-size: clamp(1.75rem, 4.2vw, 2.7rem); }
+h3 { font-size: 1.2rem; }
+p  { margin: 0 0 1rem; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+a:focus-visible, button:focus-visible, details:focus-visible {
+  outline: 2px solid var(--crust);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.section { padding: clamp(64px, 9vw, 112px) 0; }
+.section--tint { background: var(--cream-soft); }
+
+.skip-link {
+  position: absolute; left: -999px; top: auto;
+  background: var(--crust); color: #fff;
+  padding: 12px 18px; border-radius: 0 0 10px 0; z-index: 1000;
+}
+.skip-link:focus { left: 0; top: 0; }
+
+/* ---------- titres de section ---------- */
+.eyebrow {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--crust);
+  margin: 0 0 12px;
+}
+.eyebrow--light { color: var(--wheat); }
+.section-head { max-width: 620px; margin-bottom: 48px; }
+.section-head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-sub { color: var(--ink-soft); font-size: 1.05rem; margin-top: 16px; }
+
+/* ---------- boutons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  padding: 15px 28px; border-radius: 999px;
+  font-weight: 700; font-size: 0.98rem; line-height: 1;
+  border: 1.5px solid transparent; cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+}
+.btn svg { width: 18px; height: 18px; }
+.btn-primary { background: var(--crust); color: #fff; box-shadow: var(--shadow-md); }
+.btn-primary:hover { background: var(--crust-dark); transform: translateY(-2px); }
+.btn-ghost { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.6); backdrop-filter: blur(4px); }
+.btn-ghost:hover { background: rgba(255,255,255,.26); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--ink); border-color: rgba(46,33,25,.22); }
+.btn-outline:hover { border-color: var(--crust); color: var(--crust); transform: translateY(-2px); }
+
+/* ---------- header ---------- */
+#site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 900;
+  height: var(--header-h);
+  display: flex; align-items: center;
+  transition: background .3s ease, box-shadow .3s ease, backdrop-filter .3s ease;
+}
+#site-header.scrolled {
+  background: rgba(253, 248, 241, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--line), 0 8px 26px rgba(46,33,25,.06);
+}
+.header-inner { display: flex; align-items: center; gap: 20px; width: 100%; }
+
+.brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.16rem; font-weight: 600; line-height: 1.1;
+  color: #fff; letter-spacing: -0.01em; margin-right: auto;
+  transition: color .3s ease;
+}
+.brand span { display: block; font-family: 'Karla', sans-serif; font-size: 0.66rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; opacity: .8; }
+#site-header.scrolled .brand { color: var(--ink); }
+
+.nav-desktop { display: flex; gap: 26px; }
+.nav-desktop a {
+  font-size: 0.93rem; font-weight: 600; color: #fff; opacity: .92;
+  position: relative; padding: 4px 0; transition: color .3s ease, opacity .2s ease;
+}
+.nav-desktop a::after {
+  content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 0;
+  background: var(--wheat); transition: width .25s ease;
+}
+.nav-desktop a:hover::after { width: 100%; }
+#site-header.scrolled .nav-desktop a { color: var(--ink); }
+
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.call-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px; border-radius: 999px;
+  background: var(--crust); color: #fff;
+  font-weight: 700; font-size: 0.9rem;
+  box-shadow: var(--shadow-sm); transition: background .25s ease, transform .25s ease;
+}
+.call-pill:hover { background: var(--crust-dark); transform: translateY(-1px); }
+
+.menu-toggle {
+  display: none; width: 44px; height: 44px; border: 0; padding: 0;
+  background: rgba(255,255,255,.16); border-radius: 12px; cursor: pointer;
+  flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.menu-toggle span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: background .3s ease; }
+#site-header.scrolled .menu-toggle { background: var(--cream-deep); }
+#site-header.scrolled .menu-toggle span { background: var(--ink); }
+
+.mobile-menu {
+  position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 890;
+  background: var(--cream); border-bottom: 1px solid var(--line);
+  padding: 8px 24px 24px;
+  transform: translateY(-130%); transition: transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow: var(--shadow-lg);
+}
+.mobile-menu.open { transform: translateY(0); }
+.mobile-menu a {
+  display: block; padding: 14px 0; font-weight: 600; font-size: 1.02rem;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-menu .mobile-call {
+  margin-top: 18px; border: 0; text-align: center; background: var(--crust);
+  color: #fff; border-radius: 999px; padding: 15px;
+}
+
+/* ---------- animations au scroll ---------- */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal[data-delay="1"] { transition-delay: .08s; }
+.reveal[data-delay="2"] { transition-delay: .16s; }
+.reveal[data-delay="3"] { transition-delay: .24s; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: .001ms !important; }
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  /* ---------------------------------------------------------------
+     [PHOTO_HERO] — UNE SEULE LIGNE À CHANGER :
+     remplacer `none` par url('photos/hero.jpg') et la photo
+     s'affichera en plein écran, l'overlay de lisibilité est déjà prêt.
+     --------------------------------------------------------------- */
+  --hero-photo: none;
+
+  position: relative;
+  min-height: min(92vh, 820px);
+  display: flex; align-items: center;
+  padding: calc(var(--header-h) + 40px) 0 56px;
+  background-color: #3A2418;
+  background-image:
+    var(--hero-photo),
+    radial-gradient(120% 90% at 78% 8%, rgba(217,164,65,.55) 0%, rgba(217,164,65,0) 58%),
+    radial-gradient(100% 80% at 10% 100%, rgba(181,98,47,.72) 0%, rgba(181,98,47,0) 62%),
+    linear-gradient(155deg, #4A2E1D 0%, #6B4226 45%, #8C4E27 100%);
+  background-size: cover, auto, auto, auto;
+  background-position: center;
+  color: #fff;
+  isolation: isolate;
+}
+/* voile de lisibilité — reste utile une fois la vraie photo posée */
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(38,24,15,.62) 0%, rgba(38,24,15,.20) 42%, rgba(38,24,15,.78) 100%);
+}
+/* grain discret, donne du "papier" au fond */
+.hero::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; opacity: .16; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-art {
+  position: absolute; right: -60px; top: 8%; width: min(46vw, 460px); height: auto;
+  color: rgba(255,255,255,.13); z-index: -1; pointer-events: none;
+  fill: none; stroke: currentColor; stroke-width: .8;
+  stroke-linecap: round; stroke-linejoin: round;
+  animation: floaty 9s ease-in-out infinite;
+}
+@keyframes floaty { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-16px) rotate(-1deg); } }
+
+.hero-inner { position: relative; max-width: 820px; }
+.hero h1 { margin-bottom: 18px; text-shadow: 0 2px 24px rgba(38,24,15,.35); }
+.hero h1 .highlight { color: var(--wheat); font-style: italic; font-weight: 500; }
+.hero .lede { font-size: clamp(1.02rem, 2.2vw, 1.22rem); color: rgba(255,255,255,.92); max-width: 560px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin: 30px 0 34px; }
+
+.hero-trust { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; font-size: 0.92rem; color: rgba(255,255,255,.9); }
+.trust-item { display: inline-flex; align-items: center; gap: 8px; }
+.trust-item svg { width: 16px; height: 16px; flex: none; opacity: .85; }
+.rating-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
+  padding: 8px 15px; border-radius: 999px; backdrop-filter: blur(4px);
+  transition: background .25s ease;
+}
+.rating-badge:hover { background: rgba(255,255,255,.24); }
+.rating-badge .stars { color: var(--wheat); letter-spacing: 1px; }
+
+/* =========================================================
+   VISUELS DE SUBSTITUTION
+   .media = cadre photo ; .ph = aplat + illustration en attendant
+   la vraie image. Voir le mode d'emploi en haut de fichier.
+   ========================================================= */
+.media {
+  position: relative; overflow: hidden;
+  border-radius: var(--radius); background: var(--cream-deep);
+}
+.media img, .media .ph { width: 100%; height: 100%; object-fit: cover; }
+.media img { display: block; }
+
+.ph {
+  display: grid; place-items: center; min-height: 100%;
+  background: linear-gradient(150deg, var(--ph-a, var(--crust-soft)) 0%, var(--ph-b, var(--cream-deep)) 100%);
+  color: var(--ph-ink, var(--crust));
+}
+.ph svg {
+  width: 44%; max-width: 150px; height: auto; opacity: .55;
+  fill: none; stroke: currentColor; stroke-width: 1.7;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .5s ease;
+}
+.ph[data-tone="crust"] { --ph-a: #F7E1CE; --ph-b: #E9C6A8; --ph-ink: #A9551F; }
+.ph[data-tone="wheat"] { --ph-a: #FBEECF; --ph-b: #EFD8A4; --ph-ink: #A8791C; }
+.ph[data-tone="cocoa"] { --ph-a: #EBDACD; --ph-b: #D6BBA4; --ph-ink: #6B4226; }
+.ph[data-tone="cream"] { --ph-a: #FDF8F1; --ph-b: #EFDFCB; --ph-ink: #B5622F; }
+
+/* icônes du sprite */
+.icon { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* =========================================================
+   À PROPOS
+   ========================================================= */
+.about-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 72px); align-items: center;
+}
+.about-copy h2 { margin-bottom: 20px; }
+.about-copy p { color: var(--ink-soft); font-size: 1.05rem; }
+.about-copy .lead { font-size: 1.18rem; color: var(--ink); }
+.signature {
+  margin-top: 26px; font-family: 'Fraunces', Georgia, serif; font-style: italic;
+  font-size: 1.05rem; color: var(--crust);
+}
+.about-visual { position: relative; }
+.about-visual .media { aspect-ratio: 4 / 5; box-shadow: var(--shadow-lg); }
+.about-caption {
+  position: absolute; left: -18px; bottom: 26px;
+  background: #fff; border-radius: var(--radius-sm); padding: 14px 20px;
+  box-shadow: var(--shadow-lg); max-width: 230px; font-size: .88rem; line-height: 1.45;
+}
+.about-caption strong { display: block; font-family: 'Fraunces', Georgia, serif; font-size: 1rem; margin-bottom: 2px; }
+.about-caption span { color: var(--ink-mute); }
+
+/* valeurs */
+.values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: clamp(48px, 6vw, 76px); }
+.value { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px; box-shadow: var(--shadow-sm); }
+.value-icon {
+  width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+  background: var(--crust-soft); color: var(--crust); margin-bottom: 16px;
+}
+.value-icon .icon { width: 26px; height: 26px; }
+.value h3 { margin-bottom: 8px; }
+.value p { color: var(--ink-soft); font-size: .96rem; margin: 0; }
+
+/* =========================================================
+   PRODUITS
+   ========================================================= */
+.products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.product {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-sm);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.product:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.product .media { border-radius: 0; aspect-ratio: 4 / 3; }
+.product:hover .ph svg { transform: scale(1.06); }
+.product-body { padding: 24px 24px 28px; }
+.product h3 { margin-bottom: 8px; }
+.product p { color: var(--ink-soft); font-size: .97rem; margin: 0; }
+.product .tag {
+  display: inline-block; margin-bottom: 12px; font-size: .72rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--crust);
+  background: var(--crust-soft); padding: 5px 11px; border-radius: 999px;
+}
+.products-note { margin-top: 32px; text-align: center; color: var(--ink-mute); font-size: .92rem; }
+
+/* =========================================================
+   GALERIE (mosaïque)
+   ========================================================= */
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 180px; gap: 16px; }
+.gallery .media { height: 100%; }
+.gallery .media::after {
+  content: ''; position: absolute; inset: 0; background: rgba(46,33,25,0); transition: background .35s ease;
+}
+.gallery .media:hover::after { background: rgba(46,33,25,.12); }
+.g-wide { grid-column: span 2; }
+.g-tall { grid-row: span 2; }
+
+/* =========================================================
+   AVIS
+   ========================================================= */
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+.review {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 32px 28px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
+}
+.review .quote-mark { font-family: 'Fraunces', Georgia, serif; font-size: 3.4rem; line-height: .6; color: var(--crust-soft); margin-bottom: 10px; }
+.review .stars { color: var(--wheat); letter-spacing: 2px; margin-bottom: 14px; font-size: .95rem; }
+.review blockquote { margin: 0 0 20px; font-size: 1.02rem; color: var(--ink); font-style: italic; }
+.review figcaption { margin-top: auto; font-size: .9rem; color: var(--ink-mute); }
+.review figcaption strong { display: block; color: var(--ink); font-style: normal; font-size: .98rem; }
+.review--link {
+  background: var(--cocoa); color: #fff; border-color: transparent;
+  justify-content: center; align-items: flex-start; gap: 6px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.review--link:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.review--link .big { font-family: 'Fraunces', Georgia, serif; font-size: 2.6rem; line-height: 1; }
+.review--link p { color: rgba(255,255,255,.82); margin: 8px 0 18px; }
+.review--link .more { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--wheat); }
+
+/* =========================================================
+   INFOS PRATIQUES
+   ========================================================= */
+.infos-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.info-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); }
+.info-block + .info-block { margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line); }
+.info-block h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.info-block h3 .icon { width: 20px; height: 20px; color: var(--crust); }
+.info-block p { margin: 0; color: var(--ink-soft); }
+.info-block a:hover { color: var(--crust); }
+
+.schedule { font-variant-numeric: tabular-nums; }
+.schedule-line { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: .96rem; }
+.schedule-line:last-child { border-bottom: 0; }
+.schedule-line .day { color: var(--ink-soft); }
+.schedule-line.today { color: var(--crust); font-weight: 700; }
+.schedule-line.today .day { color: var(--crust); }
+.schedule-note { margin-top: 12px; font-size: .84rem; color: var(--ink-mute); }
+
+.phone-big {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; color: var(--crust); font-weight: 600;
+}
+.phone-big .icon { width: 22px; height: 22px; }
+
+.socials { display: flex; gap: 12px; margin-top: 4px; }
+.social {
+  width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center;
+  background: var(--cream-soft); color: var(--cocoa);
+  transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+.social:hover { background: var(--crust); color: #fff; transform: translateY(-2px); }
+
+.map-frame {
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-lg); border: 1px solid var(--line);
+  min-height: 420px; height: 100%; background: var(--cream-deep);
+}
+.map-frame iframe { width: 100%; height: 100%; min-height: 420px; display: block; border: 0; }
+.map-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer { background: var(--cocoa); color: rgba(255,255,255,.78); padding: clamp(56px, 7vw, 84px) 0 32px; position: relative; }
+.footer-cta { text-align: center; max-width: 620px; margin: 0 auto clamp(44px, 6vw, 64px); }
+.footer-cta h2 { color: #fff; margin-bottom: 14px; }
+.footer-cta p { color: rgba(255,255,255,.75); }
+.footer-cta .btn-primary { background: var(--wheat); color: var(--cocoa); box-shadow: 0 14px 30px rgba(20,10,4,.28); }
+.footer-cta .btn-primary:hover { background: #E8B857; }
+
+.footer-cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; padding-bottom: 34px; border-bottom: 1px solid rgba(255,255,255,.14); }
+.footer-cols h4 { font-family: 'Fraunces', Georgia, serif; font-size: 1.02rem; color: #fff; margin: 0 0 14px; font-weight: 600; }
+.footer-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.35rem; color: #fff; margin-bottom: 10px; }
+.footer-cols ul { list-style: none; margin: 0; padding: 0; }
+.footer-cols li { margin-bottom: 9px; font-size: .95rem; }
+.footer-cols a:hover { color: var(--wheat); }
+
+.foot-bottom {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+  padding-top: 24px; font-size: .84rem; color: rgba(255,255,255,.6);
+}
+.legal { margin-top: 18px; font-size: .84rem; color: rgba(255,255,255,.6); }
+.legal summary { cursor: pointer; color: rgba(255,255,255,.8); font-weight: 600; }
+.legal p { margin: 12px 0 0; max-width: 640px; }
+.demo-note { margin-top: 14px; font-size: .78rem; color: rgba(255,255,255,.45); }
+
+/* bouton d'appel flottant (mobile) */
+.fab-call {
+  position: fixed; right: 18px; bottom: 18px; z-index: 880;
+  width: 56px; height: 56px; border-radius: 50%; display: none;
+  align-items: center; justify-content: center;
+  background: var(--crust); color: #fff; box-shadow: var(--shadow-md);
+}
+.fab-call:active { transform: scale(.94); }
+
+/* =========================================================
+   RESPONSIVE — priorité mobile
+   ========================================================= */
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual .media { aspect-ratio: 16 / 10; }
+  .about-caption { left: auto; right: 18px; }
+  .products { grid-template-columns: repeat(2, 1fr); }
+  .infos-grid { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .nav-desktop { display: none; }
+  .menu-toggle { display: flex; }
+  .call-pill .call-text { display: none; }
+  .call-pill { padding: 12px; }
+  .values { grid-template-columns: 1fr; }
+  .reviews { grid-template-columns: 1fr; }
+  .footer-cols { grid-template-columns: 1fr; gap: 28px; }
+  .fab-call { display: flex; }
+  .hero { min-height: 88vh; }
+}
+
+@media (max-width: 560px) {
+  .wrap { padding: 0 18px; }
+  .products { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+  .g-wide { grid-column: span 2; }
+  .g-tall { grid-row: span 1; }
+  .info-card { padding: 24px 20px; }
+  .hero-ctas .btn { flex: 1 1 100%; }
+  .about-caption { position: static; margin-top: -34px; margin-left: 18px; max-width: none; }
+}
+</style>
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<!-- =========================================================================
+     SPRITE D'ICÔNES — illustrations de substitution + pictos d'interface.
+     Utilisation : <svg …><use href="#i-baguette"></use></svg>
+     ========================================================================= -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-wheat" viewBox="0 0 64 64">
+    <path d="M32 60V20"/>
+    <path d="M32 22c0-6 3-11 8-14 2 6-.4 12-8 14z"/><path d="M32 22c0-6-3-11-8-14-2 6 .4 12 8 14z"/>
+    <path d="M32 34c0-6 3-11 8-14 2 6-.4 12-8 14z"/><path d="M32 34c0-6-3-11-8-14-2 6 .4 12 8 14z"/>
+    <path d="M32 46c0-6 3-11 8-14 2 6-.4 12-8 14z"/><path d="M32 46c0-6-3-11-8-14-2 6 .4 12 8 14z"/>
+  </symbol>
+  <symbol id="i-baguette" viewBox="0 0 64 64">
+    <rect x="6" y="24" width="52" height="17" rx="8.5"/>
+    <path d="M19 28l-4 9M30 27l-4 11M41 28l-4 9"/>
+  </symbol>
+  <symbol id="i-loaf" viewBox="0 0 64 64">
+    <path d="M8 38a24 14 0 0 1 48 0 24 14 0 0 1-48 0z"/>
+    <path d="M20 31l7 13M31 29l7 14M42 31l6 12"/>
+  </symbol>
+  <symbol id="i-croissant" viewBox="0 0 64 64">
+    <path d="M10 44c0-15 12-27 27-27 5 0 9 1 13 4-3-1-6-1-9-1-13 0-23 10-23 23 0 3 1 7 2 9-6-2-10-5-10-8z"/>
+    <path d="M13 34c3 1 6 3 8 6M18 25c3 1 6 3 8 6M27 20c3 1 5 2 7 4"/>
+  </symbol>
+  <symbol id="i-cake" viewBox="0 0 64 64">
+    <path d="M12 48V34h40v14z"/>
+    <path d="M17 34V24h30v10"/>
+    <path d="M17 24c2.5-3 5-3 7.5 0s5 3 7.5 0 5-3 7.5 0 5 3 7.5 0"/>
+    <path d="M32 17v-3"/><circle cx="32" cy="20" r="2.4"/>
+    <path d="M7 48h50"/>
+  </symbol>
+  <symbol id="i-sandwich" viewBox="0 0 64 64">
+    <path d="M13 28c0-7 8-12 19-12s19 5 19 12z"/>
+    <path d="M11 32h42"/>
+    <path d="M13 37c4 4 8 4 12 0s8-4 12 0 8 4 12 0"/>
+    <path d="M13 44h38a5 5 0 0 1-5 5H18a5 5 0 0 1-5-5z"/>
+  </symbol>
+  <symbol id="i-oven" viewBox="0 0 64 64">
+    <path d="M10 50V33a22 22 0 0 1 44 0v17"/>
+    <path d="M5 50h54"/>
+    <path d="M23 50V40a9 9 0 0 1 18 0v10"/>
+    <path d="M27 22c0-3 3-4 3-7M36 20c0-3 3-4 3-7"/>
+  </symbol>
+  <symbol id="i-coffee" viewBox="0 0 64 64">
+    <path d="M14 24h28v14a14 14 0 0 1-28 0z"/>
+    <path d="M42 28h4a7 7 0 0 1 0 14h-4"/>
+    <path d="M10 54h36"/>
+    <path d="M22 16c0-3 3-4 3-7M32 16c0-3 3-4 3-7"/>
+  </symbol>
+  <symbol id="i-shopfront" viewBox="0 0 64 64">
+    <path d="M9 26l6-11h34l6 11z"/>
+    <path d="M7 26h50"/>
+    <path d="M14 26v25h36V26"/>
+    <path d="M25 51V38h14v13"/>
+  </symbol>
+  <symbol id="i-bag" viewBox="0 0 64 64">
+    <path d="M15 22h34l-3 30H18z"/>
+    <path d="M24 22v-4a8 8 0 0 1 16 0v4"/>
+    <path d="M15 30h34"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.2l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.6l6-.9z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1l8.8 8.8 8.8-8.8a5 5 0 0 0 0-7.1z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.5 6.6h.01"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2.5h-3a5 5 0 0 0-5 5v3H7v4h3v7h4v-7h3l1-4h-4v-3a1 1 0 0 1 1-1h3z"/></symbol>
+</svg>
+
+<!-- ========================= HEADER ========================= -->
+<header id="site-header">
+  <div class="wrap header-inner">
+    <!-- [LOGO] / [NOM_DU_COMMERCE] — remplacer par <img src="photos/logo.svg" alt="Au Pas de Saint Cloud"> si un logo existe -->
+    <a href="#top" class="brand">Au Pas de Saint Cloud<span>Boulangerie · Pâtisserie</span></a>
+
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      <a href="#top">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#produits">Nos produits</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- [TELEPHONE] — 01 49 11 12 63 -->
+      <a class="call-pill" href="tel:+33149111263" aria-label="Appeler la boulangerie au 01 49 11 12 63">
+        <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-phone"></use></svg>
+        <span class="call-text">Nous contacter</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Accueil</a>
+  <a href="#apropos">À propos</a>
+  <a href="#produits">Nos produits</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#avis">Avis</a>
+  <a href="#contact">Contact</a>
+  <a class="mobile-call" href="tel:+33149111263">Appeler · 01 49 11 12 63</a>
+</div>
+
+<main id="main">
+
+  <!-- ========================= HERO ========================= -->
+  <!-- [PHOTO_HERO] — pour poser la vraie photo : voir la variable --hero-photo
+       dans la feuille de style (une seule ligne à modifier). -->
+  <section class="hero" id="top">
+    <svg class="hero-art" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-wheat"></use></svg>
+
+    <div class="wrap hero-inner">
+      <p class="eyebrow eyebrow--light reveal">Boulangerie · Pâtisserie — Saint-Cloud</p>
+      <h1 class="reveal" data-delay="1">Au Pas de <span class="highlight">Saint Cloud</span></h1>
+      <!-- [SLOGAN] -->
+      <p class="lede reveal" data-delay="2">Le pain sort du four, la journée peut commencer. Pains, viennoiseries et sandwichs préparés sur place, à deux pas de la place du Passage.</p>
+
+      <div class="hero-ctas reveal" data-delay="2">
+        <a class="btn btn-primary" href="tel:+33149111263">
+          <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+          Appeler la boulangerie
+        </a>
+        <a class="btn btn-ghost" href="#produits">Découvrir nos produits</a>
+      </div>
+
+      <div class="hero-trust reveal" data-delay="3">
+        <a class="rating-badge" href="https://www.google.com/maps/search/?api=1&amp;query=Au+Pas+de+Saint+Cloud+Saint-Cloud" target="_blank" rel="noopener">
+          <svg class="icon stars" width="16" height="16" aria-hidden="true"><use href="#i-star"></use></svg>
+          <span><strong>446 avis</strong> sur Google</span>
+        </a>
+        <span class="trust-item">
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+          4 place du Passage de Saint-Cloud
+        </span>
+        <span class="trust-item">
+          <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+          Ouvert jusqu'à 20h
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= À PROPOS ========================= -->
+  <section class="section" id="apropos">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal">
+        <p class="eyebrow">La maison</p>
+        <h2>Une boulangerie de quartier, au pas de Saint-Cloud</h2>
+        <!-- [TEXTE_A_PROPOS] — remplacer par l'histoire réelle du commerce :
+             date d'ouverture, parcours du boulanger, spécialité maison, récompenses… -->
+        <p class="lead">Sur la place du Passage, la boutique ouvre quand le quartier dort encore. On y vient pour la baguette du dîner, le croissant du samedi matin, le sandwich attrapé entre deux rendez-vous.</p>
+        <p>Rien d'extraordinaire, sinon le soin porté à ce qui se répète tous les jours : une pâte qui a pris son temps, une cuisson surveillée de près, et des fournées échelonnées pour qu'il y ait toujours du pain chaud quand vous poussez la porte.</p>
+        <p>Le reste tient en peu de mots : des produits faits sur place, un accueil qui prend le temps, et une adresse où l'on finit par connaître le pain de chacun.</p>
+        <p class="signature">— Toute l'équipe d'Au Pas de Saint Cloud</p>
+      </div>
+
+      <div class="about-visual reveal" data-delay="1">
+        <!-- [PHOTO_EQUIPE] — remplacer le bloc .ph ci-dessous par :
+             <img src="photos/equipe.jpg" alt="L'équipe de la boulangerie Au Pas de Saint Cloud"> -->
+        <div class="media">
+          <div class="ph" data-tone="cocoa" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-oven"></use></svg></div>
+        </div>
+        <div class="about-caption">
+          <strong>Cuit sur place</strong>
+          <span>Des fournées échelonnées tout au long de la journée</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="values">
+        <div class="value reveal">
+          <span class="value-icon"><svg class="icon" aria-hidden="true"><use href="#i-oven"></use></svg></span>
+          <h3>Cuit sur place</h3>
+          <p>Pétri et cuit au fournil, par petites fournées, du matin jusqu'en fin de journée.</p>
+        </div>
+        <div class="value reveal" data-delay="1">
+          <span class="value-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span>
+          <h3>Ouvert tôt, fermé tard</h3>
+          <p>De la première fournée jusqu'à 20h : le petit-déjeuner, le déjeuner et le pain du soir.</p>
+        </div>
+        <div class="value reveal" data-delay="2">
+          <span class="value-icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+          <h3>Le quartier d'abord</h3>
+          <p>On connaît les habitués, leur pain, et l'heure à laquelle ils passent le chercher.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= PRODUITS ========================= -->
+  <!-- [PHOTOS_PRODUITS] + [DESCRIPTIONS_PRODUITS]
+       Pour chaque carte : remplacer le bloc .ph par
+       <img src="photos/produit-1.jpg" alt="…">, puis ajuster titre et texte. -->
+  <section class="section section--tint" id="produits">
+    <div class="wrap">
+      <div class="section-head section-head--center reveal">
+        <p class="eyebrow">La vitrine</p>
+        <h2>Ce que vous trouverez en boutique</h2>
+        <p class="section-sub">Du pain avant tout, et tout ce qui va avec : le matin, le midi et le soir en rentrant.</p>
+      </div>
+
+      <div class="products">
+        <article class="product reveal">
+          <div class="media"><div class="ph" data-tone="crust" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-baguette"></use></svg></div></div>
+          <div class="product-body">
+            <span class="tag">Le quotidien</span>
+            <h3>Les pains</h3>
+            <p>Baguette tradition, pain de campagne, pains spéciaux. Les fournées sont échelonnées : il y en a toujours un qui sort du four.</p>
+          </div>
+        </article>
+
+        <article class="product reveal" data-delay="1">
+          <div class="media"><div class="ph" data-tone="wheat" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-croissant"></use></svg></div></div>
+          <div class="product-body">
+            <span class="tag">Le matin</span>
+            <h3>Les viennoiseries</h3>
+            <p>Croissants, pains au chocolat, chaussons aux pommes. Du beurre, du feuilletage, et rien de plus à ajouter.</p>
+          </div>
+        </article>
+
+        <article class="product reveal" data-delay="2">
+          <div class="media"><div class="ph" data-tone="cocoa" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-cake"></use></svg></div></div>
+          <div class="product-body">
+            <span class="tag">Gourmand</span>
+            <h3>Les pâtisseries</h3>
+            <p>Les classiques qu'on vient chercher le dimanche, et des tartes qui changent au fil des saisons.</p>
+          </div>
+        </article>
+
+        <article class="product reveal">
+          <div class="media"><div class="ph" data-tone="crust" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-sandwich"></use></svg></div></div>
+          <div class="product-body">
+            <span class="tag">Le midi</span>
+            <h3>Sandwichs &amp; formules</h3>
+            <p>Sandwichs préparés le matin même, quiches et salades : la pause déjeuner réglée en cinq minutes.</p>
+          </div>
+        </article>
+
+        <article class="product reveal" data-delay="1">
+          <div class="media"><div class="ph" data-tone="wheat" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-coffee"></use></svg></div></div>
+          <div class="product-body">
+            <span class="tag">À emporter</span>
+            <h3>Café &amp; petit-déjeuner</h3>
+            <p>Un café, une viennoiserie, deux minutes pour souffler avant d'attaquer la journée.</p>
+          </div>
+        </article>
+
+        <article class="product reveal" data-delay="2">
+          <div class="media"><div class="ph" data-tone="cocoa" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-bag"></use></svg></div></div>
+          <div class="product-body">
+            <span class="tag">Sur demande</span>
+            <h3>Commandes &amp; réceptions</h3>
+            <p>Grandes commandes de pain, plateaux et pièces salées : prévenez-nous à l'avance, on s'organise.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Note de travail destinée au commerçant — à retirer à la mise en ligne -->
+      <p class="products-note reveal">Sélection présentée à titre d'exemple : à ajuster ensemble avec vos produits phares et vos photos.</p>
+    </div>
+  </section>
+
+  <!-- ========================= GALERIE ========================= -->
+  <!-- [PHOTOS_GALERIE] — 8 emplacements. Remplacer chaque bloc .ph par
+       <img src="photos/galerie-1.jpg" alt="…"> : le cadre gère le recadrage. -->
+  <section class="section" id="galerie">
+    <div class="wrap">
+      <div class="section-head section-head--center reveal">
+        <p class="eyebrow">En images</p>
+        <h2>La boutique, le fournil, la vitrine</h2>
+        <p class="section-sub">Quelques images valent mieux qu'une longue description : voilà à quoi ressemble une journée chez nous.</p>
+      </div>
+
+      <div class="gallery reveal">
+        <div class="media g-wide g-tall"><div class="ph" data-tone="crust" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-shopfront"></use></svg></div></div>
+        <div class="media"><div class="ph" data-tone="wheat" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-croissant"></use></svg></div></div>
+        <div class="media"><div class="ph" data-tone="cream" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-loaf"></use></svg></div></div>
+        <div class="media"><div class="ph" data-tone="cocoa" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-coffee"></use></svg></div></div>
+        <div class="media"><div class="ph" data-tone="crust" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-cake"></use></svg></div></div>
+        <div class="media g-wide"><div class="ph" data-tone="wheat" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-baguette"></use></svg></div></div>
+        <div class="media"><div class="ph" data-tone="cocoa" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-sandwich"></use></svg></div></div>
+        <div class="media"><div class="ph" data-tone="cream" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-wheat"></use></svg></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= AVIS ========================= -->
+  <!-- [TEMOIGNAGES_CLIENTS] — extraits repris de la fiche Google du commerce.
+       À faire valider par le commerçant avant mise en ligne. -->
+  <section class="section section--tint" id="avis">
+    <div class="wrap">
+      <div class="section-head section-head--center reveal">
+        <p class="eyebrow">Ils sont passés</p>
+        <h2>Ce que disent les clients</h2>
+      </div>
+
+      <div class="reviews">
+        <figure class="review reveal">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <blockquote>Cette boulangerie reste une vraie référence. La qualité des produits est toujours au rendez-vous : sandwich frais, pains…</blockquote>
+          <figcaption><strong>Jérémy</strong>Avis Google</figcaption>
+        </figure>
+
+        <figure class="review reveal" data-delay="1">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <blockquote>J'ai mangé le meilleur pain au chocolat de ma vie, alors que je suis adepte des grands chefs…</blockquote>
+          <figcaption><strong>TBR</strong>Avis Google</figcaption>
+        </figure>
+
+        <a class="review review--link reveal" data-delay="2" href="https://www.google.com/maps/search/?api=1&amp;query=Au+Pas+de+Saint+Cloud+Saint-Cloud" target="_blank" rel="noopener">
+          <span class="big">446</span>
+          <p>avis publiés sur notre fiche Google par les habitués du quartier.</p>
+          <span class="more">Lire les avis <svg class="icon" width="18" height="18" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= INFOS PRATIQUES ========================= -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Infos pratiques</p>
+        <h2>Passez nous voir</h2>
+        <p class="section-sub">La boutique est place du Passage de Saint-Cloud, à quelques pas de la gare. Un coup de fil suffit pour une commande.</p>
+      </div>
+
+      <div class="infos-grid">
+        <div class="info-card reveal">
+          <!-- [ADRESSE] -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg> Adresse</h3>
+            <p>
+              4 place du Passage de Saint-Cloud<br>
+              92210 Saint-Cloud
+            </p>
+          </div>
+
+          <!-- [HORAIRES]
+               ⚠ HORAIRES PROVISOIRES : seule la fermeture à 20h est confirmée
+               par la fiche Google. À valider avec le commerçant, puis à
+               reporter à l'identique dans le bloc JSON-LD en bas de page. -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> Horaires</h3>
+            <div class="schedule">
+              <div class="schedule-line" data-day="1"><span class="day">Lundi</span><span>6h30 – 20h00</span></div>
+              <div class="schedule-line" data-day="2"><span class="day">Mardi</span><span>6h30 – 20h00</span></div>
+              <div class="schedule-line" data-day="3"><span class="day">Mercredi</span><span>6h30 – 20h00</span></div>
+              <div class="schedule-line" data-day="4"><span class="day">Jeudi</span><span>6h30 – 20h00</span></div>
+              <div class="schedule-line" data-day="5"><span class="day">Vendredi</span><span>6h30 – 20h00</span></div>
+              <div class="schedule-line" data-day="6"><span class="day">Samedi</span><span>6h30 – 20h00</span></div>
+              <div class="schedule-line" data-day="0"><span class="day">Dimanche</span><span>7h00 – 13h30</span></div>
+            </div>
+            <p class="schedule-note">Horaires susceptibles de varier les jours fériés.</p>
+          </div>
+
+          <!-- [TELEPHONE] -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg> Téléphone</h3>
+            <a class="phone-big" href="tel:+33149111263">01 49 11 12 63</a>
+          </div>
+
+          <!-- [RESEAUX_SOCIAUX] — remplacer les href="#" par les vraies pages,
+               ou supprimer ce bloc si le commerce n'a pas de réseaux. -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg> Nous suivre</h3>
+            <div class="socials">
+              <a class="social" href="#" aria-label="Instagram de la boulangerie">
+                <svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg>
+              </a>
+              <a class="social" href="#" aria-label="Facebook de la boulangerie">
+                <svg class="icon" aria-hidden="true"><use href="#i-facebook"></use></svg>
+              </a>
+              <a class="social" href="https://www.google.com/maps/search/?api=1&amp;query=Au+Pas+de+Saint+Cloud+Saint-Cloud" target="_blank" rel="noopener" aria-label="Fiche Google de la boulangerie">
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" data-delay="1">
+          <div class="map-frame">
+            <iframe
+              title="Localisation d'Au Pas de Saint Cloud, 4 place du Passage de Saint-Cloud, 92210 Saint-Cloud"
+              src="https://www.google.com/maps?q=4+Place+du+Passage+de+Saint-Cloud,+92210+Saint-Cloud&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="map-actions">
+            <a class="btn btn-primary" href="tel:+33149111263">
+              <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+              01 49 11 12 63
+            </a>
+            <a class="btn btn-outline" href="https://www.google.com/maps/dir/?api=1&amp;destination=4+Place+du+Passage+de+Saint-Cloud,+92210+Saint-Cloud" target="_blank" rel="noopener">
+              Itinéraire
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================= FOOTER ========================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-cta reveal">
+      <h2>Une baguette, un gâteau, une grande commande ?</h2>
+      <p>Le plus simple reste encore de passer, ou de nous appeler avant de venir.</p>
+      <a class="btn btn-primary" href="tel:+33149111263">
+        <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+        01 49 11 12 63
+      </a>
+    </div>
+
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">Au Pas de Saint Cloud</div>
+        <p>Boulangerie · Pâtisserie<br>
+          4 place du Passage de Saint-Cloud<br>
+          92210 Saint-Cloud</p>
+      </div>
+      <div>
+        <h4>Le site</h4>
+        <ul>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#produits">Nos produits</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="#contact">Infos pratiques</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Nous joindre</h4>
+        <ul>
+          <li><a href="tel:+33149111263">01 49 11 12 63</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=4+Place+du+Passage+de+Saint-Cloud,+92210+Saint-Cloud" target="_blank" rel="noopener">Itinéraire</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Au+Pas+de+Saint+Cloud+Saint-Cloud" target="_blank" rel="noopener">Avis Google</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Mentions légales — compléter avec les informations du commerce -->
+    <details class="legal">
+      <summary>Mentions légales</summary>
+      <p>
+        Éditeur du site : [RAISON_SOCIALE] — [FORME_JURIDIQUE] au capital de [CAPITAL] €,
+        4 place du Passage de Saint-Cloud, 92210 Saint-Cloud.
+        SIRET [SIRET] — Directeur de la publication : [NOM_DU_RESPONSABLE].
+        Téléphone : 01 49 11 12 63 — E-mail : [EMAIL].
+        Hébergeur : [HEBERGEUR]. Photographies : [CREDITS_PHOTOS].
+        Ce site ne collecte aucune donnée personnelle et n'utilise pas de cookie de mesure d'audience.
+      </p>
+    </details>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Au Pas de Saint Cloud — Tous droits réservés</span>
+      <span>Boulangerie à Saint-Cloud (92210)</span>
+    </div>
+
+    <!-- À retirer une fois le site validé et mis en ligne par le commerce -->
+    <p class="demo-note">Maquette de présentation — site non officiel, réalisé à titre de proposition.</p>
+  </div>
+</footer>
+
+<!-- bouton d'appel flottant, visible sur mobile uniquement -->
+<a class="fab-call" href="tel:+33149111263" aria-label="Appeler Au Pas de Saint Cloud">
+  <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-phone"></use></svg>
+</a>
+
+<!-- Données structurées : aident Google à afficher la fiche du commerce.
+     Mettre à jour en même temps que les horaires et le téléphone. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Au Pas de Saint Cloud",
+  "description": "Boulangerie-pâtisserie à Saint-Cloud : pains cuits sur place, viennoiseries, pâtisseries et sandwichs préparés le matin.",
+  "telephone": "+33149111263",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "4 place du Passage de Saint-Cloud",
+    "addressLocality": "Saint-Cloud",
+    "postalCode": "92210",
+    "addressCountry": "FR"
+  },
+  "servesCuisine": "Boulangerie",
+  "priceRange": "€",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "06:30", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday"], "opens": "07:00", "closes": "13:30" }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  var header = document.getElementById('site-header');
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  /* --- header au scroll --- */
+  function onScroll() {
+    if (window.scrollY > 8) { header.classList.add('scrolled'); }
+    else { header.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* --- menu mobile --- */
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+    document.body.style.overflow = '';
+  }
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Fermer le menu');
+    document.body.style.overflow = 'hidden';
+  }
+  menuToggle.addEventListener('click', function () {
+    if (mobileMenu.classList.contains('open')) { closeMenu(); } else { openMenu(); }
+  });
+  mobileMenu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  /* --- apparition des blocs au scroll --- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* --- mise en avant du jour dans les horaires --- */
+  var today = document.querySelector('.schedule-line[data-day="' + new Date().getDay() + '"]');
+  if (today) today.classList.add('today');
+
+  /* --- année du copyright --- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
