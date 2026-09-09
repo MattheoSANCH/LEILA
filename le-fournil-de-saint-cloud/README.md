@@ -59,6 +59,9 @@ contiennent les placeholders `[RAISON_SOCIALE]`, `[SIRET]`, `[EMAIL]`,
 - [ ] **Témoignage** — un seul avis positif était disponible publiquement
       (Pages Jaunes). En demander 1 ou 2 autres : le bloc
       `<figure class="testimonial">` se duplique tel quel
+- [ ] **Moyens de paiement** — repris de la fiche Google. Confirmer surtout le
+      titre-restaurant : il est mis en avant sur la carte « Le midi », c'est le
+      seul des cinq qui fasse réellement venir quelqu'un
 - [ ] **Réseaux sociaux** — les liens Instagram / Facebook sont des `href="#"`
 - [ ] Retirer la note de travail sous les cartes produits (`.dishes-note`)
 - [ ] Retirer la mention « Maquette de présentation » en pied de page

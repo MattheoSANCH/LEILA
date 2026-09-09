@@ -380,7 +380,7 @@ a:focus-visible, button:focus-visible {
 .dish:hover .ph svg { transform: scale(1.07); }
 .dish::after {
   content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(18,32,27,0) 42%, rgba(18,32,27,.5) 66%, rgba(18,32,27,.88) 100%);
+  background: linear-gradient(180deg, rgba(18,32,27,0) 40%, rgba(18,32,27,.62) 62%, rgba(18,32,27,.9) 100%);
 }
 .dish-body { position: relative; z-index: 1; padding: 26px 24px 24px; color: #fff; }
 .dish-body .tag {
@@ -390,6 +390,11 @@ a:focus-visible, button:focus-visible {
 }
 .dish-body h3 { margin-bottom: 8px; }
 .dish-body p { margin: 0; font-size: .95rem; color: rgba(255,255,255,.86); line-height: 1.6; }
+.dish-flag {
+  display: inline-block; margin-top: 14px; padding: 6px 11px; border-radius: 2px;
+  background: var(--brass); color: var(--forest-deep);
+  font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+}
 .dishes-note { margin-top: 34px; text-align: center; color: var(--ink-mute); font-size: .9rem; }
 
 /* =========================================================
@@ -470,6 +475,13 @@ a:focus-visible, button:focus-visible {
 .schedule-line.today { color: #fff; }
 .schedule-line.today .day::after { content: ' · aujourd\'hui'; color: var(--brass); font-size: .82em; letter-spacing: .04em; }
 .schedule-note { margin-top: 14px; font-size: .82rem; color: rgba(250,246,238,.5); }
+
+.pay-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pay-list li {
+  font-size: .82rem; padding: 6px 12px; border-radius: 2px;
+  border: 1px solid rgba(250,246,238,.24); color: rgba(250,246,238,.82);
+}
+.pay-list li.is-key { border-color: var(--brass); color: var(--brass); }
 
 .phone-big {
   display: inline-flex; align-items: center; gap: 13px;
@@ -635,6 +647,7 @@ footer { background: var(--ivory); padding: clamp(58px, 7vw, 88px) 0 30px; }
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1l8.8 8.8 8.8-8.8a5 5 0 0 0 0-7.1z"/></symbol>
   <symbol id="i-swipe" viewBox="0 0 24 24"><path d="M3 12h18M15 6l6 6-6 6M9 6l-6 6 6 6"/></symbol>
@@ -829,6 +842,8 @@ footer { background: var(--ivory); padding: clamp(58px, 7vw, 88px) 0 30px; }
             <span class="tag">Le midi</span>
             <h3>Sandwichs &amp; parts salées</h3>
             <p>Garnis sur le pain du jour, avec les quiches et les parts salées : déjeuner réglé en cinq minutes.</p>
+            <!-- [MOYENS_DE_PAIEMENT] — argument de vente pour le déjeuner -->
+            <span class="dish-flag">Ticket Restaurant® acceptés</span>
           </div>
         </article>
 
@@ -957,6 +972,20 @@ footer { background: var(--ivory); padding: clamp(58px, 7vw, 88px) 0 30px; }
           <div class="info-block">
             <h3><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg> Téléphone</h3>
             <a class="phone-big" href="tel:+33146028606">01 46 02 86 06</a>
+          </div>
+
+          <!-- [MOYENS_DE_PAIEMENT] — repris de la fiche Google, à confirmer.
+               Volontairement discret : seul le titre-restaurant est mis en
+               avant (en doré), c'est le seul qui fasse venir quelqu'un. -->
+          <div class="info-block">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-card"></use></svg> Paiements acceptés</h3>
+            <ul class="pay-list">
+              <li>Espèces</li>
+              <li>Carte bancaire</li>
+              <li>Sans contact</li>
+              <li>Chèque</li>
+              <li class="is-key">Ticket Restaurant®</li>
+            </ul>
           </div>
 
           <!-- [RESEAUX_SOCIAUX] — remplacer les href="#" par les vraies pages,
@@ -1088,6 +1117,8 @@ footer { background: var(--ivory); padding: clamp(58px, 7vw, 88px) 0 30px; }
   },
   "servesCuisine": "Boulangerie",
   "priceRange": "€",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Espèces, Carte bancaire, Paiement sans contact, Chèque, Titres-restaurant",
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "06:45", "closes": "20:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday"], "opens": "07:00", "closes": "13:30" }
