@@ -33,6 +33,14 @@ IL MANQUE ENCORE
 Ces deux-la valent le detour : ce sont celles qui donnent un visage
 au commerce. Il n'y a aucun emplacement vide en attendant.
 
+MODIFIER LES HORAIRES
+---------------------
+Ils apparaissent a DEUX endroits qu'il faut changer ensemble :
+1. le tableau affiche, section « Infos pratiques » de index.html ;
+2. le tableau HORAIRES dans le JavaScript, tout en bas du fichier,
+   qui calcule le « Ouvert / Ferme » en direct.
+Les deux sont signales par un commentaire dans le code.
+
 SI UNE PHOTO MANQUE
 -------------------
 L'emplacement affiche un visuel de substitution discret. Le site

@@ -22,7 +22,7 @@
      ══════════════════════════════════════════════════════════════ -->
 
 <title>Maison Elyssa — Boulangerie &amp; pâtisserie à Saint-Mandé</title>
-<meta name="description" content="Boulangerie-pâtisserie au 2 rue Jeanne d'Arc, Saint-Mandé. Pâtisseries en trompe-l'œil, viennoiseries et pains. Ouvert jusqu'à 21h. 01 80 91 21 45.">
+<meta name="description" content="Boulangerie-pâtisserie au 2 rue Jeanne d'Arc, Saint-Mandé. Pâtisseries en trompe-l'œil, viennoiseries et pains. Ouvert de 6h30 à 21h, fermé le samedi. 01 80 91 21 45.">
 <meta name="theme-color" content="#A8203F">
 
 <meta property="og:type" content="business.business">
@@ -250,6 +250,27 @@ section { padding: 94px 0; }
 .carte { border-radius: var(--rayon); overflow: hidden; box-shadow: var(--ombre); height: 100%; min-height: 400px; }
 .carte iframe { width: 100%; height: 100%; min-height: 400px; display: block; border: 0; }
 
+/* Horaires : jour de fermeture, jour en cours, pastille d'état */
+.ferme { color: var(--framboise); font-weight: 600; }
+.horaire--ferme span:first-child { color: var(--encre-clair); }
+.horaire--aujourdhui { font-weight: 700; }
+.horaire--aujourdhui span:first-child::after {
+  content: " · aujourd'hui"; font-weight: 400; font-size: 0.78rem;
+  color: var(--framboise); letter-spacing: .04em;
+}
+.pastille {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-weight: 600; font-size: 0.9rem;
+}
+.pastille::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: currentColor; flex: none;
+}
+.pastille.ouvert { color: #2F7D4F; }
+.pastille.bientot { color: #B4722A; }
+.pastille.ferme-now { color: var(--framboise); }
+.pastille .detail { color: var(--encre-clair); font-weight: 400; }
+
 /* Champs que le commerçant doit encore renseigner.
    Affichés discrètement : on voit que c'est en attente, pas cassé. */
 .a-remplir {
@@ -406,7 +427,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
         <div class="hero-filet"></div>
         <!-- SLOGAN · à valider avec le commerçant -->
         <h1>Des pâtisseries qui trompent l'œil, <em>jamais le goût</em>.</h1>
-        <p class="slogan">Boulangerie et pâtisserie au 2 rue Jeanne d'Arc, à Saint-Mandé. Ouvert jusqu'à 21h.</p>
+        <p class="slogan">Boulangerie et pâtisserie au 2 rue Jeanne d'Arc, à Saint-Mandé. Du dimanche au vendredi, de 6h30 à 21h.</p>
 
         <div class="hero-actions">
           <a class="btn btn-plein" href="tel:+33180912145">Nous appeler</a>
@@ -431,7 +452,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
              (date d'ouverture, parcours du pâtissier, spécialités maison) -->
         <p class="accroche">Une boulangerie de quartier doublée d'un travail de pâtisserie que l'on ne s'attend pas à trouver au coin de la rue.</p>
         <p>Rue Jeanne d'Arc, à deux pas de la mairie de Saint-Mandé, la Maison Elyssa propose ses pains et ses viennoiseries du matin, puis ses pâtisseries tout au long de la journée.</p>
-        <p>La vitrine reste garnie tard : on peut passer en rentrant du travail et trouver encore de quoi faire plaisir, jusqu'à 21h.</p>
+        <p>Le fournil ouvre à 6h30 et la vitrine reste garnie jusqu'à 21h : on peut venir chercher son pain avant le travail, et repasser le soir sans trouver porte close.</p>
 
         <div class="valeurs">
           <div class="valeur">
@@ -443,8 +464,8 @@ footer a:hover { color: #fff; text-decoration: underline; }
             <div class="v-d">La signature de la vitrine</div>
           </div>
           <div class="valeur">
-            <div class="v-t">Ouvert tard</div>
-            <div class="v-d">Jusqu'à 21h</div>
+            <div class="v-t">6h30 – 21h</div>
+            <div class="v-d">Six jours sur sept</div>
           </div>
         </div>
       </div>
@@ -631,7 +652,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
             </div>
             <div class="contact-l">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-              <span>Ouvert jusqu'à 21h</span>
+              <span id="etat-ouverture">Du dimanche au vendredi, 6h30 – 21h</span>
             </div>
 
             <!-- RÉSEAUX SOCIAUX · bloc volontairement masqué : aucun compte
@@ -648,20 +669,20 @@ footer a:hover { color: #fff; text-decoration: underline; }
 
           <div class="info-bloc">
             <h3>Horaires</h3>
-            <!-- HORAIRES · seule la fermeture à 21h est connue à ce jour.
-                 Remplacer les tirets par les horaires réels, jour par jour. -->
-            <!-- HORAIRES · seule la fermeture a 21h est connue a ce jour.
-                 Pour completer : remplacer <span class="a-remplir">a completer</span>
-                 par l'horaire, par exemple <span>7h00 – 21h00</span>.
-                 Pour un jour de fermeture : <span>Fermé</span>. -->
-            <div class="horaire"><span>Lundi</span><span class="a-remplir">à compléter</span></div>
-            <div class="horaire"><span>Mardi</span><span class="a-remplir">à compléter</span></div>
-            <div class="horaire"><span>Mercredi</span><span class="a-remplir">à compléter</span></div>
-            <div class="horaire"><span>Jeudi</span><span class="a-remplir">à compléter</span></div>
-            <div class="horaire"><span>Vendredi</span><span class="a-remplir">à compléter</span></div>
-            <div class="horaire"><span>Samedi</span><span class="a-remplir">à compléter</span></div>
-            <div class="horaire"><span>Dimanche</span><span class="a-remplir">à compléter</span></div>
-            <p class="note-horaires">Fermeture à 21h. Les horaires jour par jour seront ajoutés dès que la boulangerie nous les communique.</p>
+            <!-- HORAIRES · source : fiche Google du commerce.
+                 Pour modifier un jour, changer le texte du <span> ET la ligne
+                 correspondante du tableau HORAIRES dans le JavaScript, en bas
+                 de page : c'est lui qui calcule « Ouvert / Fermé » en direct.
+                 Un jour de fermeture s'écrit <span class="ferme">Fermé</span>
+                 et null dans le tableau. -->
+            <div class="horaire"><span>Lundi</span><span>6h30 – 21h00</span></div>
+            <div class="horaire"><span>Mardi</span><span>6h30 – 21h00</span></div>
+            <div class="horaire"><span>Mercredi</span><span>6h30 – 21h00</span></div>
+            <div class="horaire"><span>Jeudi</span><span>6h30 – 21h00</span></div>
+            <div class="horaire"><span>Vendredi</span><span>6h30 – 21h00</span></div>
+            <div class="horaire horaire--ferme"><span>Samedi</span><span class="ferme">Fermé</span></div>
+            <div class="horaire"><span>Dimanche</span><span>6h30 – 21h00</span></div>
+            <p class="note-horaires">Ouvert du dimanche au vendredi, de 6h30 à 21h. <strong>Fermé le samedi.</strong></p>
           </div>
         </div>
 
@@ -769,6 +790,14 @@ footer a:hover { color: #fff; text-decoration: underline; }
     "postalCode": "94160",
     "addressCountry": "FR"
   },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "06:30",
+      "closes": "21:00"
+    }
+  ],
   "hasMap": "https://www.google.com/maps/search/?api=1&query=Maison+Elyssa+2+Rue+Jeanne+d%27Arc+94160+Saint-Mand%C3%A9",
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -831,7 +860,75 @@ footer a:hover { color: #fff; text-decoration: underline; }
     blocs.forEach(function (b) { b.classList.add('vu'); });
   }
 
-  /* 4. Agrandissement des photos de la galerie */
+  /* 4. Indicateur « Ouvert / Fermé » calculé en direct
+        ─────────────────────────────────────────────────
+        HORAIRES : une ligne par jour, de dimanche (0) à samedi (6).
+        [heure d'ouverture, heure de fermeture] en minutes depuis minuit,
+        ou null si le commerce est fermé ce jour-là.
+        6h30 = 390, 21h00 = 1260.
+        C'EST LA SEULE CHOSE À MODIFIER si les horaires changent —
+        avec le tableau affiché dans la section « Infos pratiques ». */
+  var HORAIRES = [
+    [390, 1260],  /* dimanche */
+    [390, 1260],  /* lundi    */
+    [390, 1260],  /* mardi    */
+    [390, 1260],  /* mercredi */
+    [390, 1260],  /* jeudi    */
+    [390, 1260],  /* vendredi */
+    null          /* samedi : fermé */
+  ];
+
+  function enTexte(min) {
+    var h = Math.floor(min / 60), m = min % 60;
+    return h + 'h' + (m ? (m < 10 ? '0' + m : m) : '');
+  }
+
+  var etat = document.getElementById('etat-ouverture');
+  if (etat) {
+    var maintenant = new Date();
+    var jour = maintenant.getDay();
+    var minute = maintenant.getHours() * 60 + maintenant.getMinutes();
+    var creneau = HORAIRES[jour];
+    var classe, texte, detail = '';
+
+    if (creneau && minute >= creneau[0] && minute < creneau[1]) {
+      classe = 'ouvert';
+      texte = 'Ouvert';
+      detail = (creneau[1] - minute <= 60)
+        ? 'ferme à ' + enTexte(creneau[1])
+        : "jusqu'à " + enTexte(creneau[1]);
+    } else if (creneau && minute < creneau[0]) {
+      classe = (creneau[0] - minute <= 60) ? 'bientot' : 'ferme-now';
+      texte = 'Fermé';
+      detail = 'ouvre à ' + enTexte(creneau[0]);
+    } else {
+      /* fermé pour aujourd'hui : on cherche le prochain jour ouvert */
+      classe = 'ferme-now';
+      texte = 'Fermé';
+      var noms = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+      for (var i = 1; i <= 7; i++) {
+        var j = (jour + i) % 7;
+        if (HORAIRES[j]) {
+          detail = 'réouvre ' + (i === 1 ? 'demain' : noms[j]) + ' à ' + enTexte(HORAIRES[j][0]);
+          break;
+        }
+      }
+    }
+
+    etat.className = 'pastille ' + classe;
+    etat.innerHTML = texte + ' <span class="detail">· ' + detail + '</span>';
+
+    /* et on souligne la ligne du jour dans le tableau */
+    var lignes = document.querySelectorAll('.horaire');
+    /* getDay() rend 0 pour dimanche, le tableau affiché commence au lundi :
+       ORDRE[getDay()] donne le numéro de ligne correspondant. */
+    var ORDRE = [6, 0, 1, 2, 3, 4, 5];
+    if (lignes.length === 7) {
+      lignes[ORDRE[jour]].classList.add('horaire--aujourdhui');
+    }
+  }
+
+  /* 5. Agrandissement des photos de la galerie */
   var loupe = document.getElementById('loupe');
   if (loupe) {
     var grande = loupe.querySelector('img');
@@ -874,7 +971,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
     });
   }
 
-  /* 5. Année du copyright */
+  /* 6. Année du copyright */
   var annee = document.getElementById('annee');
   if (annee) annee.textContent = new Date().getFullYear();
 })();
