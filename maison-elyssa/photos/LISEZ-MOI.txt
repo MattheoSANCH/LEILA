@@ -1,42 +1,39 @@
 MAISON ELYSSA — dossier photos
 ==============================
 
-Déposez les images dans CE dossier, en gardant exactement ces noms.
-Le site les récupère tout seul, il n'y a rien à modifier dans le code.
+Les photos fournies par la boulangerie sont en place. Pour en remplacer
+une, il suffit de deposer un nouveau fichier ICI en gardant le meme nom :
+le site le recupere tout seul, il n'y a rien a modifier dans le code.
 
-FICHIER                          OÙ ÇA S'AFFICHE
--------------------------------- ------------------------------------------
-hero.jpg                         Grande image d'accueil, tout en haut.
-                                 → la plus belle : la vitrine remplie de
-                                   pâtisseries en trompe-l'œil.
-
-equipe.jpg                       Bloc « À propos » : le pâtissier ou
-                                 l'équipe derrière le comptoir.
-
-trompe-loeil.jpg                 Bloc mis en avant, à côté du texte sur le
-                                 trompe-l'œil. → une pièce seule, en gros
-                                   plan (la poire, la mangue, la cacahuète…).
-
-patisseries.jpg                  Carte « Pâtisseries ».
-viennoiseries.jpg                Carte « Viennoiseries ».
-pains.jpg                        Carte « Pains ».
-
-devanture.jpg                    Galerie, grande case : la façade de la
-                                 boutique, vue de la rue.
-vitrine.jpg                      Galerie : la vitrine réfrigérée.
-galerie-trompe-loeil.jpg         Galerie : un autre trompe-l'œil.
-galerie-viennoiseries.jpg        Galerie : viennoiseries.
-galerie-pains.jpg                Galerie : pains.
-atelier.jpg                      Galerie, grande case : le laboratoire /
-                                 le plan de travail.
+FICHIER                OU CA S'AFFICHE
+---------------------- --------------------------------------------------
+hero.jpg               Grande image d'accueil, tout en haut.
+vitrine.jpg            Bloc « A propos », a droite du texte.
+trompe-loeil.jpg       Bloc « La specialite » (le plus visible du site).
+patisseries.jpg        Carte « Les patisseries ».
+viennoiseries.jpg      Carte « Les viennoiseries ».
+pains.jpg              Carte « Les pains ».
+boutique.jpg           Galerie, grande case de gauche.
+speculoos.jpg          Galerie.
+macaron.jpg            Galerie.
+passion-coco.jpg       Galerie.
+coco-framboise.jpg     Galerie.
+cookies.jpg            Galerie, grande case de droite.
 
 FORMAT
 ------
-JPG, environ 1600 px de large, moins de 500 Ko si possible.
+JPG, environ 1200 a 1600 px de large, moins de 500 Ko.
 Photos prises de jour, sans flash. Cadrage un peu large : le site
-recadre automatiquement selon l'écran.
+recadre automatiquement selon la taille de l'ecran.
+
+IL MANQUE ENCORE
+----------------
+- une photo de la devanture, prise depuis la rue ;
+- une photo du patissier ou de l'equipe derriere le comptoir.
+Ces deux-la valent le detour : ce sont celles qui donnent un visage
+au commerce. Il n'y a aucun emplacement vide en attendant.
 
 SI UNE PHOTO MANQUE
 -------------------
-Ce n'est pas grave : l'emplacement affiche un visuel de substitution
-discret. Le site n'affiche jamais d'image cassée.
+L'emplacement affiche un visuel de substitution discret. Le site
+n'affiche jamais d'image cassee.
