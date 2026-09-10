@@ -6,8 +6,13 @@
 
 <!-- ══════════════════════════════════════════════════════════════
      MAISON ELYSSA — Boulangerie & pâtisserie, Saint-Mandé
-     Site vitrine one-page. Fichier autonome : tout le CSS et le JS
-     sont dans cette page, il n'y a rien d'autre à installer.
+     Site vitrine one-page. Tout le CSS et le JavaScript sont dans cette
+     page : il n'y a ni outil de compilation ni bibliothèque à installer.
+     Le site a besoin, à côté de lui, de trois choses seulement :
+       photos/               les images
+       polices/              les deux polices de caractères
+       mentions-legales.html la page légale
+     Il faut donc mettre en ligne le DOSSIER ENTIER, pas le seul index.html.
 
      POUR METTRE LES PHOTOS :
      tout est déjà câblé. Il suffit de déposer les images dans le
@@ -44,11 +49,51 @@
 <!-- LOGO : remplacer ce favicon par le vrai logo si le commerce en a un -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23A8203F'/%3E%3Ctext x='16' y='23' font-family='Didot,Georgia,serif' font-size='18' fill='%23FCFAF7' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+<!-- POLICES · hébergées avec le site, dans le dossier « polices/ ».
+     Elles ne sont PAS chargées depuis Google : la page ne fait donc aucune
+     requête vers un serveur extérieur, et l'adresse IP du visiteur n'est
+     transmise à personne. C'est ce qui permet au site de ne collecter
+     aucune donnée personnelle (voir les mentions légales).
+     Ne pas supprimer le dossier « polices/ » en mettant le site en ligne. -->
+<link rel="preload" href="polices/jakarta-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="polices/prata-400.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
+
+/* ══════════ 0. POLICES ══════════ */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('polices/jakarta-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('polices/jakarta-600.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('polices/jakarta-700.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Prata';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('polices/prata-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ══════════ 1. VARIABLES — toute la charte tient ici ══════════ */
 :root {
   --porcelaine:  #FCFAF7;   /* fond principal */
@@ -731,14 +776,12 @@ footer a:hover { color: #fff; text-decoration: underline; }
       <div>
         <h4>Informations</h4>
         <ul>
-          <!-- MENTIONS LÉGALES · obligatoires pour un site professionnel.
-               Elles doivent contenir la raison sociale, le SIRET, l'adresse,
-               le directeur de publication et l'hébergeur. Tant qu'elles ne
-               sont pas rédigées, la ligne reste affichée mais n'est pas
-               cliquable : mieux vaut ça qu'un lien qui ne mène nulle part.
-               POUR L'ACTIVER : <li><a href="mentions-legales.html">Mentions légales</a></li> -->
-          <li class="a-venir">Mentions légales <span>à rédiger</span></li>
-          <li class="a-venir">Politique de confidentialité <span>à rédiger</span></li>
+          <!-- MENTIONS LÉGALES · obligatoires (loi LCEN, article 6-III).
+               Trois informations restent à compléter dans mentions-legales.html :
+               le président de la SAS, le capital social et l'adresse e-mail.
+               Pas de politique de confidentialité : le site ne collecte
+               aucune donnée personnelle, elle n'est donc pas exigible. -->
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
           <li><a href="https://www.google.com/maps/dir/?api=1&destination=2+Rue+Jeanne+d%27Arc,+94160+Saint-Mand%C3%A9" target="_blank" rel="noopener">Itinéraire</a></li>
         </ul>
       </div>

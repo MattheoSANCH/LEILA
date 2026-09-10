@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAISON ELYSSA — Mentions légales
+     Page obligatoire pour tout site professionnel en France
+     (loi pour la confiance dans l'économie numérique du 21 juin 2004,
+     article 6-III).
+
+     TROIS INFORMATIONS RESTENT À COMPLÉTER, repérées par [CROCHETS] :
+       · le président de la SAS (c'est le directeur de publication)
+       · le capital social
+       · l'adresse e-mail de contact
+     Tout le reste vient du registre officiel des entreprises.
+
+     À VÉRIFIER AUSSI : le greffe d'immatriculation. Saint-Mandé dépend
+     du tribunal de commerce de Créteil, mais il faut le confirmer sur
+     l'extrait RNE avant de mettre le site en ligne.
+     ══════════════════════════════════════════════════════════════ -->
+
+<title>Mentions légales — Maison Elyssa</title>
+<meta name="description" content="Mentions légales du site de la Maison Elyssa, boulangerie-pâtisserie à Saint-Mandé.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#A8203F">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23A8203F'/%3E%3Ctext x='16' y='23' font-family='Didot,Georgia,serif' font-size='18' fill='%23FCFAF7' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+
+<style>
+/* Les polices et les couleurs sont celles du site principal. */
+@font-face { font-family: 'Prata'; font-style: normal; font-weight: 400; font-display: swap; src: url('polices/prata-400.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('polices/jakarta-400.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('polices/jakarta-600.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('polices/jakarta-700.woff2') format('woff2'); }
+
+:root {
+  --porcelaine: #FCFAF7;
+  --blush:      #F6EFEA;
+  --encre:      #241A1D;
+  --encre-clair:#6A5B5F;
+  --framboise:  #A8203F;
+  --trait:      rgba(36, 26, 29, 0.13);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--porcelaine); color: var(--encre);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+}
+h1, h2 { font-family: 'Prata', Georgia, serif; font-weight: 400; margin: 0; line-height: 1.25; }
+p { margin: 0; }
+a { color: var(--framboise); }
+a:focus-visible { outline: 2px solid var(--framboise); outline-offset: 3px; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+
+header {
+  border-bottom: 1px solid var(--trait);
+  background: rgba(252, 250, 247, .95);
+}
+.entete-in { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 15px 0; }
+.logo { display: flex; align-items: center; gap: 11px; text-decoration: none; color: inherit; }
+.logo-marque { width: 40px; height: 40px; border-radius: 11px; background: var(--framboise); color: #fff; flex: none; display: grid; place-items: center; font-family: 'Prata', serif; font-size: 1.1rem; }
+.logo-nom { font-family: 'Prata', serif; font-size: 1.2rem; line-height: 1.15; }
+.logo-nom span { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--encre-clair); margin-top: 3px; font-weight: 600; }
+.retour { font-size: 0.87rem; font-weight: 600; text-decoration: none; color: var(--encre-clair); }
+.retour:hover { color: var(--framboise); }
+
+main { padding: 62px 0 78px; }
+.surtitre { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; color: var(--framboise); margin-bottom: 14px; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+.chapo { margin-top: 16px; color: var(--encre-clair); }
+
+h2 { font-size: 1.3rem; margin: 46px 0 4px; }
+h2 + p, h2 + dl { margin-top: 14px; }
+section p + p { margin-top: 12px; }
+
+dl { margin: 0; display: grid; grid-template-columns: 230px 1fr; gap: 0; }
+dt, dd { padding: 11px 0; border-bottom: 1px solid var(--trait); margin: 0; }
+dt { color: var(--encre-clair); font-size: 0.9rem; }
+dd { font-weight: 600; }
+dl:first-of-type dt:first-of-type, dl:first-of-type dd:first-of-type { border-top: 1px solid var(--trait); }
+
+/* Informations que le commerçant doit encore fournir */
+.a-remplir {
+  color: var(--framboise); font-weight: 600;
+  border-bottom: 1px dashed currentColor; padding-bottom: 1px;
+}
+
+.encart {
+  margin-top: 22px; padding: 22px 24px; background: var(--blush);
+  border-left: 3px solid var(--framboise); border-radius: 0 8px 8px 0;
+  font-size: 0.95rem; color: var(--encre-clair);
+}
+.encart strong { color: var(--encre); }
+
+footer { border-top: 1px solid var(--trait); padding: 26px 0 40px; font-size: 0.85rem; color: var(--encre-clair); }
+.pied-in { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 20px; }
+  main { padding: 40px 0 56px; }
+  dl { grid-template-columns: 1fr; }
+  dt { padding-bottom: 0; border-bottom: 0; }
+  dd { padding-top: 2px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap entete-in">
+    <a class="logo" href="index.html">
+      <span class="logo-marque">E</span>
+      <span class="logo-nom">Maison Elyssa<span>Boulangerie · Saint-Mandé</span></span>
+    </a>
+    <a class="retour" href="index.html">&larr; Retour au site</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="surtitre">Informations légales</p>
+    <h1>Mentions légales</h1>
+    <p class="chapo">Conformément à l'article 6-III de la loi n°&nbsp;2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.</p>
+
+    <section>
+      <h2>Éditeur du site</h2>
+      <dl>
+        <dt>Dénomination sociale</dt>
+        <dd>MAISON ELYSSA</dd>
+
+        <dt>Forme juridique</dt>
+        <dd>Société par actions simplifiée (SAS)</dd>
+
+        <dt>Capital social</dt>
+        <dd><span class="a-remplir">[capital social]</span> €</dd>
+
+        <dt>Siège social</dt>
+        <dd>2 rue Jeanne d'Arc<br>94160 Saint-Mandé, France</dd>
+
+        <dt>SIREN</dt>
+        <dd>103 916 045</dd>
+
+        <dt>SIRET (siège)</dt>
+        <dd>103 916 045 00018</dd>
+
+        <dt>RCS</dt>
+        <dd>Créteil 103 916 045</dd>
+
+        <dt>TVA intracommunautaire</dt>
+        <dd>FR41 103 916 045</dd>
+
+        <dt>Activité (code APE)</dt>
+        <dd>Boulangerie et boulangerie-pâtisserie (10.71C)</dd>
+
+        <dt>Téléphone</dt>
+        <dd><a href="tel:+33180912145">01 80 91 21 45</a></dd>
+
+        <dt>Adresse e-mail</dt>
+        <dd><span class="a-remplir">[adresse e-mail de contact]</span></dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Directeur de la publication</h2>
+      <p><span class="a-remplir">[prénom et nom du président de la SAS]</span>, en qualité de président de la société MAISON ELYSSA.</p>
+    </section>
+
+    <section>
+      <h2>Hébergement</h2>
+      <p>Le site est hébergé par&nbsp;:</p>
+      <dl>
+        <dt>Hébergeur</dt>
+        <dd>Netlify, Inc.</dd>
+
+        <dt>Adresse</dt>
+        <dd>44 Montgomery Street, Suite 300<br>San Francisco, CA 94104, États-Unis</dd>
+
+        <dt>Site</dt>
+        <dd><a href="https://www.netlify.com" target="_blank" rel="noopener">www.netlify.com</a></dd>
+      </dl>
+      <div class="encart">
+        <strong>À vérifier avant la mise en ligne.</strong> Si le site est finalement hébergé ailleurs, cette section doit être corrigée&nbsp;: la loi impose d'indiquer le nom et l'adresse de l'hébergeur réel.
+      </div>
+    </section>
+
+    <section>
+      <h2>Données personnelles</h2>
+      <p>Ce site est un site vitrine. Il ne comporte ni formulaire, ni inscription, ni espace client, ni outil de mesure d'audience, ni bouton de réseau social. <strong>Aucune donnée personnelle n'est collectée, enregistrée ou transmise à un tiers.</strong></p>
+      <p>Les polices de caractères et les images sont hébergées avec le site&nbsp;: la consultation de ces pages ne déclenche aucune requête vers un serveur extérieur.</p>
+      <p>Aucun cookie n'est déposé sur votre appareil. Aucune bannière de consentement n'est donc nécessaire.</p>
+      <p>Si vous nous contactez par téléphone, les informations que vous nous communiquez à cette occasion ne sont pas conservées par ce site.</p>
+      <div class="encart">
+        <strong>Le jour où le site évoluera.</strong> L'ajout d'un formulaire de contact, d'une newsletter, d'un module de réservation ou d'un outil de statistiques rendrait obligatoire une politique de confidentialité en bonne et due forme, au titre du RGPD. Cette page devra alors être complétée.
+      </div>
+    </section>
+
+    <section>
+      <h2>Propriété intellectuelle</h2>
+      <p>L'ensemble des éléments de ce site — textes, photographies, mise en page — est la propriété de la société MAISON ELYSSA ou est utilisé avec l'accord de ses auteurs. Toute reproduction ou représentation, totale ou partielle, sans autorisation écrite préalable, est interdite.</p>
+      <p>Les photographies présentées sur ce site ont été fournies par la Maison Elyssa et représentent ses propres créations.</p>
+    </section>
+
+    <section>
+      <h2>Médiation de la consommation</h2>
+      <p>Conformément à l'article L.&nbsp;612-1 du code de la consommation, tout consommateur a le droit de recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d'un litige.</p>
+      <div class="encart">
+        <strong>À compléter si nécessaire.</strong> Cette obligation concerne les professionnels vendant à des consommateurs. Le nom et les coordonnées du médiateur retenu par l'entreprise doivent être indiqués ici. À défaut d'adhésion à un dispositif de médiation, cette section peut être supprimée&nbsp;: elle est mentionnée à titre d'information.
+      </div>
+    </section>
+
+    <section>
+      <h2>Droit applicable</h2>
+      <p>Le présent site est soumis au droit français. En cas de litige, et à défaut de résolution amiable, les tribunaux français sont seuls compétents.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap pied-in">
+    <span>© <span id="annee"></span> Maison Elyssa — 2 rue Jeanne d'Arc, 94160 Saint-Mandé</span>
+    <span><a href="index.html">Retour au site</a></span>
+  </div>
+</footer>
+
+<script>
+  var annee = document.getElementById('annee');
+  if (annee) annee.textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
