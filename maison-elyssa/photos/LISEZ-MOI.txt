@@ -61,3 +61,10 @@ AVANT LA MISE EN LIGNE :
 
 Le code d'acces n'est PAS une securite : il est lisible dans le code
 source. Il tient les curieux a l'ecart, rien de plus.
+
+DOSSIER « EN-RESERVE »
+----------------------
+Photos fournies par la boulangerie mais non utilisees sur le site.
+Elles sont conservees au cas ou : rien n'est jete.
+- trompe-loeil-vitrine.jpg : ancienne photo d'accueil, au format
+  portrait. Remplacee par une vue paysage, mieux adaptee au bandeau.
