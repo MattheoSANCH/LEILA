@@ -74,6 +74,8 @@ h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
 .chapo { margin-top: 16px; color: var(--encre-clair); }
 
 h2 { font-size: 1.3rem; margin: 46px 0 4px; }
+h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: var(--framboise); margin: 30px 0 10px; }
+h3 + p, h3 + dl { margin-top: 0; }
 h2 + p, h2 + dl { margin-top: 14px; }
 section p + p { margin-top: 12px; }
 
@@ -190,12 +192,34 @@ footer { border-top: 1px solid var(--trait); padding: 26px 0 40px; font-size: 0.
 
     <section>
       <h2>Données personnelles</h2>
-      <p>Ce site est un site vitrine. Il ne comporte ni formulaire, ni inscription, ni espace client, ni outil de mesure d'audience, ni bouton de réseau social. <strong>Aucune donnée personnelle n'est collectée, enregistrée ou transmise à un tiers.</strong></p>
-      <p>Les polices de caractères et les images sont hébergées avec le site&nbsp;: la consultation de ces pages ne déclenche aucune requête vers un serveur extérieur.</p>
-      <p>Aucun cookie n'est déposé sur votre appareil. Aucune bannière de consentement n'est donc nécessaire.</p>
-      <p>Si vous nous contactez par téléphone, les informations que vous nous communiquez à cette occasion ne sont pas conservées par ce site.</p>
+
+      <h3>Les pages publiques</h3>
+      <p>Les pages consultables par tous — accueil, créations, galerie, avis, informations pratiques — ne comportent ni formulaire, ni inscription, ni outil de mesure d'audience, ni bouton de réseau social. <strong>Aucune donnée personnelle n'y est collectée</strong>, et aucun cookie n'est déposé sur votre appareil. Aucune bannière de consentement n'est donc nécessaire.</p>
+      <p>Les polices de caractères et les images sont hébergées avec le site&nbsp;: leur consultation ne déclenche aucune requête vers un serveur extérieur.</p>
+
+      <h3>L'espace client</h3>
+      <p>Le site comporte une page privée, réservée aux responsables de la Maison Elyssa, qui leur permet de transmettre leurs demandes de modification. Les informations saisies dans ses formulaires — horaires, message d'annonce, nom, numéro de téléphone, photographies — sont transmises au prestataire chargé de la maintenance du site, afin de traiter la demande.</p>
+      <dl>
+        <dt>Finalité</dt>
+        <dd>Traiter les demandes de modification du site</dd>
+
+        <dt>Base légale</dt>
+        <dd>Exécution du contrat de maintenance</dd>
+
+        <dt>Destinataire</dt>
+        <dd>Le prestataire chargé de la maintenance, à l'exclusion de tout autre</dd>
+
+        <dt>Sous-traitant technique</dt>
+        <dd>Netlify, Inc. (hébergement et acheminement des formulaires)</dd>
+
+        <dt>Durée de conservation</dt>
+        <dd>12 mois à compter de la demande</dd>
+      </dl>
+      <p>Les données ne sont ni vendues, ni cédées, ni utilisées à des fins publicitaires. Elles transitent par les serveurs de Netlify, Inc., société établie aux États-Unis&nbsp;; ce transfert hors de l'Union européenne est encadré par les clauses contractuelles types de la Commission européenne.</p>
+      <p>Conformément au règlement général sur la protection des données, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition sur les données vous concernant. Pour l'exercer, écrivez à l'adresse indiquée plus haut. Vous pouvez également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).</p>
+
       <div class="encart">
-        <strong>Le jour où le site évoluera.</strong> L'ajout d'un formulaire de contact, d'une newsletter, d'un module de réservation ou d'un outil de statistiques rendrait obligatoire une politique de confidentialité en bonne et due forme, au titre du RGPD. Cette page devra alors être complétée.
+        <strong>Le jour où le site évoluera.</strong> L'ajout d'un formulaire de contact ouvert au public, d'une newsletter, d'un module de réservation ou d'un outil de statistiques élargirait la collecte aux visiteurs du site. Cette section devrait alors être complétée, et une bannière de consentement pourrait devenir nécessaire.
       </div>
     </section>
 

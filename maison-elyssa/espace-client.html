@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAISON ELYSSA — Espace client
+     Page privée : son adresse n'est écrite nulle part sur le site.
+     La boulangerie y envoie ses demandes de modification.
+
+     ┌─ LES DEUX CHOSES À FAIRE AVANT DE METTRE EN LIGNE ─────────┐
+     │ 1. Changer le code d'accès : chercher CODE_ACCES plus bas  │
+     │    dans cette page et remplacer sa valeur.                 │
+     │ 2. Après le déploiement, aller dans Netlify :              │
+     │    Site configuration → Forms → Form notifications         │
+     │    → Add notification → Email notification                 │
+     │    et indiquer VOTRE adresse mail. Sans ça, les demandes   │
+     │    arrivent dans le tableau de bord mais ne sont pas       │
+     │    envoyées par mail.                                      │
+     └────────────────────────────────────────────────────────────┘
+
+     ⚠ LE CODE D'ACCÈS N'EST PAS UNE SÉCURITÉ. Il est lisible dans
+     le code source de la page par qui sait regarder. Il empêche un
+     visiteur de passage d'entrer, rien de plus. Ne jamais mettre
+     d'information confidentielle sur cette page.
+     ══════════════════════════════════════════════════════════════ -->
+
+<title>Espace client — Maison Elyssa</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#A8203F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23A8203F'/%3E%3Ctext x='16' y='23' font-family='Didot,Georgia,serif' font-size='18' fill='%23FCFAF7' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+
+<style>
+@font-face { font-family: 'Prata'; font-style: normal; font-weight: 400; font-display: swap; src: url('polices/prata-400.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('polices/jakarta-400.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('polices/jakarta-600.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('polices/jakarta-700.woff2') format('woff2'); }
+
+:root {
+  --porcelaine: #FCFAF7; --blush: #F6EFEA; --encre: #241A1D;
+  --encre-clair: #6A5B5F; --framboise: #A8203F; --framboise-f: #8A1732;
+  --trait: rgba(36,26,29,.14); --ombre: 0 18px 42px -26px rgba(36,26,29,.5);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--blush); color: var(--encre);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+h1, h2 { font-family: 'Prata', Georgia, serif; font-weight: 400; margin: 0; line-height: 1.25; }
+p { margin: 0; }
+a { color: var(--framboise); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--framboise); outline-offset: 2px;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 22px; }
+
+/* ══ Écran du code d'accès ══ */
+#porte { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.porte-carte {
+  background: var(--porcelaine); border-radius: 16px; box-shadow: var(--ombre);
+  padding: 42px 34px; max-width: 420px; width: 100%; text-align: center;
+}
+.marque {
+  width: 54px; height: 54px; border-radius: 15px; background: var(--framboise);
+  color: #fff; margin: 0 auto 20px; display: grid; place-items: center;
+  font-family: 'Prata', serif; font-size: 1.5rem;
+}
+.porte-carte h1 { font-size: 1.6rem; }
+.porte-carte p { color: var(--encre-clair); font-size: .94rem; margin-top: 10px; }
+#code {
+  width: 100%; margin-top: 24px; padding: 15px 16px; font-size: 1.05rem;
+  border: 1.5px solid var(--trait); border-radius: 11px; background: #fff;
+  font-family: inherit; text-align: center; letter-spacing: .06em;
+}
+#erreur { color: var(--framboise); font-size: .9rem; margin-top: 12px; font-weight: 600; min-height: 1.4em; }
+
+.btn {
+  display: inline-block; border: 0; cursor: pointer; text-decoration: none;
+  font-family: inherit; font-weight: 700; font-size: .98rem;
+  padding: 15px 30px; border-radius: 999px;
+  background: var(--framboise); color: #fff;
+  box-shadow: 0 12px 28px -14px rgba(168,32,63,.9);
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: var(--framboise-f); transform: translateY(-2px); }
+.btn-large { width: 100%; margin-top: 18px; }
+
+/* ══ L'espace lui-même ══ */
+#espace { display: none; padding-bottom: 70px; }
+#espace.ouvert { display: block; }
+
+.entete {
+  background: var(--porcelaine); border-bottom: 1px solid var(--trait);
+  padding: 16px 0; margin-bottom: 38px;
+}
+.entete-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 11px; }
+.logo .marque { width: 40px; height: 40px; border-radius: 11px; margin: 0; font-size: 1.1rem; }
+.logo-nom { font-family: 'Prata', serif; font-size: 1.15rem; line-height: 1.15; }
+.logo-nom span { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--encre-clair); margin-top: 3px; font-weight: 600; }
+.entete a { font-size: .86rem; font-weight: 600; text-decoration: none; color: var(--encre-clair); }
+.entete a:hover { color: var(--framboise); }
+
+.intro { margin-bottom: 34px; }
+.intro h1 { font-size: clamp(1.7rem, 4vw, 2.3rem); }
+.intro p { margin-top: 12px; color: var(--encre-clair); }
+
+/* ══ Les cartes de demande ══ */
+.carte {
+  background: var(--porcelaine); border-radius: 14px; box-shadow: var(--ombre);
+  padding: 30px 28px; margin-bottom: 22px;
+}
+.carte h2 { font-size: 1.35rem; }
+.carte > p { margin-top: 8px; color: var(--encre-clair); font-size: .93rem; }
+.carte form { margin-top: 24px; }
+
+label { display: block; font-size: .88rem; font-weight: 600; margin-bottom: 6px; }
+.aide { font-weight: 400; color: var(--encre-clair); font-size: .84rem; }
+
+input[type=text], input[type=time], input[type=date], input[type=email], select, textarea {
+  width: 100%; padding: 12px 13px; font-family: inherit; font-size: .97rem;
+  border: 1.5px solid var(--trait); border-radius: 10px; background: #fff; color: inherit;
+}
+textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+input[type=file] { width: 100%; font-family: inherit; font-size: .92rem; padding: 11px 0; }
+.champ + .champ { margin-top: 18px; }
+
+/* Tableau des horaires */
+.jours { display: grid; gap: 10px; }
+.jour {
+  display: grid; grid-template-columns: 110px 118px 1fr 1fr; gap: 10px;
+  align-items: center; padding: 9px 0; border-bottom: 1px solid var(--trait);
+}
+.jour-nom { font-weight: 600; font-size: .93rem; }
+/* .heures est en display:contents : il ne crée aucune boîte, donc
+   l'opacité doit porter sur les champs eux-mêmes, pas sur lui. */
+.jour.est-ferme .heures input { opacity: .3; pointer-events: none; }
+.heures { display: contents; }
+
+.envoi { margin-top: 26px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.envoi .btn { flex: none; }
+.envoi .note { font-size: .84rem; color: var(--encre-clair); }
+
+.lardon { position: absolute; left: -9999px; }   /* piège à robots */
+
+.encart {
+  margin-top: 20px; padding: 16px 18px; background: var(--blush);
+  border-left: 3px solid var(--framboise); border-radius: 0 8px 8px 0;
+  font-size: .88rem; color: var(--encre-clair);
+}
+.encart strong { color: var(--encre); }
+
+footer { text-align: center; font-size: .84rem; color: var(--encre-clair); padding: 10px 0 40px; }
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .carte { padding: 24px 20px; }
+  .jour { grid-template-columns: 1fr 1fr; grid-template-areas: "nom nom" "etat etat" "d f"; gap: 8px; padding-bottom: 16px; }
+  .jour-nom { grid-area: nom; } .jour select { grid-area: etat; }
+  .envoi .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ ÉCRAN DU CODE ═══════════ -->
+<div id="porte">
+  <div class="porte-carte">
+    <div class="marque">E</div>
+    <h1>Espace client</h1>
+    <p>Entrez le code qui vous a été communiqué pour accéder à vos demandes de modification.</p>
+    <form id="form-code" autocomplete="off">
+      <label for="code" class="lardon">Code d'accès</label>
+      <input type="password" id="code" placeholder="Code d'accès" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <p id="erreur" role="alert"></p>
+      <button class="btn btn-large" type="submit">Entrer</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══════════ L'ESPACE ═══════════ -->
+<div id="espace">
+
+  <div class="entete">
+    <div class="wrap entete-in">
+      <div class="logo">
+        <div class="marque">E</div>
+        <div class="logo-nom">Maison Elyssa<span>Espace client</span></div>
+      </div>
+      <a href="index.html">Voir mon site &rarr;</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="intro">
+      <h1>Vos demandes de modification</h1>
+      <p>Remplissez seulement la partie qui vous concerne, puis envoyez. Les modifications sont appliquées sur votre site sous 48&nbsp;heures ouvrées, et vous recevez une confirmation.</p>
+    </div>
+
+    <!-- ─────────── 1. HORAIRES ─────────── -->
+    <section class="carte">
+      <h2>Modifier mes horaires</h2>
+      <p>Les horaires actuellement affichés sont pré-remplis. Changez seulement ce qui a bougé.</p>
+
+      <form name="elyssa-horaires" method="POST" data-netlify="true" netlify-honeypot="ne-pas-remplir" action="/merci.html">
+        <input type="hidden" name="form-name" value="elyssa-horaires">
+        <p class="lardon"><label>Ne pas remplir : <input name="ne-pas-remplir"></label></p>
+
+        <div class="jours">
+          <!-- HORAIRES PAR DÉFAUT · à garder d'accord avec ceux du site -->
+          <div class="jour"><span class="jour-nom">Lundi</span>
+            <select name="lundi-etat" aria-label="Lundi : ouvert ou fermé"><option>Ouvert</option><option>Fermé</option></select>
+            <span class="heures"><input type="time" name="lundi-de" value="06:30" aria-label="Lundi, ouverture"><input type="time" name="lundi-a" value="21:00" aria-label="Lundi, fermeture"></span>
+          </div>
+          <div class="jour"><span class="jour-nom">Mardi</span>
+            <select name="mardi-etat" aria-label="Mardi : ouvert ou fermé"><option>Ouvert</option><option>Fermé</option></select>
+            <span class="heures"><input type="time" name="mardi-de" value="06:30" aria-label="Mardi, ouverture"><input type="time" name="mardi-a" value="21:00" aria-label="Mardi, fermeture"></span>
+          </div>
+          <div class="jour"><span class="jour-nom">Mercredi</span>
+            <select name="mercredi-etat" aria-label="Mercredi : ouvert ou fermé"><option>Ouvert</option><option>Fermé</option></select>
+            <span class="heures"><input type="time" name="mercredi-de" value="06:30" aria-label="Mercredi, ouverture"><input type="time" name="mercredi-a" value="21:00" aria-label="Mercredi, fermeture"></span>
+          </div>
+          <div class="jour"><span class="jour-nom">Jeudi</span>
+            <select name="jeudi-etat" aria-label="Jeudi : ouvert ou fermé"><option>Ouvert</option><option>Fermé</option></select>
+            <span class="heures"><input type="time" name="jeudi-de" value="06:30" aria-label="Jeudi, ouverture"><input type="time" name="jeudi-a" value="21:00" aria-label="Jeudi, fermeture"></span>
+          </div>
+          <div class="jour"><span class="jour-nom">Vendredi</span>
+            <select name="vendredi-etat" aria-label="Vendredi : ouvert ou fermé"><option>Ouvert</option><option>Fermé</option></select>
+            <span class="heures"><input type="time" name="vendredi-de" value="06:30" aria-label="Vendredi, ouverture"><input type="time" name="vendredi-a" value="21:00" aria-label="Vendredi, fermeture"></span>
+          </div>
+          <div class="jour"><span class="jour-nom">Samedi</span>
+            <select name="samedi-etat" aria-label="Samedi : ouvert ou fermé"><option selected>Fermé</option><option>Ouvert</option></select>
+            <span class="heures"><input type="time" name="samedi-de" value="06:30" aria-label="Samedi, ouverture"><input type="time" name="samedi-a" value="21:00" aria-label="Samedi, fermeture"></span>
+          </div>
+          <div class="jour"><span class="jour-nom">Dimanche</span>
+            <select name="dimanche-etat" aria-label="Dimanche : ouvert ou fermé"><option>Ouvert</option><option>Fermé</option></select>
+            <span class="heures"><input type="time" name="dimanche-de" value="06:30" aria-label="Dimanche, ouverture"><input type="time" name="dimanche-a" value="21:00" aria-label="Dimanche, fermeture"></span>
+          </div>
+        </div>
+
+        <div class="champ" style="margin-top:20px">
+          <label for="h-precision">Une précision ? <span class="aide">(facultatif)</span></label>
+          <input type="text" id="h-precision" name="precision" placeholder="Par exemple : fermeture à 14h le 24 décembre">
+        </div>
+
+        <div class="envoi">
+          <button class="btn" type="submit">Envoyer mes horaires</button>
+          <span class="note">Votre site indique aussi « Ouvert » ou « Fermé » en direct : il sera mis à jour en même temps.</span>
+        </div>
+      </form>
+    </section>
+
+    <!-- ─────────── 2. ANNONCE ─────────── -->
+    <section class="carte">
+      <h2>Annoncer quelque chose</h2>
+      <p>Congés, fermeture exceptionnelle, nouveauté en vitrine, commandes pour les fêtes… Votre message s'affichera dans un bandeau en haut du site.</p>
+
+      <form name="elyssa-annonce" method="POST" data-netlify="true" netlify-honeypot="ne-pas-remplir" action="/merci.html">
+        <input type="hidden" name="form-name" value="elyssa-annonce">
+        <p class="lardon"><label>Ne pas remplir : <input name="ne-pas-remplir"></label></p>
+
+        <div class="champ">
+          <label for="a-texte">Le message à afficher</label>
+          <textarea id="a-texte" name="message" required placeholder="Par exemple : Fermeture annuelle du 3 au 24 août. Bonnes vacances à tous !"></textarea>
+        </div>
+
+        <div class="champ">
+          <label for="a-fin">Jusqu'à quelle date l'afficher ? <span class="aide">(on le retire tout seul après)</span></label>
+          <input type="date" id="a-fin" name="afficher-jusquau">
+        </div>
+
+        <div class="envoi">
+          <button class="btn" type="submit">Envoyer l'annonce</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ─────────── 3. PHOTOS ─────────── -->
+    <section class="carte">
+      <h2>Envoyer des photos</h2>
+      <p>Une nouvelle création, la devanture, l'équipe… Prises au téléphone, de jour, sans flash : c'est largement suffisant.</p>
+
+      <form name="elyssa-photos" method="POST" data-netlify="true" netlify-honeypot="ne-pas-remplir" action="/merci.html" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="elyssa-photos">
+        <p class="lardon"><label>Ne pas remplir : <input name="ne-pas-remplir"></label></p>
+
+        <div class="champ">
+          <label for="p-fichiers">Vos photos</label>
+          <input type="file" id="p-fichiers" name="photos" accept="image/*" multiple required>
+        </div>
+
+        <div class="champ">
+          <label for="p-ou">Où faut-il les mettre ? <span class="aide">(facultatif)</span></label>
+          <input type="text" id="p-ou" name="emplacement" placeholder="Par exemple : remplacer la photo d'accueil">
+        </div>
+
+        <div class="envoi">
+          <button class="btn" type="submit">Envoyer les photos</button>
+          <span class="note">Si l'envoi est trop lourd, envoyez-les en deux fois.</span>
+        </div>
+      </form>
+    </section>
+
+    <!-- ─────────── 4. AUTRE ─────────── -->
+    <section class="carte">
+      <h2>Autre demande</h2>
+      <p>Un texte à corriger, une création à ajouter, une idée : écrivez-la simplement.</p>
+
+      <form name="elyssa-demande" method="POST" data-netlify="true" netlify-honeypot="ne-pas-remplir" action="/merci.html">
+        <input type="hidden" name="form-name" value="elyssa-demande">
+        <p class="lardon"><label>Ne pas remplir : <input name="ne-pas-remplir"></label></p>
+
+        <div class="champ">
+          <label for="d-qui">Votre nom</label>
+          <input type="text" id="d-qui" name="nom" required placeholder="Pour savoir qui écrit">
+        </div>
+
+        <div class="champ">
+          <label for="d-texte">Votre demande</label>
+          <textarea id="d-texte" name="demande" required placeholder="Décrivez ce que vous souhaitez changer."></textarea>
+        </div>
+
+        <div class="champ">
+          <label for="d-rappel">Un numéro pour vous rappeler ? <span class="aide">(facultatif)</span></label>
+          <input type="text" id="d-rappel" name="telephone" placeholder="06 __ __ __ __">
+        </div>
+
+        <div class="envoi">
+          <button class="btn" type="submit">Envoyer ma demande</button>
+        </div>
+      </form>
+
+      <div class="encart">
+        <strong>Pour ce qui est urgent</strong>, un appel reste plus rapide qu'un formulaire. Ces demandes servent à ce qui peut attendre 48&nbsp;heures.
+      </div>
+    </section>
+  </div>
+
+  <footer>Maison Elyssa · Espace client — <a href="index.html">retour au site</a></footer>
+</div>
+
+<script>
+(function () {
+  /* ══════════════════════════════════════════════════════════════
+     CODE D'ACCÈS — à remplacer par celui que vous communiquez au
+     commerçant. Une seule ligne à changer.
+
+     ⚠ Ce n'est PAS une sécurité : le code est visible dans le code
+     source de la page. Il tient les curieux à l'écart, rien de plus.
+     Ne jamais mettre d'information confidentielle sur cette page.
+     ══════════════════════════════════════════════════════════════ */
+  var CODE_ACCES = 'elyssa2026';
+
+  var porte   = document.getElementById('porte');
+  var espace  = document.getElementById('espace');
+  var champ   = document.getElementById('code');
+  var erreur  = document.getElementById('erreur');
+  var CLE     = 'elyssa-espace-ouvert';
+
+  function ouvrir() {
+    porte.style.display = 'none';
+    espace.classList.add('ouvert');
+    document.title = 'Mes demandes — Maison Elyssa';
+  }
+
+  /* On se souvient de la session en cours : pas de code à retaper
+     à chaque page rechargée. Oublié dès que l'onglet est fermé. */
+  try { if (sessionStorage.getItem(CLE) === 'oui') ouvrir(); } catch (e) {}
+
+  document.getElementById('form-code').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (champ.value.trim().toLowerCase() === CODE_ACCES.toLowerCase()) {
+      try { sessionStorage.setItem(CLE, 'oui'); } catch (e) {}
+      ouvrir();
+    } else {
+      erreur.textContent = "Ce code ne correspond pas. Vérifiez, ou appelez-nous.";
+      champ.value = '';
+      champ.focus();
+    }
+  });
+
+  /* Un jour marqué « Fermé » grise ses horaires : plus lisible,
+     et ça évite d'envoyer des heures qui ne veulent rien dire. */
+  document.querySelectorAll('.jour select').forEach(function (sel) {
+    function refleter() {
+      sel.closest('.jour').classList.toggle('est-ferme', sel.value === 'Fermé');
+    }
+    sel.addEventListener('change', refleter);
+    refleter();
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Page de confirmation affichée après l'envoi d'un formulaire de
+     l'espace client. C'est l'adresse indiquée dans action="/merci.html". -->
+
+<title>Demande envoyée — Maison Elyssa</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#A8203F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23A8203F'/%3E%3Ctext x='16' y='23' font-family='Didot,Georgia,serif' font-size='18' fill='%23FCFAF7' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+
+<style>
+@font-face { font-family: 'Prata'; font-style: normal; font-weight: 400; font-display: swap; src: url('polices/prata-400.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('polices/jakarta-400.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('polices/jakarta-700.woff2') format('woff2'); }
+:root { --porcelaine:#FCFAF7; --blush:#F6EFEA; --encre:#241A1D; --encre-clair:#6A5B5F; --framboise:#A8203F; --framboise-f:#8A1732; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px;
+  background: var(--blush); color: var(--encre);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.65;
+}
+.carte {
+  background: var(--porcelaine); border-radius: 16px; padding: 46px 34px;
+  box-shadow: 0 18px 42px -26px rgba(36,26,29,.5); max-width: 460px; text-align: center;
+}
+.coche {
+  width: 62px; height: 62px; border-radius: 50%; background: var(--framboise);
+  margin: 0 auto 24px; display: grid; place-items: center;
+}
+.coche svg { width: 30px; height: 30px; stroke: #fff; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+h1 { font-family: 'Prata', Georgia, serif; font-weight: 400; font-size: 1.7rem; margin: 0; line-height: 1.25; }
+p { margin: 14px 0 0; color: var(--encre-clair); }
+.btn {
+  display: inline-block; margin-top: 28px; text-decoration: none; font-weight: 700;
+  font-size: .96rem; padding: 15px 30px; border-radius: 999px;
+  background: var(--framboise); color: #fff; transition: background .2s, transform .2s;
+}
+.btn:hover { background: var(--framboise-f); transform: translateY(-2px); }
+.btn:focus-visible { outline: 2px solid var(--encre); outline-offset: 3px; }
+.retour { display: block; margin-top: 18px; font-size: .88rem; color: var(--encre-clair); }
+</style>
+</head>
+<body>
+
+<div class="carte">
+  <div class="coche"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <h1>C'est envoyé</h1>
+  <p>Votre demande est bien arrivée. Elle sera appliquée sur votre site sous 48&nbsp;heures ouvrées, et vous recevrez une confirmation.</p>
+  <p>Si c'est urgent, un appel ira plus vite.</p>
+  <a class="btn" href="espace-client.html">Faire une autre demande</a>
+  <a class="retour" href="index.html">Revenir à mon site</a>
+</div>
+
+</body>
+</html>

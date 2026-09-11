@@ -45,3 +45,19 @@ SI UNE PHOTO MANQUE
 -------------------
 L'emplacement affiche un visuel de substitution discret. Le site
 n'affiche jamais d'image cassee.
+
+ESPACE CLIENT
+-------------
+La page espace-client.html permet a la boulangerie d'envoyer ses
+demandes de modification. Son adresse n'apparait nulle part sur le site.
+
+AVANT LA MISE EN LIGNE :
+1. Changer le code d'acces : chercher CODE_ACCES dans espace-client.html.
+2. Apres le deploiement, dans Netlify :
+   Site configuration > Forms > Form notifications > Add notification
+   > Email notification, et indiquer VOTRE adresse mail.
+   Sans cette etape, les demandes arrivent dans le tableau de bord
+   Netlify mais ne sont pas envoyees par mail.
+
+Le code d'acces n'est PAS une securite : il est lisible dans le code
+source. Il tient les curieux a l'ecart, rien de plus.
