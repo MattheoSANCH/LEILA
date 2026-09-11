@@ -12,12 +12,14 @@
      ┌─ LES DEUX CHOSES À FAIRE AVANT DE METTRE EN LIGNE ─────────┐
      │ 1. Changer le code d'accès : chercher CODE_ACCES plus bas  │
      │    dans cette page et remplacer sa valeur.                 │
-     │ 2. Après le déploiement, aller dans Netlify :              │
-     │    Site configuration → Forms → Form notifications         │
-     │    → Add notification → Email notification                 │
-     │    et indiquer VOTRE adresse mail. Sans ça, les demandes   │
-     │    arrivent dans le tableau de bord mais ne sont pas       │
-     │    envoyées par mail.                                      │
+     │ 2. Dans Netlify, la détection des formulaires doit être    │
+     │    activée (Forms → Enable form detection), ET un          │
+     │    déploiement doit avoir eu lieu APRÈS cette activation : │
+     │    Netlify n'analyse les formulaires qu'au déploiement.    │
+     │ 3. Puis Forms → Form notifications → Add notification      │
+     │    → Email notification, avec VOTRE adresse mail. Sans     │
+     │    ça, les demandes arrivent dans le tableau de bord mais  │
+     │    ne sont pas envoyées par mail.                          │
      └────────────────────────────────────────────────────────────┘
 
      ⚠ LE CODE D'ACCÈS N'EST PAS UNE SÉCURITÉ. Il est lisible dans
