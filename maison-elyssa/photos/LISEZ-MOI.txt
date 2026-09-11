@@ -7,7 +7,7 @@ le site le recupere tout seul, il n'y a rien a modifier dans le code.
 
 FICHIER                OU CA S'AFFICHE
 ---------------------- --------------------------------------------------
-hero.jpg               Grande image d'accueil, tout en haut.
+hero-vitrine.jpg               Grande image d'accueil, tout en haut.
 vitrine.jpg            Bloc « A propos », a droite du texte.
 trompe-loeil.jpg       Bloc « La specialite » (le plus visible du site).
 patisseries.jpg        Carte « Les patisseries ».
