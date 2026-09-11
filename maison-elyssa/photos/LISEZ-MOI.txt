@@ -8,7 +8,8 @@ le site le recupere tout seul, il n'y a rien a modifier dans le code.
 FICHIER                OU CA S'AFFICHE
 ---------------------- --------------------------------------------------
 hero-vitrine.jpg               Grande image d'accueil, tout en haut.
-vitrine.jpg            Bloc « A propos », a droite du texte.
+vitrine-trompe-loeil.jpg  Bloc « A propos », a droite du texte.
+                       Format portrait : l'emplacement est vertical.
 trompe-loeil.jpg       Bloc « La specialite » (le plus visible du site).
 patisseries.jpg        Carte « Les patisseries ».
 viennoiseries.jpg      Carte « Les viennoiseries ».
@@ -66,5 +67,5 @@ DOSSIER « EN-RESERVE »
 ----------------------
 Photos fournies par la boulangerie mais non utilisees sur le site.
 Elles sont conservees au cas ou : rien n'est jete.
-- trompe-loeil-vitrine.jpg : ancienne photo d'accueil, au format
-  portrait. Remplacee par une vue paysage, mieux adaptee au bandeau.
+- vitrine-comptoir.jpg : la vitrine a patisseries vue en enfilade
+  (millefeuilles, macarons, Paris-Brest).
