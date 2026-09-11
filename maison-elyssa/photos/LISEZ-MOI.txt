@@ -26,12 +26,12 @@ JPG, environ 1200 a 1600 px de large, moins de 500 Ko.
 Photos prises de jour, sans flash. Cadrage un peu large : le site
 recadre automatiquement selon la taille de l'ecran.
 
-IL MANQUE ENCORE
-----------------
-- une photo de la devanture, prise depuis la rue ;
-- une photo du patissier ou de l'equipe derriere le comptoir.
-Ces deux-la valent le detour : ce sont celles qui donnent un visage
-au commerce. Il n'y a aucun emplacement vide en attendant.
+POUR ALLER PLUS LOIN (facultatif)
+--------------------------------
+Les douze emplacements sont remplis, le site est complet.
+Si un jour vous voulez l'enrichir, deux photos ajouteraient beaucoup :
+la devanture depuis la rue, et le patissier derriere le comptoir.
+Ce sont celles qui donnent un visage au commerce.
 
 MODIFIER LES HORAIRES
 ---------------------
